@@ -2,5 +2,32 @@
   "name": "@logcomex/design",
   "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+      "lint": "eslint --color --ext=js,vue src tests demo *.js",
+      "lint:fix": "yarn lint --fix",
+      "test": "jest",
+      "testw": "jest --watchAll"
+  },
+  "author": {
+      "name": "Patrick Stival Chaerke",
+      "email": "patrick@logcomex.com"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0",
+    "vue": "^2.6.11",
+    "vue-jest": "^3.0.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "files": [
+      "src",
+      "LICENSE",
+      "README.md",
+      "dist/*"
+  ]
 }

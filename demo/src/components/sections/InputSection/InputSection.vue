@@ -8,7 +8,7 @@
       </div>
       <div class="inputs">
         <input-demo title="Default">
-            <input>
+            <labeled-input />
         </input-demo>
         <input-demo title="Check">
             <input>
@@ -25,10 +25,12 @@
 
 <script>
 import InputDemo from './InputDemo'
+import { LabeledInput } from '../../../../../src'
 
 export default {
     components: {
-        InputDemo
+        InputDemo,
+        LabeledInput
     }
 }
 </script>
