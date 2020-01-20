@@ -4,7 +4,7 @@
       <status class="air-colors">
           <color-box
             v-for="[name, hex] in statusColors"
-            :key="name"
+            :key="hex + name"
             :hex="hex"
             :title="name"
           />  
@@ -37,7 +37,6 @@ export default {
                 ['', '#E0F4F7'],
                 ['', '#F9E4EA'],
                 ['', '#DEF1E8'],
-                ['', '#FF8D75'],
             ]
         }
     }

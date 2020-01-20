@@ -4,7 +4,7 @@
       <status class="maritime-colors">
           <color-box
             v-for="[name, hex] in statusColors"
-            :key="name"
+            :key="hex"
             :hex="hex"
             :title="name"
           />  

@@ -5,6 +5,9 @@
         <maritime-status />
         <air-status />
     </div>
+    <system-usage />
+    <typography />
+    <input-section />
   </div>
 </template>
 
@@ -12,13 +15,19 @@
 import Colors from '@/components/sections/colors/Colors'
 import AirStatus from '@/components/sections/status/AirStatus'
 import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
+import SystemUsage from '@/components/sections/SystemUsage'
+import Typography from '@/components/sections/Typography'
+import InputSection from '@/components/sections/InputSection/InputSection'
 
 export default {
   name: 'home',
   components: {
       Colors,
       AirStatus,
-      MaritimeStatus
+      MaritimeStatus,
+      SystemUsage,
+      Typography,
+      InputSection
   }
 }
 </script>
