@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    color: #2E264D;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.text-center {
+    text-align: center;
+}
+
+// Flex
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+// Margin Helpers
+
+$marginLvl1: 5px;
+
+.mt-1 {
+    margin-top: $marginLvl1;
+}
+
+.mb-1 {
+    margin-bottom: $marginLvl1;
+}
+
+pb-1 {
+    padding-bottom: $marginLvl1;
+}
