@@ -1,19 +1,18 @@
 <template>
   <div class="labeled-input">
-      <svg
-        viewBox="0 0 100 150"
-        id="labeled-input__border"
-      >
-        <rect fill="#000" x="0" y="0" width="50" height="50"  />
-        <rect fill="#fff" x="0" y="0" width="100" height="150"  />
-      </svg>
+      <div class="top-border">
+          <div class="labeled-input__separator"></div>
+          <div class="labeled-input__title">
+              eai kkk
+          </div>
+          <div class="labeled-input__separator"></div>
+      </div>
       <input
         v-bind="$attrs"
         v-on="$listeners"
         type="text"
         class="labeled-input__input"
       >
-      Labeled Inputt
   </div>
 </template>
 
@@ -24,22 +23,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.labeled-input-border {
-
+.top-border {
+    display: grid;
+    grid-template-columns: 15px auto 1fr;
+    align-items: end;
+    .labeled-input__separator {
+        border-top: 1px solid #000;
+        transform: translateY(2px);
+        height: 3px;
+        &:first-child {
+            border-top-left-radius: 4px;
+        }
+        &:last-child {
+            border-top-right-radius: 4px;
+        }
+    }
 }
-.labeled-input {
-    position: relative;
+
+.labeled-input__title {
+    padding: 0 5px;
+    transform: translateY(.5em);
 }
 .labeled-input__input {
+    font-size: 18px;
+    padding: 0 5px;
     height: 35px;
-    border: 1px solid green;
-    // mask: url(#labeled-input__border);
-    outline: none;
-}
-#labeled-input__border {
-    // position: absolute;
     width: 100%;
-    height: 150%;
-    // display: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    border-top: none;
+    outline: none;
 }
 </style>
