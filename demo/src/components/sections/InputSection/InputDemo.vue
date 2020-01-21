@@ -3,7 +3,9 @@
       <h3>
           {{ title }}
       </h3>
-      <slot />
+      <div class="input-group">
+          <slot />
+      </div>
   </div>
 </template>
 
@@ -19,5 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.input-group {
+    display: grid;
+    grid-gap: 10px;
+}
 </style>
