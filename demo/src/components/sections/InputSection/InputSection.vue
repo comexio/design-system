@@ -11,7 +11,10 @@
             <labeled-input />
         </input-demo>
         <input-demo title="Check">
-            <input>
+            <labeled-input
+                :suffix="true"
+                :validate="true"
+            />
         </input-demo>
         <input-demo title="Dropdown">
             <input>
