@@ -1,11 +1,15 @@
 <template>
-  <div class="labeled-input"
-    :class="customStyleClass"
+  <div
+    :class="validityClass"
+    class="labeled-input"
   >
       <div class="top-border">
           <div class="labeled-input__separator"></div>
-          <div class="labeled-input__title">
-              eai kkk
+          <div
+            :class="title ? '' : 'labeled-input__separator'"
+            class="labeled-input__title"
+          >
+              {{ title }}
           </div>
           <div class="labeled-input__separator"></div>
       </div>
@@ -15,7 +19,7 @@
         type="text"
         class="labeled-input__input"
       >
-      <span
+      <!-- <span
         v-if="suffix"
         class="labeled-input__suffix">
             <i
@@ -26,25 +30,33 @@
             <i v-else class="labeled-input__suffix__icon">
                 &#128712;
             </i>
-      </span>
+      </span> -->
       <span
         v-if="message"
         class="labeled-input__message">
-          Mínimo de 6 caracteres; Pelo menos um número e um caractere especial.
+          {{ message }}
       </span>
+      <div 
+        v-if="validity !== ''"
+        class="validation-icon"
+      >
+      </div>
   </div>
 </template>
 
 <script>
 export default {
     props: {
-        suffix: {
-            type: Boolean,
-            default: false
+        title: {
+            type: String,
+            default: ''
         },
-        validate: {
-            type: Boolean,
-            default: false
+        validity: {
+            type: [String, Boolean],
+            default: ''
+        },
+        warning: {
+            type: Boolean
         }
     },
     data () {
@@ -53,30 +65,42 @@ export default {
         }
     },
     computed: {
-        isFieldValid () {
-            return false
+        showValidity () {
+            return this.validity !== ''
         },
-        customStyleClass () {
-            return {
-                'labeled-input--validate': this.validate,
-                'labeled-input--error': this.validate && this.isFieldValid === false,
-                'labeled-input--valid': this.validate && this.isFieldValid === true
+        validityClass () {
+            if (this.warning) {
+                return 'warning'
             }
+            if (!this.showValidity) {
+                return
+            }
+            return this.validity ? 'valid' : 'invalid'
         }
     }
-
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../scss/_variables.scss';
 
+.validation-icon {
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 8px;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .top-border {
     display: grid;
     grid-template-columns: 15px auto 1fr;
     align-items: end;
     .labeled-input__separator {
-        border-top: 1px solid #000;
+        border-top: 1px solid $purpleMartinique;
         transform: translateY(2px);
         height: 3px;
         &:first-child {
@@ -90,35 +114,20 @@ export default {
 
 .labeled-input__title {
     padding: 0 5px;
-    transform: translateY(.5em);
+    height: 0;
+    z-index: 1;
+    transform: translateY(-.5em);
+    font-size: 14px;
 }
 .labeled-input__input {
     font-size: 18px;
     padding: 0 5px;
     height: 35px;
     width: 100%;
-    border: 1px solid #000;
+    border: 1px solid $purpleMartinique;
     border-radius: 4px;
     border-top: none;
     outline: none;
-}
-
-.labeled-input--validate {
-    position: relative;
-    & .labeled-input__input {
-        padding-right: 25px;
-    }
-}
-
-.labeled-input__suffix {
-    position: absolute;
-    right: 5px;
-    font-size: 24px;
-    line-height: 100%;
-    bottom: 5px;
-    i {
-        font-style: normal;
-    }
 }
 
 .labeled-input__message {
@@ -128,24 +137,32 @@ export default {
     bottom: -15px;
 }
 
-.labeled-input--error {
-    .labeled-input__separator {
-        border-color: $redCarantion;
-    }
-    .labeled-input__input {
-        border-color: $redCarantion;
-    }
-    .labeled-input__suffix__icon {
-        color: $redCarantion;
-    }
-    .labeled-input__message {
-        color: $redCarantion;
-    }
-}
-
 .labeled-input--valid {
     .labeled-input__suffix__icon {
         color: $orangeWestSide;
+    }
+}
+
+.labeled-input {
+    position: relative;
+    &.valid .validation-icon {
+        background-image: url(../../assets/icons/icon-correct.svg);
+    }
+    &.invalid {
+        .labeled-input__input, .labeled-input__separator {
+            border-color: $redCarantion;
+        }
+        .validation-icon {
+            background-image: url(../../assets/icons/icon-error.svg);
+        }
+        .labeled-input__message {
+            color: $redCarantion;
+        }
+    }
+    &.warning {
+        .validation-icon {
+            background-image: url(../../assets/icons/icon-warning.svg);
+        }
     }
 }
 </style>

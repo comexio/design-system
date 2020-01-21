@@ -9,12 +9,17 @@
       <div class="inputs">
         <input-demo title="Default">
             <labeled-input />
+            <labeled-input title="Name" />
+            <labeled-input title="Name2" value="Default Value" />
         </input-demo>
         <input-demo title="Check">
             <labeled-input
-                :suffix="true"
-                :validate="true"
+                :validity="true"
             />
+        </input-demo>
+        <input-demo title="Validation">
+            <labeled-input title="New password" :validity="false" />
+            <labeled-input title="New password" :validity="true" />
         </input-demo>
         <input-demo title="Dropdown">
             <input>
@@ -28,7 +33,7 @@
 
 <script>
 import InputDemo from './InputDemo'
-import { LabeledInput } from '../../../../../src'
+import { LabeledInput } from '@/../../src'
 
 export default {
     components: {
@@ -41,6 +46,7 @@ export default {
 <style lang="scss" scoped>
 .inputs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr),
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
 }
 </style>

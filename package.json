@@ -7,7 +7,9 @@
       "lint": "eslint --color --ext=js,vue src tests demo *.js",
       "lint:fix": "yarn lint --fix",
       "test": "jest",
-      "testw": "jest --watchAll"
+      "testw": "jest --watchAll",
+      "postinstall": "yarn --cwd=demo",
+      "demo:build": "yarn --cwd=demo build"
   },
   "author": {
       "name": "Patrick Stival Chaerke",
