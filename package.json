@@ -1,35 +1,45 @@
 {
-  "name": "@logcomex/design",
-  "version": "0.0.1",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-      "lint": "eslint --color --ext=js,vue src tests demo *.js",
-      "lint:fix": "yarn lint --fix",
-      "test": "jest",
-      "testw": "jest --watchAll",
-      "postinstall": "yarn --cwd=demo",
-      "demo:build": "yarn --cwd=demo build"
-  },
-  "author": {
-      "name": "Patrick Stival Chaerke",
-      "email": "patrick@logcomex.com"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@vue/test-utils": "^1.0.0-beta.30",
-    "babel-jest": "^24.9.0",
-    "eslint": "^6.8.0",
-    "jest": "^24.9.0",
-    "vue": "^2.6.11",
-    "vue-jest": "^3.0.5",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "files": [
-      "src",
-      "LICENSE",
-      "README.md",
-      "dist/*"
-  ]
+    "name": "@logcomex/design",
+    "version": "0.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint --color --ext=js,vue src tests demo *.js",
+        "lint:fix": "yarn lint --fix",
+        "test": "jest",
+        "testw": "jest --watchAll",
+        "postinstall": "yarn --cwd=demo",
+        "demo:build": "yarn --cwd=demo build",
+        "build": "rollup -c"
+    },
+    "author": {
+        "name": "Patrick Stival Chaerke",
+        "email": "patrick@logcomex.com"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.8.3",
+        "@babel/preset-env": "^7.8.3",
+        "@vue/component-compiler-utils": "^3.1.1",
+        "@vue/test-utils": "^1.0.0-beta.30",
+        "babel-jest": "^24.9.0",
+        "eslint": "^6.8.0",
+        "jest": "^24.9.0",
+        "parcel": "^1.12.4",
+        "rollup": "^1.29.1",
+        "rollup-plugin-extensions": "^0.1.0",
+        "rollup-plugin-vue": "^5.1.5",
+        "sass": "^1.25.0",
+        "vue": "^2.6.11",
+        "vue-jest": "^3.0.5",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "files": [
+        "src",
+        "LICENSE",
+        "README.md",
+        "dist/*"
+    ],
+    "dependencies": {
+        "vue-hot-reload-api": "^2.3.4"
+    }
 }
