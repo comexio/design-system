@@ -17,7 +17,7 @@
             <labeled-input title="New password" :validity="true" />
         </input-demo>
         <input-demo title="Dropdown">
-            <input>
+            <v-text-field outlined />
         </input-demo>
         <input-demo title="Multiselect">
             <input>
