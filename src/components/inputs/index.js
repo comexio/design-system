@@ -1,5 +1,7 @@
 import LabeledInput from './LabeledInput'
+import CustomInput from './CustomInput'
 
 export {
-    LabeledInput
+    LabeledInput,
+    CustomInput
 }

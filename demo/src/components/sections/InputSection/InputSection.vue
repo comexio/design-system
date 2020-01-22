@@ -7,7 +7,7 @@
           Height: 35px; Border Radius: 5px
       </div>
       <div class="inputs">
-        <input-demo title="Default">
+        <!-- <input-demo title="Default">
             <labeled-input />
             <labeled-input title="Name" />
             <labeled-input title="Name2" value="Default Value" />
@@ -21,19 +21,39 @@
         </input-demo>
         <input-demo title="Multiselect">
             <input>
+        </input-demo> -->
+        <input-demo title="Padrão">
+            <custom-input
+                label="Nome"
+            />
         </input-demo>
+        <input-demo title="Correto">
+            <custom-input
+                label="Nova senha"
+                type="password"
+            />
+        </input-demo>
+        <v-icon>home</v-icon>
       </div>
   </section>
 </template>
 
 <script>
 import InputDemo from './InputDemo'
-import { LabeledInput } from '@/../../src'
+import { CustomInput } from '@/../../src'
 
 export default {
     components: {
         InputDemo,
-        LabeledInput
+        CustomInput
+    },
+    data() {
+        return {
+             rules: {
+                required: value => !!value || 'Required.',
+                min: v => v.length >= 8 || 'Min 8 characters'
+            }
+        }
     }
 }
 </script>
