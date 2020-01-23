@@ -1,16 +1,15 @@
 {
     "name": "@logcomex/design",
-    "version": "0.0.1",
-    "main": "index.js",
+    "version": "0.0.3",
+    "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint --color --ext=js,vue src tests demo *.js",
-        "lint:fix": "yarn lint --fix",
         "test": "jest",
         "testw": "jest --watchAll",
         "postinstall": "yarn --cwd=demo",
         "demo:build": "yarn --cwd=demo build",
-        "build": "rollup -c"
+        "build": "rollup -c",
+        "release": "release-it --ci"
     },
     "author": {
         "name": "Patrick Stival Chaerke",
@@ -21,10 +20,13 @@
         "@babel/preset-env": "^7.8.3",
         "@vue/component-compiler-utils": "^3.1.1",
         "@vue/test-utils": "^1.0.0-beta.30",
-        "babel-jest": "^24.9.0",
-        "eslint": "^6.8.0",
+        "babel-jest": "^25.1.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-plugin-vue": "^6.1.2",
+        "eslint-plugin-vue-libs": "^4.0.0",
         "jest": "^24.9.0",
         "parcel": "^1.12.4",
+        "release-it": "^12.4.3",
         "rollup": "^1.29.1",
         "rollup-plugin-extensions": "^0.1.0",
         "rollup-plugin-vue": "^5.1.5",
