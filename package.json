@@ -9,7 +9,9 @@
         "postinstall": "yarn --cwd=demo",
         "demo:build": "yarn --cwd=demo build",
         "build": "rollup -c",
-        "release": "release-it --ci"
+        "release": "release-it --ci",
+        "lint": "eslint --ext .js,.vue src tests",
+        "lint:fix": "yarn lint --fix"
     },
     "author": {
         "name": "Patrick Stival Chaerke",
@@ -18,10 +20,13 @@
     "devDependencies": {
         "@babel/core": "^7.8.3",
         "@babel/preset-env": "^7.8.3",
+        "@types/jest": "^24.9.0",
         "@vue/component-compiler-utils": "^3.1.1",
         "@vue/test-utils": "^1.0.0-beta.30",
         "babel-jest": "^25.1.0",
+        "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.0.1",
+        "eslint-plugin-jest": "^23.6.0",
         "eslint-plugin-vue": "^6.1.2",
         "eslint-plugin-vue-libs": "^4.0.0",
         "jest": "^24.9.0",
