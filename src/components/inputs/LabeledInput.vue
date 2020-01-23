@@ -6,8 +6,7 @@
       height="35px"
       v-bind="$attrs"
       :rules="validityRules"
-    >
-    </v-text-field>
+    />
   </div>
 </template>
 
