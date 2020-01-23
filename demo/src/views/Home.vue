@@ -2,8 +2,8 @@
   <div class="home">
     <colors />
     <div class="status">
-        <maritime-status />
-        <air-status />
+      <maritime-status />
+      <air-status />
     </div>
     <system-usage />
     <typography />
@@ -20,7 +20,7 @@ import Typography from '@/components/sections/Typography'
 import InputSection from '@/components/sections/InputSection/InputSection'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
       Colors,
       AirStatus,
@@ -34,6 +34,8 @@ export default {
 <style lang="scss">
 .home {
     padding: 50px;
+    display: grid;
+    grid-gap: 50px;
 }
 .status {
     display: grid;
