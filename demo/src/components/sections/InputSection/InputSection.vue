@@ -7,51 +7,47 @@
           Height: 35px; Border Radius: 5px
       </div>
       <div class="inputs">
-        <!-- <input-demo title="Default">
+        <input-demo title="Default">
             <labeled-input />
-            <labeled-input title="Name" />
-            <labeled-input title="Name2" value="Default Value" />
+            <labeled-input label="Name" />
+            <labeled-input label="Name" placeholder="Default Value" />
         </input-demo>
         <input-demo title="Validation">
-            <labeled-input title="New password" :validity="false" />
-            <labeled-input title="New password" :validity="true" />
+            <labeled-input
+                label="New password"
+                type="password"
+            />
+            <labeled-input
+                label="New password"
+                type="password"
+                :rules="[rules.required, rules.min]"
+                validity
+            />
         </input-demo>
         <input-demo title="Dropdown">
             <v-text-field outlined />
         </input-demo>
         <input-demo title="Multiselect">
-            <input>
-        </input-demo> -->
-        <input-demo title="Padrão">
-            <custom-input
-                label="Nome"
-            />
+            <v-text-field outlined />
         </input-demo>
-        <input-demo title="Correto">
-            <custom-input
-                label="Nova senha"
-                type="password"
-            />
-        </input-demo>
-        <v-icon>home</v-icon>
       </div>
   </section>
 </template>
 
 <script>
 import InputDemo from './InputDemo'
-import { CustomInput } from '@/../../src'
+import { LabeledInput } from '@/../../src'
 
 export default {
     components: {
         InputDemo,
-        CustomInput
+        LabeledInput
     },
     data() {
         return {
              rules: {
                 required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters'
+                min: v => v && v.length >= 8 || 'Min 8 characters'
             }
         }
     }
