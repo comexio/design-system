@@ -46,12 +46,6 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
-          name: Set registry URL
-          command: npm set registry https://packagecloud.io/@logcomex/design/npm/
-      - run:
-          name: Authenticate with registry
-          command: echo "//packagecloud.io/@logcomex/design/npm/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      - run:
           name: Connect to host
           command: yarn release
 
