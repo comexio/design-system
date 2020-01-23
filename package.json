@@ -9,7 +9,7 @@
         "postinstall": "yarn --cwd=demo",
         "demo:build": "yarn --cwd=demo build",
         "build": "rollup -c",
-        "release": "release-it"
+        "release": "release-it --ci"
     },
     "author": {
         "name": "Patrick Stival Chaerke",
