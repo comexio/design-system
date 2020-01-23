@@ -9,18 +9,26 @@
       <div class="inputs">
         <input-demo title="Default">
             <labeled-input />
-            <labeled-input title="Name" />
-            <labeled-input title="Name2" value="Default Value" />
+            <labeled-input label="Name" />
+            <labeled-input label="Name" placeholder="Default Value" />
         </input-demo>
         <input-demo title="Validation">
-            <labeled-input title="New password" :validity="false" />
-            <labeled-input title="New password" :validity="true" />
+            <labeled-input
+                label="New password"
+                type="password"
+            />
+            <labeled-input
+                label="New password"
+                type="password"
+                :rules="[rules.required, rules.min]"
+                validity
+            />
         </input-demo>
         <input-demo title="Dropdown">
             <v-text-field outlined />
         </input-demo>
         <input-demo title="Multiselect">
-            <input>
+            <v-text-field outlined />
         </input-demo>
       </div>
   </section>
@@ -34,6 +42,14 @@ export default {
     components: {
         InputDemo,
         LabeledInput
+    },
+    data() {
+        return {
+             rules: {
+                required: value => !!value || 'Required.',
+                min: v => v && v.length >= 8 || 'Min 8 characters'
+            }
+        }
     }
 }
 </script>
