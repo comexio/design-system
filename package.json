@@ -26,6 +26,7 @@
         "eslint-plugin-vue-libs": "^4.0.0",
         "jest": "^24.9.0",
         "parcel": "^1.12.4",
+        "release-it": "^12.4.3",
         "rollup": "^1.29.1",
         "rollup-plugin-extensions": "^0.1.0",
         "rollup-plugin-vue": "^5.1.5",
