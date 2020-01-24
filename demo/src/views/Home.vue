@@ -1,17 +1,21 @@
 <template>
-  <div class="home">
-    <colors />
-    <div class="status">
-      <maritime-status />
-      <air-status />
+  <div class="page-home">
+    <the-header />
+    <div class="home">
+      <colors />
+      <div class="status">
+        <maritime-status />
+        <air-status />
+      </div>
+      <system-usage />
+      <typography />
+      <input-section />
     </div>
-    <system-usage />
-    <typography />
-    <input-section />
   </div>
 </template>
 
 <script>
+import TheHeader from '@/components/TheHeader'
 import Colors from '@/components/sections/colors/Colors'
 import AirStatus from '@/components/sections/status/AirStatus'
 import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
@@ -27,7 +31,8 @@ export default {
       MaritimeStatus,
       SystemUsage,
       Typography,
-      InputSection
+      InputSection,
+      TheHeader
   }
 }
 </script>

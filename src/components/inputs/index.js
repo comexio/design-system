@@ -1,5 +1,7 @@
-import LabeledInput from './LabeledInput'
+import LLabeledInput from './LLabeledInput'
+import LDatePicker from './LDatePicker.vue'
 
 export {
-    LabeledInput
+    LLabeledInput,
+    LDatePicker
 }

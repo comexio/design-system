@@ -9,6 +9,7 @@
         "postinstall": "yarn --cwd=demo",
         "demo:build": "yarn --cwd=demo build",
         "build": "rollup -c",
+        "prerelease": "yarn build",
         "release": "release-it --ci",
         "lint": "eslint --ext .js,.vue src tests",
         "lint:fix": "yarn lint --fix"

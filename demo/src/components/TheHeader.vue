@@ -1,6 +1,10 @@
 <template>
   <header class="header">
-    <img alt="Logcomex logo" src="../assets/logo.svg" class="logo">
+    <img
+      alt="Logcomex logo"
+      src="../assets/logo.svg"
+      class="logo"
+    >
   </header>
 </template>
 

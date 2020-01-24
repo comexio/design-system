@@ -61,17 +61,20 @@
         />
       </input-demo>
     </div>
+    <multiple-selectors />
   </section>
 </template>
 
 <script>
 import InputDemo from './InputDemo'
+import MultipleSelectors from './MultipleSelectors'
 import { LabeledInput } from '@/../../src'
 
 export default {
     components: {
         InputDemo,
-        LabeledInput
+        LabeledInput,
+        MultipleSelectors
     },
     data() {
         return {
