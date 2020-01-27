@@ -15,7 +15,7 @@
         <v-checkbox
           label="Selected"
           hide-details
-          :input-value="true"
+          input-value
         />
       </div>
     </input-demo>
