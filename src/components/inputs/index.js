@@ -1,7 +1,9 @@
 import LLabeledInput from './LLabeledInput'
-import LDatePicker from './LDatePicker.vue'
+import LDatePicker from './LDatePicker'
+import LDropdownCheck from './LDropdownCheck'
 
 export {
     LLabeledInput,
-    LDatePicker
+    LDatePicker,
+    LDropdownCheck
 }

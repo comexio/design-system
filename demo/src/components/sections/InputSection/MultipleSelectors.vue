@@ -36,7 +36,7 @@
 
 <script>
 import InputDemo from './InputDemo'
-import { LDatePicker } from '../../../../../src'
+import { LDatePicker } from '@/../../src'
 export default {
     components: {
         InputDemo,

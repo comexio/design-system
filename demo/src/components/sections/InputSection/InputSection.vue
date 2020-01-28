@@ -8,19 +8,19 @@
     </div>
     <div class="inputs">
       <input-demo title="Default">
-        <labeled-input />
-        <labeled-input label="Name" />
-        <labeled-input
+        <l-labeled-input />
+        <l-labeled-input label="Name" />
+        <l-labeled-input
           label="Name"
           placeholder="Default Value"
         />
       </input-demo>
       <input-demo title="Validation">
-        <labeled-input
+        <l-labeled-input
           label="New password"
           type="password"
         />
-        <labeled-input
+        <l-labeled-input
           label="New password"
           type="password"
           :rules="[rules.required, rules.min]"
@@ -68,12 +68,12 @@
 <script>
 import InputDemo from './InputDemo'
 import MultipleSelectors from './MultipleSelectors'
-import { LabeledInput } from '@/../../src'
+import { LLabeledInput } from '@/../../src'
 
 export default {
     components: {
         InputDemo,
-        LabeledInput,
+        LLabeledInput,
         MultipleSelectors
     },
     data() {

@@ -10,6 +10,7 @@
       <system-usage />
       <typography />
       <input-section />
+      <filter-section />
     </div>
   </div>
 </template>
@@ -22,6 +23,7 @@ import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
 import SystemUsage from '@/components/sections/SystemUsage'
 import Typography from '@/components/sections/Typography'
 import InputSection from '@/components/sections/InputSection/InputSection'
+import FilterSection from '@/components/sections/FilterSection/FilterSection'
 
 export default {
   name: 'Home',
@@ -32,7 +34,8 @@ export default {
       SystemUsage,
       Typography,
       InputSection,
-      TheHeader
+      TheHeader,
+      FilterSection
   }
 }
 </script>
@@ -41,6 +44,7 @@ export default {
     padding: 50px;
     display: grid;
     grid-gap: 50px;
+    padding-bottom: 50vh;
 }
 .status {
     display: grid;
