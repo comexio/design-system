@@ -7,7 +7,7 @@
       <l-dropdown-check
         heading-text="Cars"
         placeholder="Search something..."
-        :items="[{ value: 'a', text: 'First' }, { value: 'b', text: 'Second' }]"
+        :items="[{ value: 'a', text: 'First' }, { value: 'b', text: 'Second' }, { value: 'c', text: 'Third' }, { value: 'd', text: 'Fourth' }]"
       />
       <div>a</div>
       <div>a</div>

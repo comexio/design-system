@@ -20,6 +20,7 @@
             v-model="searchText"
             :placeholder="placeholder"
             hide-details
+            class="l-search-text"
           />
         </v-list-item>
         <v-list-item>
@@ -110,9 +111,5 @@ export default {
         padding: 5px;
         border-radius: 5px;
     }
-}
-
-.l-dropdown-list {
-   
 }
 </style>
