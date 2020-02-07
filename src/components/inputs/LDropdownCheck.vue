@@ -6,6 +6,7 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn
+          append-icon="mdi-arrow-down"
           color="primary"
           outlined
           class="l-dropdown-check--activator"

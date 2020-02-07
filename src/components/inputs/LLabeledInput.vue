@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     validity: {
       type: Boolean,

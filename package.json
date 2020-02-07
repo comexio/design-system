@@ -6,7 +6,6 @@
     "scripts": {
         "test": "jest",
         "testw": "jest --watchAll",
-        "postinstall": "yarn --cwd=demo",
         "demo:build": "yarn --cwd=demo build",
         "build": "rollup -c",
         "prerelease": "yarn build",
