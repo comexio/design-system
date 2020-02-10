@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'Chip',
+  name: 'LabeledChip',
   props: {
     item: {
       type: Object,
