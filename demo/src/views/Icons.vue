@@ -1,6 +1,6 @@
 <template>
   <section class="icons">
-    Eu sou o icone
+    Eu sou o ícone
   </section>
 </template>
 
