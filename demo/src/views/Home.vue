@@ -8,6 +8,7 @@
     <system-usage />
     <typography />
     <input-section />
+    <filter-section />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
 import SystemUsage from '@/components/sections/SystemUsage'
 import Typography from '@/components/sections/Typography'
 import InputSection from '@/components/sections/InputSection/InputSection'
+import FilterSection from '@/components/sections/FilterSection/FilterSection'
 
 export default {
   name: 'Home',
@@ -27,7 +29,8 @@ export default {
       MaritimeStatus,
       SystemUsage,
       Typography,
-      InputSection
+      InputSection,
+      FilterSection
   }
 }
 </script>
