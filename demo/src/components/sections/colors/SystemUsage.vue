@@ -1,24 +1,26 @@
 <template>
   <section class="system-usage">
-      <h2 class="system-usage_title">
-          System Colors Usage
-      </h2>
-      <div class="system-usage-content">
-          <div
-            v-for="[title, hex] in colors"
-            :key="hex"
-            class="system-color">
-              <div
-                :style="{ backgroundColor: hex }"
-                class="system-color-box"></div>
-              <div class="system-color-hex">
-                  <b>{{ hex }}</b>
-              </div>
-              <div class="system-color-title">
-                  <b>{{ title }}</b>
-              </div>
-          </div>
+    <h2 class="system-usage_title">
+      System Colors Usage
+    </h2>
+    <div class="system-usage-content">
+      <div
+        v-for="[title, hex] in colors"
+        :key="hex"
+        class="system-color"
+      >
+        <div
+          :style="{ backgroundColor: hex }"
+          class="system-color-box"
+        />
+        <div class="system-color-hex">
+          <b>{{ hex }}</b>
+        </div>
+        <div class="system-color-title">
+          <b>{{ title }}</b>
+        </div>
       </div>
+    </div>
   </section>
 </template>
 
