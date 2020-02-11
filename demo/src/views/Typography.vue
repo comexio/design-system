@@ -1,6 +1,9 @@
 <template>
-  <h2>
-      Typography
+  <div>
+    <div class="typography-tittle">
+      <h1>Typography</h1>
+          <p>Lorem ipsum justo habitant pharetra nec quisque leo libero himenaeos,<br> nisi varius aenean himenaeos aliquam ac hac sem.</p>
+    </div>
       <div class="font-list">
           <div
             v-for="[fontName, fontFamily] in fonts"
@@ -16,7 +19,7 @@
             </div>
           </div>
       </div>
-  </h2>
+  </div>
 </template>
 
 <script>
@@ -36,6 +39,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.typography-tittle{
+  text-align: center;
+  color: $Martinique;
+}
 .font-list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -49,7 +56,7 @@ export default {
     color: #000;
     font-weight: initial;
 }
-@import '../../scss/_fonts.scss';
+@import '../scss/_fonts.scss';
 @include font('Rubik-Light', '/fonts/Rubik-Light');
 @include font('Rubik-Regular', '/fonts/Rubik-Regular');
 @include font('Rubik-Medium', '/fonts/Rubik-Medium');

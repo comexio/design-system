@@ -1,35 +1,44 @@
 <template>
   <div>
-      <h1>COLORS</h1>
-      <h2>System</h2>
-      <section class="system-colors">
+      <div class="colors-title">
+        <h1>Colors and Usage</h1>
+        <p>Lorem ipsum justo habitant pharetra nec quisque leo libero himenaeos,<br> nisi varius aenean himenaeos aliquam ac hac sem.</p>
+      </div>
+      <section class="all-colors">
           <color-box
-            v-for="[name, hex] in systemColors"
-            :key="name"
-            :hex="hex"
-            :title="name"
-          />  
+                v-for="[name, hex] in [...brandColors, ...systemColors]"
+                :key="name"
+                :hex="hex"
+                :title="name"
+            /> 
       </section>
+    <system-usage></system-usage>
   </div>
 </template>
 
 <script>
+import SystemUsage from './SystemUsage'
 export default {
+    components:{
+        SystemUsage
+    },
     data () {
         return {
-            systemColors: [
+            brandColors: [
                 ['Purple', '#5C068C'],
-                ['Purple Hover', '#8345A5'],
-                ['Purple Icons', '#9F6CBB'],
-                ['System Font', '#2E264D'],
                 ['Orange', '#FF8F1C'],
-                ['Orange Hover', '#FFAB56'],
-                ['Tags Hover', '#E2DAF8'],
-                ['Sidebar Hover', '#F9EFFF'],
-                ['System Background', '#FAF6FF'],
-                ['Grey Hover', '#B8B8B8'],
-                ['Grey Button', '#D4D4D4'],
-                ['Grey Lines', '#F1EFEF'],
+            ],
+            systemColors: [
+                ['Martinique', '#2E264D'],
+                ['Alto', '#D4D4D4'],
+                ['Gallery', '#F1EFEF'],
+                ['Wisteria', '#9F6CBB'],
+                ['Moon Raker', '#E2DAF8'],
+                ['Magnolia', '#FAF6FF'],
+                ['Royal Purple', '#8345A5'],
+                ['Texas Rose', '#FFAB56'],
+                ['Blue Chalk', '#F9EFFF'],
+                ['Silver', '#B8B8B8'],
             ]
         }
     }
@@ -37,14 +46,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.system-colors {
+.all-colors {
+    margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-gap: 40px;
-}
-@media screen and (max-width: 768px) {
-    .system-colors {
-        grid-template-columns: 1fr 1fr;
+    grid-row-gap: 70px;
+    $topValue: 50px;
+    & > :nth-child(3), & > :first-child, & > :nth-child(9) {
+        position: relative;
+        &::before {
+            top: -$topValue;
+            position: absolute;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #313131;
+        }
     }
+    & > :nth-child(3)::before {
+        content: 'System';
+    }
+    & > :nth-child(9)::before {
+        content: 'Hover';
+    }
+    & > :nth-child(1)::before {
+        content: 'Brand';
+    }
+}
+.colors-title{
+    text-align: center;
+    color: #1E1E1E;
 }
 </style>

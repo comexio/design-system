@@ -1,6 +1,6 @@
 <template>
   <section class="system-usage">
-      <h2>
+      <h2 class="system-usage_title">
           System Colors Usage
       </h2>
       <div class="system-usage-content">
@@ -50,7 +50,7 @@ $colorBoxSize: 50px;
 .system-color-box {
     width: $colorBoxSize;
     height: $colorBoxSize;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 .system-color {
     display: grid;
@@ -58,5 +58,12 @@ $colorBoxSize: 50px;
     grid-gap: 40px;
     margin-bottom: 6px;
     align-items: center;
+}
+.system-usage_title{
+    margin-top: 90px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #313131;
 }
 </style>
