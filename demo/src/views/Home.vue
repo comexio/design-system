@@ -1,36 +1,16 @@
 <template>
   <div class="home">
     <colors />
-    <div class="status">
-      <maritime-status />
-      <air-status />
-    </div>
-    <system-usage />
-    <typography />
-    <input-section />
-    <filter-section />
   </div>
 </template>
 
 <script>
 import Colors from '@/components/sections/colors/Colors'
-import AirStatus from '@/components/sections/status/AirStatus'
-import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
-import SystemUsage from '@/components/sections/SystemUsage'
-import Typography from '@/components/sections/Typography'
-import InputSection from '@/components/sections/InputSection/InputSection'
-import FilterSection from '@/components/sections/FilterSection/FilterSection'
 
 export default {
   name: 'Home',
   components: {
       Colors,
-      AirStatus,
-      MaritimeStatus,
-      SystemUsage,
-      Typography,
-      InputSection,
-      FilterSection
   }
 }
 </script>
@@ -39,6 +19,7 @@ export default {
     padding: 50px;
     display: grid;
     grid-gap: 50px;
+    background-color: #FCFCFC;
 }
 .status {
     display: grid;
