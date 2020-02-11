@@ -38,8 +38,10 @@
         "vue-jest": "^3.0.5",
         "vue-template-compiler": "^2.6.11"
     },
+    "types": "./types",
     "files": [
         "src",
+        "types",
         "LICENSE",
         "README.md",
         "dist/*"
