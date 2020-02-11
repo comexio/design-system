@@ -1,16 +1,6 @@
 <template>
   <div class="home">
     <colors />
-    <!-- 
-    <div class="status">
-      <maritime-status />
-      <air-status />
-      
-    </div>
-    <system-usage />
-    <typography />
-    <input-section />
-    -->
   </div>
 </template>
 
