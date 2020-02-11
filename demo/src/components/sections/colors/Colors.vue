@@ -1,18 +1,18 @@
 <template>
   <div>
-      <div class="colors-title">
-        <h1>Colors and Usage</h1>
-        <p>Lorem ipsum justo habitant pharetra nec quisque leo libero himenaeos,<br> nisi varius aenean himenaeos aliquam ac hac sem.</p>
-      </div>
-      <section class="all-colors">
-          <color-box
-                v-for="[name, hex] in [...brandColors, ...systemColors]"
-                :key="name"
-                :hex="hex"
-                :title="name"
-            /> 
-      </section>
-    <system-usage></system-usage>
+    <div class="colors-title">
+      <h1>Colors and Usage</h1>
+      <p>Lorem ipsum justo habitant pharetra nec quisque leo libero himenaeos,<br> nisi varius aenean himenaeos aliquam ac hac sem.</p>
+    </div>
+    <section class="all-colors">
+      <color-box
+        v-for="[name, hex] in [...brandColors, ...systemColors]"
+        :key="name"
+        :hex="hex"
+        :title="name"
+      /> 
+    </section>
+    <system-usage />
   </div>
 </template>
 
