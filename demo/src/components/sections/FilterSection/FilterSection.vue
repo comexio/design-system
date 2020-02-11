@@ -4,6 +4,11 @@
       Filters
     </h1>
     <div class="filter-examples">
+      <div>
+        <l-labeled-chip
+          :item="item"
+        />
+      </div>
       <l-dropdown-check
         heading-text="Cars"
         placeholder="Search something..."
@@ -17,10 +22,22 @@
 </template>
 
 <script>
-import { LDropdownCheck } from '@/../../src'
+import { LDropdownCheck, LLabeledChip } from '@/../../src'
 export default {
     components: {
-        LDropdownCheck
+        LDropdownCheck,
+        LLabeledChip
+    },
+    data () {
+      return {
+        item: {
+          text: 'Últimos 3 meses',
+          number: '56',
+          filter: {
+            id: 'period'
+          }
+        }
+      }
     }
 }
 </script>
