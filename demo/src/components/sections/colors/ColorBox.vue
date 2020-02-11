@@ -1,17 +1,20 @@
 <template>
-    <div class="color-box text-center d-flex flex-column align-items-center">
-        <div
-          :style="{ backgroundColor: hex }"
-          class="hex-demo d-flex justify-center align-center mb-1">
-          <v-icon class="icon-copy">mdi-content-copy</v-icon>
-        </div>
-        <div class="title-text">
-            {{ title }}
-        </div>
-        <div class="hex-text">
-            {{ hex }}
-        </div>
+  <div class="color-box text-center d-flex flex-column align-items-center">
+    <div
+      :style="{ backgroundColor: hex }"
+      class="hex-demo d-flex justify-center align-center mb-1"
+    >
+      <v-icon class="icon-copy">
+        mdi-content-copy
+      </v-icon>
     </div>
+    <div class="title-text">
+      {{ title }}
+    </div>
+    <div class="hex-text">
+      {{ hex }}
+    </div>
+  </div>
 </template>
 
 <script>
