@@ -16,17 +16,11 @@
 
 <script>
 import Colors from '@/components/sections/colors/Colors'
-import AirStatus from '@/components/sections/status/AirStatus'
-import MaritimeStatus from '@/components/sections/status/MaritimeStatus'
-import InputSection from '@/components/sections/InputSection/InputSection'
 
 export default {
   name: 'Home',
   components: {
       Colors,
-      AirStatus,
-      MaritimeStatus,
-      InputSection
   }
 }
 </script>
