@@ -1,17 +1,21 @@
 <template>
-  <div>
+  <div class="l-labeled-input">
     <v-text-field
       dense
       outlined
       height="35px"
       v-bind="$attrs"
       :rules="validityRules"
+      class="l-labeled-input--input"
+      v-on="$listeners"
     />
   </div>
 </template>
 
 <script>
 export default {
+  name: 'LabeledInput',
+  inheritAttrs: false,
   props: {
     validity: {
       type: Boolean,
@@ -38,5 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.l-labeled-input {
+    width: 100%;
+}
 </style>

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import TheHeader from '@/components/TheHeader'
 import Colors from '@/components/sections/colors/Colors'
 
 export default {
