@@ -3,7 +3,9 @@
     <div
       :style="{ backgroundColor: hex }"
       class="hex-demo d-flex justify-center align-center mb-1"
+      @click="copy"
     >
+      <div class="overlay" />
       <v-icon class="icon-copy">
         mdi-content-copy
       </v-icon>
@@ -14,6 +16,11 @@
     <div class="hex-text">
       {{ hex }}
     </div>
+    <textarea
+      v-show="isUpdating"
+      ref="copy"
+      :value="hex"
+    />
   </div>
 </template>
 
@@ -27,6 +34,20 @@ export default {
         hex: {
             type: String,
             required: true
+        }
+    },
+    data () {
+        return {
+            isUpdating: false
+        }
+    },
+    methods: {
+        async copy() {
+            this.isUpdating = true
+            await this.$nextTick()
+            this.$refs.copy.select()
+            document.execCommand('copy')
+            this.isUpdating = false
         }
     }
 }
@@ -50,18 +71,32 @@ export default {
     height: 50%;
     opacity: 0;
     transition: opacity .15s ease-in;
+    pointer-events: none;
     color: 000;
+    z-index: 1;
 }
 
 .hex-demo {
     height: 90px;
     width: 100%;
     cursor: pointer;
-    &:hover .icon-copy {
-        opacity: 1;
-    }
+    position: relative;
 }
-.hex-demo:hover{
-    opacity: 0.5;
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0;
+    transition: opacity .15s ease-in;
+    &:hover {
+        &+.icon-copy {
+            opacity: 1;
+        }
+        opacity: 0.5;
+    }
 }
 </style>

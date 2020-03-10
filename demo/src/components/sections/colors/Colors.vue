@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="colors-title">
-      <h1>Colors and Usage</h1>
-      <p>Lorem ipsum justo habitant pharetra nec quisque leo libero himenaeos,<br> nisi varius aenean himenaeos aliquam ac hac sem.</p>
-    </div>
+    <div class="colors-background" />
     <section class="all-colors">
       <color-box
         v-for="[name, hex] in [...brandColors, ...systemColors]"
@@ -73,8 +70,11 @@ export default {
         content: 'Brand';
     }
 }
-.colors-title{
-    text-align: center;
-    color: #1E1E1E;
+.colors-background{
+    background-image: url('colors.jpg');
+    height: 385px;
+    width: calc(100% + 100px);
+    margin-left: -50px;
+    margin-top: -50px;
 }
 </style>
