@@ -1,5 +1,5 @@
-import LabeledChip from './LabeledChip'
+import LLabeledChip from './LLabeledChip'
 
 export {
-    LabeledChip
+    LLabeledChip
 }

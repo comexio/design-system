@@ -1,14 +1,14 @@
 {
     "name": "@logcomex/design",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
         "test": "jest",
         "testw": "jest --watchAll",
-        "postinstall": "yarn --cwd=demo",
-        "demo:build": "yarn --cwd=demo build",
+        "demo:build": "yarn --cwd demo && yarn --cwd=demo build",
         "build": "rollup -c",
+        "prerelease": "yarn build",
         "release": "release-it --ci",
         "lint": "eslint --ext .js,.vue src tests",
         "lint:fix": "yarn lint --fix"
@@ -21,7 +21,6 @@
         "@babel/core": "^7.8.3",
         "@babel/preset-env": "^7.8.3",
         "@types/jest": "^24.9.0",
-        "@vue/component-compiler-utils": "^3.1.1",
         "@vue/test-utils": "^1.0.0-beta.30",
         "babel-jest": "^25.1.0",
         "eslint": "^6.8.0",
@@ -30,7 +29,6 @@
         "eslint-plugin-vue": "^6.1.2",
         "eslint-plugin-vue-libs": "^4.0.0",
         "jest": "^24.9.0",
-        "parcel": "^1.12.4",
         "release-it": "^12.4.3",
         "rollup": "^1.29.1",
         "rollup-plugin-extensions": "^0.1.0",
@@ -38,15 +36,19 @@
         "sass": "^1.25.0",
         "vue": "^2.6.11",
         "vue-jest": "^3.0.5",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "@vue/component-compiler-utils": "^3.1.1",
+        "parcel": "^1.12.4"
     },
+    "types": "./types",
     "files": [
         "src",
+        "types",
         "LICENSE",
         "README.md",
         "dist/*"
     ],
     "dependencies": {
-        "vue-hot-reload-api": "^2.3.4"
+      "vue-hot-reload-api": "^2.3.4"
     }
 }
