@@ -36,7 +36,9 @@
         "sass": "^1.25.0",
         "vue": "^2.6.11",
         "vue-jest": "^3.0.5",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "@vue/component-compiler-utils": "^3.1.1",
+        "parcel": "^1.12.4"
     },
     "types": "./types",
     "files": [
@@ -46,5 +48,7 @@
         "README.md",
         "dist/*"
     ],
-    "dependencies": {}
+    "dependencies": {
+      "vue-hot-reload-api": "^2.3.4"
+    }
 }
