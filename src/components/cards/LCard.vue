@@ -23,7 +23,8 @@
 </template>
 
 <script>
-import { LCardHeader } from './LCardHeader'
+import LCardHeader from './LCardHeader'
+
 export default {
   components: {
     LCardHeader

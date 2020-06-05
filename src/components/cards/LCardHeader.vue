@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .LCardHeader {
   max-width: 100%;
   overflow: hidden;
@@ -35,14 +36,14 @@ export default {
 
 .LCardHeader {
   &__title {
-    color: $martinique;
+    color: #2E264D;
     font-size: 1rem;
     overflow: hidden;
     max-width: 100%;
   }
   &__subtitle {
     font-size: 11px;
-    color: $silver !important;
+    color: #B8B8B8 !important;
     overflow: hidden;
     max-width: 100%;
   }
