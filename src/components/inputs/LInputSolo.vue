@@ -14,7 +14,7 @@
 export default {
   props: {
     value: {
-      type: [String, Object, Number, Array, Boolean],
+      type: [String, Number],
       default: null
     }
   },

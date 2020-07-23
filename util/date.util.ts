@@ -48,7 +48,6 @@ export function formatPeriodToDatepicker (values: Object) {
 export function formatYearMonth (yearMonth: string, monthsList: Array<string>) {
   // @ts-ignore
   // eslint-disable-next-line
-  // const dateMonths = ([$nuxt.$t('searchx.dateMonth')] as unknown as string[])
   const dateMonths = (monthsList as unknown as string[])
   const dates = yearMonth.toString().split(' - ')
   let formattedDates = ''

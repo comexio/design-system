@@ -96,7 +96,7 @@ export default {
     },
     monthsList: {
       type: Array,
-      default: () => ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai']
+      required: true
     }
   },
   data () {

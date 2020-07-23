@@ -19,7 +19,8 @@ const defaultParams = {
     limit: {
       ...initialDateLimit
     },
-    value: ['2020-03', '2020-05']
+    value: ['2020-03', '2020-05'],
+    monthsList: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
   },
   data () {
     return {
