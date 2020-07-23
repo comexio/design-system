@@ -5,12 +5,14 @@
     "license": "MIT",
     "scripts": {
         "test": "jest",
+        "testcoverage": "jest --collect-coverage",
         "testw": "jest --watchAll",
         "demo:build": "yarn --cwd demo && yarn --cwd=demo build",
         "build": "rollup -c",
+        "watch": "rollup -c --watch",
         "prerelease": "yarn build",
         "release": "release-it --ci",
-        "lint": "eslint --ext .js,.vue src tests",
+        "lint": "eslint --ext .js,.vue src test",
         "lint:fix": "yarn lint --fix"
     },
     "author": {
@@ -20,10 +22,14 @@
     "devDependencies": {
         "@babel/core": "^7.8.3",
         "@babel/preset-env": "^7.8.3",
+        "@rollup/plugin-alias": "^3.1.1",
+        "@rollup/plugin-typescript": "^5.0.2",
         "@types/jest": "^24.9.0",
         "@vue/component-compiler-utils": "^3.1.1",
-        "@vue/test-utils": "^1.0.0-beta.30",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "babel-core": "7.0.0-bridge.0",
         "babel-jest": "^25.1.0",
+        "babel-plugin-module-resolver": "^4.0.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.0.1",
         "eslint-plugin-jest": "^23.6.0",
@@ -34,12 +40,15 @@
         "release-it": "^12.4.3",
         "rollup": "^1.29.1",
         "rollup-plugin-extensions": "^0.1.0",
-        "rollup-plugin-scss": "^2.5.0",
+        "rollup-plugin-styles": "^3.10.0",
         "rollup-plugin-vue": "^5.1.5",
         "sass": "^1.25.0",
+        "ts-jest": "^24.3.0",
+        "typescript": "^3.9.7",
         "vue": "^2.6.11",
         "vue-jest": "^3.0.5",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "vuetify": "2.3.4"
     },
     "types": "./types",
     "files": [
