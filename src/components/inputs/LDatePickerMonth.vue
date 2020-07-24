@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { PERIODS_TEXTS, PERIODS_VALUES_TO_KEYS, periodsByQuantity } from 'appRoot/enum/date.enum.ts'
+import { MONTH_PERIODS_TEXT, MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from 'appRoot/enum/date.enum.ts'
 import { extractYearMonth, getCurrentYearMonthStr, yearMonthDiff, monthDiff, formatYearMonth } from 'appRoot/util/date.util.ts'
 
 export default {
@@ -106,7 +106,7 @@ export default {
   },
   computed: {
     formattedMonths () {
-      return formatYearMonth(PERIODS_TEXTS[this.periodChip] || this.monthsPeriod.join(' - '), this.monthsList)
+      return formatYearMonth(MONTH_PERIODS_TEXT[this.periodChip] || this.monthsPeriod.join(' - '), this.monthsList)
     },
     periodChip: {
       get () {
@@ -120,7 +120,7 @@ export default {
         const endYearMonth = extractYearMonth(endYearMonthStr)
 
         const monthsDiff = -yearMonthDiff(endYearMonth, startYearMonth) + 1
-        return PERIODS_VALUES_TO_KEYS[monthsDiff]
+        return MONTH_PERIODS_VALUES_TO_KEYS[monthsDiff]
       },
       set (periodKey) {
         const currentDate = new Date(this.dateFilterLimits('max'))
@@ -150,7 +150,7 @@ export default {
     periodsEnum () {
       const { min, max } = this.dateLimit
       const months = monthDiff(new Date(min), new Date(max))
-      const periods = periodsByQuantity(months)
+      const periods = monthPeriodsByQuantity(months)
 
       return Object.keys(periods).length
         ? periods : null

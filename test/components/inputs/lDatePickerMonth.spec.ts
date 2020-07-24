@@ -1,6 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent, addElemWithDataAppToBody } from '@/test/utils.setup'
-import LDatePicker from '@/src/components/inputs/LDatePicker.vue'
+import LDatePickerMonth from '@/src/components/inputs/LDatePickerMonth.vue'
 
 const initialDateLimit = {
   min: '2020-03-01',
@@ -36,10 +36,10 @@ const defaultParams = {
 
 describe('datePicker component', () => {
   addElemWithDataAppToBody()
-  let datePicker: Wrapper<LDatePicker>
+  let datePicker: Wrapper<LDatePickerMonth>
 
   beforeAll(() => {
-    datePicker = mount(LDatePicker, {
+    datePicker = mount(LDatePickerMonth, {
       ...defaultParams
     })
   })

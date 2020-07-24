@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 interface YearMonth {
   year: number
   month: number
@@ -17,6 +19,13 @@ export function getCurrentYearMonthStr () {
 export function monthDiff (dateFrom: Date, dateTo: Date) {
   return dateTo.getMonth() - dateFrom.getMonth() +
     (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
+}
+
+export function weekDiff (dateFrom: Date, dateTo: Date) {
+  const start = moment(dateFrom)
+  const end = moment(dateTo)
+  const result = end.diff(start, 'weeks')
+  return result
 }
 
 export function yearMonthDiff (yearMonthFrom: YearMonth, yearMonthTo: YearMonth) {
@@ -65,4 +74,19 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>) {
     formattedDates += separator + translateMonth + '/' + year
   })
   return formattedDates.trim()
+}
+
+export function formatYearMonthDay (date: string) {
+  const dates = date.toString().split(' - ')
+  let formattedDate = ''
+  dates.forEach((period) => {
+    const date = new Date(period + ' 12:00')
+    const day = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear()
+    const separator = formattedDate === '' ? '' : ' - '
+    formattedDate += `${separator}${day}/${month}/${year}`
+  })
+
+  return formattedDate
 }
