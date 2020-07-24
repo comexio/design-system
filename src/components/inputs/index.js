@@ -1,13 +1,15 @@
 import LLabeledInput from './LLabeledInput'
 import LInputSolo from './LInputSolo'
 import LSelectSolo from './LSelectSolo'
-import LDatePicker from './LDatePicker'
+import LDatePickerMonth from './LDatePickerMonth'
+import LDatePickerDay from './LDatePickerDay'
 import LDropdownCheck from './LDropdownCheck'
 
 export {
     LLabeledInput,
     LInputSolo,
     LSelectSolo,
-    LDatePicker,
+    LDatePickerMonth,
+    LDatePickerDay,
     LDropdownCheck
 }

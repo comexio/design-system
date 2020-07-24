@@ -36,6 +36,7 @@
         "eslint-plugin-vue": "^6.1.2",
         "eslint-plugin-vue-libs": "^4.0.0",
         "jest": "^24.9.0",
+        "moment": "^2.27.0",
         "parcel": "^1.12.4",
         "release-it": "^12.4.3",
         "rollup": "^1.29.1",
