@@ -5,11 +5,20 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
       - run: yarn
       - run: yarn lint
   test:
@@ -19,6 +28,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
       - run: yarn
       - run: yarn test
   build:
@@ -29,5 +44,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
             node-version: 12.x
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
       - run: yarn
       - run: yarn build
