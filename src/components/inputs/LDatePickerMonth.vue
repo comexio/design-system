@@ -106,7 +106,7 @@ export default {
   },
   computed: {
     formattedMonths () {
-      return formatYearMonth(MONTH_PERIODS_TEXT[this.periodChip] || this.monthsPeriod.join(' - '), this.monthsList)
+      return formatYearMonth(MONTH_PERIODS_TEXT[this.periodChip] || this.monthsPeriod.join(' - '), this.monthsList, true)
     },
     periodChip: {
       get () {

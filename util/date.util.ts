@@ -54,7 +54,7 @@ export function formatPeriodToDatepicker (values: Object) {
   return slaveObject
 }
 
-export function formatYearMonth (yearMonth: string, monthsList: Array<string>) {
+export function formatYearMonth (yearMonth: string, monthsList: Array<string>, shortYear: boolean = false) {
   // @ts-ignore
   // eslint-disable-next-line
   const dateMonths = (monthsList as unknown as string[])
@@ -71,7 +71,7 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>) {
     }
     const translateMonth = dateMonths[parseInt(month) - 1].substr(0, 3)
     const separator = formattedDates === '' ? '' : ' - '
-    formattedDates += separator + translateMonth + '/' + year
+    formattedDates += separator + translateMonth + '/' + (shortYear ? year.substr(2, 2) : year)
   })
   return formattedDates.trim()
 }
