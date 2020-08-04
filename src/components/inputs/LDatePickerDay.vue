@@ -58,17 +58,17 @@
           v-if="periodsEnum"
           column
           active-class="primary--text"
-          class="full-height d-flex flex-column justify-space-around pa-2"
+          class="datepicker__calendar__period full-height d-flex flex-column justify-space-around px-2 py-4"
         >
           <v-chip
             v-for="(period, index) of periodsEnum"
             :key="index"
-            debugger
-            :color="periodChip === index ? 'blurred' : 'default'"
+            label
+            class="justify-center"
+            :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
             @click="periodChip = index"
           >
             <span
-              :style="{ color: periodChip === index ? 'white' : 'martinique' }"
               class="select-period"
             >
               {{ period }}
@@ -81,8 +81,9 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { WEEK_PERIODS_KEYS, WEEK_PERIODS_VALUES_TO_KEYS, weekPeriodsByQuantity } from 'appRoot/enum/date.enum.ts'
-import { extractYearMonth, getCurrentYearMonthStr, yearMonthDiff, weekDiff, formatYearMonthDay } from 'appRoot/util/date.util.ts'
+import { extractYearMonth, weekDiff, formatYearMonthDay } from 'appRoot/util/date.util.ts'
 
 export default {
   name: 'DatePicker',
@@ -94,10 +95,6 @@ export default {
     limit: {
       type: Object,
       default: null
-    },
-    monthsList: {
-      type: Array,
-      required: true
     }
   },
   data () {
@@ -107,29 +104,31 @@ export default {
   },
   computed: {
     formattedDate () {
-      return formatYearMonthDay(this.datePeriod.join(' - '), this.monthsList)
+      return formatYearMonthDay(this.datePeriod.join(' - '))
     },
     periodChip: {
       get () {
-        const [startYearMonthStr, endYearMonthStr] = this.datePeriod
-        const currentYearMonthStr = getCurrentYearMonthStr()
-        if (endYearMonthStr !== currentYearMonthStr) {
+        const [startDate, endDate] = this.datePeriod
+        const limitMax = this.dateLimit.max
+        const momentLimitMax = moment('2020-06-30' || limitMax)
+        const momentStartDate = moment(startDate)
+        const momentEndDate = moment(endDate)
+        const result = momentEndDate.diff(momentStartDate, 'weeks')
+        const maxResult = momentLimitMax.diff(momentEndDate, 'days')
+
+        if (maxResult) {
           return
         }
 
-        const startYearMonth = extractYearMonth(startYearMonthStr)
-        const endYearMonth = extractYearMonth(endYearMonthStr)
-
-        const monthsDiff = -yearMonthDiff(endYearMonth, startYearMonth) + 1
-        return WEEK_PERIODS_VALUES_TO_KEYS[monthsDiff]
+        return WEEK_PERIODS_VALUES_TO_KEYS[result]
       },
       set (periodKey) {
         const monthlyChange = periodKey === WEEK_PERIODS_KEYS.LAST_MONTH
-        const currentDate = new Date(this.dateFilterLimits('max'))
+        const currentDate = new Date(this.dateFilterLimits('max') + ' 12:00')
         const currentYear = currentDate.getFullYear()
         const weeksDiff = periodKey.split('_')
         const subtractedDate = monthlyChange
-          ? new Date(currentYear, currentDate.getMonth() - 1, currentDate.getDate())
+          ? new Date(currentYear, currentDate.getMonth())
           : new Date(currentYear, currentDate.getMonth(), currentDate.getDate() - (parseInt(weeksDiff[1] * 7)))
 
         const magicPeriodMinimumDate = new Date(this.dateFilterLimits('min') + ' 00:00')
@@ -238,6 +237,7 @@ export default {
 
 .datepicker__calendar {
   ::v-deep .v-date-picker-header {
+    padding: 4px 8px;
     .v-btn {
       color: $wisteria;
     }
@@ -254,6 +254,34 @@ export default {
       height: 30px;
     }
   }
+
+  ::v-deep .v-date-picker-table--date {
+    height: auto;
+    padding-bottom: 8px;
+    .v-btn {
+      border: thin solid $gallery;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+
+      .v-btn__content {
+        font-size: .8rem;
+      }
+    }
+  }
+
+  .datepicker__calendar__period {
+    .v-chip {
+      background: none;
+      border: thin solid $gallery;
+      height: 20px;
+    }
+
+    .datepicker__calendar__period__chip--active {
+      background: $wisteria;
+      color: #fff;
+    }
+  }
 }
 
 ::v-deep .v-picker__actions {
@@ -262,6 +290,6 @@ export default {
 }
 
 .select-period {
-  font-size: 13px;
+  font-size: 0.9rem;
 }
 </style>
