@@ -94,6 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_variables.scss';
 .modal {
   .modal__button {
     font-size: 1.1rem;
