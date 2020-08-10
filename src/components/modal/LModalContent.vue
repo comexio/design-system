@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'ModalContent',
+  name: 'LModalContent',
   props: {
     img: {
       type: String,

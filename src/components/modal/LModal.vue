@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'Modal',
+  name: 'LModal',
   props: {
     dialog: {
       type: Boolean,
