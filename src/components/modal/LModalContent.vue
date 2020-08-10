@@ -47,6 +47,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_variables.scss';
+
 ::v-deep {
   .modalContent__title, .modalContent__text {
     color: $martinique;
