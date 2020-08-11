@@ -2,6 +2,7 @@
   <v-dialog
     v-model="dialog"
     max-width="560"
+    :persistent="true"
     @click:outside="closeModal"
   >
     <v-card class="modal">
