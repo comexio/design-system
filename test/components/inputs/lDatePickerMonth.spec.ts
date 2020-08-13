@@ -1,6 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent, addElemWithDataAppToBody } from '@/test/utils.setup'
-import LDatePickerMonth from '@/src/components/inputs/LDatePickerMonth.vue'
+import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
+import LDatePickerMonth from '~/src/components/inputs/LDatePickerMonth.vue'
 
 const initialDateLimit = {
   min: '2020-03-01',
@@ -54,7 +54,7 @@ describe('datePicker component', () => {
     const calendar = () => datePicker.find('.v-date-picker-table')
     expect(calendar().exists()).toBeTruthy()
 
-    const datePickerVuetify = () => datePicker.find({ name: 'v-date-picker' })
+    const datePickerVuetify = () => datePicker.findComponent({ name: 'v-date-picker' })
     expect(datePickerVuetify().exists()).toBeTruthy()
     expect(datePickerVuetify().vm.$props.min).toBe(initialDateLimit.min)
     expect(datePickerVuetify().vm.$props.max).toBe(initialDateLimit.max)

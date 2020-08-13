@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { stringColorToRGBA } from 'appRoot/utils/color.util.ts'
+import { stringColorToRGBA } from '~/utils/color.util.ts'
 
 export default {
   name: 'LTag',

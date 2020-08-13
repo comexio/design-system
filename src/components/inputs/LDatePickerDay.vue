@@ -82,8 +82,8 @@
 
 <script>
 import moment from 'moment'
-import { WEEK_PERIODS_KEYS, WEEK_PERIODS_VALUES_TO_KEYS, weekPeriodsByQuantity } from 'appRoot/enum/date.enum.ts'
-import { extractYearMonth, weekDiff, formatYearMonthDay } from 'appRoot/utils/date.util.ts'
+import { WEEK_PERIODS_KEYS, WEEK_PERIODS_VALUES_TO_KEYS, weekPeriodsByQuantity } from '@/../enum/date.enum.ts'
+import { extractYearMonth, weekDiff, formatYearMonthDay } from '@/../utils/date.util.ts'
 
 export default {
   name: 'DatePicker',
