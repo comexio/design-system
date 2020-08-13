@@ -1,6 +1,6 @@
 {
   "name": "@logcomex/design",
-  "version": "0.0.8",
+  "version": "0.0.21",
   "license": "MIT",
   "author": {
     "name": "Rafael Bastiansch",
@@ -46,5 +46,6 @@
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11",
     "vuetify": "^2.3.8"
-  }
+  },
+  "files":["dist", "enum", "src", "types", "utils", "package.json"]
 }
