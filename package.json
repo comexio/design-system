@@ -13,7 +13,8 @@
     "testcoverage": "jest --collect-coverage",
     "testw": "jest --watchAll",
     "lint": "eslint --ext .js,.vue src test",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "demo:build": "yarn --cwd demo && yarn --cwd=demo build"
   },
   "main": "./dist/design.common.js",
   "types": "./types",
