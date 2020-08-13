@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "vue-cli-service build --target lib src/index.js",
-    "test:unit": "vue-cli-service test:unit",
+    "watch": "vue-cli-service build --target lib src/index.js --watch",
     "test": "jest",
     "testcoverage": "jest --collect-coverage",
     "testw": "jest --watchAll",
