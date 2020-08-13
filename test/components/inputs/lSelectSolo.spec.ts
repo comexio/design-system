@@ -1,6 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent, addElemWithDataAppToBody } from '@/test/utils.setup'
-import LSelectSolo from '@/src/components/inputs/LSelectSolo.vue'
+import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
+import LSelectSolo from '~/src/components/inputs/LSelectSolo.vue'
 
 const emitPush = jest.fn()
 const setupDefault = initSetupComponent()

@@ -1,5 +1,5 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import LButtonIcon from '@/src/components/buttons/LButtonIcon.vue'
+import LButtonIcon from '~/src/components/buttons/LButtonIcon.vue'
 
 describe('Tag component', () => {
   let button: Wrapper<LButtonIcon>

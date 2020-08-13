@@ -1,5 +1,5 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import LInputSolo from '@/src/components/inputs/LInputSolo.vue'
+import LInputSolo from '~/src/components/inputs/LInputSolo.vue'
 
 const push = jest.fn()
 

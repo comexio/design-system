@@ -1,9 +1,10 @@
 module.exports = {
+    preset: "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
     modulePathIgnorePatterns: ['demo'],
     moduleNameMapper: {
-      '^@/(.*)$': '<rootDir>/$1',
-      '^appRoot/(.*)$': '<rootDir>/$1',
-      '^vue$': 'vue/dist/vue.common.js'
+      '^@/(.*)$': '<rootDir>/src/',
+      '^vue$': 'vue/dist/vue.common.js',
+      '^~/(.*)$': '<rootDir>/$1'
     },
     moduleFileExtensions: ['js', 'vue', 'ts'],
     transform: {
@@ -13,6 +14,9 @@ module.exports = {
     },
     collectCoverageFrom: [
       '<rootDir>/src/components/**/*.vue'
+    ],
+    testMatch: [
+      "<rootDir>/test/**/**/*.spec.[jt]s?(x)"
     ],
     globals: {
       'ts-jest': {

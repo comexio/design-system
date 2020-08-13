@@ -1,6 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent } from '@/test/utils.setup'
-import LTag from '@/src/components/tags/LTag.vue'
+import { initSetupComponent } from '~/test/utils.setup'
+import LTag from '~/src/components/tags/LTag.vue'
 
 const initialSetup = initSetupComponent()
 const defaultParams = {
@@ -28,7 +28,7 @@ describe('Tag component', () => {
     const tagContent = () => tag.find('.v-chip__content')
     const tagNumber = () => tag.find('.tag__number')
     const tagLink = () => tag.find('.tag__link')
-    const chip = () => tag.find({ name: 'v-chip' })
+    const chip = () => tag.findComponent({ name: 'v-chip' })
     expect(tagContent().exists()).toBeTruthy()
     expect(tagNumber().exists()).toBeTruthy()
     expect(tagLink().exists()).toBeTruthy()
