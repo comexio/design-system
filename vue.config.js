@@ -10,5 +10,14 @@ module.exports = {
     externals: [
       'moment',
     ],
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+          @import "@/assets/scss/_globals.scss";
+        `
+      }
+    }
   }
 }

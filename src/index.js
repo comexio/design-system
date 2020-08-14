@@ -4,6 +4,7 @@ export * from './components/cards'
 export * from './components/buttons'
 export * from './components/tags'
 export * from './components/modal'
+export * from './components/charts'
 
 import * as inputs from './components/inputs'
 import * as filters from './components/filters'
@@ -11,6 +12,7 @@ import * as cards from './components/cards'
 import * as buttons from './components/buttons'
 import * as tags from './components/tags'
 import * as modal from './components/modal'
+import * as charts from './components/charts'
 
 
 const components = {
@@ -19,7 +21,8 @@ const components = {
     ...cards,
     ...buttons,
     ...tags,
-    ...modal
+    ...modal,
+    ...charts
 }
 
 export function install (Vue) {
