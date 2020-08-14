@@ -8,14 +8,14 @@ module.exports = {
       }
     },
     externals: [
-      'moment',
+      // 'moment',
     ],
   },
   css: {
     loaderOptions: {
       sass: {
         prependData: `
-          @import "@/assets/scss/_globals.scss";
+          @import "@/assets/scss/_main.scss";
         `
       }
     }

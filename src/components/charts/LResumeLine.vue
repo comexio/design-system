@@ -27,7 +27,8 @@ export default {
 
 <style lang="scss" scoped>
 .resumeLine {
-  color: $martinique
+  color: $martinique;
+  font-size: 0.9rem;
 }
 
 .resumeLine__title {
