@@ -14,8 +14,8 @@
         :description="description"
         @togglecard="$emit('close')"
       />
+      <v-divider />
       <div class="LCard__content">
-        <v-divider />
         <slot />
       </div>
     </v-card>
