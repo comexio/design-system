@@ -1,6 +1,5 @@
 import Vuetify from 'vuetify'
 import { mount, createLocalVue, Wrapper } from '@vue/test-utils'
-// @ts-ignore
 import { LAlert } from '~/src/components/alerts'
 
 const localVue = createLocalVue()
