@@ -1,13 +1,12 @@
 import Vuetify from 'vuetify'
 import { mount, createLocalVue, Wrapper } from '@vue/test-utils'
+import { initSetupComponent } from '~/test/utils.setup'
 import { LAlert } from '~/src/components/alerts'
 
-const localVue = createLocalVue()
-const vuetify = new Vuetify()
+const setupDefault = initSetupComponent()
 
 const defaultParams = {
-  localVue,
-  vuetify,
+  ...setupDefault,
   propsData: {
     msg: 'Teste alert'
   }
