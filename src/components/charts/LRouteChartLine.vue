@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'LRouteChartLine',
   props: {
     data: {
       type: Object,
@@ -40,10 +41,10 @@ export default {
 }
 
 .LRouteChart__line__item--text {
+  position: relative;
   &:nth-child(-n+2) {
     box-shadow: inset 2px 0px 0px 0px white;
   }
-  position: relative;
 }
 
 .LRouteChart__line__item {

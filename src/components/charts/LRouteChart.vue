@@ -7,6 +7,7 @@
   >
     <div class="LRouteChart__content">
       <l-route-chart-header
+        v-if="header"
         :data="header"
       />
       <l-route-chart-line
@@ -43,7 +44,7 @@ export default {
     },
     header: {
       type: Array,
-      default: () => ([])
+      default: null
     },
     lines: {
       type: Array,
