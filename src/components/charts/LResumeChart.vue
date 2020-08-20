@@ -49,6 +49,6 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep .LCard__content {
-  padding: 10px 15px;
+  padding: 0 15px;
 }
 </style>
