@@ -1,19 +1,50 @@
 <template>
   <div class="LRouteChart__line">
-    <div class="LRouteChart__line__item LRouteChart__line__item--percent font-bd">
-      {{ data.number }}
+    <v-tooltip
+      bottom
+      content-class="LRouteChart__line__tooltip customTooltip pa-0"
+    >
+      <template v-slot:activator="{ on }">
+        <div
+          class="LRouteChart__line__item LRouteChart__line__item--percent font-bd"
+          v-on="on"
+        >
+          {{ data.number }}
+        </div>
+      </template>
+      <div
+        v-if="data.quantity"
+        class="customTooltip__info"
+      >
+        {{ data.quantity.name }} : {{ data.quantity.value }}
+      </div>
+    </v-tooltip>
+    <div
+      v-if="data.isLast"
+    >
+      <div
+        class="LRouteChart__line__item LRouteChart__line__item--text"
+      >
+        {{ data.values }}
+      </div>
     </div>
     <div
-      v-for="(item, key) in data.values"
-      :key="key"
-      class="LRouteChart__line__item LRouteChart__line__item--text"
+      v-else
+      class="LRouteChart__line__group"
     >
-      {{ item }}
+      <div
+        v-for="(item, key) in data.values"
+        :key="key"
+        class="LRouteChart__line__item LRouteChart__line__item--text"
+      >
+        {{ item }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'LRouteChartLine',
   props: {
@@ -28,7 +59,12 @@ export default {
 <style lang="scss" scoped>
 .LRouteChart__line {
   display: grid;
-  grid-template-columns: 52px repeat(3, 1fr);
+  grid-template-columns: 52px 1fr;
+}
+
+.LRouteChart__line__group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .LRouteChart__line__item {
@@ -42,13 +78,13 @@ export default {
 
 .LRouteChart__line__item--text {
   position: relative;
-  &:nth-child(-n+2) {
+  &:first-child {
     box-shadow: inset 2px 0px 0px 0px white;
   }
 }
 
-.LRouteChart__line__item {
-  &:not(:nth-child(-n+2)) {
+.LRouteChart__line__item--text {
+  &:not(:first-child) {
     &::before {
       content: "";
       left: -30px;
@@ -62,4 +98,7 @@ export default {
   }
 }
 
+.LRouteChart__line__tooltip {
+  margin-top: -15px;
+}
 </style>

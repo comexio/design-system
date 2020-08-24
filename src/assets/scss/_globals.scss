@@ -6,3 +6,15 @@
 .font-bd {
   font-family: RubikBold;
 }
+
+
+// tooltips
+.customTooltip {
+  background-color: $martinique;
+}
+
+.customTooltip__info {
+  font-size: 10px;
+  line-height: 10px;
+  padding: 6px 4px;
+}
