@@ -46,3 +46,27 @@ lines: Array de objetos com as linhas da listagem
   }
 ]
 ```
+
+## LTable
+
+```
+  <l-table
+    :headers="[{ text: 'Dessert (100g serving)', value: 'name' }]
+    :items="[{
+      name: 'Frozen Yogurt',
+      calories: 159,
+      fat: 6.0,
+      carbs: 24,
+      protein: 4.0,
+      iron: '1%',
+    }]
+  />
+```
+
+### Parâmetros
+headers e items são iguais ao da tabela do [Vuetify](https://vuetifyjs.com/en/components/data-tables/#data-tables) e está habilitado todos os atributos deles para serem utilizados, nosso componente esta fazendo um bind.
+
+
+### Eventos
+@ordination e @updateScroll estão disponiveis como nosso eventos personalizados
+
