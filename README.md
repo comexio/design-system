@@ -29,11 +29,20 @@ lines: Array de objetos com as linhas da listagem
 [
   {
     number: '60%',
+    quantity: {
+      name: 'TEUS',
+      value: 22
+    },
     values: ['Santos', 'Norfolk', 'Port Everglades']
   },
   {
     number: '20%',
     values: ['Umuarama', 'Bosque Uirapuru', 'Porto do mané']
+  },
+  {
+    number: '20%',
+    isLast: true,
+    values: 'Outros'
   }
 ]
 ```
