@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'LRouteChartLine',
   props: {
     data: {
       type: Object,
@@ -40,6 +41,25 @@ export default {
 }
 
 .LRouteChart__line__item--text {
-  box-shadow: inset 2px 0px 0px 0px white;
+  position: relative;
+  &:nth-child(-n+2) {
+    box-shadow: inset 2px 0px 0px 0px white;
+  }
 }
+
+.LRouteChart__line__item {
+  &:not(:nth-child(-n+2)) {
+    &::before {
+      content: "";
+      left: -30px;
+      position: absolute;
+      top: 4px;
+      padding: 12px;
+      border-top: 2px solid white;
+      border-right: 2px solid white;
+      transform: rotate(45deg);
+    }
+  }
+}
+
 </style>

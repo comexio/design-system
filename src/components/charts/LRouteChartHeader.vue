@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'LRouteChartHeader',
   props: {
     data: {
       type: Array,
