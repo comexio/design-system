@@ -6,7 +6,7 @@
     >
       <template v-slot:activator="{ on }">
         <div
-          class="LRouteChart__line__item LRouteChart__line__item--percent font-bd"
+          class="LRouteChart__line__item LRouteChart__line__item--number font-bd"
           v-on="on"
         >
           {{ data.number }}
@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .LRouteChart__line {
   display: grid;
-  grid-template-columns: 52px 1fr;
+  grid-template-columns: 60px 1fr;
 }
 
 .LRouteChart__line__group {
@@ -72,22 +72,26 @@ export default {
   padding: 8px;
 }
 
-.LRouteChart__line__item--percent {
+.LRouteChart__line__item--number {
   text-align: center;
+  white-space: nowrap;
 }
 
 .LRouteChart__line__item--text {
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:first-child {
     box-shadow: inset 2px 0px 0px 0px white;
   }
 }
 
 .LRouteChart__line__item--text {
-  &:not(:first-child) {
-    &::before {
+  &:not(:last-child) {
+    &::after {
       content: "";
-      left: -30px;
+      right: 5px;
       position: absolute;
       top: 4px;
       padding: 12px;
@@ -100,5 +104,6 @@ export default {
 
 .LRouteChart__line__tooltip {
   margin-top: -15px;
+  text-transform: uppercase;
 }
 </style>

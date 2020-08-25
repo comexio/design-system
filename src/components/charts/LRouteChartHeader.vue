@@ -3,7 +3,7 @@
     <div
       v-for="(item, key) in data"
       :key="key"
-      class="LRouteChart__header__item pt-2 pb-1 pl-2"
+      class="LRouteChart__header__item pt-2 pl-2"
     >
       <span>{{ item }}</span>
       <v-icon
