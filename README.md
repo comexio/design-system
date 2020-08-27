@@ -70,3 +70,23 @@ headers e items são iguais ao da tabela do [Vuetify](https://vuetifyjs.com/en/c
 ### Eventos
 @ordination e @updateScroll estão disponiveis como nosso eventos personalizados
 
+
+## LBarChart
+
+```
+<l-bar-chart
+  :data="[{
+    title: "Titulo",
+    description: "Descrição",
+    quantity: "100",
+    total: "10.000",
+    percentage: 50
+  }]"
+  color="#D4C5EB"
+  description-class="text-right"
+  hover-color="#F1E8FF"
+  :translation="{"total":"Total","quantity":"Quantidade"}"
+  loading="false"
+  max-quantity="9"
+/>
+```
