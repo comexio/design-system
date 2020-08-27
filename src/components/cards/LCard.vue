@@ -38,6 +38,14 @@ export default {
       type: String,
       default: null
     },
+    error: {
+      type: [Error, Boolean],
+      default: false
+    },
+    data: {
+      type: [Array, Object],
+      default: null
+    },
     loading: {
       type: Boolean
     },
