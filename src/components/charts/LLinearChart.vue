@@ -27,6 +27,7 @@
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
 
 export default {
+  name: 'LLinearChart',
   components: {
     LLinearChartLine
   },
@@ -70,11 +71,6 @@ export default {
     maxQuantity: {
       type: Number,
       default: 4
-    }
-  },
-  computed: {
-    showQuantity () {
-      return this.item.label === 'Outros' || this.lastItem ? '(' + this.item.quantity + ')' : ''
     }
   },
   methods: {

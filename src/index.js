@@ -7,6 +7,7 @@ export * from './components/modal'
 export * from './components/charts'
 export * from './components/alerts'
 export * from './components/tables'
+export * from './components/loadings'
 
 import * as inputs from './components/inputs'
 import * as filters from './components/filters'
@@ -17,6 +18,7 @@ import * as modal from './components/modal'
 import * as charts from './components/charts'
 import * as alerts from './components/alerts'
 import * as tables from './components/tables'
+import * as loadings from './components/loadings'
 
 
 const components = {
@@ -28,7 +30,8 @@ const components = {
     ...modal,
     ...charts,
     ...alerts,
-    ...tables
+    ...tables,
+    ...loadings
 }
 
 export function install (Vue) {

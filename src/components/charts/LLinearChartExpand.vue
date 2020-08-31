@@ -1,13 +1,13 @@
 <template>
   <div
-    class="expandedList d-flex flex-column flex-grow-1 pa-4"
+    class="LLinearChartExpand d-flex flex-column flex-grow-1 pa-4"
   >
-    <div class="expandedList__header d-flex justify-space-between pb-3">
+    <div class="LLinearChartExpand__header d-flex justify-space-between pb-3">
       <span
-        class="expandedList__header__action"
+        class="LLinearChartExpand__header__action"
         @click="expandList"
       >
-        {{ $t('searchx.toRecall') }}
+        Recolher
       </span>
       <!-- <div>
         <v-text-field
@@ -22,27 +22,22 @@
       </div> -->
     </div>
     <v-simple-table
-      ref="expandedList__table"
+      ref="LLinearChartExpand__table"
       dense
       height="152px"
-      class="expandedList__table"
+      class="LLinearChartExpand__table"
     >
       <template
         v-slot:default
       >
         <thead>
           <tr>
-            <th class="expandedList__table__title text-left">
-              {{ $t('searchx.cardExpanded.position') }}:
-            </th>
-            <th class="expandedList__table__title text-left">
-              {{ $t('searchx.cardExpanded.companies') }}:
-            </th>
-            <th class="expandedList__table__title text-left">
-              {{ $t('searchx.cardExpanded.value') }}:
-            </th>
-            <th class="expandedList__table__title text-left">
-              {{ $t('searchx.cardExpanded.quantity') }}:
+            <th
+              v-for="(item, index) in headers"
+              :key="index"
+              class="LLinearChartExpand__table__title text-left"
+            >
+              {{ item }}:
             </th>
           </tr>
         </thead>
@@ -50,11 +45,11 @@
           <tr
             v-for="(item, index) in data"
             :key="index"
-            class="expandedList__table__line"
+            class="LLinearChartExpand__table__line"
           >
             <td>{{ index + 5 }}</td>
             <td>{{ item.label }}</td>
-            <td class="expandedList__table__line__value">
+            <td class="LLinearChartExpand__table__line__value">
               {{ item.value }} USD
             </td>
             <td>{{ item.total }}</td>
@@ -62,45 +57,50 @@
         </tbody>
       </template>
     </v-simple-table>
-    <!-- <div
-      v-if="loadingExpand"
-      class="d-flex justify-center expandedList__loading pt-2"
+    <div
+      v-if="loading"
+      class="d-flex justify-center LLinearChartExpand__loading pt-2"
     >
-      <loading-items
+      <l-loading
         size="20px"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
+import LLoading from '~/src/components/loadings/LLoading'
+
 export default {
+  components: {
+    LLoading
+  },
   props: {
     data: {
       type: Array,
       default: () => ([])
     },
-    loading: {
-      type: Boolean,
-      default: false
-    }
+    headers: {
+      type: Array,
+      default: () => ([])
+    },
+    loading: Boolean
   },
   data () {
     return {
       input: null,
-      bottom: false
+      bottom: false,
     }
   },
   watch: {
     'bottom' (bottom) {
       if (bottom) {
-        console.log('search')
         this.$emit('search')
       }
     }
   },
   mounted () {
-    const referenceTable = this.$refs.expandedList__table
+    const referenceTable = this.$refs.LLinearChartExpand__table
     if (!referenceTable) {
       return
     }
@@ -135,11 +135,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.expandedList {
+.LLinearChartExpand {
   background: $magnolia;
   flex-basis: 50%;
   flex-grow: 1;
-  .expandedList__header {
+  .LLinearChartExpand__header {
     ::v-deep {
       .v-input {
         font-size: 0.8rem;
@@ -150,17 +150,17 @@ export default {
     }
   }
 
-  .expandedList__header__action {
+  .LLinearChartExpand__header__action {
     @extend .globalLink;
   }
 
-  .expandedList__table__title {
+  .LLinearChartExpand__table__title {
     font-size: 0.8rem;
     font-weight: normal;
     border-bottom: none !important;
   }
 
-  .expandedList__table__line {
+  .LLinearChartExpand__table__line {
     td {
       font-size: 0.8rem;
       color: $martinique;
@@ -171,7 +171,7 @@ export default {
     }
   }
 
-  .expandedList__table__line--active {
+  .LLinearChartExpand__table__line--active {
     box-shadow: inset 3px 0px 0px $wisteria;
     td {
       color: $purpleHaze;
@@ -179,11 +179,11 @@ export default {
     }
   }
 
-  .expandedList__table__line__value {
+  .LLinearChartExpand__table__line__value {
     white-space: nowrap;
   }
 
-  .expandedList__loading {
+  .LLinearChartExpand__loading {
     height: 0px;
   }
 }

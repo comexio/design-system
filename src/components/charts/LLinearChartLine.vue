@@ -87,6 +87,7 @@
 import LTag from '~/src/components/tags/LTag'
 
 export default {
+  name: 'LLinearChartLine',
   components: {
     LTag
   },
