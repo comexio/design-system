@@ -1,0 +1,97 @@
+<template>
+  <div class="LLinearChart flex-grow-1">
+    <div class="">
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in data"
+          :key="index"
+          class="LLinearChart__list__item"
+          dense
+        >
+          <l-linear-chart-line
+            v-if="item.label !== 'Outros' || item.quantity > 0"
+            :data="item"
+            :index="index"
+            :color="colors[index]"
+            :last-item="isLastItem(index)"
+            :is-expandable="isExpandable"
+            @expand="expandList"
+          />
+        </v-list-item>
+      </v-list>
+    </div>
+  </div>
+</template>
+
+<script>
+import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
+
+export default {
+  components: {
+    LLinearChartLine
+  },
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    },
+    scroller: {
+      type: Object,
+      default: null
+    },
+    colors: {
+      type: Array,
+      default: () => []
+    },
+    isExpanded: {
+      type: Boolean,
+      default: false
+    },
+    isExpandable: {
+      type: Boolean,
+      default: true
+    },
+    type: {
+      type: String,
+      default: null
+    },
+    loadingExpand: {
+      type: Boolean,
+      default: false
+    },
+    generateColor: {
+      type: Boolean,
+      default: false
+    },
+    isTagChart: {
+      type: Boolean,
+      default: false
+    },
+    maxQuantity: {
+      type: Number,
+      default: 4
+    }
+  },
+  computed: {
+    showQuantity () {
+      return this.item.label === 'Outros' || this.lastItem ? '(' + this.item.quantity + ')' : ''
+    }
+  },
+  methods: {
+    isLastItem (index) {
+      return index === this.maxQuantity
+    },
+    expandList () {
+      this.$emit('expandList', this.type)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@media screen and (min-width: 1500px) {
+  .LLinearChart__list__item {
+    padding: 10px 20px;
+  }
+}
+</style>
