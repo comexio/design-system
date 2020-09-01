@@ -9,7 +9,6 @@
           dense
         >
           <l-linear-chart-line
-            v-if="item.label !== 'Outros' || item.quantity > 0"
             :data="item"
             :index="index"
             :color="colors[index]"

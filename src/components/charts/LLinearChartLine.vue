@@ -27,7 +27,7 @@
               class="LLinearChartLine__expand ml-1"
               @click="expand"
             >
-              {{ $t('searchx.viewMore') }}
+              {{ translationLine.seeMore }}
             </span>
           </p>
         </template>
@@ -56,7 +56,7 @@
             class="pl-2 py-0 pr-0"
           >
             <span>
-              Valor: {{ data.value }} USD
+              {{ translationLine.value }}: {{ data.value }} USD
             </span>
           </v-col>
 
@@ -65,7 +65,7 @@
             class="py-0 pl-0"
           >
             <span>
-              | Registros: {{ data.total }}
+              | {{ translationLine.records }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -119,11 +119,19 @@ export default {
     isTagChart: {
       type: Boolean,
       default: false
+    },
+    translationLine: {
+      type: Object,
+      default: () => ({
+        value: 'Valor',
+        records: 'Registros',
+        seeMore: 'Ver Mais'
+      })
     }
   },
   computed: {
     showQuantity () {
-      return this.lastItem ? '(' + this.data.quantity + ')' : ''
+      return this.lastItem ? `(${this.data.quantity})` : ''
     }
   },
   methods: {

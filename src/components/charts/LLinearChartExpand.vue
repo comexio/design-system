@@ -93,7 +93,7 @@ export default {
     }
   },
   watch: {
-    'bottom' (bottom) {
+    bottom (bottom) {
       if (bottom) {
         this.$emit('search')
       }
@@ -128,6 +128,7 @@ export default {
       const visible = ref.clientHeight
       const pageHeight = ref.scrollHeight
       const bottomOfPage = scrollTop + visible + 25 >= pageHeight
+
       return bottomOfPage
     }
   }
