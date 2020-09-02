@@ -9,17 +9,6 @@
       >
         Recolher
       </span>
-      <!-- <div>
-        <v-text-field
-          v-model="input"
-          outlined
-          hide-details
-          height="20px"
-          min-height="20px"
-          placeholder="Pesquisar"
-          @keydown.enter="search"
-        />
-      </div> -->
     </div>
     <v-simple-table
       ref="LSimpleTable__table"
@@ -124,14 +113,6 @@ export default {
   methods: {
     expandList () {
       this.$emit('expand')
-    },
-    search () {
-      const { input } = this
-      if (!input) {
-        return
-      }
-
-      this.$emit('search', this.input)
     },
     achievedScrollPoint (ref) {
       const scrollTop = ref.scrollTop
