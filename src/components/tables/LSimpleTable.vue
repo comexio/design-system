@@ -79,16 +79,7 @@ export default {
   data () {
     return {
       input: null,
-      bottom: false,
-      fakeHeaders: [{ text: 'Protein (g)', value: 'protein' }, { text: 'Iron (%)', value: 'iron' }],
-      fakeData: [{
-          protein: 4.0,
-          iron: '1%',
-        },
-        {
-          protein: 4.3,
-          iron: '1%',
-        }]
+      bottom: false
     }
   },
   watch: {
