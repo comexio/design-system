@@ -77,8 +77,7 @@ const barChartData = [{
   title:"2208.30.20",
   description: " UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS",
   quantity: "4.593",
-  total: "32.873.626,5510",
-  percentage: 59.37
+  total: "32.873.626,5510"
 }]
 
 describe('barChart component', () => {
@@ -157,4 +156,15 @@ describe('barChart component', () => {
     expect(lastItem().find('.LBarChart__description').text()).toBe('Outros (4.593)')
   })
 
+  it('barChart toggle last item', async () => {
+    barChart.setProps({ maxQuantity: 9, toggleLast: true })
+    await barChart.vm.$nextTick()
+
+    const lastItemToggle = () => barChart.find('.LBarChart__description__toggle')
+    expect(lastItemToggle().exists()).toBe(true)
+    lastItemToggle().trigger('click')
+
+    await barChart.vm.$nextTick()
+    expect(barChart.emitted().toggleLast).toBeTruthy()
+  })
 })

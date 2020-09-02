@@ -72,6 +72,7 @@
 import LLoading from '~/src/components/loadings/LLoading'
 
 export default {
+  name: 'LSimpleTable',
   components: {
     LLoading
   },
