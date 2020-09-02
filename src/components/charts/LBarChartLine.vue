@@ -45,6 +45,13 @@
                       v-on="on"
                     >
                       Outros ({{ data.quantity }})
+                      <span
+                        v-if="toggleLast"
+                        class="LBarChart__description__toggle"
+                        @click="toggleLastItem"
+                      >
+                        Ver Mais
+                      </span>
                     </span>
                     <span
                       v-else
@@ -162,6 +169,7 @@ export default {
       default: null
     },
     isLastItem: Boolean,
+    toggleLast: Boolean
   },
   data () {
     return {
@@ -185,6 +193,9 @@ export default {
     },
     hoverBarColor () {
       return this.hoverColor
+    },
+    toggleLastItem () {
+      this.$emit('toggleLast')
     }
   }
 }
@@ -221,6 +232,11 @@ export default {
     display: inline-block;
     cursor: pointer;
     max-width: 250px;
+  }
+  .LBarChart__description__toggle {
+    @extend .globalLink;
+    font-size: 0.9rem;
+    font-family: Rubik;
   }
   .LBarChart__value {
     text-align: right;
