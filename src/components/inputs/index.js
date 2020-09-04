@@ -4,6 +4,7 @@ import LSelectSolo from './LSelectSolo'
 import LDatePickerMonth from './LDatePickerMonth'
 import LDatePickerDay from './LDatePickerDay'
 import LDropdownCheck from './LDropdownCheck'
+import LSelectNamed from './LSelectNamed'
 
 export {
     LLabeledInput,
@@ -11,5 +12,6 @@ export {
     LSelectSolo,
     LDatePickerMonth,
     LDatePickerDay,
-    LDropdownCheck
+    LDropdownCheck,
+    LSelectNamed
 }

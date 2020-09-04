@@ -2,19 +2,14 @@ import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
 import LSelectSolo from '~/src/components/inputs/LSelectSolo.vue'
 
-const emitPush = jest.fn()
 const setupDefault = initSetupComponent()
 const defaultParams = {
-  sync:false,
+  sync: false,
   ...setupDefault,
   data () {
     return {
       items: []
     }
-  },
-  mocks: {
-    ...setupDefault.mocks,
-    $emit: emitPush
   }
 }
 
@@ -62,5 +57,15 @@ describe('selectSolo component', () => {
     await selectSolo.vm.$nextTick()
 
     expect(selectListItems().length).toBe(2)
+  })
+
+  it('select item', async () => {
+    const listItems = () => selectSolo.findAll('.v-list-item')
+    const firstItem = () => listItems().at(0)
+    firstItem().trigger('click')
+
+    await selectSolo.vm.$nextTick()
+
+    expect(selectSolo.emitted().input).toEqual([["ncm"]])
   })
 })
