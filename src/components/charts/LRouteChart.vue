@@ -2,6 +2,7 @@
   <l-card
     :title="title"
     :description="description"
+    :data="lines"
     class="LRouteChart"
   >
     <div class="LRouteChart__content">

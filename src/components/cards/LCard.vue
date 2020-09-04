@@ -16,7 +16,7 @@
       />
       <div class="LCard__content">
         <v-divider />
-        <slot />
+        <slot v-if="data" />
       </div>
     </v-card>
   </v-skeleton-loader>
