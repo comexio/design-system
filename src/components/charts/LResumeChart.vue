@@ -1,10 +1,5 @@
 <template>
-  <l-card
-    :title="title"
-    :description="description"
-    height="auto"
-    class="LResumeChart"
-  >
+  <div class="LResumeChart">
     <div class="LResumeChart__content">
       <div
         v-for="(item, key) in data"
@@ -20,30 +15,20 @@
         />
       </div>
     </div>
-  </l-card>
+  </div>
 </template>
 
 <script>
-import LCard from '~/src/components/cards/LCard'
 import LResumeLine from './LResumeLine'
 
 export default {
   components: {
-    LCard,
     LResumeLine
   },
   props: {
     data: {
       type: Array,
       default: () => ([])
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    description: {
-      type: String,
-      default: null
     }
   }
 }
