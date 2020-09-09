@@ -68,3 +68,8 @@ export const weekPeriodsByQuantity = (param = 0) => {
 
   return filteredPeriods
 }
+
+export const CHARTS_INDICATOR = {
+  FOB: 'fob',
+  WEIGHT: 'weight'
+}

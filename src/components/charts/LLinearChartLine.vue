@@ -65,7 +65,7 @@
             class="py-0 pl-0"
           >
             <span>
-              | {{ translationLine.records }}: {{ data.total }}
+              | {{ quantityTranslate }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -85,6 +85,7 @@
 
 <script>
 import LTag from '~/src/components/tags/LTag'
+import {CHARTS_INDICATOR} from "../../../enum/date.enum";
 
 export default {
   name: 'LLinearChartLine',
@@ -125,13 +126,23 @@ export default {
       default: () => ({
         value: 'Valor',
         records: 'Registros',
+        weight: 'Peso',
         seeMore: 'Ver Mais'
       })
+    },
+    chartsIndicator: {
+      type: String,
+      default: () => CHARTS_INDICATOR.FOB
     }
   },
   computed: {
     showQuantity () {
       return this.lastItem ? `(${this.data.quantity})` : ''
+    },
+    quantityTranslate () {
+      return this.chartsIndicator === CHARTS_INDICATOR.WEIGHT
+        ? this.translationLine.weight
+        : this.translationLine.records
     }
   },
   methods: {

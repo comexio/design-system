@@ -24,6 +24,7 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
+import { CHARTS_INDICATOR } from "../../../enum/date.enum"
 
 export default {
   name: 'LLinearChart',
@@ -70,6 +71,10 @@ export default {
     maxQuantity: {
       type: Number,
       default: 4
+    },
+    chartsIndicator: {
+      type: String,
+      default: () => CHARTS_INDICATOR.FOB
     }
   },
   methods: {
