@@ -58,16 +58,17 @@
           v-if="periodsEnum"
           column
           active-class="primary--text"
-          class="full-height d-flex flex-column justify-space-around pa-2"
+          class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
         >
           <v-chip
             v-for="(period, index) of periodsEnum"
             :key="index"
-            :color="periodChip === index ? 'blurred' : 'default'"
+            label
+            class="justify-center"
+            :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
             @click="periodChip = index"
           >
             <span
-              :style="{ color: periodChip === index ? 'white' : 'martinique' }"
               class="select-period"
             >
               {{ period }}
@@ -80,6 +81,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { MONTH_PERIODS_TEXT, MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { extractYearMonth, getCurrentYearMonthStr, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 
@@ -106,13 +108,14 @@ export default {
   },
   computed: {
     formattedMonths () {
-      return formatYearMonth(MONTH_PERIODS_TEXT[this.periodChip] || this.monthsPeriod.join(' - '), this.monthsList, true)
+      return formatYearMonth(this.monthsPeriod.join(' - '), this.monthsList, true)
     },
     periodChip: {
       get () {
         const [startYearMonthStr, endYearMonthStr] = this.monthsPeriod
-        const currentYearMonthStr = getCurrentYearMonthStr()
-        if (endYearMonthStr !== currentYearMonthStr) {
+        const momentLimitMax = moment(this.dateLimit.max).format('YYYY-MM')
+
+        if (!endYearMonthStr || endYearMonthStr !== momentLimitMax) {
           return
         }
 
@@ -233,6 +236,7 @@ export default {
 
 .datepicker__calendar {
   ::v-deep .v-date-picker-header {
+    padding: 4px 8px;
     .v-btn {
       color: $wisteria;
     }
@@ -247,6 +251,34 @@ export default {
       border: thin solid $gallery;
       min-width: 50px;
       height: 30px;
+    }
+  }
+
+  ::v-deep .v-date-picker-table--date {
+    height: auto;
+    padding-bottom: 8px;
+    .v-btn {
+      border: thin solid $gallery;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+
+      .v-btn__content {
+        font-size: .8rem;
+      }
+    }
+  }
+
+  .datepicker__calendar__period {
+    .v-chip {
+      background: none;
+      border: thin solid $gallery;
+      height: 20px;
+    }
+
+    .datepicker__calendar__period__chip--active {
+      background: $wisteria;
+      color: #fff;
     }
   }
 }
