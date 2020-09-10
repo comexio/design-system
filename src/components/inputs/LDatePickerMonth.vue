@@ -82,8 +82,8 @@
 
 <script>
 import moment from 'moment'
-import { MONTH_PERIODS_TEXT, MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { extractYearMonth, getCurrentYearMonthStr, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
+import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
+import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 
 export default {
   name: 'DatePicker',
