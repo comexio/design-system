@@ -14,7 +14,7 @@
             :color="colors[index]"
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
-            :translationLine="translationLine"
+            :translation-line="translationLine"
             @expand="expandList"
           />
         </v-list-item>
