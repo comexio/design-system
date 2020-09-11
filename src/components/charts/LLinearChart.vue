@@ -14,6 +14,7 @@
             :color="colors[index]"
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
+            :translationLine="translationLine"
             @expand="expandList"
           />
         </v-list-item>
@@ -24,7 +25,6 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
-import { CHARTS_INDICATOR } from "../../../enum/date.enum"
 
 export default {
   name: 'LLinearChart',
@@ -72,9 +72,13 @@ export default {
       type: Number,
       default: 4
     },
-    chartsIndicator: {
-      type: String,
-      default: () => CHARTS_INDICATOR.FOB
+    translationLine: {
+      type: Object,
+      default: () => ({
+        value: 'Valor',
+        records: 'Registros',
+        seeMore: 'Ver Mais'
+      })
     }
   },
   methods: {
