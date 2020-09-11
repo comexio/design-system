@@ -14,6 +14,7 @@
             :color="colors[index]"
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
+            :translation-line="translationLine"
             @expand="expandList"
           />
         </v-list-item>
@@ -70,6 +71,14 @@ export default {
     maxQuantity: {
       type: Number,
       default: 4
+    },
+    translationLine: {
+      type: Object,
+      default: () => ({
+        value: 'Valor',
+        records: 'Registros',
+        seeMore: 'Ver Mais'
+      })
     }
   },
   methods: {
