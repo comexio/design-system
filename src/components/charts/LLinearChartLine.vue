@@ -62,7 +62,7 @@
 
           <v-col
             cols="5"
-            class="py-0 pl-0"
+            class="py-0 pl-3"
           >
             <span>
               | {{ translationLine.records }}: {{ data.total }}
