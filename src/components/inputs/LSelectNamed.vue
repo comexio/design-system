@@ -48,7 +48,7 @@ export default {
 
   ::v-deep {
     .v-select__selections::before {
-      content: "Mostrando por:\00a0";
+      content: '';
       color: $martinique;
     }
 
