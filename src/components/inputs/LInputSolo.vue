@@ -7,7 +7,15 @@
     dense
     v-bind="$attrs"
     v-on="$listeners"
-  />
+  >
+    <v-icon
+      v-if="appendIcon"
+      slot="append"
+      size="10px"
+    >
+      {{ appendIcon }}
+    </v-icon>
+  </v-text-field>
 </template>
 
 <script>
@@ -15,6 +23,10 @@ export default {
   props: {
     value: {
       type: [String, Number],
+      default: null
+    },
+    appendIcon: {
+      type: String,
       default: null
     }
   },
