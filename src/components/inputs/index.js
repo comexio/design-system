@@ -6,6 +6,8 @@ import LDatePickerDay from './LDatePickerDay'
 import LDropdownCheck from './LDropdownCheck'
 import LSelectNamed from './LSelectNamed'
 import LInputLoaded from './LInputLoaded'
+import LCheckboxList from './LCheckboxList'
+import LDropdownCheckbox from './LDropdownCheckbox'
 
 export {
     LLabeledInput,
@@ -15,5 +17,7 @@ export {
     LDatePickerDay,
     LDropdownCheck,
     LSelectNamed,
-    LInputLoaded
+    LInputLoaded,
+    LCheckboxList,
+    LDropdownCheckbox
 }
