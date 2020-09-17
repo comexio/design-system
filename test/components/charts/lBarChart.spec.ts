@@ -15,7 +15,8 @@ const defaultParams = {
     loadingExpand:false,
     scroller:null,
     title:"NCM",
-    hoverColor: '#F1E8FF'
+    hoverColor: '#F1E8FF',
+    othersLabel: 'Outros (4.593)'
   }
 }
 
