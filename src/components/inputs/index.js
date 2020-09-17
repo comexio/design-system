@@ -17,7 +17,7 @@ export {
     LDatePickerDay,
     LDropdownCheck,
     LSelectNamed,
-    LInputLoaded
+    LInputLoaded,
     LCheckboxList,
     LDropdownCheckbox
 }
