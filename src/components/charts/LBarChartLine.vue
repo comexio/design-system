@@ -44,7 +44,7 @@
                       class="LBarChart__description"
                       v-on="on"
                     >
-                      Outros ({{ data.quantity }})
+                      {{ othersLabel }}
                       <span
                         v-if="toggleLast"
                         class="LBarChart__description__toggle"
@@ -169,7 +169,11 @@ export default {
       default: null
     },
     isLastItem: Boolean,
-    toggleLast: Boolean
+    toggleLast: Boolean,
+    othersLabel: {
+      type: String,
+      default: ''
+    },
   },
   data () {
     return {

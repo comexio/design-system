@@ -7,6 +7,7 @@
       :index="index"
       :color="color"
       :is-last-item="isLastItem(index)"
+      :others-label="othersLabel"
       v-bind="$attrs"
       @toggleLast="toggleLast"
     />
@@ -33,6 +34,10 @@ export default {
     color: {
       type: String,
       default: () => '#D4C5EB'
+    },
+    othersLabel: {
+      type: String,
+      default: ''
     }
   },
   methods: {
