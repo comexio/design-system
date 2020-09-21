@@ -52,6 +52,7 @@
           v-else
         >
           <v-col
+            v-if="data.value !== 'HIDE'"
             cols="7"
             class="pl-2 py-0 pr-0"
           >
@@ -61,11 +62,12 @@
           </v-col>
 
           <v-col
+            v-if="data.total !== 'HIDE'"
             cols="5"
             class="py-0 pl-3"
           >
             <span>
-              | {{ translationLine.records }}: {{ data.total }}
+              {{data.value !== 'HIDE' ? '|' : ''}} {{ translationLine.records }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
