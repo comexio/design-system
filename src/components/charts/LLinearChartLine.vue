@@ -67,7 +67,7 @@
             class="py-0 pl-3"
           >
             <span>
-              {{showPartition(data)}} {{ translationLine.records }}: {{ data.total }}
+              {{ showPartition(data) }} {{ translationLine.records }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
