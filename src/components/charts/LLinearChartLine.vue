@@ -52,7 +52,7 @@
           v-else
         >
           <v-col
-            v-if="showValue(data)"
+            v-if="data.value !== null"
             cols="7"
             class="pl-2 py-0 pr-0"
           >
@@ -62,7 +62,7 @@
           </v-col>
 
           <v-col
-            v-if="showTotal(data)"
+            v-if="data.total !== null"
             cols="5"
             class="py-0 pl-3"
           >
@@ -139,12 +139,6 @@ export default {
   methods: {
     expand () {
       this.$emit('expand')
-    },
-    showValue (item) {
-      return item.value !== null
-    },
-    showTotal (item) {
-      return item.total !== null
     },
     showPartition (item) {
       return item.value !== null ? ' | ' : ''
