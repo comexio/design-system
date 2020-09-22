@@ -95,6 +95,7 @@ export default {
 <style lang="scss" scoped>
 @media screen and (min-width: 1500px) {
   .LLinearChart__list__item {
+    min-height: auto;
     padding: 10px 20px;
   }
 }
