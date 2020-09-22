@@ -44,7 +44,7 @@
             class="pl-2 py-0 pr-0 text-right"
           >
             <span class="LLinearChartLine__title font-md">
-              {{ data.total }} USD
+              {{ data.total }} {{ valueSymbol }}
             </span>
           </v-col>
         </v-row>
@@ -53,21 +53,19 @@
         >
           <v-col
             v-if="data.value !== null"
-            cols="7"
-            class="pl-2 py-0 pr-0"
+            class="pl-2 py-0 pr-0 LLinearChartLine__result__value--first"
           >
             <span>
-              {{ translationLine.value }}: {{ data.value }} USD
+              {{ translationLine.value }}: {{ data.value }} {{ valueSymbol }}
             </span>
           </v-col>
 
           <v-col
             v-if="data.total !== null"
-            cols="5"
-            class="py-0 pl-3"
+            class="py-0 pl-3 LLinearChartLine__result__value--second"
           >
             <span>
-              {{ showPartition(data) }} {{ translationLine.records }}: {{ data.total }}
+              {{ showPartition(data) }}{{ translationLine.records }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -129,6 +127,10 @@ export default {
         records: 'Registros',
         seeMore: 'Ver Mais'
       })
+    },
+    valueSymbol: {
+      type: String,
+      default: null
     }
   },
   computed: {
@@ -141,7 +143,7 @@ export default {
       this.$emit('expand')
     },
     showPartition (item) {
-      return item.value !== null ? ' | ' : ''
+      return item.value !== null ? ' | ' : ' '
     }
   }
 }
