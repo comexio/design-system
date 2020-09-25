@@ -65,10 +65,12 @@ export default {
 
 <style lang="scss" scoped>
 .v-data-table {
+  width: 100%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
 
   ::v-deep .v-data-table-header {
     .sortable {
+      white-space: nowrap;
       padding-top: 30px;
       padding-bottom: 10px;
     }
@@ -116,6 +118,7 @@ export default {
       }
 
       .text-start {
+        white-space: nowrap;
         font-size: 0.9rem;
         color: $martinique;
         padding-top: 12px;
