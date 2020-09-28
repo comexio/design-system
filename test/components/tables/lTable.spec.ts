@@ -60,7 +60,7 @@ const itemsFake = [
     fat: 25.0
   },
   {
-    name: 'KitKat',
+    name: 'KitKat with more than 80 letters to trigger tooltip, so Im putting bulshit to have this quantity of caracters',
     calories: 518,
     fat: 26.0
   }
@@ -105,5 +105,13 @@ describe('LTable', () => {
     headerFirstItem().trigger('click')
     await table.vm.$nextTick()
     expect(table.vm.options).toEqual({"groupBy": [], "groupDesc": [], "itemsPerPage": 10, "multiSort": false, "mustSort": false, "page": 1, "sortBy": ["name"], "sortDesc": [false]})
+  })
+
+  it('show truncate', async () => {
+    table.setProps({ truncateItems: true })
+    await table.vm.$nextTick()
+
+    const tooltip = () => table.findComponent({ name: 'v-tooltip' })
+    expect(tooltip().exists()).toBe(true)
   })
 })
