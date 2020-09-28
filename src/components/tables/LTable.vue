@@ -9,7 +9,10 @@
     hide-default-footer
     class="elevation-1"
   >
-    <template v-slot:body="{ items }">
+    <template
+      v-if="truncateItems"
+      v-slot:body
+    >
       <tbody>
         <tr
           v-for="(item, itemkey) in items"
