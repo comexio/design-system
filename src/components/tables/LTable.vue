@@ -5,9 +5,45 @@
     :items="items"
     :options.sync="options"
     v-bind="$attrs"
+    fixed-header
     hide-default-footer
     class="elevation-1"
-  />
+  >
+    <template v-slot:body="{ items }">
+      <tbody>
+        <tr
+          v-for="(item, itemkey) in items"
+          :key="itemkey"
+        >
+          <td
+            v-for="(value, key) in Object.values(item)"
+            :key="key"
+            class="text-start"
+          >
+            <v-tooltip
+              v-if="showTooltip(value)"
+              bottom
+              content-class="customTooltip pa-0"
+            >
+              <template v-slot:activator="{ on }">
+                <span
+                  v-on="on"
+                >
+                  {{ truncateValue(value) }}
+                </span>
+              </template>
+              <div class="customTooltip__info">
+                {{ value }}
+              </div>
+            </v-tooltip>
+            <template v-else>
+              {{ value }}
+            </template>
+          </td>
+        </tr>
+      </tbody>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
@@ -21,6 +57,11 @@ export default {
     items: {
       type: Array,
       default: () => ([])
+    },
+    truncateItems: Boolean,
+    truncateSize: {
+      type: Number,
+      default: 80
     }
   },
   data () {
@@ -58,6 +99,12 @@ export default {
       const scrollResult = table.scrollHeight - table.scrollTop
       const height = table.clientHeight
       return scrollResult === height
+    },
+    showTooltip (value) {
+      return this.truncateItems && value.length > 100
+    },
+    truncateValue (value) {
+      return value.slice(0, this.truncateSize) + '...'
     }
   }
 }
