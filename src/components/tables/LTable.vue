@@ -26,6 +26,7 @@
             <v-tooltip
               v-if="showTooltip(value)"
               bottom
+              max-width="500px"
               content-class="customTooltip pa-0"
             >
               <template v-slot:activator="{ on }">
@@ -104,7 +105,7 @@ export default {
       return scrollResult === height
     },
     showTooltip (value) {
-      return this.truncateItems && value.length > 100
+      return this.truncateItems && value && value.length > this.truncateSize
     },
     truncateValue (value) {
       return value.slice(0, this.truncateSize) + '...'
