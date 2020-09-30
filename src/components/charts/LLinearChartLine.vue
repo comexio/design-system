@@ -51,20 +51,11 @@
         <v-row
           v-else
         >
-          <v-col
-            v-if="data.value !== null"
-            class="pl-2 py-0 pr-0 LLinearChartLine__result__value--first"
-          >
-            <span>
+          <v-col class="py-0 text-right">
+            <span class="LLinearChartLine__result__value--first">
               {{ translationLine.value }}: {{ data.value }} {{ valueSymbol }}
             </span>
-          </v-col>
-
-          <v-col
-            v-if="data.total !== null"
-            class="py-0 pl-3 LLinearChartLine__result__value--second"
-          >
-            <span>
+            <span class="LLinearChartLine__result__value--second">
               {{ showPartition(data) }}{{ translationLine.records }}: {{ data.total }}
             </span>
           </v-col>
@@ -157,7 +148,7 @@ export default {
     max-width: 100%;
     text-overflow: ellipsis;
     width: 0;
-    flex-basis: 100%;
+    flex: 1 0 auto;
   }
 
   &__title, &__percent, &__number {
@@ -174,8 +165,8 @@ export default {
     color: $silver;
   }
   & .LLinearChartLine__result {
-    font-size: 0.8rem;
-    color: $silver;
+    font-size: 0.9rem;
+    color: $doveGray;
     white-space: nowrap;
     min-width: 250px;
   }
