@@ -35,3 +35,74 @@
     background: rgba(black, 0.1);
   }
 }
+
+.commonInput {
+  ::v-deep {
+    font-size: 1rem;
+    .v-label {
+      font-size: 1rem;
+    }
+
+    .v-label:not(.v-label--active) {
+      top: 4px;
+    }
+
+    .v-label.v-label--active {
+      margin-left: 8px;
+      top: 6px;
+    }
+
+    .v-input__slot {
+      min-height: 26px !important;
+      height: 26px;
+    }
+
+    .v-input__append-outer {
+      position: absolute;
+      right: -22px;
+      top: -5px;
+
+      .v-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.commonCombobox {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .v-input__control {
+    min-height: 26px;
+    > .v-input__slot {
+      padding: 0px 4px !important;
+      height: auto;
+      .v-select__selections {
+        min-height: 26px !important;
+        input {
+          padding: 0px;
+        }
+      }
+    }
+  }
+  .v-chip {
+    border:solid 1px $purpleHaze;
+    background: transparent;
+    font-size: 0.9rem;
+    height: 18px;
+    margin: 2px 4px;
+    padding: 0px 8px;
+  }
+  .v-chip__close {
+    color: $wisteria;
+    font-size: 1rem;
+    margin-left: 2px;
+    margin-top: 2px;
+  }
+  .v-chip__close::before {
+    content: "\F0156" !important;
+  }
+}

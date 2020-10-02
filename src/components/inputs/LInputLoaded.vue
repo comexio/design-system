@@ -10,7 +10,7 @@
     dense
     hide-details
     hide-selected
-    class="rm-radius-left rm-radius-right main-expo__select main-expo__autocomplete"
+    class="rm-radius-left rm-radius-right LInputLoaded main-expo__select main-expo__autocomplete"
   >
     <template #append>
       <v-icon color="wisteria">
@@ -26,7 +26,7 @@ export default {
   name: 'LInputLoaded',
   props: {
     value: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     field: {
@@ -76,6 +76,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.LInputLoaded {
+  ::v-deep {
+    @extend .commonInput;
+    @extend .commonCombobox;
+  }
+}
 ::v-deep .v-text-field {
   padding-top: 0;
 }

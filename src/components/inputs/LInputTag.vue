@@ -1,32 +1,40 @@
 <template>
-  <v-text-field
+  <v-combobox
     v-model="inputValue"
-    class="LInputSolo pt-0 inputSolo rm-radius-left"
-    hide-details
-    solo
-    dense
     v-bind="$attrs"
+    multiple
+    chips
+    deletable-chips
+    outlined
+    dense
+    small-chips
+    hide-details
+    class="LInputTag"
     v-on="$listeners"
   >
-    <v-icon
-      v-if="appendIcon"
-      slot="append"
-      size="10px"
+    <slot />
+    <!-- <template
+      v-if="bound.expand"
+      v-slot:append-outer
     >
-      {{ appendIcon }}
-    </v-icon>
-  </v-text-field>
+      <v-btn
+        text
+        tile
+        color="primary"
+        v-on="iconListeners"
+      >
+        e+
+      </v-btn>
+    </template> -->
+  </v-combobox>
 </template>
 
 <script>
 export default {
+  name: 'LInputTag',
   props: {
     value: {
       type: [String, Number],
-      default: null
-    },
-    appendIcon: {
-      type: String,
       default: null
     }
   },
@@ -44,9 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LInputSolo {
+.LInputTag {
   ::v-deep {
     @extend .commonInput;
+    @extend .commonCombobox;
   }
 }
 </style>
