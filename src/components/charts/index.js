@@ -4,6 +4,7 @@ import LBarChart from './LBarChart'
 import LLinearChart from './LLinearChart'
 import LLinearChartExpand from './LLinearChartExpand'
 import LCircularChart from './LCircularChart'
+import LGeneralChart from './LGeneralChart'
 
 export {
     LResumeChart,
@@ -11,5 +12,6 @@ export {
     LBarChart,
     LLinearChart,
     LLinearChartExpand,
-    LCircularChart
+    LCircularChart,
+    LGeneralChart
 }
