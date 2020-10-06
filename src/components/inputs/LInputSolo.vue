@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     v-model="inputValue"
-    class="pt-0 inputSolo rm-radius-left"
+    class="LInputSolo pt-0 inputSolo rm-radius-left"
     hide-details
     solo
     dense
@@ -44,5 +44,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.LInputSolo {
+  ::v-deep {
+    @extend .commonInput;
+  }
+}
 </style>
