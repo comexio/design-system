@@ -12,20 +12,20 @@
     class="LInputTag"
     v-on="$listeners"
   >
-    <slot />
-    <!-- <template
-      v-if="bound.expand"
+    <template
+      v-if="expand"
       v-slot:append-outer
     >
       <v-btn
         text
         tile
         color="primary"
-        v-on="iconListeners"
+        @click="clickAppendOuter"
+        v-on="$attrs.iconListeners"
       >
         e+
       </v-btn>
-    </template> -->
+    </template>
   </v-combobox>
 </template>
 
@@ -34,9 +34,10 @@ export default {
   name: 'LInputTag',
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: null
-    }
+    },
+    expand: Boolean
   },
   computed: {
     inputValue: {
@@ -46,6 +47,11 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
+    }
+  },
+  methods: {
+    clickAppendOuter () {
+      this.$emit('clickAppendOuter')
     }
   }
 }

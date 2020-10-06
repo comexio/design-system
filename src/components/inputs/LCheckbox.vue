@@ -1,19 +1,12 @@
 <template>
   <div class="LCheckbox">
     <v-checkbox
-      v-for="(item, index) in bound.options"
+      v-for="(item, index) in $attrs.options"
       :key="index"
       v-model="inputValue"
-      v-bind="bound"
-      color="wisteria"
-      dense
-      :ripple="false"
-      hide-details
+      v-bind="$attrs"
       :value="item"
       :label="item"
-      :class="bound.targetclass"
-      :false-value="false"
-      :true-value="true"
     />
   </div>
 </template>
@@ -50,6 +43,10 @@ export default {
     }
     .v-icon {
       font-size: 20px;
+    }
+
+    .v-input--selection-controls {
+      margin-top: 0px;
     }
 
     .v-input--selection-controls__input {

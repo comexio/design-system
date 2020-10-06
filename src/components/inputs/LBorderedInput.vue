@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'LBorderedInput',
   data () {
     return {
       isFocused: false
