@@ -1,5 +1,5 @@
 <template>
-  <div class="LCircularChart py-7">
+  <div class="LCircularChart d-flex align-center">
     <v-row>
       <v-col
         v-for="item in items"
@@ -21,7 +21,7 @@
             >
               <v-progress-circular
                 :rotate="-90"
-                :size="60"
+                :size="size"
                 :value="item.percentage"
                 :width="7"
                 :color="item.options.color"
@@ -68,13 +68,18 @@ export default {
       type: Array,
       default: () => ([])
     },
-    showTooltip: Boolean
+    showTooltip: Boolean,
+    size: {
+      type: Number,
+      default: 60
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .LCircularChart {
+  height: 100%;
   .LCircularChart__title, .LCircularChart__percentage, .LCircularChart__quantity {
     color: $martinique;
   }
