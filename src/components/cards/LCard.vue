@@ -62,7 +62,7 @@ export default {
   position: relative;
   display: grid;
   grid-template-rows: 45px 1fr;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
   min-height: 272px;
   border-radius: 5px!important;
 }
