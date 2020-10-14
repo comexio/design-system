@@ -43,4 +43,21 @@ describe('InputLoaded component', () => {
 
     expect(inputLoaded.vm.selectedOptions).toBe(fakeItems[0])
   })
+
+  it('search item and select', async () => {
+    inputLoaded.find('.v-input__slot').trigger('click')
+
+    await inputLoaded.vm.$nextTick()
+
+    const input = () => inputLoaded.find('.LInputLoaded')
+    input().vm.$emit('input', 'flo')
+
+    await inputLoaded.vm.$nextTick()
+
+    inputLoaded.findComponent({ name: 'v-combobox' }).vm.selectItem(fakeItems[1])
+
+    await inputLoaded.vm.$nextTick()
+
+    expect(inputLoaded.vm.searchInput).toBe(fakeItems[1])
+  })
 })

@@ -11,6 +11,8 @@
     hide-details
     hide-selected
     class="rm-radius-left rm-radius-right LInputLoaded main-expo__select main-expo__autocomplete"
+    :search-input.sync="searchInput"
+    @change="changeFilter"
   >
     <template #append>
       <v-icon color="wisteria">
@@ -46,6 +48,7 @@ export default {
     return {
       selectedOptions: null,
       loading: false,
+      searchInput: null
     }
   },
   watch: {
@@ -70,6 +73,9 @@ export default {
     getItems () {
       const { field } = this
       this.$emit('getItems', { field })
+    },
+    changeFilter () {
+      this.searchInput = null
     }
   }
 }
