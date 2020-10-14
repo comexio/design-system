@@ -42,7 +42,7 @@ export default {
     max-width: 100%;
   }
   &__subtitle {
-    font-size: 11px;
+    font-size: 12px;
     color: #B8B8B8 !important;
     overflow: hidden;
     max-width: 100%;
