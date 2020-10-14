@@ -15,7 +15,7 @@
             v-slot:activator="{ on }"
           >
             <div
-              v-if="item.value > 0"
+              v-if="item.value"
               class="LCircularChart__item text-center"
               v-on="on"
             >

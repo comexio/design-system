@@ -23,7 +23,7 @@ const itemsFake = [{
 }, {
   label: 'DRY',
   percentage: '22.60',
-  value: '186',
+  value: '16.003.153.469',
   options: {
     color: '#f87045',
     icon: 'mdi-ferry',
