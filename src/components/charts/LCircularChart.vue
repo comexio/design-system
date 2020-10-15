@@ -23,7 +23,7 @@
                 :rotate="-90"
                 :size="size"
                 :value="item.percentage"
-                :width="7"
+                :width="6"
                 :color="item.options.color"
               >
                 <slot>
