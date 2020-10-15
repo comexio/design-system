@@ -29,9 +29,8 @@
                 <slot>
                   <img
                     :src="item.options.img"
-                    width="30px"
                     alt="container"
-                    class="displayValues__image"
+                    class="LCircularChart__item__image"
                   >
                 </slot>
               </v-progress-circular>
@@ -87,6 +86,9 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .LCircularChart__item__image {
+    width: 40px;
   }
 }
 </style>
