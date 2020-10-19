@@ -5,8 +5,8 @@
       :key="index"
       v-model="inputValue"
       v-bind="$attrs"
-      :value="item"
-      :label="item"
+      :value="item.value ? $t(item.value) : item"
+      :label="item.text ? $t(item.text) : item"
     />
   </div>
 </template>
