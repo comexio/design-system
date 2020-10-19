@@ -8,6 +8,13 @@ const defaultParams = {
 }
 
 const fakeOptions = ['um', 'dois', 'tres']
+const fakeObjectOptions = [{
+  value: 'um',
+  text: 'Um'
+}, {
+  value: 'dois',
+  text: 'Dois'
+}]
 
 describe('LCheckbox component', () => {
   let checkbox: Wrapper<LCheckbox>
@@ -39,5 +46,18 @@ describe('LCheckbox component', () => {
     await checkbox.vm.$nextTick()
 
     expect(checkbox.emitted().input[0]).toEqual(['um'])
+  })
+
+  it('render array of object options', async () => {
+    checkbox.setProps({ options: fakeObjectOptions })
+    const inputs = () => checkbox.findAll('.v-input')
+
+    await checkbox.vm.$nextTick()
+
+    expect(inputs().length).toBe(2)
+
+    const label = () => inputs().at(0)
+
+    expect(label().text()).toBe('__translation__')
   })
 })
