@@ -156,6 +156,7 @@ export default {
       height: 18px;
       opacity: 1;
     }
+
   }
 
   ::v-deep .v-data-table__wrapper {
@@ -166,6 +167,10 @@ export default {
 
       tr:nth-child(even) {
         background: $whisper;
+      }
+
+      tr:not(:last-child) > td:not(.v-data-table__mobile-row) {
+        border-bottom: thin solid $gallery !important;
       }
 
       .text-start {
@@ -198,4 +203,9 @@ export default {
   }
 }
 
+.v-data-table.v-data-table--fixed-header {
+  ::v-deep thead th {
+    box-shadow: inset 0 -1px 0 $gallery;
+  }
+}
 </style>
