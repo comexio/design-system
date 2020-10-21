@@ -122,7 +122,7 @@ export default {
   ::v-deep .v-data-table-header {
     .sortable {
       white-space: nowrap;
-      padding-top: 30px;
+      padding-top: 10px;
       padding-bottom: 10px;
     }
 
