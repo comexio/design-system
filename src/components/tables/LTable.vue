@@ -79,6 +79,7 @@ export default {
   computed: {
     filteredItem () {
       const headersKeys = this.headers.map(header => header.value)
+
       return this.items.map(item => {
         const newObject = {}
         Object.keys(item).forEach(key => {
