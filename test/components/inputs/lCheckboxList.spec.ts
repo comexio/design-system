@@ -64,14 +64,19 @@ describe('selectNamed component', () => {
     expect(checkboxList.vm.selected).toEqual(['armador'])
   })
 
-  it('select all items', async () => {
+  it('toggle select all items', async () => {
     const selectAllItem = () => checkboxList.find('.LCheckboxList__group__item--selectAll')
-
     selectAllItem().find('.v-label').trigger('click')
 
     await checkboxList.vm.$nextTick()
 
     expect(checkboxList.vm.selected.length).toBe(4)
+
+    selectAllItem().find('.v-label').trigger('click')
+
+    await checkboxList.vm.$nextTick()
+
+    expect(checkboxList.vm.selected.length).toBe(0)
   })
 
   it('search for item', async () => {
