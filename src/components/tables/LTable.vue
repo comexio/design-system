@@ -15,7 +15,7 @@
     >
       <tbody>
         <tr
-          v-for="(item, itemkey) in items"
+          v-for="(item, itemkey) in filteredItem"
           :key="itemkey"
         >
           <td
@@ -74,6 +74,21 @@ export default {
       customScroll: {
         bottom: false
       }
+    }
+  },
+  computed: {
+    filteredItem () {
+      const headersKeys = this.headers.map(header => header.value)
+      return this.items.map(item => {
+        const newObject = {}
+        Object.keys(item).forEach(key => {
+          if (headersKeys.includes(key)) {
+            newObject[key] = item[key]
+          }
+        })
+
+        return newObject
+      })
     }
   },
   watch: {

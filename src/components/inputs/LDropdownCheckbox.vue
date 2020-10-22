@@ -18,6 +18,7 @@
       </template>
       <l-checkbox-list
         :items="items"
+        :selected-items="selectedItems"
         @updatedItems="updatedItems"
       />
     </v-menu>
@@ -36,6 +37,10 @@ export default {
   },
   props: {
     items: {
+      type: Array,
+      default: () => ([])
+    },
+    selectedItems: {
       type: Array,
       default: () => ([])
     }

@@ -18,6 +18,7 @@
         :ripple="false"
         hide-details
         class="LCheckboxList__group__item LCheckboxList__group__item--selectAll"
+        @click="toggleSelectAll"
       />
     </div>
     <v-divider />
@@ -54,6 +55,10 @@ export default {
       type: Array,
       default: () => ([])
     },
+    selectedItems: {
+      type: Array,
+      default: () => ([])
+    },
     translation: {
       type: Object,
       default: () => ({
@@ -86,15 +91,13 @@ export default {
     }
   },
   watch: {
-    selectAll (val) {
-      if (val) {
-        this.selectAllItems()
-      }
-    },
     selected () {
       this.checkAllItemsSelected()
       this.$emit('updatedItems', this.selected)
     }
+  },
+  mounted () {
+    this.selected = this.selectedItems
   },
   methods: {
     selectAllItems () {
@@ -103,6 +106,17 @@ export default {
       })
 
       this.selected = names
+    },
+    deselectAll () {
+      this.selected = []
+    },
+    toggleSelectAll () {
+      if (this.selectAll) {
+        this.selectAllItems()
+        return
+      }
+
+      this.deselectAll()
     },
     checkAllItemsSelected () {
       if (this.selected.length !== this.items.length) {
