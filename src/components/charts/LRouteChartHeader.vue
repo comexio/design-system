@@ -7,6 +7,7 @@
     >
       <span>{{ item }}</span>
       <v-icon
+        v-if="data.length - 1 !== key"
         color="wisteria"
         class="ml-1"
       >
@@ -38,6 +39,7 @@ export default {
 .LRouteChart__header__item {
   font-size: 0.8rem;
   text-transform: uppercase;
+  white-space: nowrap;
   i {
     font-size: 1.2rem;
   }
