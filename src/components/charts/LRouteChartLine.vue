@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .LRouteChart__line {
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 68px 1fr;
 }
 
 .LRouteChart__line__group {
