@@ -55,6 +55,10 @@ describe('LRouteChart component', () => {
 
     const headerItems = () => routeChart.findAll('.LRouteChart__header__item')
     expect(headerItems().length).toBe(3)
+
+    const lastHeaderItem = () => headerItems().at(2)
+
+    expect(lastHeaderItem().find('.v-icon').exists()).toBe(false)
   })
 
   it('render lines', async () => {
