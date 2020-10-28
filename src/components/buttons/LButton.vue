@@ -3,6 +3,7 @@
     outlined
     color="primary"
     class="LButton"
+    v-bind="$attrs"
     v-on="$listeners"
   >
     <v-icon
