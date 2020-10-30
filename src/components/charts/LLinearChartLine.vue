@@ -50,6 +50,7 @@
         </v-row>
         <v-row
           v-else
+          class="flex-nowrap"
         >
           <v-col
             v-if="data.value !== null"
