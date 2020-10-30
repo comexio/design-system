@@ -98,9 +98,15 @@ export default {
       handler () {
         const { multiSort, sortBy, sortDesc } = this.options
         if (!multiSort) {
-          const sortType = sortDesc.length ? sortDesc[0] : null
+          const sort = sortDesc.length ? sortDesc[0] : null
           const sortColumn = sortBy.length ? sortBy[0] : null
-          this.$emit('ordination', { sortType, sortColumn })
+          const sortOrder = (sort) => {
+            if (sort === true) return 'DESC'
+            if (sort === false) return 'ASC'
+            return null
+          }
+
+          this.$emit('ordination', { sortOrder: sortOrder(sort), sortColumn })
         }
       }
     }
