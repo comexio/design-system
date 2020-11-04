@@ -2,6 +2,7 @@
   <v-snackbar
     v-model="snackbar"
     :timeout="3000"
+    absolute
     left
   >
     {{ msg }}
