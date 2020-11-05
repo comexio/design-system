@@ -41,13 +41,13 @@ export default {
     },
     items: {
       type: Array,
-      default: null
+      default: () => ([])
     }
   },
   data () {
     return {
       selectedOptions: null,
-      loading: false,
+      loading: true,
       searchInput: null
     }
   },
@@ -61,6 +61,9 @@ export default {
       handler (val) {
         this.selectedOptions = val
       }
+    },
+    items() {
+      this.loading = false
     },
     selectedOptions (selectedOptions) {
       this.$emit('input', selectedOptions)
