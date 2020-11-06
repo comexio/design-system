@@ -43,7 +43,10 @@ export default {
       type: Array,
       default: () => ([])
     },
-    removeTypedFilters: Boolean
+    removeTypedFilters: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {
