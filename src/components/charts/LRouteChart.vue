@@ -1,35 +1,26 @@
 <template>
-  <l-card
-    :title="title"
-    :description="description"
-    :data="lines"
-    class="LRouteChart"
-  >
-    <div class="LRouteChart__content">
-      <l-route-chart-header
-        v-if="header"
-        :data="header"
-      />
-      <l-route-chart-line
-        v-for="(item , key) in lines"
-        :key="key"
-        :data="item"
-        :class="{ 'LRouteChart__line__even' : key % 2 }"
-        class="pt-2"
-      />
-    </div>
-  </l-card>
+  <div class="LRouteChart">
+    <l-route-chart-header
+      v-if="header"
+      :data="header"
+    />
+    <l-route-chart-line
+      v-for="(item , key) in lines"
+      :key="key"
+      :data="item"
+      :class="{ 'LRouteChart__line__even' : key % 2 }"
+      class="pt-2"
+    />
+  </div>
 </template>
 
 <script>
-import LCard from '~/src/components/cards/LCard'
 import LRouteChartHeader from './LRouteChartHeader'
 import LRouteChartLine from './LRouteChartLine'
 
 export default {
   name: 'LRouteChart',
   components: {
-    LCard,
     LRouteChartHeader,
     LRouteChartLine
   },
@@ -55,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LRouteChart__content {
+.LRouteChart {
   padding: 10px 15px;
   color: $martinique;
 
