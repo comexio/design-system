@@ -39,16 +39,6 @@ describe('LRouteChart component', () => {
     expect(lines().exists()).toBe(false)
   })
 
-  it('render title chart', () => {
-    const title = () => routeChart.find('.LCardHeader__title')
-    const description = () => routeChart.find('.LCardHeader__subtitle')
-
-    expect(title().exists()).toBe(true)
-    expect(title().text()).toBe('Titulo')
-    expect(description().exists()).toBe(true)
-    expect(description().text()).toBe('Descrição')
-  })
-
   it('render header', async () => {
     routeChart.setProps({ header: ["Porto de Origem","Porto de Descarga","Porto de Destino"] })
     await routeChart.vm.$nextTick()
