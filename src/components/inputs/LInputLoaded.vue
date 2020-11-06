@@ -42,6 +42,10 @@ export default {
     items: {
       type: Array,
       default: () => ([])
+    },
+    removeTypedFilters: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -77,8 +81,20 @@ export default {
       const { field } = this
       this.$emit('getItems', { field })
     },
-    changeFilter () {
+    changeFilter (filters) {
+      if (this.removeTypedFilters) {
+        this.filterItems(filters)
+      }
       this.searchInput = null
+    },
+    filterItems (filters) {
+      const filteredOptions = filters.filter(item => {
+        if (item && item.text) {
+          return item
+        }
+      })
+
+      this.selectedOptions = filteredOptions
     }
   }
 }
