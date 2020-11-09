@@ -59,6 +59,8 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
   // eslint-disable-next-line
   const dateMonths = (monthsList as unknown as string[])
   const dates = yearMonth.toString().split(' - ')
+  console.log('dateMonths', dateMonths)
+  console.log('dates', dates)
   let formattedDates = ''
   dates.forEach(function (dateIsYearMonthComplete) {
     let year = ''
@@ -69,7 +71,10 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
     } else {
       [year, month] = dateIsYearMonthComplete.split('-')
     }
-    const translateMonth = dateMonths[parseInt(month) - 1].substr(0, 3)
+
+    const translateMonth = !monthsList
+      ? month
+      : dateMonths[parseInt(month) - 1].substr(0, 3)
     const separator = formattedDates === '' ? '' : ' - '
     formattedDates += separator + translateMonth + '/' + (shortYear ? year.substr(2, 2) : year)
   })
