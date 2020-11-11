@@ -82,7 +82,7 @@ export default {
       this.$emit('getItems', { field })
     },
     changeFilter (filters) {
-      if (this.removeTypedFilters) {
+      if (this.removeTypedFilters && Array.isArray(filters)) {
         this.filterItems(filters)
       }
       this.searchInput = null
