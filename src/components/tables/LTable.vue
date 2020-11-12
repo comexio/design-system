@@ -19,7 +19,7 @@
           :key="itemkey"
         >
           <td
-            v-for="(value, key) in Object.values(item)"
+            v-for="(value, key) in item.values()"
             :key="key"
             class="text-start"
           >
@@ -81,14 +81,14 @@ export default {
       const headersKeys = this.headers.map(header => header.value)
 
       return this.items.map(item => {
-        const newObject = {}
-        Object.keys(item).forEach(key => {
+        const objectMap = new Map()
+        headersKeys.forEach(key => {
           if (headersKeys.includes(key)) {
-            newObject[key] = item[key]
+            objectMap.set(key, item[key])
           }
         })
 
-        return newObject
+        return objectMap
       })
     }
   },

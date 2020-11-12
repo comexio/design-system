@@ -82,10 +82,27 @@ describe('selectNamed component', () => {
   it('search for item', async () => {
     const input = () => checkboxList.find('.LCheckboxList__input')
     const list = () => checkboxList.findAll('.LCheckboxList__group__list .LCheckboxList__group__item')
-    input().vm.$emit('input', 'armad')
+    list().at(0).find('.v-label').trigger('click')
+
+    await checkboxList.vm.$nextTick()
+
+    expect(checkboxList.vm.selected.length).toBe(1)
+    input().vm.$emit('input', 'Cidade')
 
     await checkboxList.vm.$nextTick()
 
     expect(list().length).toBe(1)
+    list().at(0).find('.v-label').trigger('click')
+
+    await checkboxList.vm.$nextTick()
+
+    expect(checkboxList.vm.selected.length).toBe(2)
+
+    input().vm.$emit('input', '')
+
+    await checkboxList.vm.$nextTick()
+
+    expect(list().length).toBe(4)
+    expect(checkboxList.vm.selected.length).toBe(2)
   })
 })
