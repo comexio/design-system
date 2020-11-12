@@ -133,10 +133,10 @@ export default {
     checkAllItemsSelected () {
       if (this.selected.length !== this.items.length) {
         this.selectAll = false
+        return
       }
-    },
-    clickCheckbox (item) {
-      console.log('click', item)
+
+      this.selectAll = true
     }
   }
 }
