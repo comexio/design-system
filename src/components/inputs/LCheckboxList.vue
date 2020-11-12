@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import uniq from 'ramda/src/uniq'
+import equals from 'ramda/src/equals'
 import LInputSolo from './LInputSolo'
 
 export default {
@@ -71,7 +73,7 @@ export default {
     return {
       inputSearch: null,
       selectAll: false,
-      selected: []
+      selected: [],
     }
   },
   computed: {
@@ -91,9 +93,19 @@ export default {
     }
   },
   watch: {
-    selected () {
+    selected (val, oldval) {
       this.checkAllItemsSelected()
+      if (this.inputSearch) {
+        const selected = uniq([...val, ...oldval])
+        if (!equals(val, oldval)) {
+          this.selected = selected
+        }
+      }
+
       this.$emit('updatedItems', this.selected)
+    },
+    inputSearch () {
+      this.selected = [...this.selected]
     }
   },
   mounted () {
@@ -122,6 +134,9 @@ export default {
       if (this.selected.length !== this.items.length) {
         this.selectAll = false
       }
+    },
+    clickCheckbox (item) {
+      console.log('click', item)
     }
   }
 }
