@@ -131,12 +131,8 @@ export default {
       this.deselectAll()
     },
     checkAllItemsSelected () {
-      if (this.selected.length !== this.items.length) {
-        this.selectAll = false
-        return
-      }
-
-      this.selectAll = true
+      const { selected, items } = this
+      this.selectAll = selected.length !== items.length ? false : true
     }
   }
 }
