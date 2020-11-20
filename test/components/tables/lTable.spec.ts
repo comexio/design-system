@@ -63,10 +63,13 @@ const itemsFake = [
     name: 'KitKat with more than 80 letters to trigger tooltip, so Im putting bulshit to have this quantity of caracters',
     calories: 518,
     fat: 26.0
+  },
+  {
+    name: 'Cookies is just another item to make it have more than 10',
+    calories: 536,
+    fat: 56.0
   }
 ]
-
-
 
 describe('LTable', () => {
   let table: Wrapper<LTable>
@@ -97,6 +100,25 @@ describe('LTable', () => {
     const lines = () => table.findAll('tbody tr')
     expect(lines().length).toBe(10)
   })
+
+  // it('render tr with 11 itens and just show 10', async () => {
+  //   table.setProps({ items: itemsFake})
+  //   await table.vm.$nextTick()
+  //
+  //   const lines = () => table.findAll('tbody tr')
+  //   expect(lines().length).toBe(10)
+  // })
+
+  // it('render tr with 6 rows but 11 items', async () => {
+  //   table.setProps({ truncateItems: true })
+  //   table.setProps({ items: itemsFake})
+  //   table.setProps({ itemsPerPage: 5})
+  //
+  //   await table.vm.$nextTick()
+  //
+  //   const lines = () => table.findAll('tbody tr')
+  //   expect(lines().length).toBe(11)
+  // })
 
   it('order by column', async () => {
     const headerFirstItem = () => table.find('.v-data-table-header th')
