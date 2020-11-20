@@ -8,6 +8,7 @@
     <v-card
       class="modal"
       :loading="loading"
+      :disabled="loading"
     >
       <slot />
       <v-divider />
