@@ -101,25 +101,6 @@ describe('LTable', () => {
     expect(lines().length).toBe(10)
   })
 
-  // it('render tr with 11 itens and just show 10', async () => {
-  //   table.setProps({ items: itemsFake})
-  //   await table.vm.$nextTick()
-  //
-  //   const lines = () => table.findAll('tbody tr')
-  //   expect(lines().length).toBe(10)
-  // })
-
-  // it('render tr with 6 rows but 11 items', async () => {
-  //   table.setProps({ truncateItems: true })
-  //   table.setProps({ items: itemsFake})
-  //   table.setProps({ itemsPerPage: 5})
-  //
-  //   await table.vm.$nextTick()
-  //
-  //   const lines = () => table.findAll('tbody tr')
-  //   expect(lines().length).toBe(11)
-  // })
-
   it('order by column', async () => {
     const headerFirstItem = () => table.find('.v-data-table-header th')
     expect(headerFirstItem().exists()).toBe(true)
@@ -135,5 +116,33 @@ describe('LTable', () => {
 
     const tooltip = () => table.findComponent({ name: 'v-tooltip' })
     expect(tooltip().exists()).toBe(true)
+  })
+
+  it('render tr with 6 rows but 11 items', async () => {
+    table = mount(LTable, {
+      ...defaultParams,
+      propsData:{
+        itemsPerPage: 6
+      }
+    })
+    table.setProps({ items: itemsFake })
+    await table.vm.$nextTick()
+
+    const lines = () => table.findAll('tbody tr')
+    expect(lines().length).toBe(6)
+  })
+
+  it('render tr with 11 rows', async () => {
+    table = mount(LTable, {
+      ...defaultParams,
+      propsData:{
+        itemsPerPage: 19
+      }
+    })
+    table.setProps({ items: itemsFake })
+    await table.vm.$nextTick()
+
+    const lines = () => table.findAll('tbody tr')
+    expect(lines().length).toBe(11)
   })
 })
