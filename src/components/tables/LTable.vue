@@ -4,6 +4,7 @@
     :headers="headers"
     :items="items"
     :options.sync="options"
+    :items-per-page="itemsPerPage"
     v-bind="$attrs"
     fixed-header
     hide-default-footer
@@ -61,6 +62,10 @@ export default {
     items: {
       type: Array,
       default: () => ([])
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 10
     },
     truncateItems: Boolean,
     truncateSize: {
