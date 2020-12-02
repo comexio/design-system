@@ -19,12 +19,33 @@
           :key="itemkey"
         >
           <td
-            v-for="(value, key) in item.values()"
-            :key="key"
+            v-for="[key, value] of item"
+            :key="value"
             class="text-start"
           >
+            <div v-if="isDownloadUrl(key)">
+              <a
+                v-if="value.url"
+                :href="value.url"
+                target="_blank"
+                :class="value.class"
+              >
+                {{ value.text }}
+                <v-icon
+                  size="12px"
+                >
+                  {{ value.icon }}
+                </v-icon>
+              </a>
+              <span
+                v-else
+                :class="value.class"
+              >
+                {{ value.text }}
+              </span>
+            </div>
             <v-tooltip
-              v-if="showTooltip(value)"
+              v-else-if="showTooltip(value)"
               bottom
               max-width="500px"
               content-class="customTooltip pa-0"
@@ -51,6 +72,8 @@
 </template>
 
 <script>
+import { GENERAL } from '~/enum/table.enum'
+
 export default {
   name: 'LTable',
   props: {
@@ -131,6 +154,9 @@ export default {
     },
     truncateValue (value) {
       return value.slice(0, this.truncateSize) + '...'
+    },
+    isDownloadUrl (key) {
+      return key === GENERAL.DOWNLOAD_URL
     }
   }
 }
