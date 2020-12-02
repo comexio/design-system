@@ -5,7 +5,11 @@
     :persistent="true"
     @click:outside="closeModal"
   >
-    <v-card class="modal">
+    <v-card
+      class="modal"
+      :loading="loading"
+      :disabled="loading"
+    >
       <slot />
       <v-divider />
       <v-card-actions>
@@ -78,6 +82,10 @@ export default {
     clearIcon: {
       type: String,
       default: ' mdi-eraser'
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
