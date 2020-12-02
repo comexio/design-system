@@ -90,7 +90,19 @@
                     v-slot:default="{ hover }"
                     :value="hoverProgressBar"
                   >
-                    <v-progress-linear
+                    <l-progress-bar
+                      :background-color=" hover ? hoverBarColor() : ''"
+                      :color="color"
+                      class="LBarChart__progress"
+                      :style="percentageBarFill(data, index, color)"
+                      v-on="on"
+                    >
+                      <div class="LBarChart__value px-1">
+                        {{ data.total }} USD
+                      </div>
+                    </l-progress-bar>
+
+                    <!-- <v-progress-linear
                       :background-color=" hover ? hoverBarColor() : ''"
                       :color="color"
                       height="15px"
@@ -101,7 +113,7 @@
                       <div class="LBarChart__value px-1">
                         {{ data.total }} USD
                       </div>
-                    </v-progress-linear>
+                    </v-progress-linear> -->
                   </v-hover>
                 </template>
                 <div class="font-md">
@@ -129,8 +141,13 @@
 </template>
 
 <script>
+import LProgressBar from '~/src/components/bars/LProgressBar'
+
 export default {
   name: 'LBarChartLine',
+  components: {
+    LProgressBar
+  },
   props: {
     data: {
       type: Object,
@@ -249,9 +266,6 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-  }
-  .LBarChart__progress {
-    cursor: pointer;
   }
   .LBarChart__tooltip__info {
     font-size: 6px;

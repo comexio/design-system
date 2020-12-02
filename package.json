@@ -22,7 +22,7 @@
     "core-js": "^3.6.5",
     "moment": "^2.27.0",
     "ramda": "^0.27.1",
-    "vue": "^2.6.11",
+    "vue": "2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
     "vuetify": "^2.3.8"
@@ -46,7 +46,7 @@
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.11"
   },
   "files": [
     "dist",

@@ -1,6 +1,6 @@
 <template>
   <div class="LCardHeader">
-    <v-list-item-content class="pa-0">
+    <v-list-item-content class="pa-0 p-0">
       <v-list-item-title class="LCardHeader__title font-md">
         {{ title }}
       </v-list-item-title>

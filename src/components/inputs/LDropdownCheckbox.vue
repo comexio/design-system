@@ -58,6 +58,7 @@ export default {
   padding: 0px 16px;
   .LButtonSelect {
     padding: 0px;
+    font-size: 1rem;
   }
 }
 
