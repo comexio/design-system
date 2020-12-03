@@ -4,6 +4,12 @@ The Logcomex design system - Ayla is an extension of some [Vuetify](https://vuet
 to create a new pattern based on the company specific needs. It is published as a package so
 anyone can [try it](https://www.npmjs.com/package/@logcomex/design).
 
+## Rodar o projeto localmente
+- Rodar ```yarn link```, esse comando vai gerar um link local desse projeto.
+- No projeto que você vai consumir esse pacote, rodar ```yarn link @logcomex/design```, isso vai linkar esse pacote como uma dependencia do seu projeto.
+- Você pode executar o ```yarn build``` ou ```yarn watch``` se quiser fazer o build enquanto altera os arquivos.
+
+ OBS: onde você executa esse projeto usando o ```yarn watch```, é necessário comentar o import do css dele no seu projeto.
 
 ## Mini doc de componentes
 
