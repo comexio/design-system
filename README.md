@@ -7,9 +7,10 @@ anyone can [try it](https://www.npmjs.com/package/@logcomex/design).
 ## Rodar o projeto localmente
 - Rodar ```yarn link```, esse comando vai gerar um link local desse projeto.
 - No projeto que você vai consumir esse pacote, rodar ```yarn link @logcomex/design```, isso vai linkar esse pacote como uma dependencia do seu projeto.
-- Você pode executar o ```yarn build``` ou ```yarn watch``` se quiser fazer o build enquanto altera os arquivos.
+- Você pode executar o ```yarn build```, ou ```yarn watch``` se quiser que fique assistindo as suas alterações.
+- Quando finalizar o uso da lib localmente, só rodar ```yarn unlink @logcomex/design``` pra deslinkar o DS do seu projeto.
 
- OBS: onde você executa esse projeto usando o ```yarn watch```, é necessário comentar o import do css dele no seu projeto.
+ OBS: onde você importa essa lib, quando estiver usando o ```yarn watch```, é necessário comentar o import do css pra não dar erro.
 
 ## Mini doc de componentes
 
