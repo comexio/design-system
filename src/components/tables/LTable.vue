@@ -95,7 +95,7 @@ export default {
       type: Number,
       default: 80
     },
-    needOptionsReset: {
+    triggerResetOptions: {
       type: Boolean,
       default: false
     }
@@ -142,7 +142,7 @@ export default {
         }
       }
     },
-    needOptionsReset: {
+    triggerResetOptions: {
       deep: true,
       handler (val) {
         if(val === true) {
