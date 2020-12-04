@@ -94,7 +94,8 @@ export default {
     truncateSize: {
       type: Number,
       default: 80
-    }
+    },
+    triggerResetOptions: Boolean
   },
   data () {
     return {
@@ -137,6 +138,14 @@ export default {
           this.$emit('ordination', { sortOrder: sortOrder(sort), sortColumn })
         }
       }
+    },
+    triggerResetOptions: {
+      deep: true,
+      handler (val) {
+        if(val === true) {
+          this.resetOptions()
+        }
+      }
     }
   },
   mounted () {
@@ -162,6 +171,10 @@ export default {
     },
     isDownloadUrl (key) {
       return key === GENERAL.DOWNLOAD_URL
+    },
+    resetOptions () {
+      this.options.sortBy = []
+      this.options.sortDesc = []
     }
   }
 }
