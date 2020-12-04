@@ -21,7 +21,7 @@
         >
           <td
             v-for="[key, value] of item"
-            :key="value"
+            :key="key"
             class="text-start"
           >
             <div v-if="isDownloadUrl(key)">
