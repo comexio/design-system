@@ -95,10 +95,7 @@ export default {
       type: Number,
       default: 80
     },
-    triggerResetOptions: {
-      type: Boolean,
-      default: false
-    }
+    triggerResetOptions: Boolean
   },
   data () {
     return {
