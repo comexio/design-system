@@ -97,3 +97,17 @@ headers e items são iguais ao da tabela do [Vuetify](https://vuetifyjs.com/en/c
   max-quantity="9"
 />
 ```
+
+## LButton
+
+```
+<l-button
+  icon-value="mdi-chevron-left"
+  label="Label"
+/>
+```
+### Parâmetros
+
+icon-value: String com o icone do MDI
+
+label: String com um texto para ser renderizado

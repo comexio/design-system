@@ -7,13 +7,13 @@
     v-on="$listeners"
   >
     <v-icon
-      v-if="icon"
+      v-if="iconValue"
       left
       size="20px"
     >
-      {{ icon }}
+      {{ iconValue }}
     </v-icon>
-    {{ text }}
+    {{ label }}
     <slot />
   </v-btn>
 </template>
@@ -22,11 +22,11 @@
 export default {
   name: 'LButton',
   props: {
-    icon: {
+    iconValue: {
       type: String,
       default: null
     },
-    text: {
+    label: {
       type: String,
       default: null
     }

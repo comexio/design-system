@@ -14,7 +14,7 @@ describe('Button component', () => {
   })
 
   it('component render props', async () => {
-    button.setProps({ icon: 'mdi-chart-pie', text: 'Texto' })
+    button.setProps({ iconValue: 'mdi-chart-pie', label: 'Texto' })
 
     await button.vm.$nextTick()
 

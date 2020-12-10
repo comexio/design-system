@@ -59,8 +59,6 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
   // eslint-disable-next-line
   const dateMonths = (monthsList as unknown as string[])
   const dates = yearMonth.toString().split(' - ')
-  console.log('dateMonths', dateMonths)
-  console.log('dates', dates)
   let formattedDates = ''
   dates.forEach(function (dateIsYearMonthComplete) {
     let year = ''
