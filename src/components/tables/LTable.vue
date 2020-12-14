@@ -283,13 +283,13 @@ export default {
 }
 
 .LTable__download {
+  box-shadow: inset 0px 0px 0px 1px $westSide;
   padding: 6px 10px;
-  background: $westSide;
   border-radius: 5px;
-  color: $martinique;
+  color: $westSide;
   text-decoration: none;
   .v-icon {
-    color: $martinique;
+    color: $westSide;
   }
 }
 </style>
