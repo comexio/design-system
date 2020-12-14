@@ -10,14 +10,16 @@ const defaultParams = {
 const headerDataFake = [
   { text: 'Dessert (100g serving)', value: 'name' },
   { text: 'Calories', value: 'calories' },
-  { text: 'Fat (g)', value: 'fat' }
+  { text: 'Fat (g)', value: 'fat' },
+  { text: 'Download', value: 'download' }
 ]
 
 const itemsFake = [
   {
     name: 'Frozen Yogurt',
     calories: 159,
-    fat: 6.0
+    fat: 6.0,
+    download: { "url":"http://api.logcomex.io/api/v3/excel/0deab75d25103a930ff658b963bd5eb6","text":"Download","icon":"mdi-download-circle","class":"LSConsumptionReportDetails__table__linkDownload" }
   },
   {
     name: 'Ice cream sandwich',
@@ -90,7 +92,7 @@ describe('LTable', () => {
 
     const header = () => table.find('.v-data-table-header')
     const headerItems = () => header().findAll('th')
-    expect(headerItems().length).toBe(3)
+    expect(headerItems().length).toBe(4)
   })
 
   it('render body', async () => {
@@ -116,6 +118,15 @@ describe('LTable', () => {
 
     const tooltip = () => table.findComponent({ name: 'v-tooltip' })
     expect(tooltip().exists()).toBe(true)
+  })
+
+  it('check button download', () => {
+    const buttonDownload = () => table.find('tbody tr .LTable__download')
+    const buttonIcon = () => buttonDownload().find('.v-icon')
+
+    expect(buttonDownload().exists()).toBe(true)
+    expect(buttonDownload().text()).toBe(itemsFake[0].download.text)
+    expect(buttonIcon().exists()).toBe(true)
   })
 
   it('render tr with 6 rows but 11 items', async () => {

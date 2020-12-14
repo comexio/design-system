@@ -8,7 +8,7 @@
     v-bind="$attrs"
     fixed-header
     hide-default-footer
-    class="elevation-1"
+    class="elevation-1 LTable"
   >
     <template
       v-if="truncateItems"
@@ -24,16 +24,17 @@
             :key="key"
             class="text-start"
           >
-            <div v-if="isDownloadUrl(key)">
+            <div v-if="isDownloadUrl(key, value)">
               <a
                 v-if="value.url"
                 :href="value.url"
                 target="_blank"
+                class="LTable__download"
                 :class="value.class"
               >
                 {{ value.text }}
                 <v-icon
-                  size="12px"
+                  size="14px"
                 >
                   {{ value.icon }}
                 </v-icon>
@@ -169,7 +170,11 @@ export default {
     truncateValue (value) {
       return value.slice(0, this.truncateSize) + '...'
     },
-    isDownloadUrl (key) {
+    isDownloadUrl (key, value) {
+      if (value && value.url) {
+        return true
+      }
+
       return key === GENERAL.DOWNLOAD_URL
     },
     resetOptions () {
@@ -181,6 +186,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_variables.scss';
+
 .v-data-table {
   width: 100%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
@@ -272,6 +279,17 @@ export default {
 .v-data-table.v-data-table--fixed-header {
   ::v-deep thead th {
     box-shadow: inset 0 -1px 0 $gallery;
+  }
+}
+
+.LTable__download {
+  box-shadow: inset 0px 0px 0px 1px $westSide;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: $westSide;
+  text-decoration: none;
+  .v-icon {
+    color: $westSide;
   }
 }
 </style>
