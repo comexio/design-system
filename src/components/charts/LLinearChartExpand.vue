@@ -23,6 +23,7 @@
     </div>
     <v-simple-table
       ref="LLinearChartExpand__table"
+      fixed-header
       dense
       height="152px"
       class="LLinearChartExpand__table"
