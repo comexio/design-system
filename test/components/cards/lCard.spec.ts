@@ -23,17 +23,9 @@ describe('LCard component', () => {
     expect(card.exists()).toBeTruthy()
   })
 
-  it('component lCard without description', async () => {
-    const description = () => card.find('.LCardWithoutDescription')
-
-    await card.vm.$nextTick()
-
-    expect(description().exists()).toBeTruthy()
-  })
-
   it('component lCard has description', async () => {
     card.setProps({ description: 'Descricao do Card' })
-    const description = () => card.find('.LCardWithoutDescription')
+    const description = () => card.find('.')
 
     await card.vm.$nextTick()
 
