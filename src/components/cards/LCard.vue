@@ -6,6 +6,7 @@
   >
     <v-card
       class="LCard"
+      :class="{LCardWithoutDescription: !description}"
       :min-height="height"
     >
       <l-card-header
@@ -65,6 +66,10 @@ export default {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
   min-height: 272px;
   border-radius: 5px!important;
+}
+
+.LCardWithoutDescription {
+  grid-template-rows: 26px 1fr;
 }
 
 @media screen and (min-width: 1500px) {
