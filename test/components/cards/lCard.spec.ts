@@ -1,7 +1,5 @@
 import { mount, Wrapper } from '@vue/test-utils'
-// @ts-ignore
 import { initSetupComponent } from '~/test/utils.setup'
-// @ts-ignore
 import LCard from '~/src/components/cards/LCard.vue'
 
 const setupDefault = initSetupComponent()

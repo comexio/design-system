@@ -1,7 +1,5 @@
 import { mount, Wrapper } from '@vue/test-utils'
-// @ts-ignore
 import { initSetupComponent } from '~/test/utils.setup'
-// @ts-ignore
 import LGeneralChart from '~/src/components/charts/LGeneralChart.vue'
 
 const setupDefault = initSetupComponent()
