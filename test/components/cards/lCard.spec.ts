@@ -22,13 +22,4 @@ describe('LCard component', () => {
   it('component lCard exists', () => {
     expect(card.exists()).toBeTruthy()
   })
-
-  it('component lCard has description', async () => {
-    card.setProps({ description: 'Descricao do Card' })
-    const description = () => card.find('.')
-
-    await card.vm.$nextTick()
-
-    expect(description().exists()).toBeFalsy()
-  })
 })
