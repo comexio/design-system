@@ -39,6 +39,7 @@
         </v-btn>
         <v-btn
           v-if="confirmButton"
+          :disabled="disabledConfirm"
           color="secondary"
           text
           class="modal__button modal__button--confirm font-md"
@@ -66,6 +67,10 @@ export default {
     textConfirm: {
       type: String,
       default: null
+    },
+    disabledConfirm: {
+      type: Boolean,
+      default: false
     },
     confirmButton: {
       type: Boolean,
