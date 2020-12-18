@@ -6,7 +6,8 @@
       </v-list-item-title>
       <v-list-item-subtitle
         v-if="description"
-        class="LCardHeader__subtitle">
+        class="LCardHeader__subtitle"
+      >
         {{ description }}
       </v-list-item-subtitle>
     </v-list-item-content>
