@@ -20,6 +20,7 @@
   "types": "./types",
   "dependencies": {
     "core-js": "^3.6.5",
+    "dayjs": "^1.9.7",
     "moment": "^2.27.0",
     "ramda": "^0.27.1",
     "vue": "2.6.11",
