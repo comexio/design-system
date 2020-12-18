@@ -4,7 +4,9 @@
       <v-list-item-title class="LCardHeader__title font-md">
         {{ title }}
       </v-list-item-title>
-      <v-list-item-subtitle v-if="description" class="LCardHeader__subtitle">
+      <v-list-item-subtitle
+        v-if="description"
+        class="LCardHeader__subtitle">
         {{ description }}
       </v-list-item-subtitle>
     </v-list-item-content>
