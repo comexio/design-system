@@ -187,22 +187,6 @@ export default {
     },
     i18nLocale () {
       return this.$i18n.locale
-    },
-    currentTableFirstDatepicker () {
-      const { firstDatepicker } = this.$refs
-      if (firstDatepicker) {
-        return firstDatepicker.tableDate
-      }
-
-      return null
-    },
-    currentTableSecondDatepicker () {
-      const { secondDatepicker } = this.$refs
-      if (secondDatepicker) {
-        return secondDatepicker.tableDate
-      }
-
-      return null
     }
   },
   watch: {
@@ -255,12 +239,41 @@ export default {
     async openMenu() {
       await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
       if(this.$refs.firstDatepicker) {
+        console.log('openMenu')
         this.$refs.firstDatepicker.tableDate = '2020-11'
       }
     },
+    currentTableFirstDatepicker () {
+      const { firstDatepicker } = this.$refs
+      console.log(firstDatepicker)
+      if (firstDatepicker) {
+        return firstDatepicker.tableDate
+      }
+
+      return null
+    },
+    currentTableSecondDatepicker () {
+      const { secondDatepicker } = this.$refs
+      if (secondDatepicker) {
+        return secondDatepicker.tableDate
+      }
+
+      return null
+    },
     changeTableDatepicker (val) {
       const date = dayjs(val)
-      console.log(date.month())
+      const month = date.month()
+
+      console.log('firstDatepickerDate', date.format('YYYY-MM'))
+
+      const secondDatepickerDate = this.currentTableSecondDatepicker()
+      console.log('secondDatepickerDate', secondDatepickerDate)
+
+      if (secondDatepickerDate) {
+        let dateSecond = dayjs(secondDatepickerDate)
+        dateSecond = dateSecond.month(month + 1)
+        this.$refs.secondDatepicker.tableDate = dateSecond.format('YYYY-MM')
+      }
     }
   }
 }
