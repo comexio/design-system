@@ -7,12 +7,13 @@
       v-bind="$attrs"
       :rules="validityRules"
       class="l-input-button--input"
-      v-on="listeners"
+      v-on="$listeners"
+      @keyup.enter="$emit('button-pressed')"
     />
     <v-btn
       class="l-input-button--button"
       :loading="$attrs.loading"
-      @click="$emit('click')"
+      @click="$emit('button-pressed')"
     >
       {{ buttonLabel }}
     </v-btn>
@@ -44,11 +45,7 @@ export default {
       }
 
       return this.rules
-    },
-    listeners() {
-      delete this.$listeners.click
-      return this.$listeners
-    },
+    }
   }
 }
 </script>
