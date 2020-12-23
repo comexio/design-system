@@ -1,4 +1,5 @@
 import LLabeledInput from './LLabeledInput'
+import LInputButton from './LInputButton'
 import LInputSolo from './LInputSolo'
 import LSelectSolo from './LSelectSolo'
 import LDatePickerMonth from './LDatePickerMonth'
@@ -14,6 +15,7 @@ import LCheckbox from './LCheckbox'
 
 export {
     LLabeledInput,
+    LInputButton,
     LInputSolo,
     LSelectSolo,
     LDatePickerMonth,
