@@ -3,7 +3,6 @@
     <v-text-field
       dense
       solo
-      hide-details
       height="56px"
       v-bind="$attrs"
       :rules="validityRules"
@@ -39,22 +38,16 @@ export default {
     }
   },
   computed: {
-    showValidity () {
-      return this.validity && this.rules
-    },
     validityRules () {
-      if (!this.showValidity) {
+      if (!(this.validity && this.rules)) {
         return
       }
 
       return this.rules
     },
     listeners() {
-      const { click, ...listeners } = this.$listeners
-      return listeners
+      return delete this.$listeners.click
     },
-  }, created() {
-    console.log(this.$attrs)
   }
 }
 </script>
