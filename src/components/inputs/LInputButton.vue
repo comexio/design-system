@@ -46,7 +46,8 @@ export default {
       return this.rules
     },
     listeners() {
-      return delete this.$listeners.click
+      delete this.$listeners.click
+      return this.$listeners
     },
   }
 }
