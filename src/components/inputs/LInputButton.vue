@@ -8,6 +8,7 @@
       :rules="validityRules"
       class="l-input-button--input"
       v-on="$listeners"
+      @keyup.enter="$emit('button-pressed')"
     />
     <v-btn
       class="l-input-button--button"
