@@ -7,5 +7,9 @@ export const parameters = {
 
 addDecorator(() => ({
   vuetify,
-  template: '<v-app style="height: 200px"><story/></v-app>'
+  template: `
+  <v-app style="height: 200px">
+    <story/>
+  </v-app>
+  `
 }))

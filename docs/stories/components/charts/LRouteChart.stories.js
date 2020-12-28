@@ -1,7 +1,7 @@
-import LRouteChart from '../../../../src/components/charts/LRouteChart.vue';
+import LRouteChart from '@components/charts/LRouteChart.vue';
 
 export default {
-  title: 'Design System/Components/Charts/Route Chart',
+  title: 'Design System/Components/Charts/Route',
   component: LRouteChart,
   argTypes: {
     header: {control: 'array', description: 'Chart titles'},

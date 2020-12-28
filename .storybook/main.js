@@ -1,7 +1,20 @@
 const path = require('path');
 
 module.exports = {
+  "stories": [
+    "../docs/**/*.stories.mdx",
+    "../docs/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials"
+  ],
   webpackFinal: async (config, { configType }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "~": path.resolve(__dirname, "../"),
+      "@components": path.resolve(__dirname, "../src/components"),
+    };
     config.module.rules.push({
       test: /\.scss$/,
       use: [
@@ -24,13 +37,5 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     });
     return config;
-  },
-  "stories": [
-    "../docs/**/*.stories.mdx",
-    "../docs/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials"
-  ]
+  }
 }
