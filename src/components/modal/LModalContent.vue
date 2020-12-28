@@ -15,10 +15,6 @@
         <div class="modalContent__text">
           {{ subtitle }}
         </div>
-        <div v-if="remaining"
-          class="modalContent__remaining">
-          {{ remaining }}
-        </div>
         <slot />
       </v-col>
     </v-row>
@@ -44,10 +40,6 @@ export default {
     subtitle: {
       type: String,
       default: null
-    },
-    remaining: {
-      type: String,
-      default: null
     }
   }
 
@@ -69,11 +61,6 @@ export default {
 
   .modalContent__text, .modalContent__remaining {
     font-size: 1rem;
-  }
-
-  .modalContent__remaining {
-    color: $silver;
-    text-align: center;
   }
 }
 </style>
