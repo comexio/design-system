@@ -11,7 +11,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LAlert },
-  template: '<l-alert v-bind="$props"> </l-alert>',
+  template: '<l-alert v-bind="$props" style="align: center; margin-left: 40%; margin-top: -20%"> </l-alert>',
 });
 
 export const Default = Template.bind({});
