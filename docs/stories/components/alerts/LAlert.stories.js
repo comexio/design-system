@@ -14,7 +14,7 @@ const Template = (args, { argTypes }) => ({
   template: '<l-alert v-bind="$props" style="align: center; margin-left: 40%; margin-top: -20%"> </l-alert>',
 });
 
-export const Default = Template.bind({});
-Default.args = {
-    msg: 'Im an alert!',
+export const Action = Template.bind({});
+Action.args = {
+    msg: 'Im an action alert!',
 };
