@@ -9,7 +9,7 @@ export default {
     maxQuantity: {table: {disable: true}},
     othersLabel: {table: {disable: true}},
     toggleLast: {table: {disable: true}},
-
+    hasTitle: {table: {disable: true}},
   },
 };
 
@@ -29,18 +29,19 @@ Default.args = {
     percentage: 50
   },
   {
-    title: "Titulo",
+    title: "Title",
     description: "Description",
     quantity: "100",
     total: "30.000",
     percentage: 30
   },
   {
-    title: "Titulo",
+    title: "Title",
     description: "Description",
     quantity: "100",
     total: "20.000",
     percentage: 20
   },],
-  color: '#D4C5EB'
+  color: '#D4C5EB',
+  hasTitle: true,
 };

@@ -24,14 +24,14 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   headers: [
-    {text: 'Name Header', value: 'name'},
-    {text: 'Value Header', value: 'value'},
-    {text: 'Third Header', value: 'percentage'},
+    {text: 'Header Example', value: 'firstHeader'},
+    {text: 'Header Example', value: 'secondHeader'},
+    {text: 'Header Example', value: 'thirdHeader'},
 
   ],
   items: [
-    {name: 'Item name', value: 10, percentage: '5%'},
-    {name: 'Item name', value: 15, percentage: '10%'},
-    {name: 'Item name', value: 20, percentage: '20%'},
-  ]
+    {firstHeader: 'Item', secondHeader: 10, thirdHeader: 7.5},
+    {firstHeader: 'Item', secondHeader: 15, thirdHeader: 14.3},
+    {firstHeader: 'Item', secondHeader: 20, thirdHeader: 22.53},
+  ],
 };
