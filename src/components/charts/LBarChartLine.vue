@@ -1,6 +1,7 @@
 <template>
   <v-list-item
     class="LBarChart__list__item"
+    :min-height="minLineHeight"
     dense
   >
     <v-row class="align-center controlRowWidth pb-1 flex-nowrap">
@@ -191,6 +192,10 @@ export default {
       type: String,
       default: ''
     },
+    minLineHeight: {
+      type: String,
+      default: 'auto'
+    }
   },
   data () {
     return {
@@ -224,7 +229,6 @@ export default {
 
 <style lang="scss" scoped>
   .LBarChart__list__item {
-    min-height: auto;
     padding-top: 1px;
     padding-bottom: 1px;
   }
