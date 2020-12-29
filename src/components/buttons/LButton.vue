@@ -1,7 +1,7 @@
 <template>
   <v-btn
-    outlined
-    color="primary"
+    :outlined="outlined"
+    :color="color"
     class="LButton"
     v-bind="$attrs"
     v-on="$listeners"
@@ -29,6 +29,14 @@ export default {
     label: {
       type: String,
       default: null
+    },
+    color: {
+      type: String,
+      default: 'primary'
+    },
+    outlined: {
+      type: Boolean,
+      default: true
     }
   }
 }
@@ -39,5 +47,11 @@ export default {
   font-size: 13px;
   height: 30px !important;
   padding: 0 10px !important;
+}
+
+.orange {
+  background-color: #FF8F1C !important;
+  border-color: #FF8F1C !important;
+  color: #ffffff;
 }
 </style>
