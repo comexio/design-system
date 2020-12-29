@@ -10,10 +10,6 @@ export default {
     loading: {control: 'boolean', description: 'Expanded chart loading: true / not loading: false'},
     expand: {action: 'expand', description: 'Toggle chart expanded when "Recolher" clicked'},
     search: {actions: 'search', table: {disable: true}}
-    // type: {table: {disable: true}},
-    // loadingExpand: {table: {disable: true}},
-    // generateColor: {table: {disable: true}},
-    // isTagChart: {table: {disable: true}},
   },
 };
 
