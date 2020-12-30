@@ -3,6 +3,11 @@ import LTable from '@components/tables/LTable.vue';
 export default {
   title: 'Design System/Components/Tables/Table',
   component: LTable,
+  parameters: {
+    docs:{
+      page: null
+    }
+  },
   argTypes: {
     headers: {control: 'object', description: 'Chart headers object'},
     items: { control: 'object', description: 'Chart items object'},
@@ -10,15 +15,15 @@ export default {
     truncateItems: {table: {disable: true}},
     truncateSize: {table: {disable: true}},
     triggerResetOptions: {table: {disable: true}},
-    ordination: { action: 'Ordering', description: 'Column ordering event'},
-    updateScroll: { action: 'Updating', description: 'Custom scroll update event' },
+    ordination: { action: 'ordination', description: 'Column ordering event'},
+    updateScroll: { action: 'Updating', description: 'Custom scroll update event', table:{disable: true}},
   },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LTable },
-  template: '<l-table v-bind="$props"> </l-table>',
+  template: '<v-app><l-table v-bind="$props" @ordination="ordination"> </l-table></v-app>',
 });
 
 export const Default = Template.bind({});
