@@ -21,7 +21,22 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            {{ data.label }} {{ showQuantity }}
+            {{ data.label }}
+            <v-btn
+              v-if="showDetailsIcon && data.label.toUpperCase() !== 'OUTROS'"
+              class="mx-2"
+              text
+              icon
+              color="wisteria"
+              height="26px"
+              min-width="26px"
+              @click.stop="showDetails(data.label)"
+            >
+              <v-icon size="15px">
+                mdi-magnify
+              </v-icon>
+            </v-btn>
+            {{ showQuantity }}
             <span
               v-if="lastItem && !isExpanded && isExpandable"
               class="LLinearChartLine__expand ml-1"
@@ -132,6 +147,10 @@ export default {
     valueSymbol: {
       type: String,
       default: null
+    },
+    showDetailsIcon: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -145,6 +164,9 @@ export default {
     },
     showPartition (item) {
       return item.value !== null ? ' | ' : ' '
+    },
+    showDetails (value) {
+      this.$emit('showDetails', value)
     }
   }
 }

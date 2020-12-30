@@ -15,7 +15,9 @@
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
             :translation-line="translationLine"
+            :show-details-icon="showDetailsIcon"
             @expand="expandList"
+            @showDetails="showDetails"
           />
         </v-list-item>
       </v-list>
@@ -79,6 +81,10 @@ export default {
         records: 'Registros',
         seeMore: 'Ver Mais'
       })
+    },
+    showDetailsIcon: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -87,6 +93,9 @@ export default {
     },
     expandList () {
       this.$emit('expandList', this.type)
+    },
+    showDetails (value) {
+      this.$emit('showDetails', value)
     }
   }
 }
