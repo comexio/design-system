@@ -6,7 +6,7 @@ export default {
   argTypes: {
     iconValue: {control: 'text', description: 'Prefix icon'},
     label: { control: 'text', description: 'Button label'},
-    color: {control: {type: 'inline-radio', options: ['primary', 'secondary', 'orange'], description: 'Button color'} },
+    color: {control: {type: 'inline-radio', options: ['primary', 'secondary', 'orange']}, description: 'Button color' },
     outlined: {control: 'boolean', description: 'Primary: false / Inverse: true'},
     default: {table: {disable: true}},
   },
