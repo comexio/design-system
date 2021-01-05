@@ -1,6 +1,6 @@
 FROM node:12
 
-WORKDIR /var/www/design-system
+WORKDIR /src
 
 ENV HOST 0.0.0.0
 
