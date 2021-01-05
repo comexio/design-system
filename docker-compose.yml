@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  design-system:
+    container_name: DesignSystem
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/var/www/shared-components"
+    networks:
+      - DesignSystemNetwork
+
+networks:
+  DesignSystemNetwork:
+    driver: bridge
