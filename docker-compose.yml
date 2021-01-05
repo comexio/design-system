@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ".:/var/www/shared-components"
+      - ".:/var/www/design-system"
     networks:
       - DesignSystemNetwork
 
