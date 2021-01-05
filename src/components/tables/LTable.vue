@@ -65,6 +65,20 @@
             </v-tooltip>
             <template v-else>
               {{ value }}
+              <v-btn
+                v-if="key === 'nome_exportador' && isExpo"
+                class="mx-2"
+                text
+                icon
+                color="wisteria"
+                height="26px"
+                min-width="26px"
+                @click.stop="showDetails(value)"
+              >
+                <v-icon size="15px">
+                  mdi-magnify
+                </v-icon>
+              </v-btn>
             </template>
           </td>
         </tr>
@@ -79,6 +93,10 @@ import { GENERAL } from '~/enum/table.enum'
 export default {
   name: 'LTable',
   props: {
+    productId: {
+      type: Number,
+      default: 0
+    },
     headers: {
       type: Array,
       default: () => ([])
@@ -120,6 +138,9 @@ export default {
 
         return objectMap
       })
+    },
+    isExpo () {
+      return this.productId === 21
     }
   },
   watch: {
@@ -180,6 +201,9 @@ export default {
     resetOptions () {
       this.options.sortBy = []
       this.options.sortDesc = []
+    },
+    showDetails (value) {
+      this.$emit('showDetails', value)
     }
   }
 }
