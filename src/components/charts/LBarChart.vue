@@ -8,6 +8,7 @@
       :color="color"
       :is-last-item="isLastItem(index)"
       :others-label="othersLabel"
+      :min-line-height="minLineHeight"
       v-bind="$attrs"
       @toggleLast="toggleLast"
     />
@@ -38,6 +39,10 @@ export default {
     othersLabel: {
       type: String,
       default: ''
+    },
+    minLineHeight: {
+      type: String,
+      default: 'auto'
     }
   },
   methods: {
