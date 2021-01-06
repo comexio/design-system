@@ -1,7 +1,7 @@
 <template>
   <div class="LCheckbox">
     <v-checkbox
-      v-for="(item, index) in $attrs.options"
+      v-for="(item, index) in value"
       :key="index"
       v-model="inputValue"
       v-bind="$attrs"
