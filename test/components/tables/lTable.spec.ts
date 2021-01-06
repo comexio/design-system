@@ -157,3 +157,55 @@ describe('LTable', () => {
     expect(lines().length).toBe(11)
   })
 })
+
+const exporterHeaderDataFake = [
+  { text: 'NOME EXPORTADOR', value: 'nome_exportador' },
+]
+const exporterItemsFake = [
+  { nome_exportador: 'JBS SA' }
+]
+
+describe('LTable with Exporter data', () => {
+  let table: Wrapper<LTable>
+  beforeAll(() => {
+    table = mount(LTable, {
+      ...defaultParams,
+      propsData:{
+        truncateItems: false,
+        productId: 21
+      },
+      setData () {
+        return {
+          keysThatHasDetails: ['nome_exportador']
+        }
+      },
+      computed: {
+        isExpo () {
+          return true
+        }
+      }
+    })
+  })
+  it('render exporter header', async () => {
+    table.setProps({ headers: exporterHeaderDataFake })
+    await table.vm.$nextTick()
+
+    const header = () => table.find('.v-data-table-header')
+    const headerItems = () => header().findAll('th')
+    expect(headerItems().length).toBe(1)
+  })
+  it('render exporter body', async () => {
+    table.setProps({ items: exporterItemsFake })
+    await table.vm.$nextTick()
+
+    const lines = () => table.findAll('tbody tr')
+    expect(lines().length).toBe(1)
+  })
+  it('checks if table data has exporter info', async () => {
+    const headerTitle = table.find('th').text()
+    expect(headerTitle).toBe('NOME EXPORTADOR')
+
+    const columnText = table.find('td').text()
+    expect(columnText).toBe('JBS SA')
+  })
+})

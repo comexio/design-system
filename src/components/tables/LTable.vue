@@ -66,7 +66,7 @@
             <template v-else>
               {{ value }}
               <v-btn
-                v-if="key === 'nome_exportador' && isExpo"
+                v-if="keysThatHasDetails.includes(key) && isExpo"
                 class="mx-2"
                 text
                 icon
@@ -93,10 +93,6 @@ import { GENERAL } from '~/enum/table.enum'
 export default {
   name: 'LTable',
   props: {
-    productId: {
-      type: Number,
-      default: 0
-    },
     headers: {
       type: Array,
       default: () => ([])
@@ -114,14 +110,19 @@ export default {
       type: Number,
       default: 80
     },
-    triggerResetOptions: Boolean
+    triggerResetOptions: Boolean,
+    productId: {
+      type: Number,
+      default: 0
+    }
   },
   data () {
     return {
       options: {},
       customScroll: {
         bottom: false
-      }
+      },
+      keysThatHasDetails: ['nome_exportador']
     }
   },
   computed: {
