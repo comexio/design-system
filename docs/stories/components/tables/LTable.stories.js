@@ -8,12 +8,14 @@
 //   argTypes: {
 //     headers: {control: 'object', description: 'Chart headers object'},
 //     items: { control: 'object', description: 'Chart items object'},
+//     productId: {control: 'number', description: 'Receives product service id to control some functionalities'}
 //     itemsPerPage: {table: {disable: true}},
 //     truncateItems: {table: {disable: true}},
 //     truncateSize: {table: {disable: true}},
 //     triggerResetOptions: {table: {disable: true}},
 //     ordination: { action: 'ordination', description: 'Column ordering event'},
 //     updateScroll: { action: 'Updating', description: 'Custom scroll update event', table:{disable: true}},
+//     showDetails: {action: 'showDetails', description: 'Emmit custom event passing a value to show details'},
 //   },
 // };
 
