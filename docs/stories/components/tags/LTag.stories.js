@@ -14,7 +14,7 @@ export default {
     select: { control: 'boolean', description: 'Not Defined',  table: { disable: true }},
     customIcon: { control: 'text', description: 'Enable customize icon' },
     outlined: { control: 'boolean', description: 'Control to define whether the tag will be a outlined' },
-    colorRelation: { control: 'object', description: 'Define o contrast', table: { disable: true }},
+    colorRelation: { control: 'object', description: 'Define the contrast', table: { disable: true }},
     removeTag: { action: 'Tag removed', description: 'Event tag removed' },
   },
 };
