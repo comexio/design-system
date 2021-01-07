@@ -65,21 +65,12 @@
             </v-tooltip>
             <template v-else>
               {{ value }}
-              <v-btn
-                v-if="keysThatHasDetails.includes(key) && isExpo"
-                class="mx-2"
-                text
-                icon
-                color="wisteria"
-                height="26px"
-                min-width="26px"
-                @click.stop="showDetails(value)"
-              >
-                <v-icon size="15px">
-                  mdi-magnify
-                </v-icon>
-              </v-btn>
             </template>
+            <slot
+              v-if="keysThatHasDetails.includes(key)"
+              name="sectionAfterValue"
+              :value="value"
+            />
           </td>
         </tr>
       </tbody>
@@ -111,9 +102,9 @@ export default {
       default: 80
     },
     triggerResetOptions: Boolean,
-    productId: {
-      type: Number,
-      default: 0
+    keysThatHasDetails: {
+      type: Array,
+      default: () => ([])
     }
   },
   data () {
@@ -121,8 +112,7 @@ export default {
       options: {},
       customScroll: {
         bottom: false
-      },
-      keysThatHasDetails: ['nome_exportador']
+      }
     }
   },
   computed: {
@@ -139,9 +129,6 @@ export default {
 
         return objectMap
       })
-    },
-    isExpo () {
-      return this.productId === 21
     }
   },
   watch: {
@@ -202,9 +189,6 @@ export default {
     resetOptions () {
       this.options.sortBy = []
       this.options.sortDesc = []
-    },
-    showDetails (value) {
-      this.$emit('showDetails', value)
     }
   }
 }
