@@ -29,22 +29,22 @@
 // Default.args = {
 //   dialog: true,
 //   disabledConfirm:true,
-//   textConfirm: 'Confirmar',
-//   textCancel: 'Cancelar',
+//   textConfirm: 'Confirm',
+//   textCancel: 'Cancel',
 // };
 
 // export const Clear = Template.bind({});
 // Clear.args = {
 //   dialog: true,
 //   textClear: 'Button clear',
-//   textConfirm: 'Confirmar',
-//   textCancel: 'Cancelar',
+//   textConfirm: 'Confirm',
+//   textCancel: 'Cancel',
 // };
 
 // export const Loading = Template.bind({});
 // Loading.args = {
 //   dialog: true,
-//   textConfirm: 'Confirmar',
-//   textCancel: 'Cancelar',
+//   textConfirm: 'Confirm',
+//   textCancel: 'Cancel',
 //   loading: true
 // };
