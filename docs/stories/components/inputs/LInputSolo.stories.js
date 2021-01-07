@@ -14,7 +14,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LInputSolo },
-  template: `<l-input-solo v-bind="$props" @input="input"></l-input-solo>`,
+  template: `<l-input-solo v-bind="$props" @input="input" style="width: 400px"></l-input-solo>`,
 });
 
 export const Default = Template.bind({});

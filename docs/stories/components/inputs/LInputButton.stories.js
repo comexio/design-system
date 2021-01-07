@@ -15,7 +15,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LInputButton },
-  template: `<l-input-button v-bind="$props" @buttonPressed="buttonPressed"></l-input-button>`,
+  template: `<l-input-button v-bind="$props" @buttonPressed="buttonPressed" style="width: 800px;"></l-input-button>`,
 });
 
 export const Default = Template.bind({});
