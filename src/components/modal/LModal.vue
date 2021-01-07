@@ -25,7 +25,7 @@
             {{ clearIcon }}
           </v-icon>
           <span>
-            {{ textClear || $t('searchx.clearPreferences') }}
+            {{ textClear }}
           </span>
         </v-btn>
         <v-spacer />
@@ -35,7 +35,7 @@
           class="modal__button modal__button--cancel font-md"
           @click="closeModal"
         >
-          {{ textCancel || $t('searchx.cancel') }}
+          {{ textCancel }}
         </v-btn>
         <v-btn
           v-if="confirmButton"
@@ -45,7 +45,7 @@
           class="modal__button modal__button--confirm font-md"
           @click="confirm"
         >
-          {{ textConfirm || $t('searchx.confirm') }}
+          {{ textConfirm }}
         </v-btn>
       </v-card-actions>
     </v-card>
