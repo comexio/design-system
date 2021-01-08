@@ -66,6 +66,11 @@
             <template v-else>
               {{ value }}
             </template>
+            <slot
+              v-if="keysThatHasDetails.includes(key)"
+              name="sectionAfterValue"
+              :value="value"
+            />
           </td>
         </tr>
       </tbody>
@@ -96,7 +101,11 @@ export default {
       type: Number,
       default: 80
     },
-    triggerResetOptions: Boolean
+    triggerResetOptions: Boolean,
+    keysThatHasDetails: {
+      type: Array,
+      default: () => ([])
+    }
   },
   data () {
     return {

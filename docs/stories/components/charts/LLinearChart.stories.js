@@ -6,9 +6,10 @@ export default {
   argTypes: {
     data: {control: 'object', description: 'Data object: label, percentage, total, quantity, value'},
     colors: {control: 'array', description: 'Colors array (hexadecimal)'},
+    itemsWithoutDetails: {control: 'array', description: 'Receives info about when it should shows details icon'},
     translationLine: {control: 'object', description: 'Subtitles translation object: value, records, seeMore'},
-    isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false'}, 
-    isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false'}, 
+    isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false'},
+    isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false'},
     expandList: {action: 'expandList', description: 'Toggle chart expanded when "See more" clicked'},
     maxQuantity: {action: 'number', description: 'Max items allowed'},
     scroller: {table: {disable: true}},
@@ -16,6 +17,7 @@ export default {
     loadingExpand: {table: {disable: true}},
     generateColor: {table: {disable: true}},
     isTagChart: {table: {disable: true}},
+    sectionAfterValue: {description: 'Slot can show extra content and return info to parent components to show more details'}
   },
 };
 
