@@ -4,7 +4,7 @@ export default {
   title: 'Design System/Components/Filters/LabeledChip',
   component: LLabeledChip,
   argTypes: {
-    item: {control: 'object', description: 'Data object that will be used in the card content' },
+    item: {control: 'object', description: 'Data object that will be used in the chip content: text, number, filter' },
     removeFilter: { action: 'remove-filter', description: 'Event filter removed' },
   },
 };
