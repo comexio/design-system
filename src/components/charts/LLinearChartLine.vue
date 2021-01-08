@@ -60,7 +60,7 @@
         >
           <v-col
             v-if="data.value !== null"
-            class="pl-2 py-0 pr-0 LLinearChartLine__result__value--first"
+            class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
             <span>
               {{ translationLine.value }}: {{ data.value }} {{ valueSymbol }}
