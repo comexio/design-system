@@ -1,7 +1,7 @@
 import LTag from '@components/tags/LTag.vue';
 
 export default {
-  title: 'Design System/Components/Base/LTag',
+  title: 'Design System/Components/Base/Tag',
   component: LTag,
   argTypes: {
     text: { control: 'text', description: 'Text to be applied to the tag' },
@@ -25,15 +25,9 @@ const Template = (args, { argTypes }) => ({
   template: '<l-tag v-bind="$props" @removeTag="removeTag"> </l-tag>',
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  text: 'Default Tag',
-  color: '#E2DAF8',
-};
-
-export const Number = Template.bind({});
-Number.args = {
-  text: 'Number Tag',
+export const WithNumber = Template.bind({});
+WithNumber.args = {
+  text: 'With Number',
   number: 10,
   color: '#E2DAF8',
 }
@@ -44,9 +38,9 @@ Closable.args = {
   close: true
 };
 
-export const IconCustomLink = Template.bind({});
-IconCustomLink.args = {
-  text: 'Icon custom',
+export const WithCustomLink = Template.bind({});
+WithCustomLink.args = {
+  text: 'With Custom Link',
   color: '#E2DAF8',
   customIcon: 'mdi-check-bold',
   link: true
