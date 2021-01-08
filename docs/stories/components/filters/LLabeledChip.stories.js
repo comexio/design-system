@@ -28,6 +28,6 @@ WithNumber.args = {
   item: {
     text: '08/01/2020 - 14/01/2020',
     number: 30,
-    filter: 'labeled_chip'
+    filter: 'labeled_chip_date'
   }
 };
