@@ -22,20 +22,11 @@
             v-on="on"
           >
             {{ data.label }}
-            <v-btn
-              v-if="showDetailsIcon && data.label.toUpperCase() !== 'OUTROS'"
-              class="mx-2"
-              text
-              icon
-              color="wisteria"
-              height="26px"
-              min-width="26px"
-              @click.stop="showDetails(data.label)"
-            >
-              <v-icon size="15px">
-                mdi-magnify
-              </v-icon>
-            </v-btn>
+            <slot
+              v-if="!itemsWithoutDetails.includes(data.label)"
+              name="sectionAfterValue"
+              :value="data.label"
+            />
             {{ showQuantity }}
             <span
               v-if="lastItem && !isExpanded && isExpandable"
@@ -148,9 +139,9 @@ export default {
       type: String,
       default: null
     },
-    showDetailsIcon: {
-      type: Boolean,
-      default: false
+    itemsWithoutDetails: {
+      type: Array,
+      default: () => []
     }
   },
   computed: {
@@ -164,9 +155,6 @@ export default {
     },
     showPartition (item) {
       return item.value !== null ? ' | ' : ' '
-    },
-    showDetails (value) {
-      this.$emit('showDetails', value)
     }
   }
 }

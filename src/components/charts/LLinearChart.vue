@@ -9,16 +9,21 @@
           dense
         >
           <l-linear-chart-line
+            v-slot:sectionAfterValue="slotProps"
             :data="item"
             :index="index"
             :color="colors[index]"
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
             :translation-line="translationLine"
-            :show-details-icon="showDetailsIcon"
+            :items-without-details="itemsWithoutDetails"
             @expand="expandList"
-            @showDetails="showDetails"
-          />
+          >
+            <slot
+              name="sectionAfterValue"
+              :value="slotProps.value"
+            />
+          </l-linear-chart-line>
         </v-list-item>
       </v-list>
     </div>
@@ -82,9 +87,9 @@ export default {
         seeMore: 'Ver Mais'
       })
     },
-    showDetailsIcon: {
-      type: Boolean,
-      default: false
+    itemsWithoutDetails: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
@@ -93,9 +98,6 @@ export default {
     },
     expandList () {
       this.$emit('expandList', this.type)
-    },
-    showDetails (value) {
-      this.$emit('showDetails', value)
     }
   }
 }

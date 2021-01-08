@@ -51,20 +51,10 @@
             <td>{{ index + 5 }}</td>
             <td>
               {{ item.label }}
-              <v-btn
-                v-if="showDetailsIcon && item.label.toUpperCase() !== 'OUTROS'"
-                class="mx-2"
-                text
-                icon
-                color="wisteria"
-                height="26px"
-                min-width="26px"
-                @click.stop="showDetails(item.label)"
-              >
-                <v-icon size="15px">
-                  mdi-magnify
-                </v-icon>
-              </v-btn>
+              <slot
+                name="sectionAfterValue"
+                :value="item.label"
+              />
             </td>
             <td class="LLinearChartExpand__table__line__value">
               {{ item.value }}
@@ -101,11 +91,7 @@ export default {
       type: Array,
       default: () => ([])
     },
-    loading: Boolean,
-    showDetailsIcon: {
-      type: Boolean,
-      default: false
-    }
+    loading: Boolean
   },
   data () {
     return {
@@ -151,9 +137,6 @@ export default {
       const bottomOfPage = scrollTop + visible + 25 >= pageHeight
 
       return bottomOfPage
-    },
-    showDetails (value) {
-      this.$emit('showDetails', value)
     }
   }
 }
