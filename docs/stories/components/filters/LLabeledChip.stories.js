@@ -12,13 +12,13 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLabeledChip },
-  template: '<l-labeled-chip v-bind="$props" @remove-filter="removeFilter"> </l-labeled-chip>',
+  template: '<l-labeled-chip v-bind="$props" @remove-filter="removeFilter" style="width:auto"> </l-labeled-chip>',
 });
 
 export const Default = Template.bind({});
 Default.args = {
   item: {
-    text: 'Labeled Chip',
+    text: 'Labeled Chip: Description',
     filter: 'labeled_chip'
   }
 };
@@ -26,8 +26,8 @@ Default.args = {
 export const WithNumber = Template.bind({});
 WithNumber.args = {
   item: {
-    text: 'Labeled Chip With Number',
-    number: 10,
+    text: '08/01/2020 - 14/01/2020',
+    number: 30,
     filter: 'labeled_chip'
   }
 };
