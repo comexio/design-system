@@ -15,6 +15,7 @@
 //     triggerResetOptions: {table: {disable: true}},
 //     ordination: { action: 'ordination', description: 'Column ordering event'},
 //     updateScroll: { action: 'Updating', description: 'Custom scroll update event', table:{disable: true}},
+//     sectionAfterValue: {description: 'Slot can show extra content and return info to parent components to show more details'}
 //   },
 // };
 

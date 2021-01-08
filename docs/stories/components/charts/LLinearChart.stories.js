@@ -17,6 +17,7 @@ export default {
     loadingExpand: {table: {disable: true}},
     generateColor: {table: {disable: true}},
     isTagChart: {table: {disable: true}},
+    sectionAfterValue: {description: 'Slot can show extra content and return info to parent components to show more details'}
   },
 };
 
