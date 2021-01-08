@@ -12,7 +12,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLabeledChip },
-  template: '<l-labeled-chip v-bind="$props" @remove-filter="removeFilter" style="width:auto"> </l-labeled-chip>',
+  template: '<l-labeled-chip v-bind="$props" @remove-filter="removeFilter" style="width:240"> </l-labeled-chip>',
 });
 
 export const Default = Template.bind({});
