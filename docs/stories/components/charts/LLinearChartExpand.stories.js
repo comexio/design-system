@@ -9,9 +9,7 @@ export default {
     data: {control: 'object', description: "Expanded chart data: label, percentage, total, quantity, value"},
     loading: {control: 'boolean', description: 'Expanded chart loading: true / not loading: false'},
     expand: {action: 'expand', description: 'Toggle chart expanded when "Recolher" clicked'},
-    showDetails: {action: 'showDetails', description: 'Emmit custom event passing a value to show details'},
     search: {action: 'search', table: {disable: true}},
-    showDetailsIcon: {table: {disable: true}},
   },
 };
 

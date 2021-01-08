@@ -6,18 +6,17 @@ export default {
   argTypes: {
     data: {control: 'object', description: 'Data object: label, percentage, total, quantity, value'},
     colors: {control: 'array', description: 'Colors array (hexadecimal)'},
+    itemsWithoutDetails: {control: 'array', description: 'Receives info about when it should shows details icon'},
     translationLine: {control: 'object', description: 'Subtitles translation object: value, records, seeMore'},
     isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false'},
     isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false'},
     expandList: {action: 'expandList', description: 'Toggle chart expanded when "See more" clicked'},
     maxQuantity: {action: 'number', description: 'Max items allowed'},
-    showDetails: {action: 'showDetails', description: 'Emmit custom event passing a value to show details'},
     scroller: {table: {disable: true}},
     type: {table: {disable: true}},
     loadingExpand: {table: {disable: true}},
     generateColor: {table: {disable: true}},
     isTagChart: {table: {disable: true}},
-    showDetailsIcon: {table: {disable: true}},
   },
 };
 
