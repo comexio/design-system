@@ -23,13 +23,13 @@ const Template = (args, { argTypes }) => ({
 
 export const Expanded = Template.bind({});
 Expanded.args = {
-    headers: ["Position","Company","Shipments","Share of Shipments"],
+    headers: ["Header","Header","Header","Header"],
     data: [
-        {"label":"EXAMPLE S/A","percentage":"10.03","total":"10.03%","quantity":7750,"value":"7.750"},
-        {"label":"EXAMPLE S/A","percentage":"4.51","total":"4.51%","quantity":3488,"value":"3.488"},
-        {"label":"EXAMPLE S/A","percentage":"2.90","total":"2.90%","quantity":2237,"value":"2.237"},
-        {"label":"EXAMPLE S/A","percentage":"1.47","total":"1.47%","quantity":1132,"value":"1.132"},
-        {"label":"EXAMPLE S/A","percentage":"1.32","total":"1.32%","quantity":1017,"value":"1.017"},
-        {"label":"EXAMPLE S/A","percentage":"1.14","total":"1.14%","quantity":883,"value":"883"}
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"},
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"},
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"},
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"},
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"},
+        {"label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value"}
     ]
 };

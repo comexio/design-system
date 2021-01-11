@@ -19,22 +19,26 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-    header: ['Origin Port', 'Discharge Port', 'Destiny Port'],
+    header: ['Header', 'Header', 'Header'],
     lines: [
       {
-        number: '60%',
+        number: 'Value%',
         quantity: {
-          name: 'TEUS',
-          value: 22
+          name: 'Total',
+          value: 0
         },
-        values: ['Santos', 'Norfolk', 'Everglades Port']
+        values: ['Example', 'Example', 'Example']
       },
       {
-        number: '20%',
-        values: ['Umuarama', 'Bosque Uirapuru', 'Porto do mané']
+        number: 'Value%',
+        quantity: {
+          name: 'Total',
+          value: 0
+        },
+        values: ['Example', 'Example', 'Example']
       },
       {
-        number: '20%',
+        number: 'Value%',
         isLast: true,
         values: 'Others'
       }

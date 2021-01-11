@@ -30,11 +30,11 @@ const Template = (args, { argTypes }) => ({
 export const Minimized = Template.bind({});
 Minimized.args = {
     data: [
-        {"label":"TITLE","percentage":"24.81","total":"24.81%","quantity":19165,"value":"19.165"},
-        {"label":"TITLE","percentage":"18.68","total":"18.68%","quantity":14432,"value":"14.432"},
-        {"label":"TITLE","percentage":"16.14","total":"16.14%","quantity":12470,"value":"12.470"},
-        {"label":"TITLE","percentage":"10.29","total":"10.29%","quantity":7951,"value":"7.951"},
-        {"label":"OTHERS","percentage":"30.08","total":"30.08%","quantity":193,"value":"23.243"}
+        {"label":"EXAMPLE","percentage":"24.81","total":"total%","quantity":0,"value":"value"},
+        {"label":"EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value"},
+        {"label":"EXAMPLE","percentage":"16.14","total":"total%","quantity":0,"value":"value"},
+        {"label":"EXAMPLE","percentage":"10.29","total":"total%","quantity":0,"value":"value"},
+        {"label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"}
     ],
     colors: [
         "#51a59a",
@@ -43,5 +43,5 @@ Minimized.args = {
         "#ffb57d",
         "#ae77d8"
     ],
-    translationLine: {"value":"Shipments","records":"Share of Shipments","seeMore":"See more"},
+    translationLine: {"value":"Value","records":"Percentage","seeMore":"See more"},
 };
