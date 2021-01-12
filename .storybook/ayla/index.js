@@ -1,8 +1,8 @@
 // .storybook/YourTheme.js
 
-import { create } from "@storybook/theming/create";
+import { create } from "@storybook/theming/create"
 
-import { primary, secondary, terciary, textColorLight } from "./colors";
+import { primary, purpleDark, secondary, terciary, textColorLight } from "./colors"
 
 export default create({
   brandTitle: "Ayla",
@@ -19,7 +19,7 @@ export default create({
   fontCode: "monospace",
 
   // Text colors
-  textColor: secondary,
+  textColor: purpleDark,
   textInverseColor: "rgba(255,255,255,0.9)",
 
   // Toolbar default and active colors
