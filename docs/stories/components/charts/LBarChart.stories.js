@@ -1,7 +1,7 @@
 import LBarChart from '@components/charts/LBarChart.vue';
 
 export default {
-  title: 'Design System/Components/Charts/Secondary Bar',
+  title: 'Components/Charts/Secondary Bar',
   component: LBarChart,
   argTypes: {
     data: {control: 'object', description: 'Chart data object: title, description, quantity, total, percentage'},

@@ -2,7 +2,7 @@ import LLinearChartExpand from '@components/charts/LLinearChartExpand.vue';
 
 
 export default {
-  title: 'Design System/Components/Charts/Primary Bar/Expanded',
+  title: 'Components/Charts/Primary Bar/Expanded',
   component: LLinearChartExpand,
   argTypes: {
     headers: {control: 'array', description: 'Expanded chart headers'},

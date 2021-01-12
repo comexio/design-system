@@ -1,7 +1,7 @@
 import LRouteChart from '@components/charts/LRouteChart.vue';
 
 export default {
-  title: 'Design System/Components/Charts/Flow',
+  title: 'Components/Charts/Flow',
   component: LRouteChart,
   argTypes: {
     header: {control: 'array', description: 'Chart headers array'},

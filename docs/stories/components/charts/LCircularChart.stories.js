@@ -1,7 +1,7 @@
 import LCircularChart from "@components/charts/LCircularChart.vue";
 
 export default {
-  title: "Design System/Components/Charts/Donut",
+  title: "Components/Charts/Donut",
   component: LCircularChart,
   argTypes: {
     items: {

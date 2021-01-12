@@ -1,7 +1,7 @@
 import LLinearChart from '@components/charts/LLinearChart.vue';
 
 export default {
-  title: 'Design System/Components/Charts/Primary Bar/Minimized',
+  title: 'Components/Charts/Primary Bar/Minimized',
   component: LLinearChart,
   argTypes: {
     data: {control: 'object', description: 'Data object: label, percentage, total, quantity, value'},
