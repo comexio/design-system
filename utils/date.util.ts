@@ -60,7 +60,11 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
   const dateMonths = (monthsList as unknown as string[])
   const dates = yearMonth.toString().split(' - ')
   let formattedDates = ''
-  dates.forEach(function (dateIsYearMonthComplete) {
+  dates.forEach(dateIsYearMonthComplete => {
+    if (!dateIsYearMonthComplete) {
+      return dateIsYearMonthComplete
+    }
+
     let year = ''
     let month = ''
     if (dateIsYearMonthComplete.length === 6) {

@@ -54,6 +54,7 @@
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
+        max {{ dateFilterLimits('max') }}
         <div
           v-if="periodsEnum"
           column
@@ -86,7 +87,7 @@ import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/dat
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 
 export default {
-  name: 'DatePicker',
+  name: 'LDatePickerMonth',
   props: {
     value: {
       type: [String, Array],
@@ -145,6 +146,7 @@ export default {
       }
     },
     dateLimit () {
+      console.log('dateLimit')
       return this.limit || {
         min: null,
         max: null
@@ -190,6 +192,11 @@ export default {
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
       if (type === 'max') {
+        // const date = new Date(max)
+        // date.setTime(date.getTime() - date.getTimezoneOffset()*60*1000)
+        // console.log('max', date.toISOString())
+        // return date.toISOString()
+        // console.log('dateFilterLimits', type, max)
         return max
       }
 
@@ -198,7 +205,12 @@ export default {
       const m = date.getMonth()
       const lastDay = new Date(y, m, 0)
 
-      return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+      const value = type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+
+      console.log('dateFilterLimits', type, value)
+      return value
+
+      // return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
     }
   }
 }
