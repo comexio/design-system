@@ -4,10 +4,10 @@ export default {
   title: 'Components/Charts/Flow',
   component: LRouteChart,
   argTypes: {
-    header: {control: 'array', description: 'Chart headers array'},
-    lines: { control: 'object', description: 'Chart content object'},
-    title: {table: {disable: true}},
-    description: {table: {disable: true}},
+    header: { control: 'array', description: 'Chart headers array' },
+    lines: { control: 'object', description: 'Chart content object' },
+    title: { table: {disable: true} },
+    description: { table: {disable: true} },
   },
 };
 

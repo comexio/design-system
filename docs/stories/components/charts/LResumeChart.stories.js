@@ -4,7 +4,7 @@ export default {
   title: "Components/Charts/List",
   component: LResumeChart,
   argTypes: {
-      data: {control: 'object', description: 'Array of objects for each item on the chart. Items must have: title, description'}
+      data: { control: 'object', description: 'Array of objects for each item on the chart. Items must have: title, description' }
   }
 };
 

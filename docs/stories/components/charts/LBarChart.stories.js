@@ -4,12 +4,12 @@ export default {
   title: 'Components/Charts/Secondary Bar',
   component: LBarChart,
   argTypes: {
-    data: {control: 'object', description: 'Chart data object: title, description, quantity, total, percentage'},
-    color: { control: 'color', description: 'Chart color'},
-    maxQuantity: {table: {disable: true}},
-    othersLabel: {table: {disable: true}},
-    toggleLast: {table: {disable: true}},
-    hasTitle: {table: {disable: true}},
+    data: { control: 'object', description: 'Chart data object: title, description, quantity, total, percentage' },
+    color: { control: 'color', description: 'Chart color' },
+    maxQuantity: { table: {disable: true} },
+    othersLabel: { table: {disable: true} },
+    toggleLast: { table: {disable: true} },
+    hasTitle: { table: {disable: true} },
   },
 };
 
