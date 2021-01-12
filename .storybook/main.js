@@ -18,7 +18,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.scss$/,
       use: [
-        'style-loader', 
+        'style-loader',
         'css-loader',
         {
           loader: 'sass-loader',
@@ -32,10 +32,22 @@ module.exports = {
               includePaths: ['src/assets/scss'],
             }
           },
-        } 
+        }
       ],
       include: path.resolve(__dirname, '../'),
     });
+    // config.module.rules.push({
+    //   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+    //   use: [
+    //     {
+    //       loader: 'file-loader',
+    //       query: {
+    //         name: '[name].[ext]'
+    //       }
+    //     }
+    //   ],
+    //   include: path.resolve(__dirname, '../')
+    // })
     return config;
   }
 }
