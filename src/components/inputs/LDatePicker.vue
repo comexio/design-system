@@ -57,7 +57,7 @@
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
-          @update:picker-date="changeTableDatepicker"
+          @update:picker-date="(e) => changeTableDatepicker(e, 'firstDatepicker')"
         >
           <div
             v-if="periodsEnum"
@@ -98,6 +98,7 @@
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
+          @update:picker-date="(e) => changeTableDatepicker(e, 'secondDatepicker')"
         />
       </div>
     </v-menu>
@@ -129,7 +130,9 @@ export default {
   data () {
     return {
       monthsPeriod: [],
-      menu: null
+      menu: null,
+      firstBlocked: false,
+      secondBlocked: false
     }
   },
   computed: {
@@ -245,7 +248,7 @@ export default {
     },
     currentTableFirstDatepicker () {
       const { firstDatepicker } = this.$refs
-      console.log(firstDatepicker)
+      // console.log(firstDatepicker)
       if (firstDatepicker) {
         return firstDatepicker.tableDate
       }
@@ -260,20 +263,48 @@ export default {
 
       return null
     },
-    changeTableDatepicker (val) {
+    changeTableDatepicker (val, ref) {
       const date = dayjs(val)
       const month = date.month()
-
-      console.log('firstDatepickerDate', date.format('YYYY-MM'))
+      const year = date.year()
 
       const secondDatepickerDate = this.currentTableSecondDatepicker()
-      console.log('secondDatepickerDate', secondDatepickerDate)
 
-      if (secondDatepickerDate) {
-        let dateSecond = dayjs(secondDatepickerDate)
-        dateSecond = dateSecond.month(month + 1)
-        this.$refs.secondDatepicker.tableDate = dateSecond.format('YYYY-MM')
+      if (ref === 'firstDatepicker') {
+        if (this.secondBlocked) {
+          this.secondBlocked = false
+
+          return
+        }
+        if (secondDatepickerDate) {
+          let dateSecond = dayjs(secondDatepickerDate)
+          dateSecond = dateSecond.year(year)
+          dateSecond = dateSecond.month(month + 1)
+          this.$refs.secondDatepicker.tableDate = dateSecond.format('YYYY-MM')
+
+          this.firstBlocked = true
+        }
+        return
       }
+
+      const firstDatepickerDate = this.currentTableFirstDatepicker()
+
+      if (ref === 'secondDatepicker') {
+        if (this.firstBlocked) {
+          this.firstBlocked = false
+
+          return
+        }
+        if (firstDatepickerDate) {
+          let dateFirst = dayjs(firstDatepickerDate)
+          dateFirst = dateFirst.year(year)
+          dateFirst = dateFirst.month(month - 1)
+          this.$refs.firstDatepicker.tableDate = dateFirst.format('YYYY-MM')
+
+          this.secondBlocked = true
+        }
+      }
+
     }
   }
 }
