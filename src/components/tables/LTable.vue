@@ -1,5 +1,7 @@
 <template>
   <v-data-table
+    :key="anIncreasingNumber"
+    v-sortable-table="{ onEnd: sortTheHeadersAndUpdateTheKey }"
     dense
     :headers="headers"
     :items="items"
@@ -80,6 +82,8 @@
 
 <script>
 import { GENERAL } from '~/enum/table.enum'
+import Sortable from "sortablejs"
+import { watchClass } from '~/utils/watchClass.util'
 
 export default {
   name: 'LTable',
@@ -109,6 +113,7 @@ export default {
   },
   data () {
     return {
+      anIncreasingNumber: -1,
       options: {},
       customScroll: {
         bottom: false
@@ -189,9 +194,41 @@ export default {
     resetOptions () {
       this.options.sortBy = []
       this.options.sortDesc = []
+    },
+    _saveColumnOrder(headers){
+      const headersValue = headers.map(header => header.value)
+      this.$emit('userColumns', headersValue )
+      this.$emit('ordination', { sortOrder: '', sortColumn: '' })
+    },
+    sortTheHeadersAndUpdateTheKey(evt) {
+      const headersTmp = this.headers;
+      const oldIndex = evt.oldIndex;
+      const newIndex = evt.newIndex;
+      if (newIndex >= headersTmp.length) {
+        let k = newIndex - headersTmp.length + 1;
+        while (k--) {
+          headersTmp.push(undefined);
+        }
+      }
+      headersTmp.splice(newIndex, 0, headersTmp.splice(oldIndex, 1)[0]);
+      this.table = headersTmp;
+      this._saveColumnOrder(headersTmp)
+      this.anIncreasingNumber += 1;
     }
+  },
+   directives: {
+    'sortable-table': {
+      inserted: (el, binding) => {
+        el.querySelectorAll('th').forEach((draggableEl) => {
+          // Need a class watcher because sorting v-data-table rows asc/desc removes the sortHandle class
+          watchClass(draggableEl, 'sortHandle');
+          draggableEl.classList.add('sortHandle');
+        });
+        Sortable.create(el.querySelector('tr'), binding.value ? { ...binding.value, handle: '.sortHandle' } : {});
+      },
+    },
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
