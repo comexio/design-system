@@ -39,7 +39,7 @@
           </v-icon>
         </v-row>
       </template>
-      <div class="d-flex">
+      <div class="d-flex datepickers__container">
         <v-date-picker
           ref="firstDatepicker"
           v-model="monthsPeriod"
@@ -124,7 +124,7 @@ export default {
     },
     monthsList: {
       type: Array,
-      required: true
+      default: null
     }
   },
   data () {
@@ -396,5 +396,23 @@ export default {
 
 .select-period {
   font-size: 13px;
+}
+
+.datepickers__container {
+  ::v-deep .datepicker__calendar:first-child {
+    .v-date-picker-header {
+      .v-btn:last-child {
+        display: none;
+      }
+    }
+  }
+
+  ::v-deep .datepicker__calendar:last-child {
+    .v-date-picker-header {
+      .v-btn:first-child {
+        display: none;
+      }
+    }
+  }
 }
 </style>
