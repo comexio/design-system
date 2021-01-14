@@ -25,6 +25,7 @@
                 :value="item.percentage"
                 :width="6"
                 :color="item.options.color"
+                @click="showModal(item.label)"
               >
                 <slot>
                   <img
@@ -71,6 +72,11 @@ export default {
     size: {
       type: Number,
       default: 60
+    }
+  },
+  methods: {
+    showModal (label) {
+      this.$emit('showModal', label);
     }
   }
 }

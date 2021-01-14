@@ -3,6 +3,7 @@
     v-model="dialog"
     max-width="560"
     :persistent="true"
+    :hide-overlay="hideOverlay"
     @click:outside="closeModal"
   >
     <v-card
@@ -89,6 +90,10 @@ export default {
       default: ' mdi-eraser'
     },
     loading: {
+      type: Boolean,
+      default: false
+    },
+    hideOverlay: {
       type: Boolean,
       default: false
     }
