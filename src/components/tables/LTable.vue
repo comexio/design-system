@@ -195,7 +195,7 @@ export default {
       this.options.sortBy = []
       this.options.sortDesc = []
     },
-    _saveColumnOrder(headers){
+    saveColumnOrder(headers){
       const headersValue = headers.map(header => header.value)
       this.$emit('userColumns', headersValue )
       this.$emit('ordination', { sortOrder: '', sortColumn: '' })
@@ -212,7 +212,7 @@ export default {
       }
       headersTmp.splice(newIndex, 0, headersTmp.splice(oldIndex, 1)[0]);
       this.table = headersTmp;
-      this._saveColumnOrder(headersTmp)
+      this.saveColumnOrder(headersTmp)
       this.anIncreasingNumber += 1;
     }
   },
