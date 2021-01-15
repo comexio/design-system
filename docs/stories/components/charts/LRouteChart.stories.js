@@ -1,4 +1,4 @@
-import LRouteChart from '@components/charts/LRouteChart.vue';
+import LRouteChart from "@components/charts/LRouteChart.vue";
 
 export default {
   title: 'Components/Charts/Flow',
@@ -14,7 +14,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LRouteChart },
-  template: '<l-route-chart v-bind="$props"> </l-route-chart>',
+  template: '<l-route-chart v-bind="$props"> </l-route-chart>'
 });
 
 export const Default = Template.bind({});

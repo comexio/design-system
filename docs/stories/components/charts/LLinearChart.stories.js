@@ -1,4 +1,4 @@
-import LLinearChart from '@components/charts/LLinearChart.vue';
+import LLinearChart from "@components/charts/LLinearChart.vue";
 
 export default {
   title: 'Components/Charts/Primary Bar/Minimized',
@@ -24,7 +24,8 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart },
-  template: '<l-linear-chart @expandList="expandList" v-bind="$props"> </l-linear-chart>',
+  template:
+    '<l-linear-chart @expandList="expandList" v-bind="$props"> </l-linear-chart>'
 });
 
 export const Minimized = Template.bind({});

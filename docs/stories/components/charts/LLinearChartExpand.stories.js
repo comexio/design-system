@@ -1,5 +1,4 @@
-import LLinearChartExpand from '@components/charts/LLinearChartExpand.vue';
-
+import LLinearChartExpand from "@components/charts/LLinearChartExpand.vue";
 
 export default {
   title: 'Components/Charts/Primary Bar/Expanded',
@@ -14,12 +13,12 @@ export default {
   },
 };
 
-
 const Template = (args, { argTypes }) => ({
-    props: Object.keys(argTypes),
-    components: { LLinearChartExpand },
-    template: '<l-linear-chart-expand @expand="expand" v-bind="$props"> </l-linear-chart-expand>',
-  });
+  props: Object.keys(argTypes),
+  components: { LLinearChartExpand },
+  template:
+    '<l-linear-chart-expand @expand="expand" v-bind="$props"> </l-linear-chart-expand>'
+});
 
 export const Expanded = Template.bind({});
 Expanded.args = {
