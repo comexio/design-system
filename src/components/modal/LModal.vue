@@ -2,8 +2,8 @@
   <v-dialog
     v-model="dialog"
     max-width="560"
+    overlay-color="overlayColor"
     :persistent="true"
-    :hide-overlay="hideOverlay"
     @click:outside="closeModal"
   >
     <v-card
@@ -93,9 +93,9 @@ export default {
       type: Boolean,
       default: false
     },
-    hideOverlay: {
-      type: Boolean,
-      default: false
+    overlayColor: {
+      type: String,
+      default: undefined
     }
   },
   methods: {
