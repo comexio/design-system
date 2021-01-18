@@ -9,10 +9,10 @@ export default {
       description:
         "Chart items array of objects: label, value, percentage, options object (color, img, tooltip)"
     },
-    itemsToIgnoreClick: {
+    clickableItems: {
       control: "array",
       description:
-        "Receives an array with items that are used to control if click event should be avoided"
+        "Receives an array with items that are used to control if click event should be emitted"
     },
     showTooltip: {
       control: "boolean",
