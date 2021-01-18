@@ -7,12 +7,14 @@ export function watchClass(targetNode: any, classToWatch: any){
         mutation.type === "attributes" &&
         mutation.attributeName === "class"
       ) {
+        // @ts-ignore
         const currentClassState = mutation.target.classList.contains(
           classToWatch
         );
         if (lastClassState !== currentClassState) {
           lastClassState = currentClassState;
           if (!currentClassState) {
+            // @ts-ignore
             mutation.target.classList.add("sortHandle");
           }
         }
