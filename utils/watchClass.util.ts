@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export function watchClass(targetNode: any, classToWatch: any){
   let lastClassState = targetNode.classList.contains(classToWatch);
   const observer = new MutationObserver(mutationsList => {

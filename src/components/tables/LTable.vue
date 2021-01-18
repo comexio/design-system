@@ -87,6 +87,18 @@ import { watchClass } from '~/utils/watchClass.util'
 
 export default {
   name: 'LTable',
+   directives: {
+    'sortable-table': {
+      inserted: (el, binding) => {
+        el.querySelectorAll('th').forEach((draggableEl) => {
+          // Need a class watcher because sorting v-data-table rows asc/desc removes the sortHandle class
+          watchClass(draggableEl, 'sortHandle');
+          draggableEl.classList.add('sortHandle');
+        });
+        Sortable.create(el.querySelector('tr'), binding.value ? { ...binding.value, handle: '.sortHandle' } : {});
+      },
+    },
+  },
   props: {
     headers: {
       type: Array,
@@ -215,18 +227,6 @@ export default {
       this.saveColumnOrder(headersTmp)
       this.anIncreasingNumber += 1;
     }
-  },
-   directives: {
-    'sortable-table': {
-      inserted: (el, binding) => {
-        el.querySelectorAll('th').forEach((draggableEl) => {
-          // Need a class watcher because sorting v-data-table rows asc/desc removes the sortHandle class
-          watchClass(draggableEl, 'sortHandle');
-          draggableEl.classList.add('sortHandle');
-        });
-        Sortable.create(el.querySelector('tr'), binding.value ? { ...binding.value, handle: '.sortHandle' } : {});
-      },
-    },
   }
 };
 </script>
