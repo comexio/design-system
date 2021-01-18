@@ -17,9 +17,9 @@
             <div
               v-if="item.value"
               class="LCircularChart__item text-center"
-              :class="{ 'useCursorPointer': useCursorPointer && !itemsToIgnoreClick.includes(item.label) }"
+              :class="{ 'useCursorPointer': useCursorPointer && clickableItems.includes(item.label) }"
               v-on="on"
-              @click="showModal(item.label)"
+              @click="eventClick(item.label)"
             >
               <v-progress-circular
                 :rotate="-90"
@@ -74,7 +74,7 @@ export default {
       type: Number,
       default: 60
     },
-    itemsToIgnoreClick: {
+    clickableItems: {
       type: Array,
       default: () => ([])
     },
@@ -84,9 +84,9 @@ export default {
     }
   },
   methods: {
-    showModal (label) {
-      if (!this.itemsToIgnoreClick.includes(label)) {
-        this.$emit('showModal', label);
+    eventClick (label) {
+      if (this.clickableItems.includes(label)) {
+        this.$emit('eventClick', label);
       }
     }
   }
