@@ -37,7 +37,7 @@
         <v-card-actions>
           <v-btn
             v-if="clearButton"
-            class="float-left"
+            class="modal__button--clear float-left"
             text
             @click="clear()"
           >

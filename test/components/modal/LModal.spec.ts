@@ -35,6 +35,15 @@ describe('LModal component', () => {
     expect(modal.emitted().close).toBeTruthy()
   })
 
+  it('Clear button event emitted', async () => {
+    modal.setProps({clearButton: true})
+    await modal.vm.$nextTick()
+
+    modal.find('.modal__button--clear').trigger('click')
+    await modal.vm.$nextTick()
+    expect(modal.emitted().clear).toBeTruthy()
+  })
+
   it('rendering as informational modal', async () => {
     modal.setProps({ modalType: {informational: true}})
     await modal.vm.$nextTick()
@@ -48,5 +57,5 @@ describe('LModal component', () => {
     await modal.vm.$nextTick()
     expect(modal.emitted().close).toBeTruthy()
   })
-  
+
 })
