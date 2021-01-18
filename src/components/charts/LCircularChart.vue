@@ -17,7 +17,9 @@
             <div
               v-if="item.value"
               class="LCircularChart__item text-center"
+              :class="{ 'useCursorPointer': useCursorPointer && !itemsToIgnoreClick.includes(item.label) }"
               v-on="on"
+              @click="showModal(item.label)"
             >
               <v-progress-circular
                 :rotate="-90"
@@ -25,7 +27,6 @@
                 :value="item.percentage"
                 :width="6"
                 :color="item.options.color"
-                @click="showModal(item.label)"
               >
                 <slot>
                   <img
@@ -72,11 +73,21 @@ export default {
     size: {
       type: Number,
       default: 60
+    },
+    itemsToIgnoreClick: {
+      type: Array,
+      default: () => ([])
+    },
+    useCursorPointer: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     showModal (label) {
-      this.$emit('showModal', label);
+      if (!this.itemsToIgnoreClick.includes(label)) {
+        this.$emit('showModal', label);
+      }
     }
   }
 }
@@ -96,5 +107,8 @@ export default {
   .LCircularChart__item__image {
     width: 40px;
   }
+}
+.useCursorPointer {
+  cursor: pointer;
 }
 </style>
