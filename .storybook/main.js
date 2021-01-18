@@ -18,7 +18,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.scss$/,
       use: [
-        'style-loader', 
+        'style-loader',
         'css-loader',
         {
           loader: 'sass-loader',
@@ -32,7 +32,7 @@ module.exports = {
               includePaths: ['src/assets/scss'],
             }
           },
-        } 
+        }
       ],
       include: path.resolve(__dirname, '../'),
     });

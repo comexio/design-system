@@ -1,4 +1,4 @@
-import LBarChart from '@components/charts/LBarChart.vue';
+import LBarChart from "@components/charts/LBarChart.vue";
 
 export default {
   title: 'Components/Charts/Secondary Bar',
@@ -16,7 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LBarChart },
-  template: '<l-bar-chart v-bind="$props"> </l-bar-chart>',
+  template: '<l-bar-chart v-bind="$props"> </l-bar-chart>'
 });
 
 export const Default = Template.bind({});
