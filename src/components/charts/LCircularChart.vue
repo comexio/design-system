@@ -17,7 +17,9 @@
             <div
               v-if="item.value"
               class="LCircularChart__item text-center"
+              :class="{ 'useCursorPointer': useCursorPointer && clickableItems.includes(item.label) }"
               v-on="on"
+              @click="eventClick(item.label)"
             >
               <v-progress-circular
                 :rotate="-90"
@@ -71,6 +73,21 @@ export default {
     size: {
       type: Number,
       default: 60
+    },
+    clickableItems: {
+      type: Array,
+      default: () => ([])
+    },
+    useCursorPointer: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    eventClick (label) {
+      if (this.clickableItems.includes(label)) {
+        this.$emit('eventClick', label);
+      }
     }
   }
 }
@@ -90,5 +107,8 @@ export default {
   .LCircularChart__item__image {
     width: 40px;
   }
+}
+.useCursorPointer {
+  cursor: pointer;
 }
 </style>
