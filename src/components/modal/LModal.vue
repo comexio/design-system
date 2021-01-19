@@ -2,6 +2,7 @@
   <v-dialog
     v-model="dialog"
     max-width="560"
+    overlay-color="overlayColor"
     :persistent="true"
     @click:outside="closeModal"
   >
@@ -91,6 +92,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    overlayColor: {
+      type: String,
+      default: undefined
     }
   },
   methods: {
