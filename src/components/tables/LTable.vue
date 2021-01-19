@@ -217,8 +217,8 @@ export default {
       const oldIndex = evt.oldIndex;
       const newIndex = evt.newIndex;
       if (newIndex >= headersTmp.length) {
-        let k = newIndex - headersTmp.length + 1;
-        while (k--) {
+        let key = newIndex - headersTmp.length + 1;
+        while (key--) {
           headersTmp.push(undefined);
         }
       }
