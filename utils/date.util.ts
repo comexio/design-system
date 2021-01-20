@@ -84,6 +84,10 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
 }
 
 export function formatYearMonthDay (date: string) {
+  if (!date) {
+    return
+  }
+
   const dates = date.toString().split(' - ')
   let formattedDate = ''
   dates.forEach((period) => {
@@ -91,7 +95,7 @@ export function formatYearMonthDay (date: string) {
     const day = date.getDate().toString().padStart(2, '0')
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
-    const separator = formattedDate === '' ? '' : ' a '
+    const separator = formattedDate === '' ? '' : ' - '
     formattedDate += `${separator}${day}/${month}/${year}`
   })
 

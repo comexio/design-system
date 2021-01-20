@@ -39,7 +39,9 @@
           </v-icon>
         </v-row>
       </template>
-      <div class="d-flex datepickers__container">
+      <div
+        class="d-flex datepickers__container"
+      >
         <v-date-picker
           ref="firstDatepicker"
           v-model="monthsPeriod"
@@ -48,7 +50,6 @@
           multiple
           range
           :show-current="false"
-          :allowed-dates="isDateAllowed"
           :locale="i18nLocale"
           type="date"
           color="blurred"
@@ -58,8 +59,10 @@
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, 'firstDatepicker')"
+          @mouseenter:date="hoverDate"
+          @mouseleave:date="leaveHoverDate"
         >
-          <div
+          <!-- <div
             v-if="periodsEnum"
             column
             active-class="primary--text"
@@ -79,7 +82,7 @@
                 {{ period }}
               </span>
             </v-chip>
-          </div>
+          </div> -->
         </v-date-picker>
         <v-date-picker
           ref="secondDatepicker"
@@ -89,7 +92,6 @@
           multiple
           range
           :show-current="false"
-          :allowed-dates="isDateAllowed"
           :locale="i18nLocale"
           type="date"
           color="blurred"
@@ -99,6 +101,7 @@
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, 'secondDatepicker')"
+          @mouseenter:date="hoverDate"
         />
       </div>
     </v-menu>
@@ -108,8 +111,10 @@
 <script>
 import moment from 'moment'
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import isEmpty from 'ramda/src/isEmpty'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
+import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay } from '~/utils/date.util.ts'
 
 export default {
   name: 'LDatePickerMultiple',
@@ -125,6 +130,10 @@ export default {
     monthsList: {
       type: Array,
       default: null
+    },
+    rangeDays: {
+      type: Number,
+      default: null
     }
   },
   data () {
@@ -132,12 +141,44 @@ export default {
       monthsPeriod: [],
       menu: null,
       firstBlocked: false,
-      secondBlocked: false
+      secondBlocked: false,
+      rangeLimit: { min: null, max: null },
+      temporaryDate: null
     }
   },
   computed: {
     formattedMonths () {
-      return formatYearMonth(this.monthsPeriod.join(' - '), this.monthsList, true)
+      const { temporaryDate } = this
+      if (temporaryDate && isEmpty(this.monthsPeriod)) {
+        return formatYearMonthDay([temporaryDate])
+      }
+
+      if (temporaryDate && this.monthsPeriod.length === 1 ) {
+        return formatYearMonthDay([temporaryDate, ...this.monthsPeriod].join(' - '))
+      }
+
+      if (temporaryDate && this.monthsPeriod.length === 2 ) {
+        const value = formatYearMonthDay(this.monthsPeriod.join(' - ')).split('-')
+        dayjs.extend(customParseFormat)
+        const arrayFinal = value.map(date => dayjs(date.replace(' ', ''), 'DD/MM/YYYY').format('YYYY-MM-DD'))
+        .sort((date1, date2) => {
+          const date1Timestamp = dayjs(date1).valueOf()
+          const date2Timestamp = dayjs(date2).valueOf()
+          if (date1Timestamp > date2Timestamp) {
+            return 1
+          }
+
+          if (date1Timestamp < date2Timestamp) {
+            return -1
+          }
+
+          return 0
+        })
+
+        return formatYearMonthDay([temporaryDate, arrayFinal[1]].join(' - '))
+      }
+
+      return formatYearMonthDay(this.monthsPeriod.join(' - '))
     },
     periodChip: {
       get () {
@@ -174,7 +215,6 @@ export default {
       }
     },
     dateLimit () {
-      console.log('dateLimit')
       return this.limit || {
         min: null,
         max: null
@@ -194,6 +234,7 @@ export default {
   },
   watch: {
     monthsPeriod (monthsPeriod) {
+      this.validateRange(monthsPeriod)
       this.$emit('input', monthsPeriod)
     },
     value: {
@@ -215,17 +256,19 @@ export default {
   methods: {
     isDateAllowed (date) {
       const { year, month } = extractYearMonth(date)
+      const { dateLimit } = this
+      if (!dateLimit || !dateLimit.min || !dateLimit.max) {
+        return true
+      }
+
       return new Date().getTime() > new Date(year, month - 1).getTime()
     },
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
+      const rangeMin = this.rangeLimit.min
+      const rangeMax = this.rangeLimit.max
       if (type === 'max') {
-        // const date = new Date(max)
-        // date.setTime(date.getTime() - date.getTimezoneOffset()*60*1000)
-        // console.log('max', date.toISOString())
-        // return date.toISOString()
-        // console.log('dateFilterLimits', type, max)
-        return max
+        return rangeMax || max
       }
 
       const date = new Date()
@@ -233,7 +276,7 @@ export default {
       const m = date.getMonth()
       const lastDay = new Date(y, m, 0)
 
-      const value = type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+      const value = type === 'min' ? rangeMin || min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
 
       return value
 
@@ -242,13 +285,11 @@ export default {
     async openMenu() {
       await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
       if(this.$refs.firstDatepicker) {
-        console.log('openMenu')
         this.$refs.firstDatepicker.tableDate = '2020-11'
       }
     },
     currentTableFirstDatepicker () {
       const { firstDatepicker } = this.$refs
-      // console.log(firstDatepicker)
       if (firstDatepicker) {
         return firstDatepicker.tableDate
       }
@@ -304,7 +345,27 @@ export default {
           this.secondBlocked = true
         }
       }
+    },
+    validateRange (period) {
+      if (this.rangeDays && period && period.length === 1) {
+        const currentDate = period[0]
+        const minDateByRange = dayjs(currentDate).subtract(this.rangeDays, 'day')
+        const maxDateByRange = dayjs(currentDate).add(this.rangeDays, 'day')
 
+        this.rangeLimit.min = minDateByRange.format('YYYY-MM-DD')
+        this.rangeLimit.max = maxDateByRange.format('YYYY-MM-DD')
+
+        return
+      }
+
+      this.rangeLimit.min = null
+      this.rangeLimit.max = null
+    },
+    hoverDate(date) {
+      this.temporaryDate = date
+    },
+    leaveHoverDate () {
+      this.temporaryDate = null
     }
   }
 }

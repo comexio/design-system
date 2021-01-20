@@ -146,7 +146,6 @@ export default {
       }
     },
     dateLimit () {
-      console.log('dateLimit')
       return this.limit || {
         min: null,
         max: null
@@ -192,11 +191,6 @@ export default {
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
       if (type === 'max') {
-        // const date = new Date(max)
-        // date.setTime(date.getTime() - date.getTimezoneOffset()*60*1000)
-        // console.log('max', date.toISOString())
-        // return date.toISOString()
-        // console.log('dateFilterLimits', type, max)
         return max
       }
 
@@ -207,7 +201,6 @@ export default {
 
       const value = type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
 
-      console.log('dateFilterLimits', type, value)
       return value
 
       // return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
