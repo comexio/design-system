@@ -9,14 +9,21 @@
           dense
         >
           <l-linear-chart-line
+            v-slot:sectionAfterValue="slotProps"
             :data="item"
             :index="index"
             :color="colors[index]"
             :last-item="isLastItem(index)"
             :is-expandable="isExpandable"
             :translation-line="translationLine"
+            :items-without-details="itemsWithoutDetails"
             @expand="expandList"
-          />
+          >
+            <slot
+              name="sectionAfterValue"
+              :value="slotProps.value"
+            />
+          </l-linear-chart-line>
         </v-list-item>
       </v-list>
     </div>
@@ -79,6 +86,10 @@ export default {
         records: 'Registros',
         seeMore: 'Ver Mais'
       })
+    },
+    itemsWithoutDetails: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {

@@ -156,4 +156,10 @@ describe('LTable', () => {
     const lines = () => table.findAll('tbody tr')
     expect(lines().length).toBe(11)
   })
+
+  it('execute column order to parent', () => {
+    table.vm.saveColumnOrder(headerDataFake)
+    expect(table.emitted().userColumns[0]).toEqual([["name", "calories", "fat", "download"]])
+    expect(table.emitted().ordination[0]).toEqual([{"sortColumn": null, "sortOrder": null}])
+  })
 })

@@ -56,7 +56,11 @@ describe('circularChart component', () => {
 
   beforeAll(() => {
     circularChart = mount(LCircularChart, {
-      ...defaultParams
+      ...defaultParams,
+      propsData: {
+        items: itemsFake,
+        clickableItems: ['DRY']
+      }
     })
   })
 
@@ -65,11 +69,18 @@ describe('circularChart component', () => {
   })
 
   it('component render items', async () => {
-    circularChart.setProps({ items: itemsFake })
     const items = () => circularChart.findAll('.LCircularChart__item')
 
     await circularChart.vm.$nextTick()
 
     expect(items().length).toBe(3)
+  })
+  it('trigger click from item and checks if event was emitted', async () => {
+    const items = () => circularChart.findAll('.LCircularChart__item')
+    await circularChart.vm.$nextTick()
+
+    items().trigger('click')
+    circularChart.vm.eventClick(items().wrappers[1].text())
+    expect(circularChart.emitted().eventClick).toBeTruthy()
   })
 })

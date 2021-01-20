@@ -42,11 +42,12 @@ export function formatPeriodToDatepicker (values: Object) {
     const value = values[key]
     const year = value.toString().substr(0, 4)
     const month = value.toString().substr(4, 6)
+    const maxDayOfMonth = new Date(parseInt(year), parseInt(month), 0)
     if (key === 'min') {
       number = '01'
     }
     if (key === 'max') {
-      number = '31'
+      number = maxDayOfMonth
     }
     // @ts-ignore
     slaveObject[key] = year + '-' + month + '-' + number
