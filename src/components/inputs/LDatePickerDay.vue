@@ -1,21 +1,22 @@
 <template>
   <div class="datepicker">
     <v-menu
+      v-model="menu"
       offset-y
       :close-on-content-click="false"
-      max-width="220"
     >
       <template #activator="{ on }">
         <v-row
           class="pointer mx-0 activator"
           v-on="on"
+          @click="openMenu(on)"
         >
           <v-col
             cols="1"
             class="mr-2"
           >
             <v-icon
-              color="blurred"
+              :color="itemsColor"
               size="20px"
             >
               mdi-calendar-month
@@ -26,66 +27,93 @@
             class="datepicker__input text-center"
           >
             <small class="pl-1 formatted-months">
-              {{ formattedDate }}
+              {{ formattedMonths }}
             </small>
           </v-col>
           <v-spacer />
           <v-icon
-            color="blurred"
+            :color="itemsColor"
             size="15px"
           >
             mdi-chevron-down
           </v-icon>
         </v-row>
       </template>
-      <v-date-picker
-        v-model="datePeriod"
-        landscape
-        no-title
-        multiple
-        range
-        :show-current="false"
-        :allowed-dates="isDateAllowed"
-        :locale="i18nLocale"
-        type="date"
-        color="blurred"
-        event-color="blurred"
-        width="200px"
-        class="d-flex flex-row-reverse datepicker__calendar"
-        :max="dateFilterLimits('max')"
-        :min="dateFilterLimits('min')"
+      <div
+        class="d-flex datepickers__container"
       >
-        <!-- Desabilitado por enquanto -->
-        <!-- <div
-          v-if="periodsEnum"
-          column
-          active-class="primary--text"
-          class="datepicker__calendar__period full-height d-flex flex-column justify-space-around px-2 py-4"
+        <v-date-picker
+          ref="firstDatepicker"
+          v-model="monthsPeriod"
+          landscape
+          no-title
+          multiple
+          range
+          :show-current="false"
+          :locale="i18nLocale"
+          type="date"
+          :color="itemsColor"
+          :event-color="itemsColor"
+          width="200px"
+          class="d-flex flex-row-reverse datepicker__calendar"
+          :max="dateFilterLimits('max')"
+          :min="dateFilterLimits('min')"
+          @update:picker-date="(e) => changeTableDatepicker(e, 'firstDatepicker')"
+          @mouseenter:date="hoverDate"
+          @mouseleave:date="leaveHoverDate"
         >
-          <v-chip
-            v-for="(period, index) of periodsEnum"
-            :key="index"
-            label
-            class="justify-center"
-            :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
-            @click="periodChip = index"
+          <!-- <div
+            v-if="periodsEnum"
+            column
+            active-class="primary--text"
+            class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
           >
-            <span
-              class="select-period"
+            <v-chip
+              v-for="(period, index) of periodsEnum"
+              :key="index"
+              label
+              class="justify-center"
+              :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
+              @click="periodChip = index"
             >
-              {{ period }}
-            </span>
-          </v-chip>
-        </div> -->
-      </v-date-picker>
+              <span
+                class="select-period"
+              >
+                {{ period }}
+              </span>
+            </v-chip>
+          </div> -->
+        </v-date-picker>
+        <v-date-picker
+          ref="secondDatepicker"
+          v-model="monthsPeriod"
+          landscape
+          no-title
+          multiple
+          range
+          :show-current="false"
+          :locale="i18nLocale"
+          type="date"
+          :color="itemsColor"
+          :event-color="itemsColor"
+          width="200px"
+          class="d-flex flex-row-reverse datepicker__calendar"
+          :max="dateFilterLimits('max')"
+          :min="dateFilterLimits('min')"
+          @update:picker-date="(e) => changeTableDatepicker(e, 'secondDatepicker')"
+          @mouseenter:date="hoverDate"
+        />
+      </div>
     </v-menu>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
-import { WEEK_PERIODS_KEYS, WEEK_PERIODS_VALUES_TO_KEYS, weekPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { extractYearMonth, weekDiff, formatYearMonthDay } from '~/utils/date.util.ts'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import isEmpty from 'ramda/src/isEmpty'
+import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
+import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay } from '~/utils/date.util.ts'
 
 export default {
   name: 'LDatePickerDay',
@@ -97,42 +125,80 @@ export default {
     limit: {
       type: Object,
       default: null
+    },
+    rangeDays: {
+      type: Number,
+      default: null
+    },
+    itemsColor: {
+      type: String,
+      default: '#9f6cbb'
     }
   },
   data () {
     return {
-      datePeriod: []
+      monthsPeriod: [],
+      menu: null,
+      firstBlocked: false,
+      secondBlocked: false,
+      rangeLimit: { min: null, max: null },
+      temporaryDate: null
     }
   },
   computed: {
-    formattedDate () {
-      return formatYearMonthDay(this.datePeriod.join(' - '))
+    formattedMonths () {
+      const { temporaryDate } = this
+      if (temporaryDate && isEmpty(this.monthsPeriod)) {
+        return formatYearMonthDay([temporaryDate])
+      }
+
+      if (temporaryDate && this.monthsPeriod.length === 1 ) {
+        return formatYearMonthDay([temporaryDate, ...this.monthsPeriod].join(' - '))
+      }
+
+      if (temporaryDate && this.monthsPeriod.length === 2 ) {
+        const value = formatYearMonthDay(this.monthsPeriod.join(' - ')).split('-')
+        dayjs.extend(customParseFormat)
+        const arrayFinal = value.map(date => dayjs(date.replace(' ', ''), 'DD/MM/YYYY').format('YYYY-MM-DD'))
+        .sort((date1, date2) => {
+          const date1Timestamp = dayjs(date1).valueOf()
+          const date2Timestamp = dayjs(date2).valueOf()
+          if (date1Timestamp > date2Timestamp) {
+            return 1
+          }
+
+          if (date1Timestamp < date2Timestamp) {
+            return -1
+          }
+
+          return 0
+        })
+
+        return formatYearMonthDay([temporaryDate, arrayFinal[1]].join(' - '))
+      }
+
+      return formatYearMonthDay(this.monthsPeriod.join(' - '))
     },
     periodChip: {
       get () {
-        const [startDate, endDate] = this.datePeriod
-        const limitMax = this.dateLimit.max
-        const momentLimitMax = moment('2020-06-30' || limitMax)
-        const momentStartDate = moment(startDate)
-        const momentEndDate = moment(endDate)
-        const result = momentEndDate.diff(momentStartDate, 'weeks')
-        const maxResult = momentLimitMax.diff(momentEndDate, 'days')
+        const [startYearMonthStr, endYearMonthStr] = this.monthsPeriod
+        const momentLimitMax = dayjs(this.dateLimit.max).format('YYYY-MM')
 
-        if (maxResult) {
+        if (!endYearMonthStr || endYearMonthStr !== momentLimitMax) {
           return
         }
 
-        return WEEK_PERIODS_VALUES_TO_KEYS[result]
+        const startYearMonth = extractYearMonth(startYearMonthStr)
+        const endYearMonth = extractYearMonth(endYearMonthStr)
+
+        const monthsDiff = -yearMonthDiff(endYearMonth, startYearMonth) + 1
+        return MONTH_PERIODS_VALUES_TO_KEYS[monthsDiff]
       },
       set (periodKey) {
-        const monthlyChange = periodKey === WEEK_PERIODS_KEYS.LAST_MONTH
-        const currentDate = new Date(this.dateFilterLimits('max') + ' 12:00')
+        const currentDate = new Date(this.dateFilterLimits('max'))
         const currentYear = currentDate.getFullYear()
-        const weeksDiff = periodKey.split('_')
-        const subtractedDate = monthlyChange
-          ? new Date(currentYear, currentDate.getMonth())
-          : new Date(currentYear, currentDate.getMonth(), currentDate.getDate() - (parseInt(weeksDiff[1] * 7)))
-
+        const monthsDiff = periodKey.split('_')
+        const subtractedDate = new Date(currentYear, currentDate.getMonth() - (parseInt(monthsDiff[1]) - 1))
         const magicPeriodMinimumDate = new Date(this.dateFilterLimits('min') + ' 00:00')
 
         subtractedDate.setMonth(
@@ -141,9 +207,9 @@ export default {
             ? magicPeriodMinimumDate.getMonth()
             : subtractedDate.getMonth())
 
-        this.datePeriod = [
-          `${subtractedDate.getFullYear()}-${('00' + (subtractedDate.getMonth() + 1)).substr(-2)}-${subtractedDate.getDate().toString().padStart(2, '0')}`,
-          `${currentDate.getFullYear()}-${('00' + (currentDate.getMonth() + 1)).substr(-2)}-${currentDate.getDate().toString().padStart(2, '0')}`
+        this.monthsPeriod = [
+          `${subtractedDate.getFullYear()}-${('00' + (subtractedDate.getMonth() + 1)).substr(-2)}`,
+          `${currentDate.getFullYear()}-${('00' + (currentDate.getMonth() + 1)).substr(-2)}`
         ]
       }
     },
@@ -155,19 +221,25 @@ export default {
     },
     periodsEnum () {
       const { min, max } = this.dateLimit
-      const weeks = weekDiff(new Date(min), new Date(max))
-      const periods = weekPeriodsByQuantity(weeks)
+      const months = monthDiff(new Date(min), new Date(max))
+      const periods = monthPeriodsByQuantity(months)
 
       return Object.keys(periods).length
         ? periods : null
     },
     i18nLocale () {
-      return this.$i18n.locale
+      const { $i18n } = this
+      if ($i18n) {
+        return $i18n.locale
+      }
+
+      return null
     }
   },
   watch: {
-    datePeriod (datePeriod) {
-      this.$emit('input', datePeriod)
+    monthsPeriod (monthsPeriod) {
+      this.validateRange(monthsPeriod)
+      this.$emit('input', monthsPeriod)
     },
     value: {
       immediate: true,
@@ -176,11 +248,11 @@ export default {
           this.periodChip = value
         } else if (Array.isArray(value)) {
           const startDate = value[0]
-          if (value.length === 2 && new Date(value[0]).getTime() > new Date(value[1]).getTime()) {
+          if (value.length === 2 && parseInt(value[0].replace('-', '')) > parseInt(value[1].replace('-', ''))) {
             value[0] = value[1]
             value[1] = startDate
           }
-          this.datePeriod = value
+          this.monthsPeriod = value
         }
       }
     }
@@ -188,12 +260,19 @@ export default {
   methods: {
     isDateAllowed (date) {
       const { year, month } = extractYearMonth(date)
+      const { dateLimit } = this
+      if (!dateLimit || !dateLimit.min || !dateLimit.max) {
+        return true
+      }
+
       return new Date().getTime() > new Date(year, month - 1).getTime()
     },
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
+      const rangeMin = this.rangeLimit.min
+      const rangeMax = this.rangeLimit.max
       if (type === 'max') {
-        return max
+        return rangeMax || max
       }
 
       const date = new Date()
@@ -201,7 +280,92 @@ export default {
       const m = date.getMonth()
       const lastDay = new Date(y, m, 0)
 
-      return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+      return type === 'min' ? rangeMin || min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+    },
+    async openMenu() {
+      await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
+      if(this.$refs.firstDatepicker) {
+        this.$refs.firstDatepicker.tableDate = '2020-11'
+      }
+    },
+    currentTableFirstDatepicker () {
+      const { firstDatepicker } = this.$refs
+      if (firstDatepicker) {
+        return firstDatepicker.tableDate
+      }
+
+      return null
+    },
+    currentTableSecondDatepicker () {
+      const { secondDatepicker } = this.$refs
+      if (secondDatepicker) {
+        return secondDatepicker.tableDate
+      }
+
+      return null
+    },
+    changeTableDatepicker (val, ref) {
+      const date = dayjs(val)
+      const month = date.month()
+      const year = date.year()
+
+      const secondDatepickerDate = this.currentTableSecondDatepicker()
+
+      if (ref === 'firstDatepicker') {
+        if (this.secondBlocked) {
+          this.secondBlocked = false
+
+          return
+        }
+        if (secondDatepickerDate) {
+          let dateSecond = dayjs(secondDatepickerDate)
+          dateSecond = dateSecond.year(year)
+          dateSecond = dateSecond.month(month + 1)
+          this.$refs.secondDatepicker.tableDate = dateSecond.format('YYYY-MM')
+
+          this.firstBlocked = true
+        }
+        return
+      }
+
+      const firstDatepickerDate = this.currentTableFirstDatepicker()
+
+      if (ref === 'secondDatepicker') {
+        if (this.firstBlocked) {
+          this.firstBlocked = false
+
+          return
+        }
+        if (firstDatepickerDate) {
+          let dateFirst = dayjs(firstDatepickerDate)
+          dateFirst = dateFirst.year(year)
+          dateFirst = dateFirst.month(month - 1)
+          this.$refs.firstDatepicker.tableDate = dateFirst.format('YYYY-MM')
+
+          this.secondBlocked = true
+        }
+      }
+    },
+    validateRange (period) {
+      if (this.rangeDays && period && period.length === 1) {
+        const currentDate = period[0]
+        const minDateByRange = dayjs(currentDate).subtract(this.rangeDays, 'day')
+        const maxDateByRange = dayjs(currentDate).add(this.rangeDays, 'day')
+
+        this.rangeLimit.min = minDateByRange.format('YYYY-MM-DD')
+        this.rangeLimit.max = maxDateByRange.format('YYYY-MM-DD')
+
+        return
+      }
+
+      this.rangeLimit.min = null
+      this.rangeLimit.max = null
+    },
+    hoverDate(date) {
+      this.temporaryDate = date
+    },
+    leaveHoverDate () {
+      this.temporaryDate = null
     }
   }
 }
@@ -292,6 +456,24 @@ export default {
 }
 
 .select-period {
-  font-size: 0.9rem;
+  font-size: 13px;
+}
+
+.datepickers__container {
+  ::v-deep .datepicker__calendar:first-child {
+    .v-date-picker-header {
+      .v-btn:last-child {
+        display: none;
+      }
+    }
+  }
+
+  ::v-deep .datepicker__calendar:last-child {
+    .v-date-picker-header {
+      .v-btn:first-child {
+        display: none;
+      }
+    }
+  }
 }
 </style>

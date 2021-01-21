@@ -1,8 +1,8 @@
-import LDatePicker from "@components/inputs/LDatePicker.vue";
+import LDatePickerDay from "@components/inputs/LDatePickerDay.vue";
 
 export default {
-  title: "Components/Inputs/LDatePicker",
-  component: LDatePicker,
+  title: "Components/Inputs/LDatePickerDay",
+  component: LDatePickerDay,
   argTypes: {
     value: {
       control: "array",
@@ -24,7 +24,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LDatePicker },
+  components: { LDatePickerDay },
   template:
     '<l-date-picker v-bind="$props" style="max-width: 300px;" />'
 })
