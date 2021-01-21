@@ -26,7 +26,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LDatePickerDay },
   template:
-    '<l-date-picker v-bind="$props" style="max-width: 300px;" />'
+    '<l-date-picker-day v-bind="$props" style="max-width: 300px;" />'
 })
 
 export const WithoutData = Template.bind({});
