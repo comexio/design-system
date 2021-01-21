@@ -16,7 +16,7 @@
             class="mr-2"
           >
             <v-icon
-              color="blurred"
+              :color="itemsColor"
               size="20px"
             >
               mdi-calendar-month
@@ -32,7 +32,7 @@
           </v-col>
           <v-spacer />
           <v-icon
-            color="blurred"
+            :color="itemsColor"
             size="15px"
           >
             mdi-chevron-down
@@ -52,8 +52,8 @@
           :show-current="false"
           :locale="i18nLocale"
           type="date"
-          color="blurred"
-          event-color="blurred"
+          :color="itemsColor"
+          :event-color="itemsColor"
           width="200px"
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
@@ -94,8 +94,8 @@
           :show-current="false"
           :locale="i18nLocale"
           type="date"
-          color="blurred"
-          event-color="blurred"
+          :color="itemsColor"
+          :event-color="itemsColor"
           width="200px"
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
@@ -109,7 +109,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
@@ -127,13 +126,13 @@ export default {
       type: Object,
       default: null
     },
-    monthsList: {
-      type: Array,
-      default: null
-    },
     rangeDays: {
       type: Number,
       default: null
+    },
+    itemsColor: {
+      type: String,
+      default: '#9f6cbb'
     }
   },
   data () {
@@ -183,7 +182,7 @@ export default {
     periodChip: {
       get () {
         const [startYearMonthStr, endYearMonthStr] = this.monthsPeriod
-        const momentLimitMax = moment(this.dateLimit.max).format('YYYY-MM')
+        const momentLimitMax = dayjs(this.dateLimit.max).format('YYYY-MM')
 
         if (!endYearMonthStr || endYearMonthStr !== momentLimitMax) {
           return
@@ -229,7 +228,12 @@ export default {
         ? periods : null
     },
     i18nLocale () {
-      return this.$i18n.locale
+      const { $i18n } = this
+      if ($i18n) {
+        return $i18n.locale
+      }
+
+      return null
     }
   },
   watch: {
