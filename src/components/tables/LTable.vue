@@ -209,7 +209,7 @@ export default {
     },
     saveColumnOrder(headers){
       const headersValue = headers.map(header => header.value)
-      this.$emit('userColumns', headersValue )
+      this.$emit('headersChange', headersValue )
       this.$emit('ordination', { sortOrder: '', sortColumn: '' })
     },
     sortTheHeadersAndUpdateTheKey(evt) {
