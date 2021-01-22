@@ -159,7 +159,7 @@ describe('LTable', () => {
 
   it('execute column order to parent', () => {
     table.vm.saveColumnOrder(headerDataFake)
-    expect(table.emitted().userColumns[0]).toEqual([["name", "calories", "fat", "download"]])
+    expect(table.emitted().headersChange[0]).toEqual([["name", "calories", "fat", "download"]])
     expect(table.emitted().ordination[0]).toEqual([{"sortColumn": null, "sortOrder": null}])
   })
 })
