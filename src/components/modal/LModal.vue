@@ -2,6 +2,7 @@
   <v-dialog
     v-model="dialog"
     :max-width="maxWidth" 
+    overlay-color="overlayColor"
     :persistent="true"
   >
     <v-card
@@ -124,6 +125,10 @@ export default {
     maxWidth: {
       type: Number,
       default: 560
+    },
+    overlayColor: {
+      type: String,
+      default: undefined
     }
   },
   methods: {

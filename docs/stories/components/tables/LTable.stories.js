@@ -3,7 +3,7 @@
 // import LTable from '@components/tables/LTable.vue';
 
 // export default {
-//   title: 'Design System/Components/Tables/Table',
+//   title: 'Components/Tables/Table',
 //   component: LTable,
 //   argTypes: {
 //     headers: {control: 'object', description: 'Chart headers object'},
