@@ -9,12 +9,22 @@ export default {
       description:
         "Chart items array of objects: label, value, percentage, options object (color, img, tooltip)"
     },
+    clickableItems: {
+      control: "array",
+      description:
+        "Receives an array with items that are used to control if click event should be emitted"
+    },
     showTooltip: {
       control: "boolean",
       description: "Tooltip enabled: true / disabled: false",
       default: true
     },
     size: { control: "text", description: "Chart size" },
+    useCursorPointer: {
+      control: "boolean",
+      description: "Boolean control to use css rule to apply cursor pointer"
+    },
+    eventClick: { action: 'eventClick', description: 'Trigger a click event' },
     default: { table: { disable: true } }
   }
 };
