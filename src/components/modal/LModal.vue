@@ -1,54 +1,77 @@
 <template>
   <v-dialog
     v-model="dialog"
-    max-width="560"
+    :max-width="maxWidth" 
     overlay-color="overlayColor"
     :persistent="true"
-    @click:outside="closeModal"
   >
     <v-card
       class="modal"
       :loading="loading"
       :disabled="loading"
     >
-      <slot />
-      <v-divider />
-      <v-card-actions>
-        <v-btn
-          v-if="textClear"
-          class="float-left"
-          text
-          @click="clear()"
-        >
-          <v-icon
-            size="1.5rem"
+      <template v-if="modalType.informational">
+        <v-card-title>
+          <slot name="modalTitle" />
+          <v-btn
+            class="modal__title__button pa-0"
+            color="lightGrey"
+            height="25px"
+            min-height="27px"
+            min-width="29px"
+            @click="closeModal"
           >
-            {{ clearIcon }}
-          </v-icon>
-          <span>
-            {{ textClear || $t('searchx.clearPreferences') }}
-          </span>
-        </v-btn>
-        <v-spacer />
-        <v-btn
-          color="silver"
-          text
-          class="modal__button modal__button--cancel font-md"
-          @click="closeModal"
-        >
-          {{ textCancel || $t('searchx.cancel') }}
-        </v-btn>
-        <v-btn
-          v-if="confirmButton"
-          :disabled="disabledConfirm"
-          color="secondary"
-          text
-          class="modal__button modal__button--confirm font-md"
-          @click="confirm"
-        >
-          {{ textConfirm || $t('searchx.confirm') }}
-        </v-btn>
-      </v-card-actions>
+            <v-icon 
+              size="20px" 
+              color="#fff" 
+              class="mt-1"
+            >
+              mdi-close
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-divider />
+      </template>
+      <slot name="modalContent" />
+      <template v-if="modalType.confirmational">
+        <v-divider />
+        <v-card-actions>
+          <v-btn
+            v-if="clearButton"
+            class="modal__button--clear float-left"
+            text
+            @click="clear()"
+          >
+            <v-icon
+              size="1.5rem"
+            >
+              {{ clearIcon }}
+            </v-icon>
+            <span>
+              {{ clearText }}
+            </span>
+          </v-btn>
+          <v-spacer />
+          <v-btn
+            color="silver"
+            text
+            class="modal__button modal__button--cancel font-md"
+            @click="closeModal"
+          >
+            {{ cancelText }}
+          </v-btn>
+          <v-btn
+            v-if="confirmButton"
+            :disabled="disabledConfirm"
+            color="secondary"
+            text
+            class="modal__button modal__button--confirm font-md"
+            @click="confirm"
+          >
+            {{ confirmText }}
+          </v-btn>
+        </v-card-actions>
+      </template>
     </v-card>
   </v-dialog>
 </template>
@@ -57,15 +80,21 @@
 export default {
   name: 'LModal',
   props: {
+    modalType: {
+      type: Object,
+      default: () => {
+        return {confirmational: true}
+      }
+    },
     dialog: {
       type: Boolean,
       default: false
     },
-    textCancel: {
+    confirmText: {
       type: String,
       default: null
     },
-    textConfirm: {
+    cancelText: {
       type: String,
       default: null
     },
@@ -81,17 +110,21 @@ export default {
       type: Boolean,
       default: false
     },
-    textClear: {
+    clearText: {
       type: String,
       default: null
     },
     clearIcon: {
       type: String,
-      default: ' mdi-eraser'
+      default: 'mdi-eraser'
     },
     loading: {
       type: Boolean,
       default: false
+    },
+    maxWidth: {
+      type: Number,
+      default: 560
     },
     overlayColor: {
       type: String,
@@ -119,5 +152,11 @@ export default {
     font-size: 1.1rem;
     text-transform: uppercase;
   }
+  .modal__title__button {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+  }
 }
+
 </style>
