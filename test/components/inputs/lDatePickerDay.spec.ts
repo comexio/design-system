@@ -19,11 +19,11 @@ const defaultParams = {
     limit: {
       ...initialDateLimit
     },
-    value: ['2020-03', '2020-05']
+    value: ['2020-03-01', '2020-05-31']
   },
   data () {
     return {
-      monthsPeriod: ['2020-03', '2020-05']
+      monthsPeriod: ['2020-03-01', '2020-05-31']
     }
   },
   computed: {
@@ -93,5 +93,28 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-05-31", "min": "2020-04-01"})
+  })
+
+  it ('check multiple click in same date', async () => {
+    datePicker.setProps({ value: ['2020-05-01', '2020-05-01'] })
+
+    await datePicker.vm.$nextTick()
+
+    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
+    const firstDatepicker = () => datepickers().at(1)
+    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
+    dayPicker().trigger('click')
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.value).toStrictEqual(['2020-05-01'])
+  })
+
+  it ('check datepicker is closed after select two dates', async () => {
+    datePicker.setProps({ closeOnSelect: true, value: ['2020-05-01', '2020-05-02'] })
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.menu).toBe(false)
   })
 })

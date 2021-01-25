@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 interface YearMonth {
   year: number
@@ -22,9 +22,10 @@ export function monthDiff (dateFrom: Date, dateTo: Date) {
 }
 
 export function weekDiff (dateFrom: Date, dateTo: Date) {
-  const start = moment(dateFrom)
-  const end = moment(dateTo)
-  const result = end.diff(start, 'weeks')
+  const start = dayjs(dateFrom)
+  const end = dayjs(dateTo)
+  const result = end.diff(start, 'week')
+
   return result
 }
 
@@ -101,4 +102,20 @@ export function formatYearMonthDay (date: string) {
   })
 
   return formattedDate
+}
+
+export function sortDateISO (dates: ['string']) {
+  return dates.sort((date1, date2) => {
+    const date1Timestamp = dayjs(date1).valueOf()
+    const date2Timestamp = dayjs(date2).valueOf()
+    if (date1Timestamp > date2Timestamp) {
+      return 1
+    }
+
+    if (date1Timestamp < date2Timestamp) {
+      return -1
+    }
+
+    return 0
+  })
 }

@@ -9,7 +9,6 @@
         <v-row
           class="pointer mx-0 activator"
           v-on="on"
-          @click="openMenu(on)"
         >
           <v-col
             cols="1"
@@ -40,6 +39,7 @@
         </v-row>
       </template>
       <div
+        ref="datepickersContainer"
         class="d-flex datepickers__container"
       >
         <v-date-picker
@@ -102,6 +102,7 @@
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, 'secondDatepicker')"
           @mouseenter:date="hoverDate"
+          @mouseleave:date="leaveHoverDate"
         />
       </div>
     </v-menu>
@@ -113,7 +114,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay } from '~/utils/date.util.ts'
+import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO } from '~/utils/date.util.ts'
 
 export default {
   name: 'LDatePickerDay',
@@ -133,7 +134,8 @@ export default {
     itemsColor: {
       type: String,
       default: '#9f6cbb'
-    }
+    },
+    closeOnSelect: Boolean
   },
   data () {
     return {
@@ -153,28 +155,21 @@ export default {
       }
 
       if (temporaryDate && this.monthsPeriod.length === 1 ) {
-        return formatYearMonthDay([temporaryDate, ...this.monthsPeriod].join(' - '))
+        const orderedDates = sortDateISO([temporaryDate, ...this.monthsPeriod])
+        return formatYearMonthDay(orderedDates.join(' - '))
       }
 
       if (temporaryDate && this.monthsPeriod.length === 2 ) {
         const value = formatYearMonthDay(this.monthsPeriod.join(' - ')).split('-')
         dayjs.extend(customParseFormat)
         const arrayFinal = value.map(date => dayjs(date.replace(' ', ''), 'DD/MM/YYYY').format('YYYY-MM-DD'))
-        .sort((date1, date2) => {
-          const date1Timestamp = dayjs(date1).valueOf()
-          const date2Timestamp = dayjs(date2).valueOf()
-          if (date1Timestamp > date2Timestamp) {
-            return 1
-          }
+        const orderedDates = sortDateISO(arrayFinal)
 
-          if (date1Timestamp < date2Timestamp) {
-            return -1
-          }
+        const formatToScreen = dayjs(temporaryDate).valueOf() < dayjs(orderedDates[0]).valueOf()
+          ? [temporaryDate, orderedDates[1]]
+          : [orderedDates[0], temporaryDate]
 
-          return 0
-        })
-
-        return formatYearMonthDay([temporaryDate, arrayFinal[1]].join(' - '))
+        return formatYearMonthDay(formatToScreen.join(' - '))
       }
 
       return formatYearMonthDay(this.monthsPeriod.join(' - '))
@@ -246,13 +241,30 @@ export default {
       handler (value) {
         if (typeof value === 'string') {
           this.periodChip = value
-        } else if (Array.isArray(value)) {
+
+          return
+        }
+
+        if (Array.isArray(value)) {
           const startDate = value[0]
-          if (value.length === 2 && parseInt(value[0].replace('-', '')) > parseInt(value[1].replace('-', ''))) {
-            value[0] = value[1]
-            value[1] = startDate
+          if (value.length === 2) {
+            if (value[0] === value[1]) {
+              value.pop()
+
+              return
+            }
+
+            if (parseInt(value[0].replace('-', '')) > parseInt(value[1].replace('-', ''))) {
+              value[0] = value[1]
+              value[1] = startDate
+            }
+            this.monthsPeriod = value
+            console.log('value', value)
+
+            if (this.closeOnSelect) {
+              this.menu = false
+            }
           }
-          this.monthsPeriod = value
         }
       }
     }
@@ -281,12 +293,6 @@ export default {
       const lastDay = new Date(y, m, 0)
 
       return type === 'min' ? rangeMin || min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
-    },
-    async openMenu() {
-      await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
-      if(this.$refs.firstDatepicker) {
-        this.$refs.firstDatepicker.tableDate = '2020-11'
-      }
     },
     currentTableFirstDatepicker () {
       const { firstDatepicker } = this.$refs
@@ -402,6 +408,12 @@ export default {
 }
 
 .datepicker__calendar {
+  ::v-deep {
+    .v-date-picker-table table {
+      border-spacing: 1px;
+    }
+
+  }
   ::v-deep .v-date-picker-header {
     padding: 4px 8px;
     .v-btn {
@@ -426,9 +438,9 @@ export default {
     padding-bottom: 8px;
     .v-btn {
       border: thin solid $gallery;
-      width: 18px;
-      height: 18px;
-      border-radius: 5px;
+      width: 24px;
+      height: 24px;
+      border-radius: 2px;
 
       .v-btn__content {
         font-size: .8rem;
@@ -474,6 +486,12 @@ export default {
         display: none;
       }
     }
+  }
+
+  ::v-deep .v-btn.datepicker__calendar__selectedDay {
+    background-color: $moonRaker !important;
+    border-color: $moonRaker !important;
+    color: $martinique;
   }
 }
 </style>
