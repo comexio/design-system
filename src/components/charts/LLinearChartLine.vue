@@ -21,7 +21,13 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            {{ data.label }} {{ showQuantity }}
+            {{ data.label }}
+            <slot
+              v-if="!itemsWithoutDetails.includes(data.label)"
+              name="sectionAfterValue"
+              :value="data.label"
+            />
+            {{ showQuantity }}
             <span
               v-if="lastItem && !isExpanded && isExpandable"
               class="LLinearChartLine__expand ml-1"
@@ -132,6 +138,10 @@ export default {
     valueSymbol: {
       type: String,
       default: null
+    },
+    itemsWithoutDetails: {
+      type: Array,
+      default: () => []
     }
   },
   computed: {

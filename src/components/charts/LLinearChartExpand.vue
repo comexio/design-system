@@ -49,7 +49,13 @@
             class="LLinearChartExpand__table__line"
           >
             <td>{{ index + 5 }}</td>
-            <td>{{ item.label }}</td>
+            <td>
+              {{ item.label }}
+              <slot
+                name="sectionAfterValue"
+                :value="item.label"
+              />
+            </td>
             <td class="LLinearChartExpand__table__line__value">
               {{ item.value }}
             </td>

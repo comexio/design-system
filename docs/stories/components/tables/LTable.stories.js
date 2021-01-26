@@ -3,17 +3,19 @@
 // import LTable from '@components/tables/LTable.vue';
 
 // export default {
-//   title: 'Design System/Components/Tables/Table',
+//   title: 'Components/Tables/Table',
 //   component: LTable,
 //   argTypes: {
 //     headers: {control: 'object', description: 'Chart headers object'},
 //     items: { control: 'object', description: 'Chart items object'},
+//     keysThatHasDetails: {control: 'array', description: 'Receives info about keys allowed to show details icon'},
 //     itemsPerPage: {table: {disable: true}},
 //     truncateItems: {table: {disable: true}},
 //     truncateSize: {table: {disable: true}},
 //     triggerResetOptions: {table: {disable: true}},
 //     ordination: { action: 'ordination', description: 'Column ordering event'},
 //     updateScroll: { action: 'Updating', description: 'Custom scroll update event', table:{disable: true}},
+//     sectionAfterValue: {description: 'Slot can show extra content and return info to parent components to show more details'}
 //   },
 // };
 
