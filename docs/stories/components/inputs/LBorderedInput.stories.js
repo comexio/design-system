@@ -1,7 +1,7 @@
 import LBorderedInput from '@components/inputs/LBorderedInput.vue';
 
 export default {
-  title: 'Design System/Components/Inputs/Bordered',
+  title: 'Components/Inputs/Bordered',
   component: LBorderedInput,
   argTypes: {
     default: {control: {disable: true}, description: 'Input content slot'},

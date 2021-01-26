@@ -1,7 +1,7 @@
 import LInputSolo from '@components/inputs/LInputSolo.vue';
 
 export default {
-  title: 'Design System/Components/Inputs/Solo',
+  title: 'Components/Inputs/Solo',
   component: LInputSolo,
   argTypes: {
       appendIcon: {control: 'text', description: 'MDI icon to be appended'},

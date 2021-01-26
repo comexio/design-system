@@ -1,7 +1,7 @@
 import LLabeledInput from '@components/inputs/LLabeledInput.vue';
 
 export default {
-  title: 'Design System/Components/Inputs/Labeled',
+  title: 'Components/Inputs/Labeled',
   component: LLabeledInput,
   argTypes: {
     rules: {control: 'array', description: 'Array of input rules. Check the Vuetify v-text-field'},

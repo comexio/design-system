@@ -1,10 +1,11 @@
 import LCheckbox from '@components/inputs/LCheckbox.vue';
 
 export default {
-  title: 'Design System/Components/Inputs/Checkbox',
+  title: 'Components/Inputs/Checkbox',
   component: LCheckbox,
   argTypes: {
     value: {control: 'array', description: 'Array of checkbox items'},
+    input: {action: 'input', description: 'Event emitted when input received'}
   },
 };
 
@@ -12,7 +13,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LCheckbox },
-  template: `<l-checkbox v-bind="$props"></l-checkbox>`,
+  template: `<l-checkbox @input="input" v-bind="$props"></l-checkbox>`,
 });
 
 export const Default = Template.bind({});

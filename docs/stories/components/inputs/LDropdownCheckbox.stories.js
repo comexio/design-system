@@ -1,12 +1,12 @@
 import LDropdownCheckbox from '@components/inputs/LDropdownCheckbox.vue';
 
 export default {
-  title: 'Design System/Components/Inputs/Checkbox/Dropdown',
+  title: 'Components/Inputs/Checkbox/Dropdown',
   component: LDropdownCheckbox,
   argTypes: {
     items: {control: 'object', description: 'Array of objects containing all items. Items must have label and value'},
     selectedItems: {control: 'array', description: 'Optional array containing values of preselected items'},
-    updatedItems: {action: 'updatedItems', description: 'Update selected items'}
+    updatedItems: {action: 'updatedItems', description: 'Update selected items'},
   },
 };
 
