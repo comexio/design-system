@@ -8,12 +8,12 @@
       :rules="validityRules"
       class="l-input-button--input"
       v-on="$listeners"
-      @keyup.enter="$emit('button-pressed')"
+      @keyup.enter="$emit('buttonPressed')"
     />
     <v-btn
       class="l-input-button--button"
       :loading="$attrs.loading"
-      @click="$emit('button-pressed')"
+      @click="$emit('buttonPressed')"
     >
       {{ buttonLabel }}
     </v-btn>
