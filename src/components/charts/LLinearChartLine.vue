@@ -21,7 +21,13 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            {{ data.label }} {{ showQuantity }}
+            {{ data.label }}
+            <slot
+              v-if="!itemsWithoutDetails.includes(data.label)"
+              name="sectionAfterValue"
+              :value="data.label"
+            />
+            {{ showQuantity }}
             <span
               v-if="lastItem && !isExpanded && isExpandable"
               class="LLinearChartLine__expand ml-1"
@@ -54,7 +60,7 @@
         >
           <v-col
             v-if="data.value !== null"
-            class="pl-2 py-0 pr-0 LLinearChartLine__result__value--first"
+            class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
             <span>
               {{ translationLine.value }}: {{ data.value }} {{ valueSymbol }}
@@ -132,6 +138,10 @@ export default {
     valueSymbol: {
       type: String,
       default: null
+    },
+    itemsWithoutDetails: {
+      type: Array,
+      default: () => []
     }
   },
   computed: {

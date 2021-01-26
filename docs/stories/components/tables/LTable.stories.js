@@ -29,7 +29,6 @@ Default.args = {
     {text: 'Header Example', value: 'firstHeader'},
     {text: 'Header Example', value: 'secondHeader'},
     {text: 'Header Example', value: 'thirdHeader'},
-
   ],
   items: [
     {firstHeader: 'Item', secondHeader: 10, thirdHeader: 7.5},
