@@ -1,7 +1,7 @@
 import LDatePickerDay from "@components/inputs/LDatePickerDay.vue";
 
 export default {
-  title: "Components/Inputs/LDatePickerDay",
+  title: "Components/Inputs/DatePicker/Day",
   component: LDatePickerDay,
   argTypes: {
     value: {
@@ -22,6 +22,11 @@ export default {
     closeOnSelect: {
       control: "boolean",
       description: 'Close datepicker on select two dates'
+    },
+    input: {
+      table: {
+        disable: true
+      }
     }
   }
 }
