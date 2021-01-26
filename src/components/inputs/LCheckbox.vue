@@ -1,7 +1,7 @@
 <template>
   <div class="LCheckbox">
     <v-checkbox
-      v-for="(item, index) in value"
+      v-for="(item, index) in options"
       :key="index"
       v-model="inputValue"
       v-bind="$attrs"
@@ -15,6 +15,10 @@
 export default {
   props: {
     value: {
+      type: [String, Object, Number, Array, Boolean],
+      default: null
+    },
+    options: {
       type: [String, Object, Number, Array, Boolean],
       default: null
     }

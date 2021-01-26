@@ -4,7 +4,8 @@ export default {
   title: 'Components/Inputs/Checkbox',
   component: LCheckbox,
   argTypes: {
-    value: {control: 'array', description: 'Array of checkbox items'},
+    options: {control: 'array', description: 'Array of checkbox items'},
+    value: {control: 'array', description: 'Array of checked items'},
     input: {action: 'input', description: 'Event emitted when input received'}
   },
 };
@@ -18,5 +19,6 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  value: ['Item1', 'Item2', 'Item3', 'Item4']
+  value: ['Item2', 'Item4'],
+  options: ['Item1', 'Item2', 'Item3', 'Item4']
 };
