@@ -68,7 +68,7 @@ describe('datePicker component', () => {
   it('check limit of dates', () => {
     const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
     expect(datepickers().length).toBe(2)
-    const firstDatepicker = () => datepickers().at(1)
+    const firstDatepicker = () => datepickers().at(0)
     const secondDatepicker = () => datepickers().at(1)
     expect(secondDatepicker().vm.tableDate).toBe('2020-05')
 
@@ -85,14 +85,14 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(1)
+    const firstDatepicker = () => datepickers().at(0)
     const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
     expect(dayPicker().text()).toBe('1')
     dayPicker().trigger('click')
 
     await datePicker.vm.$nextTick()
 
-    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-05-31", "min": "2020-04-01"})
+    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-05-01", "min": "2020-03-02"})
   })
 
   it ('check multiple click in same date', async () => {
@@ -101,7 +101,7 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(1)
+    const firstDatepicker = () => datepickers().at(0)
     const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
     dayPicker().trigger('click')
 
@@ -116,5 +116,22 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     expect(datePicker.vm.menu).toBe(false)
+  })
+
+  it('check if header is disabled when first calendar is active', async () => {
+    await new Promise(resolve => setTimeout(() => { resolve(1) }, 100))
+
+    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
+    const firstHeaderButton = () => datepickers().at(0).find('.v-date-picker-header__value button')
+    const secondHeaderButton = () => datepickers().at(1).find('.v-date-picker-header__value button')
+
+    firstHeaderButton().trigger('click')
+
+    await datePicker.vm.$nextTick()
+    await new Promise(resolve => setTimeout(() => { resolve(1) }, 100))
+
+    expect(datepickers().at(0).vm.activePicker).toBe('MONTH')
+    expect(secondHeaderButton().attributes('disabled')).toBeDefined()
+
   })
 })

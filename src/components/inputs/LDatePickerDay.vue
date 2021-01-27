@@ -9,6 +9,7 @@
         <v-row
           class="pointer mx-0 activator"
           v-on="on"
+          @click="openMenu"
         >
           <v-col
             cols="1"
@@ -58,32 +59,10 @@
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
-          @update:picker-date="(e) => changeTableDatepicker(e, 'firstDatepicker')"
+          @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.FIRST)"
           @mouseenter:date="hoverDate"
           @mouseleave:date="leaveHoverDate"
-        >
-          <!-- <div
-            v-if="periodsEnum"
-            column
-            active-class="primary--text"
-            class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
-          >
-            <v-chip
-              v-for="(period, index) of periodsEnum"
-              :key="index"
-              label
-              class="justify-center"
-              :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
-              @click="periodChip = index"
-            >
-              <span
-                class="select-period"
-              >
-                {{ period }}
-              </span>
-            </v-chip>
-          </div> -->
-        </v-date-picker>
+        />
         <v-date-picker
           ref="secondDatepicker"
           v-model="monthsPeriod"
@@ -100,7 +79,7 @@
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
-          @update:picker-date="(e) => changeTableDatepicker(e, 'secondDatepicker')"
+          @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.SECOND)"
           @mouseenter:date="hoverDate"
           @mouseleave:date="leaveHoverDate"
         />
@@ -114,6 +93,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
+import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES } from '~/enum/datepicker.enum'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO } from '~/utils/date.util.ts'
 
 export default {
@@ -144,7 +124,8 @@ export default {
       firstBlocked: false,
       secondBlocked: false,
       rangeLimit: { min: null, max: null },
-      temporaryDate: null
+      temporaryDate: null,
+      datepickerRefsEnum: DATEPICKER_REFS
     }
   },
   computed: {
@@ -259,7 +240,6 @@ export default {
               value[1] = startDate
             }
             this.monthsPeriod = value
-            console.log('value', value)
 
             if (this.closeOnSelect) {
               this.menu = false
@@ -270,6 +250,16 @@ export default {
     }
   },
   methods: {
+    openMenu () {
+      setTimeout(() => {
+        this.$watch(
+          () => this.$refs.firstDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.FIRST, value) }
+        )
+        this.$watch(
+          () => this.$refs.secondDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
+        )
+      }, 0)
+    },
     isDateAllowed (date) {
       const { year, month } = extractYearMonth(date)
       const { dateLimit } = this
@@ -317,7 +307,7 @@ export default {
 
       const secondDatepickerDate = this.currentTableSecondDatepicker()
 
-      if (ref === 'firstDatepicker') {
+      if (ref === DATEPICKER_REFS.FIRST) {
         if (this.secondBlocked) {
           this.secondBlocked = false
 
@@ -336,7 +326,7 @@ export default {
 
       const firstDatepickerDate = this.currentTableFirstDatepicker()
 
-      if (ref === 'secondDatepicker') {
+      if (ref === DATEPICKER_REFS.SECOND) {
         if (this.firstBlocked) {
           this.firstBlocked = false
 
@@ -372,6 +362,28 @@ export default {
     },
     leaveHoverDate () {
       this.temporaryDate = null
+    },
+    blockDatepickerSiblingHeader (currentDatepicker, value) {
+      const disableHeaderButton = (datepicker) => {
+        const headerButton = datepicker.$el.querySelector('.v-date-picker-header__value button')
+        if (value !== DATEPICKER_CALENDAR_TYPES.DATE) {
+          headerButton.disabled = true
+
+          return
+        }
+
+        headerButton.disabled = false
+      }
+
+      if (currentDatepicker === DATEPICKER_REFS.FIRST) {
+        const { secondDatepicker } = this.$refs
+        disableHeaderButton(secondDatepicker)
+      }
+
+      if (currentDatepicker === DATEPICKER_REFS.SECOND) {
+        const { firstDatepicker } = this.$refs
+        disableHeaderButton(firstDatepicker)
+      }
     }
   }
 }
