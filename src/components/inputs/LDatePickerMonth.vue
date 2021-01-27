@@ -86,7 +86,7 @@ import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/dat
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 
 export default {
-  name: 'DatePicker',
+  name: 'LDatePickerMonth',
   props: {
     value: {
       type: [String, Array],

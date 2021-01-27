@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 interface YearMonth {
   year: number
@@ -22,9 +22,10 @@ export function monthDiff (dateFrom: Date, dateTo: Date) {
 }
 
 export function weekDiff (dateFrom: Date, dateTo: Date) {
-  const start = moment(dateFrom)
-  const end = moment(dateTo)
-  const result = end.diff(start, 'weeks')
+  const start = dayjs(dateFrom)
+  const end = dayjs(dateTo)
+  const result = end.diff(start, 'week')
+
   return result
 }
 
@@ -61,7 +62,11 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
   const dateMonths = (monthsList as unknown as string[])
   const dates = yearMonth.toString().split(' - ')
   let formattedDates = ''
-  dates.forEach(function (dateIsYearMonthComplete) {
+  dates.forEach(dateIsYearMonthComplete => {
+    if (!dateIsYearMonthComplete) {
+      return dateIsYearMonthComplete
+    }
+
     let year = ''
     let month = ''
     if (dateIsYearMonthComplete.length === 6) {
@@ -81,6 +86,10 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
 }
 
 export function formatYearMonthDay (date: string) {
+  if (!date) {
+    return
+  }
+
   const dates = date.toString().split(' - ')
   let formattedDate = ''
   dates.forEach((period) => {
@@ -88,9 +97,25 @@ export function formatYearMonthDay (date: string) {
     const day = date.getDate().toString().padStart(2, '0')
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
-    const separator = formattedDate === '' ? '' : ' a '
+    const separator = formattedDate === '' ? '' : ' - '
     formattedDate += `${separator}${day}/${month}/${year}`
   })
 
   return formattedDate
+}
+
+export function sortDateISO (dates: ['string']) {
+  return dates.sort((date1, date2) => {
+    const date1Timestamp = dayjs(date1).valueOf()
+    const date2Timestamp = dayjs(date2).valueOf()
+    if (date1Timestamp > date2Timestamp) {
+      return 1
+    }
+
+    if (date1Timestamp < date2Timestamp) {
+      return -1
+    }
+
+    return 0
+  })
 }
