@@ -54,7 +54,6 @@
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
-        max {{ dateFilterLimits('max') }}
         <div
           v-if="periodsEnum"
           column
@@ -199,11 +198,7 @@ export default {
       const m = date.getMonth()
       const lastDay = new Date(y, m, 0)
 
-      const value = type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
-
-      return value
-
-      // return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+      return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
     }
   }
 }
