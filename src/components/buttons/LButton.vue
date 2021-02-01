@@ -1,6 +1,7 @@
 <template>
   <v-btn
     :outlined="outlined"
+    :color="color"
     class="LButton"
     v-bind="$attrs"
     v-on="$listeners"
