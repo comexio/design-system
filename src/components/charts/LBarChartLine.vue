@@ -51,7 +51,7 @@
                         class="LBarChart__description__toggle"
                         @click="toggleLastItem"
                       >
-                        {{ $t('seeMore') }}
+                        {{ $t('ayla.seeMore') }}
                       </span>
                     </span>
                     <span
@@ -68,7 +68,7 @@
                   v-if="isLastItem"
                   class="customTooltip__info customTooltipChartNcm__info"
                 >
-                  {{ $t('others') }}
+                  {{ $t('ayla.others') }}
                 </div>
                 <div
                   v-else
@@ -169,8 +169,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        total: this.$t('total'),
-        quantity: this.$t('quantity')
+        total: this.$t('ayla.total'),
+        quantity: this.$t('ayla.quantity')
       })
     },
     descriptionClass: {

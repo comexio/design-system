@@ -64,8 +64,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        input: this.$t('search'),
-        select: this.$t('select')
+        input: this.$t('ayla.search'),
+        select: this.$t('ayla.select')
       })
     }
   },

@@ -82,9 +82,9 @@ export default {
     translationLine: {
       type: Object,
       default: () => ({
-        value: this.$t('value'),
-        records: this.$t('records'),
-        seeMore: this.$t('seeMore')
+        value: this.$t('ayla.value'),
+        records: this.$t('ayla.records'),
+        seeMore: this.$t('ayla.seeMore')
       })
     },
     itemsWithoutDetails: {

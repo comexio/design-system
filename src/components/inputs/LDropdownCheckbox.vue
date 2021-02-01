@@ -10,7 +10,7 @@
         <l-button-select
           v-on="on"
         >
-          {{ $t('selectColumns') }}
+          {{ $t('ayla.selectColumns') }}
           <v-icon>
             mdi-chevron-down
           </v-icon>
