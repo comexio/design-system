@@ -48,7 +48,7 @@
               {{ clearIcon }}
             </v-icon>
             <span>
-              {{ clearText }}
+              {{ clearText || $t('clear') }}
             </span>
           </v-btn>
           <v-spacer />
@@ -58,7 +58,7 @@
             class="modal__button modal__button--cancel font-md"
             @click="closeModal"
           >
-            {{ cancelText }}
+            {{ cancelText || $t('cancel') }}
           </v-btn>
           <v-btn
             v-if="confirmButton"
@@ -68,7 +68,7 @@
             class="modal__button modal__button--confirm font-md"
             @click="confirm"
           >
-            {{ confirmText }}
+            {{ confirmText || $t('confirm')}}
           </v-btn>
         </v-card-actions>
       </template>

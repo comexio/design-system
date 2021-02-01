@@ -7,7 +7,7 @@
         class="LSimpleTable__header__action"
         @click="expandList"
       >
-        Recolher
+        {{$t('retract')}}
       </span>
     </div>
     <v-simple-table

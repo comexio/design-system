@@ -64,8 +64,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        input: 'Buscar',
-        select: 'Selecionar'
+        input: this.$t('search'),
+        select: this.$t('select')
       })
     }
   },

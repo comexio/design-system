@@ -7,7 +7,7 @@
         class="LLinearChartExpand__header__action"
         @click="expandList"
       >
-        Recolher
+        {{ $t('retract') }}
       </span>
       <!-- <div>
         <v-text-field

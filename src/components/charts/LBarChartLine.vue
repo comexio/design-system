@@ -51,7 +51,7 @@
                         class="LBarChart__description__toggle"
                         @click="toggleLastItem"
                       >
-                        Ver Mais
+                        {{ $t('seeMore') }}
                       </span>
                     </span>
                     <span
@@ -68,7 +68,7 @@
                   v-if="isLastItem"
                   class="customTooltip__info customTooltipChartNcm__info"
                 >
-                  Outros
+                  {{ $t('others') }}
                 </div>
                 <div
                   v-else
@@ -169,8 +169,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        total: 'Total',
-        quantity: 'Quantidade'
+        total: this.$t('total'),
+        quantity: this.$t('quantity')
       })
     },
     descriptionClass: {
