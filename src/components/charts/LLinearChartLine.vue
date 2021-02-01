@@ -63,7 +63,7 @@
             class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
             <span>
-              {{ translationLine.value || $t('ayla.value')}}: {{ data.value }} {{ valueSymbol }}
+              {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
             </span>
           </v-col>
 
