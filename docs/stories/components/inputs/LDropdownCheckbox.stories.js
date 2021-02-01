@@ -1,3 +1,4 @@
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LDropdownCheckbox from '@components/inputs/LDropdownCheckbox.vue';
 
 export default {
@@ -10,8 +11,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LDropdownCheckbox },
   template: `<l-dropdown-checkbox v-bind="$props"  @updatedItems="updatedItems"></l-dropdown-checkbox>`,
