@@ -7,7 +7,7 @@
         class="LSimpleTable__header__action"
         @click="expandList"
       >
-        {{ $t('ayla.retract')}}
+        {{ $t('ayla.retract') }}
       </span>
     </div>
     <v-simple-table

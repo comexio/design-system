@@ -123,8 +123,8 @@ describe('barChart component', () => {
     await barChart.vm.$nextTick()
     const value = () => tooltipProgressBar().findAll('.customTooltip__info').at(0)
     const boardings = () => tooltipProgressBar().findAll('.customTooltip__info').at(1)
-    expect(value().text()).toBe('Total: 32.873.626,5510 USD')
-    expect(boardings().text()).toBe('Quantidade: 4.593')
+    expect(value().text()).toBe('__translation__: 32.873.626,5510 USD')
+    expect(boardings().text()).toBe('__translation__: 4.593')
 
     expect(cb).toHaveBeenCalled()
   })
@@ -153,7 +153,7 @@ describe('barChart component', () => {
     expect(listItens().length).toBe(10)
 
     const lastItem = () => listItens().at(9)
-    expect(lastItem().find('.LBarChart__title').exists()).toBeFalsy()
+    expect(lastItem().find('.LBarChart__title').exists()).toBe(false)
     expect(lastItem().find('.LBarChart__description').text()).toBe('Outros (4.593)')
   })
 

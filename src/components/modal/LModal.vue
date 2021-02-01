@@ -68,7 +68,7 @@
             class="modal__button modal__button--confirm font-md"
             @click="confirm"
           >
-            {{ confirmText || $t('ayla.confirm')}}
+            {{ confirmText || $t('ayla.confirm') }}
           </v-btn>
         </v-card-actions>
       </template>

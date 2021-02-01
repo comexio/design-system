@@ -33,7 +33,7 @@
               class="LLinearChartLine__expand ml-1"
               @click="expand"
             >
-              {{ translationLine.seeMore }}
+              {{ translationLine.seeMore || $t('ayla.records') }}
             </span>
           </p>
         </template>
@@ -63,7 +63,7 @@
             class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
             <span>
-              {{ translationLine.value }}: {{ data.value }} {{ valueSymbol }}
+              {{ translationLine.value || $t('ayla.value')}}: {{ data.value }} {{ valueSymbol }}
             </span>
           </v-col>
 
@@ -72,7 +72,7 @@
             class="py-0 pl-3 LLinearChartLine__result__value--second"
           >
             <span>
-              {{ showPartition(data) }}{{ translationLine.records }}: {{ data.total }}
+              {{ showPartition(data) }}{{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -130,9 +130,9 @@ export default {
     translationLine: {
       type: Object,
       default: () => ({
-        value: this.$t('ayla.value'),
-        records: this.$t('ayla.records'),
-        seeMore: this.$t('ayla.records')
+        value: null,
+        records: null,
+        seeMore: null
       })
     },
     valueSymbol: {

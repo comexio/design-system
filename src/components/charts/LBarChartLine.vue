@@ -122,14 +122,14 @@
                     v-if="data.total"
                     class="customTooltip__info"
                   >
-                    {{ translation.total }}: {{ data.total }} USD
+                    {{ translation.total || $t('ayla.total') }}: {{ data.total }} USD
                   </div>
                   <v-divider />
                   <div
                     v-if="data.quantity"
                     class="customTooltip__info"
                   >
-                    {{ translation.quantity }}: {{ data.quantity }}
+                    {{ translation.quantity || $t('ayla.quantity') }}: {{ data.quantity }}
                   </div>
                 </div>
               </v-tooltip>
@@ -169,8 +169,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        total: this.$t('ayla.total'),
-        quantity: this.$t('ayla.quantity')
+        total: null,
+        quantity: null
       })
     },
     descriptionClass: {
