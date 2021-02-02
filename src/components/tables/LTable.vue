@@ -97,6 +97,15 @@ export default {
         });
         Sortable.create(el.querySelector('tr'), binding.value ? { ...binding.value, handle: '.sortHandle' } : {});
       },
+      update (el, binding) {
+        setTimeout(() => {
+          el.querySelectorAll('th').forEach((draggableEl) => {
+            watchClass(draggableEl, 'sortHandle');
+            draggableEl.classList.add('sortHandle');
+          });
+          Sortable.create(el.querySelector('tr'), binding.value ? { ...binding.value, handle: '.sortHandle' } : {});
+        }, 0)
+      }
     },
   },
   props: {
