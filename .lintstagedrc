@@ -1,0 +1,6 @@
+{
+  "src/**/*.{js,ts,vue}": [
+      "yarn lint --max-warnings 0",
+      "git add"
+  ]
+}
