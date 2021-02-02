@@ -1,4 +1,4 @@
-import vuetify from '~/.storybook/vuetify_storybook.js';     
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LSelectNamed from '@components/inputs/LSelectNamed.vue';
 
 export default {
@@ -11,9 +11,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
-  vuetify,
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LSelectNamed },
   template: `<l-select-named @input="input" v-bind="$props"></l-select-named>`,

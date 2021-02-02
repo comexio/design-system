@@ -1,3 +1,4 @@
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LLinearChartExpand from "@components/charts/LLinearChartExpand.vue";
 
 export default {
@@ -13,7 +14,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
+
 const Template = (args, { argTypes }) => ({
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LLinearChartExpand },
   template:

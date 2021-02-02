@@ -51,7 +51,7 @@
                         class="LBarChart__description__toggle"
                         @click="toggleLastItem"
                       >
-                        Ver Mais
+                        {{ $t('ayla.seeMore') }}
                       </span>
                     </span>
                     <span
@@ -68,7 +68,7 @@
                   v-if="isLastItem"
                   class="customTooltip__info customTooltipChartNcm__info"
                 >
-                  Outros
+                  {{ $t('ayla.others') }}
                 </div>
                 <div
                   v-else
@@ -122,14 +122,14 @@
                     v-if="data.total"
                     class="customTooltip__info"
                   >
-                    {{ translation.total }}: {{ data.total }} USD
+                    {{ translation.total || $t('ayla.total') }}: {{ data.total }} USD
                   </div>
                   <v-divider />
                   <div
                     v-if="data.quantity"
                     class="customTooltip__info"
                   >
-                    {{ translation.quantity }}: {{ data.quantity }}
+                    {{ translation.quantity || $t('ayla.quantity') }}: {{ data.quantity }}
                   </div>
                 </div>
               </v-tooltip>
@@ -169,8 +169,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        total: 'Total',
-        quantity: 'Quantidade'
+        total: null,
+        quantity: null
       })
     },
     descriptionClass: {

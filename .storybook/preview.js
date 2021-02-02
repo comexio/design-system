@@ -1,5 +1,5 @@
 import { addDecorator } from '@storybook/vue';
-import vuetify from './vuetify_storybook';     
+import vuetify from './helpers/config.helper.js';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
