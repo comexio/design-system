@@ -1,4 +1,4 @@
-import vuetify from '~/.storybook/vuetify_storybook.js';     
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LInputTag from '@components/inputs/LInputTag.vue';
 
 export default {
@@ -12,9 +12,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
-  vuetify,
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LInputTag },
   template: '<l-input-tag v-bind="$props" @input="input" @clickAppendOuter="clickAppendOuter"></l-input-tag>',

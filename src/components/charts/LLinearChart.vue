@@ -82,9 +82,9 @@ export default {
     translationLine: {
       type: Object,
       default: () => ({
-        value: 'Valor',
-        records: 'Registros',
-        seeMore: 'Ver Mais'
+        value: null,
+        records: null,
+        seeMore: null
       })
     },
     itemsWithoutDetails: {

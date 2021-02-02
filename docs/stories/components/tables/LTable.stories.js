@@ -1,4 +1,4 @@
-import vuetify from '~/.storybook/vuetify_storybook.js';     
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LTable from '@components/tables/LTable.vue';
 
 export default {
@@ -16,8 +16,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
+
 const Template = (args, { argTypes }) => ({
-  vuetify,
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LTable },
   template: '<l-table v-bind="$props" @ordination="ordination"> </l-table>',

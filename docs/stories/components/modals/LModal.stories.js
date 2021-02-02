@@ -1,4 +1,4 @@
-import vuetify from '~/.storybook/vuetify_storybook.js';     
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LModal from '@components/modal/LModal.vue';
 
 export default {
@@ -25,8 +25,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
+
 const Template = (args, { argTypes }) => ({
-  vuetify,
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LModal },
   template: `

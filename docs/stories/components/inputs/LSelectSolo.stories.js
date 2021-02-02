@@ -1,4 +1,4 @@
-import vuetify from '~/.storybook/vuetify_storybook.js';     
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LSelectSolo from '@components/inputs/LSelectSolo.vue';
 
 export default {
@@ -10,9 +10,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
-  vuetify,
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LSelectSolo },
   template: `<l-select-solo @input="input" v-bind="$props"></l-select-solo>`,

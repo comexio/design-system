@@ -3,7 +3,7 @@
     <div class="LCheckboxList__header">
       <l-input-solo
         v-model="inputSearch"
-        :placeholder="translation.input"
+        :placeholder="translation.input || $t('ayla.search')"
         append-icon="mdi-magnify"
         height="26px"
         flat
@@ -14,7 +14,7 @@
     <div class="LCheckboxList__group">
       <v-checkbox
         v-model="selectAll"
-        :label="translation.select"
+        :label="translation.select || $t('ayla.select')"
         :ripple="false"
         hide-details
         class="LCheckboxList__group__item LCheckboxList__group__item--selectAll"
@@ -64,8 +64,8 @@ export default {
     translation: {
       type: Object,
       default: () => ({
-        input: 'Buscar',
-        select: 'Selecionar'
+        input: null,
+        select: null
       })
     }
   },
