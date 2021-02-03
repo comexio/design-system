@@ -1,7 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent } from '~/test/utils.setup'
 import LLinearChartExpand from '~/src/components/charts/LLinearChartExpand.vue'
-import { WatchDirectoryFlags } from 'typescript'
 
 const setupDefault = initSetupComponent()
 const defaultParams = {
@@ -77,8 +76,23 @@ describe('linearChartExpand component', () => {
     expect(headerItems().length).toBe(4)
   })
 
-  it('render list items', async () => {
+  it('render header items without cursor pointer', async () => {
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
     linearChartExpand.setProps({ data: fakeData })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(cursorItems().length).toBe(0)
+  })
+
+  it('render header items with cursor pointer', async () => {
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
+    linearChartExpand.setProps({ applyCursorPointer: true })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(cursorItems().length).toBe(7)
+  })
+
+  it('render list items', async () => {
     await linearChartExpand.vm.$nextTick()
 
     const lines = () => linearChartExpand.findAll('.LLinearChartExpand__table__line')
@@ -108,5 +122,13 @@ describe('linearChartExpand component', () => {
 
     await linearChartExpand.vm.$nextTick()
     expect(linearChartExpand.emitted().expand).toBeTruthy()
+  })
+
+  it('emit eventClick', async () => {
+    const eventClick = () => linearChartExpand.find('.LLinearChartLine__cursor_pointer')
+
+    await linearChartExpand.vm.$nextTick()
+    eventClick().trigger('click')
+    expect(linearChartExpand.emitted().eventClick).toBeTruthy()
   })
 })
