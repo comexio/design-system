@@ -110,25 +110,13 @@ describe('datePicker component', () => {
     expect(datePicker.vm.value).toStrictEqual(['2020-05-01'])
   })
 
-  // it('check if shows ordered date when click high date first', async () => {
-  //   datePicker.setProps({ value: [] })
+  it('check if shows ordered date when is inputed high date on first place', async () => {
+    datePicker.setData({ monthsPeriod: ["2020-04-16", "2020-04-10"] })
 
-  //   await datePicker.vm.$nextTick()
+    await datePicker.vm.$nextTick()
 
-  //   const firstDatepicker = () => datePicker.findAllComponents({ name: 'v-date-picker' }).at(0)
-  //   const dayPickers = () => firstDatepicker().findAll('tbody tr td .v-btn')
-  //   // expect(dayPickers().at(15).html()).toBe(true)
-  //   dayPickers().at(15).trigger('click')
-
-  //   await datePicker.vm.$nextTick()
-
-  //   dayPickers().at(10).trigger('click')
-
-  //   await datePicker.vm.$nextTick()
-
-  //   expect(datePicker.vm.monthsPeriod).toBe(true)
-  //   expect(dayPickers().length).toBe(30)
-  // })
+    expect(datePicker.vm.monthsPeriod).toEqual(["2020-04-10", "2020-04-16"])
+  })
 
   it('check datepicker is closed after select two dates', async () => {
     datePicker.setProps({ closeOnSelect: true })
