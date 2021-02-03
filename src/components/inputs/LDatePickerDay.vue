@@ -131,6 +131,10 @@ export default {
   },
   computed: {
     formattedMonths () {
+      if (!this.monthsPeriod) {
+        return
+      }
+
       const { temporaryDate } = this
       if (temporaryDate && isEmpty(this.monthsPeriod)) {
         return formatYearMonthDay([temporaryDate])
