@@ -14,7 +14,7 @@
       ref="LLinearChartExpand__table"
       fixed-header
       dense
-      height="152px"
+      :height="tableHeight"
       class="LLinearChartExpand__table"
     >
       <template
@@ -108,6 +108,10 @@ export default {
       type: Boolean,
       default: false
     },
+    tableHeight: {
+      type: String,
+      default: 'auto'
+    },
     showToolTip: {
       type: Boolean,
       default: false
@@ -181,12 +185,18 @@ export default {
     }
   }
 
+  .LLinearChartExpand__table {
+    ::v-deep .v-data-table__wrapper {
+      max-height: 223px;
+    }
+  }
+
   .LLinearChartExpand__header__action {
     @extend .globalLink;
   }
 
   .LLinearChartExpand__table__title {
-    z-index: 0;
+    z-index: 1;
     font-size: 0.8rem;
     font-weight: normal;
     border-bottom: none !important;
