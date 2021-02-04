@@ -10,7 +10,8 @@ export default {
     loading: { control: 'boolean', description: 'Expanded chart loading: true / not loading: false' },
     expand: { action: 'expand', description: 'Toggle chart expanded when "Recolher" clicked' },
     search: { action: 'search', table: {disable: true} },
-    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' }
+    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
+    showToolTip: { description: 'Props to control the visibility of tooltip on item labels' }
   },
 };
 
