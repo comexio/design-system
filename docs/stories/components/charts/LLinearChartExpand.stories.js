@@ -10,7 +10,7 @@ export default {
     loading: { control: 'boolean', description: 'Expanded chart loading: true / not loading: false' },
     expand: { action: 'expand', description: 'Toggle chart expanded when "Recolher" clicked' },
     search: { action: 'search', table: {disable: true} },
-    eventClick: { action: 'eventClick', description: 'Event emitted activated when label is clicked' },
+    eventClick: { action: 'eventClick', description: 'Event emitted when label is clicked' },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
     applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' }
   },
