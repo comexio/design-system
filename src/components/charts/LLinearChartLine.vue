@@ -21,7 +21,17 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            {{ data.label }}
+            <template v-if="applyCursorPointer">
+              <span
+                class="LLinearChartLine__cursor_pointer"
+                @click="eventClick(data.label)"
+              >
+                {{ data.label }}
+              </span>
+            </template>
+            <template v-else>
+              {{ data.label }}
+            </template>
             <slot
               v-if="!itemsWithoutDetails.includes(data.label)"
               name="sectionAfterValue"
@@ -156,6 +166,10 @@ export default {
       type: Array,
       default: () => []
     },
+    applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
     showToolTip: {
       type: Boolean,
       default: false
@@ -172,6 +186,9 @@ export default {
     },
     showPartition (item) {
       return item.value !== null ? ' | ' : ' '
+    },
+    eventClick (value) {
+      return this.$emit('eventClick', value)
     }
   }
 }
@@ -215,6 +232,9 @@ export default {
   .tagChartLinearChartLine {
     color: $martinique;
     font-size: 0.9rem;
+  }
+  .LLinearChartLine__cursor_pointer {
+    cursor: pointer;
   }
 }
 </style>
