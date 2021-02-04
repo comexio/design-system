@@ -116,14 +116,14 @@ describe('linearChartExpand component', () => {
 })
 
 const fakeDataWithToolTipContent = [{
-  label: "DIAGEO BRASIL LTDA",
+  label: "This Is a Label",
   percentage: 6,
   quantity: 1,
   total: "81",
   value: "3.208.864,00",
   toolTipContent: 'One message'
 }, {
-  label: "DIAGEO BRASIL LTDA",
+  label: "Another Label",
   percentage: 6,
   quantity: 1,
   total: "81",
