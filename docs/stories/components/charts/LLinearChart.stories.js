@@ -11,6 +11,7 @@ export default {
     isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false' },
     isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false' },
     expandList: { action: 'expandList', description: 'Toggle chart expanded when "See more" clicked' },
+    eventClick: { action: 'eventClick', description: 'Event emitted activated when label is clicked' },
     maxQuantity: { action: 'number', description: 'Max items allowed' },
     scroller: { table: {disable: true} },
     type: { table: {disable: true} },

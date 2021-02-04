@@ -10,6 +10,8 @@ export default {
     lastItem: { control: 'boolean', description: 'Item to check if the item is the last' },
     isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false' },
     isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false' },
+    expandList: { action: 'expandList', description: 'Toggle chart expanded when "See more" clicked' },
+    eventClick: { action: 'eventClick', description: 'Event emitted activated when label is clicked' },
     translationLine: { control: 'object', description: 'Subtitles translation object: value, records, seeMore' },
     valueSymbol: { control: 'string', description: ''},
     itemsWithoutDetails: { control: 'array'},
