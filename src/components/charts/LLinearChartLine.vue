@@ -62,9 +62,22 @@
             v-if="data.value !== null"
             class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
-            <span>
-              {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
-            </span>
+            <v-tooltip
+              bottom
+              content-class="customTooltip pa-0"
+            >
+              <template v-slot:activator="{ on }">
+                <span v-on="on">
+                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                </span>
+              </template>
+              <span
+                v-if="showToolTip"
+                class="customTooltip__info"
+              >
+                {{ data.toolTipContent }}
+              </span>
+            </v-tooltip>
           </v-col>
 
           <v-col
@@ -142,6 +155,10 @@ export default {
     itemsWithoutDetails: {
       type: Array,
       default: () => []
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

@@ -17,6 +17,7 @@
             :is-expandable="isExpandable"
             :translation-line="translationLine"
             :items-without-details="itemsWithoutDetails"
+            :show-tool-tip="showToolTip"
             @expand="expandList"
           >
             <slot
@@ -90,6 +91,10 @@ export default {
     itemsWithoutDetails: {
       type: Array,
       default: () => []
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
