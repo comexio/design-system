@@ -25,7 +25,7 @@
       ref="LLinearChartExpand__table"
       fixed-header
       dense
-      height="152px"
+      :height="tableHeight"
       class="LLinearChartExpand__table"
     >
       <template
@@ -91,7 +91,11 @@ export default {
       type: Array,
       default: () => ([])
     },
-    loading: Boolean
+    loading: Boolean,
+    tableHeight: {
+      type: String,
+      default: 'auto'
+    }
   },
   data () {
     return {
@@ -155,6 +159,12 @@ export default {
       .v-input__slot {
         min-height: 20px;
       }
+    }
+  }
+
+  .LLinearChartExpand__table {
+    ::v-deep .v-data-table__wrapper {
+      max-height: 223px;
     }
   }
 
