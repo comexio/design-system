@@ -9,17 +9,6 @@
       >
         {{ $t('ayla.retract') }}
       </span>
-      <!-- <div>
-        <v-text-field
-          v-model="input"
-          outlined
-          hide-details
-          height="20px"
-          min-height="20px"
-          placeholder="Pesquisar"
-          @keydown.enter="search"
-        />
-      </div> -->
     </div>
     <v-simple-table
       ref="LLinearChartExpand__table"
@@ -50,7 +39,17 @@
           >
             <td>{{ index + 5 }}</td>
             <td>
-              {{ item.label }}
+              <template v-if="applyCursorPointer">
+                <span
+                  class="LLinearChartLine__cursor_pointer"
+                  @click="eventClick(item.label)"
+                >
+                  {{ item.label }}
+                </span>
+              </template>
+              <template v-else>
+                {{ item.label }}
+              </template>
               <slot
                 name="sectionAfterValue"
                 :value="item.label"
@@ -92,6 +91,10 @@ export default {
       default: () => ([])
     },
     loading: Boolean,
+    applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
     tableHeight: {
       type: String,
       default: 'auto'
@@ -141,6 +144,9 @@ export default {
       const bottomOfPage = scrollTop + visible + 25 >= pageHeight
 
       return bottomOfPage
+    },
+    eventClick (value) {
+      return this.$emit('eventClick', value)
     }
   }
 }
@@ -204,6 +210,9 @@ export default {
 
   .LLinearChartExpand__loading {
     height: 0px;
+  }
+  .LLinearChartLine__cursor_pointer {
+    cursor: pointer;
   }
 }
 </style>
