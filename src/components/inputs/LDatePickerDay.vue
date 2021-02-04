@@ -217,6 +217,9 @@ export default {
       this.validateRange(monthsPeriod)
       this.$emit('input', monthsPeriod)
     },
+    menu (datepickerStatus) {
+      this.$emit('datepickerChanged', datepickerStatus)
+    },
     value: {
       immediate: true,
       handler (value) {
