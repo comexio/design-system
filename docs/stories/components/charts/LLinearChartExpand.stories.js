@@ -10,7 +10,8 @@ export default {
     loading: { control: 'boolean', description: 'Expanded chart loading: true / not loading: false' },
     expand: { action: 'expand', description: 'Toggle chart expanded when "Recolher" clicked' },
     search: { action: 'search', table: {disable: true} },
-    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' }
+    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
+    applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' }
   },
 };
 
@@ -21,7 +22,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChartExpand },
   template:
-    '<l-linear-chart-expand @expand="expand" v-bind="$props"> </l-linear-chart-expand>'
+    '<l-linear-chart-expand @expand="expand" @eventClick="eventClick" v-bind="$props"> </l-linear-chart-expand>'
 });
 
 export const Expanded = Template.bind({});

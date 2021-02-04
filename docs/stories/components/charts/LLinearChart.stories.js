@@ -17,7 +17,8 @@ export default {
     loadingExpand: { table: {disable: true} },
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
-    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' }
+    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
+    applyCursorPointer: { control: 'booelan', description: 'Validation to apply css with pointer' }
   },
 };
 
@@ -25,7 +26,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart },
   template:
-    '<l-linear-chart @expandList="expandList" v-bind="$props"> </l-linear-chart>'
+    '<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props"> </l-linear-chart>'
 });
 
 export const Minimized = Template.bind({});
