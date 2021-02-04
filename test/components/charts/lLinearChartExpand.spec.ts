@@ -149,6 +149,7 @@ describe('linearChartExpand component with data to show in ToolTip', () => {
   })
   it('checks tooltip items ', async () => {
     const toolTips = () => linearChartExpand.findAllComponents({ name: 'v-tooltip' })
+    await linearChartExpand.vm.$nextTick()
 
     expect(toolTips().length).toBe(2)
     expect(linearChartExpand.vm.data[0].toolTipContent).toBe('One message')
