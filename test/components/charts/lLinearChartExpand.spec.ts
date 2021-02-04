@@ -1,7 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent } from '~/test/utils.setup'
 import LLinearChartExpand from '~/src/components/charts/LLinearChartExpand.vue'
-import { WatchDirectoryFlags } from 'typescript'
 
 const setupDefault = initSetupComponent()
 const defaultParams = {
@@ -11,43 +10,43 @@ const defaultParams = {
 const headerFake = ['Posição', 'Empresas', 'Valores', 'Quantidade']
 
 const fakeData = [{
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "Some Company",
     percentage: 6,
     quantity: 1,
     total: "81",
@@ -116,14 +115,14 @@ describe('linearChartExpand component', () => {
 })
 
 const fakeDataWithToolTipContent = [{
-  label: "This Is a Label",
+  label: "Some Company",
   percentage: 6,
   quantity: 1,
   total: "81",
   value: "3.208.864,00",
   toolTipContent: 'One message'
 }, {
-  label: "Another Label",
+  label: "Another Company",
   percentage: 6,
   quantity: 1,
   total: "81",
