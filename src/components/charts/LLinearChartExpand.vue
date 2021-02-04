@@ -173,7 +173,7 @@ export default {
   }
 
   .LLinearChartExpand__table__title {
-    z-index: 0;
+    z-index: 1;
     font-size: 0.8rem;
     font-weight: normal;
     border-bottom: none !important;
