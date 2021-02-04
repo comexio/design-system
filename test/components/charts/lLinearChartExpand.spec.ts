@@ -10,43 +10,43 @@ const defaultParams = {
 const headerFake = ['Posição', 'Empresas', 'Valores', 'Quantidade']
 
 const fakeData = [{
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "Some Company",
+    label: "DIAGEO BRASIL LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
@@ -115,14 +115,14 @@ describe('linearChartExpand component', () => {
 })
 
 const fakeDataWithToolTipContent = [{
-  label: "Some Company",
+  label: "This Is a Label",
   percentage: 6,
   quantity: 1,
   total: "81",
   value: "3.208.864,00",
   toolTipContent: 'One message'
 }, {
-  label: "Another Company",
+  label: "Another Label",
   percentage: 6,
   quantity: 1,
   total: "81",
