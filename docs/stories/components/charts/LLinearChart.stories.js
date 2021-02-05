@@ -19,7 +19,8 @@ export default {
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
-    applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' }
+    applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' },
+    showToolTip: { description: 'Props to control the visibility of tooltip passed to child components' }
   },
 };
 

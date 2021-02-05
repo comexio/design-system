@@ -131,4 +131,49 @@ describe('linearChartExpand component', () => {
     eventClick().trigger('click')
     expect(linearChartExpand.emitted().eventClick).toBeTruthy()
   })
+
+  it('checks default value for props showToolTip', async () => {
+    expect(linearChartExpand.vm.showToolTip).toBe(false)
+  })
+})
+
+const fakeDataWithToolTipContent = [{
+  label: "This Is a Label",
+  percentage: 6,
+  quantity: 1,
+  total: "81",
+  value: "3.208.864,00",
+  toolTipContent: 'One message'
+}, {
+  label: "Another Label",
+  percentage: 6,
+  quantity: 1,
+  total: "81",
+  value: "3.208.864,00",
+  toolTipContent: 'Another message'
+}
+]
+
+describe('linearChartExpand component with data to show in ToolTip', () => {
+  let linearChartExpand: Wrapper<LLinearChartExpand>
+
+  beforeAll(() => {
+    linearChartExpand = mount(LLinearChartExpand, {
+      ...defaultParams,
+      propsData: {
+        data: fakeDataWithToolTipContent,
+        showToolTip: true
+      }
+    })
+  })
+  it('checks default value for props showToolTip', async () => {
+    expect(linearChartExpand.vm.showToolTip).toBe(true)
+  })
+  it('checks tooltip items ', async () => {
+    const toolTips = () => linearChartExpand.findAllComponents({ name: 'v-tooltip' })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(toolTips().length).toBe(2)
+    expect(linearChartExpand.vm.data[0].toolTipContent).toBe('One message')
+  })
 })

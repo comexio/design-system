@@ -56,7 +56,20 @@
               />
             </td>
             <td class="LLinearChartExpand__table__line__value">
-              {{ item.value }}
+              <v-tooltip
+                bottom
+                content-class="customTooltip pa-0"
+              >
+                <template v-slot:activator="{ on }">
+                  <span v-on="on">{{ item.value }}</span>
+                </template>
+                <span
+                  v-if="showToolTip"
+                  class="customTooltip__info"
+                >
+                  {{ item.toolTipContent }}
+                </span>
+              </v-tooltip>
             </td>
             <td>{{ item.total }}</td>
           </tr>
@@ -98,6 +111,10 @@ export default {
     tableHeight: {
       type: String,
       default: 'auto'
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

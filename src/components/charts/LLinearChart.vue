@@ -18,6 +18,7 @@
             :is-expandable="isExpandable"
             :translation-line="translationLine"
             :items-without-details="itemsWithoutDetails"
+            :show-tool-tip="showToolTip"
             @expand="expandList"
             @eventClick="eventClick"
           >
@@ -94,6 +95,10 @@ export default {
       default: () => []
     },
     applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
+    showToolTip: {
       type: Boolean,
       default: false
     }
