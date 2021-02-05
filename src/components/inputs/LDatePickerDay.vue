@@ -92,6 +92,7 @@
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
+import equals from 'ramda/src/equals'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES } from '~/enum/datepicker.enum'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO } from '~/utils/date.util.ts'
@@ -134,6 +135,10 @@ export default {
   },
   computed: {
     formattedMonths () {
+      if (!this.monthsPeriod) {
+        return
+      }
+
       const { temporaryDate } = this
       if (temporaryDate && isEmpty(this.monthsPeriod)) {
         return formatYearMonthDay([temporaryDate])
@@ -219,6 +224,34 @@ export default {
   watch: {
     monthsPeriod (monthsPeriod) {
       this.validateRange(monthsPeriod)
+
+      if (Array.isArray(monthsPeriod)) {
+        const startDate = monthsPeriod[0]
+        if (monthsPeriod.length === 2) {
+          if (monthsPeriod[0] === monthsPeriod[1]) {
+            monthsPeriod.pop()
+
+            return
+          }
+
+          if (parseInt(monthsPeriod[0].replace('-', '')) > parseInt(monthsPeriod[1].replace('-', ''))) {
+            monthsPeriod[0] = monthsPeriod[1]
+            monthsPeriod[1] = startDate
+          }
+
+          if (this.closeOnSelect) {
+            this.menu = false
+          }
+
+          if (equals(sortDateISO(monthsPeriod), this.monthsPeriod)) {
+            return
+          }
+
+          this.monthsPeriod = sortDateISO(monthsPeriod)
+
+        }
+      }
+
       this.$emit('input', monthsPeriod)
     },
     datepickerStatus (datepickerStatus) {
@@ -236,26 +269,7 @@ export default {
           return
         }
 
-        if (Array.isArray(value)) {
-          const startDate = value[0]
-          if (value.length === 2) {
-            if (value[0] === value[1]) {
-              value.pop()
-
-              return
-            }
-
-            if (parseInt(value[0].replace('-', '')) > parseInt(value[1].replace('-', ''))) {
-              value[0] = value[1]
-              value[1] = startDate
-            }
-            this.monthsPeriod = value
-
-            if (this.closeOnSelect) {
-              this.menu = false
-            }
-          }
-        }
+        this.monthsPeriod = value
       }
     }
   },

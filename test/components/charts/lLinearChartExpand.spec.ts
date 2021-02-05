@@ -1,7 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent } from '~/test/utils.setup'
 import LLinearChartExpand from '~/src/components/charts/LLinearChartExpand.vue'
-import { WatchDirectoryFlags } from 'typescript'
 
 const setupDefault = initSetupComponent()
 const defaultParams = {
@@ -77,8 +76,23 @@ describe('linearChartExpand component', () => {
     expect(headerItems().length).toBe(4)
   })
 
-  it('render list items', async () => {
+  it('render header items without cursor pointer', async () => {
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
     linearChartExpand.setProps({ data: fakeData })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(cursorItems().length).toBe(0)
+  })
+
+  it('render header items with cursor pointer', async () => {
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
+    linearChartExpand.setProps({ applyCursorPointer: true })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(cursorItems().length).toBe(7)
+  })
+
+  it('render list items', async () => {
     await linearChartExpand.vm.$nextTick()
 
     const lines = () => linearChartExpand.findAll('.LLinearChartExpand__table__line')
@@ -108,5 +122,58 @@ describe('linearChartExpand component', () => {
 
     await linearChartExpand.vm.$nextTick()
     expect(linearChartExpand.emitted().expand).toBeTruthy()
+  })
+
+  it('emit eventClick', async () => {
+    const eventClick = () => linearChartExpand.find('.LLinearChartLine__cursor_pointer')
+
+    await linearChartExpand.vm.$nextTick()
+    eventClick().trigger('click')
+    expect(linearChartExpand.emitted().eventClick).toBeTruthy()
+  })
+
+  it('checks default value for props showToolTip', async () => {
+    expect(linearChartExpand.vm.showToolTip).toBe(false)
+  })
+})
+
+const fakeDataWithToolTipContent = [{
+  label: "This Is a Label",
+  percentage: 6,
+  quantity: 1,
+  total: "81",
+  value: "3.208.864,00",
+  toolTipContent: 'One message'
+}, {
+  label: "Another Label",
+  percentage: 6,
+  quantity: 1,
+  total: "81",
+  value: "3.208.864,00",
+  toolTipContent: 'Another message'
+}
+]
+
+describe('linearChartExpand component with data to show in ToolTip', () => {
+  let linearChartExpand: Wrapper<LLinearChartExpand>
+
+  beforeAll(() => {
+    linearChartExpand = mount(LLinearChartExpand, {
+      ...defaultParams,
+      propsData: {
+        data: fakeDataWithToolTipContent,
+        showToolTip: true
+      }
+    })
+  })
+  it('checks default value for props showToolTip', async () => {
+    expect(linearChartExpand.vm.showToolTip).toBe(true)
+  })
+  it('checks tooltip items ', async () => {
+    const toolTips = () => linearChartExpand.findAllComponents({ name: 'v-tooltip' })
+    await linearChartExpand.vm.$nextTick()
+
+    expect(toolTips().length).toBe(2)
+    expect(linearChartExpand.vm.data[0].toolTipContent).toBe('One message')
   })
 })

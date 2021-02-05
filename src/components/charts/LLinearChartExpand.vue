@@ -9,23 +9,12 @@
       >
         {{ $t('ayla.retract') }}
       </span>
-      <!-- <div>
-        <v-text-field
-          v-model="input"
-          outlined
-          hide-details
-          height="20px"
-          min-height="20px"
-          placeholder="Pesquisar"
-          @keydown.enter="search"
-        />
-      </div> -->
     </div>
     <v-simple-table
       ref="LLinearChartExpand__table"
       fixed-header
       dense
-      height="152px"
+      :height="tableHeight"
       class="LLinearChartExpand__table"
     >
       <template
@@ -50,14 +39,37 @@
           >
             <td>{{ index + 5 }}</td>
             <td>
-              {{ item.label }}
+              <template v-if="applyCursorPointer">
+                <span
+                  class="LLinearChartLine__cursor_pointer"
+                  @click="eventClick(item.label)"
+                >
+                  {{ item.label }}
+                </span>
+              </template>
+              <template v-else>
+                {{ item.label }}
+              </template>
               <slot
                 name="sectionAfterValue"
                 :value="item.label"
               />
             </td>
             <td class="LLinearChartExpand__table__line__value">
-              {{ item.value }}
+              <v-tooltip
+                bottom
+                content-class="customTooltip pa-0"
+              >
+                <template v-slot:activator="{ on }">
+                  <span v-on="on">{{ item.value }}</span>
+                </template>
+                <span
+                  v-if="showToolTip"
+                  class="customTooltip__info"
+                >
+                  {{ item.toolTipContent }}
+                </span>
+              </v-tooltip>
             </td>
             <td>{{ item.total }}</td>
           </tr>
@@ -91,7 +103,19 @@ export default {
       type: Array,
       default: () => ([])
     },
-    loading: Boolean
+    loading: Boolean,
+    applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
+    tableHeight: {
+      type: String,
+      default: 'auto'
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
@@ -137,6 +161,9 @@ export default {
       const bottomOfPage = scrollTop + visible + 25 >= pageHeight
 
       return bottomOfPage
+    },
+    eventClick (value) {
+      return this.$emit('eventClick', value)
     }
   }
 }
@@ -158,12 +185,18 @@ export default {
     }
   }
 
+  .LLinearChartExpand__table {
+    ::v-deep .v-data-table__wrapper {
+      max-height: 223px;
+    }
+  }
+
   .LLinearChartExpand__header__action {
     @extend .globalLink;
   }
 
   .LLinearChartExpand__table__title {
-    z-index: 0;
+    z-index: 1;
     font-size: 0.8rem;
     font-weight: normal;
     border-bottom: none !important;
@@ -194,6 +227,9 @@ export default {
 
   .LLinearChartExpand__loading {
     height: 0px;
+  }
+  .LLinearChartLine__cursor_pointer {
+    cursor: pointer;
   }
 }
 </style>

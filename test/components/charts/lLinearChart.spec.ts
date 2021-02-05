@@ -92,4 +92,8 @@ describe('linearChart component', () => {
     await linearChart.vm.$nextTick()
     expect(linearChart.emitted().expandList).toEqual([['unit']])
   })
+
+  it('checks default value for props showToolTip', async () => {
+    expect(linearChart.vm.showToolTip).toBe(false)
+  })
 })
