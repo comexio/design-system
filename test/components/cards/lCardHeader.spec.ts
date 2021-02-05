@@ -42,7 +42,7 @@ describe('LCardHeader component', () => {
   })
 })
 
-describe('LCardHeader component rendering items when generateId props true', () => {
+describe('LCardHeader component rendering items when generateId props is true', () => {
   let cardHeader: Wrapper<LCardHeader>
 
   beforeAll(() => {
