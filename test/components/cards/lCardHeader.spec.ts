@@ -40,4 +40,11 @@ describe('LCardHeader component', () => {
     expect(description().exists()).toBeTruthy()
     expect(description().text()).toBe('Descrição cabeçalho Card')
   })
+
+  it('should return slugged id with prefix when using idToSlug method', async () => {
+    const expansionHeadersWithId = () => cardHeader.findAll('#card-titulo-cabecalho-card')
+    await cardHeader.vm.$nextTick()
+
+    expect(expansionHeadersWithId().length).toBe(1)
+  })
 })
