@@ -1,5 +1,5 @@
 export function slugify (string: string) {
-  string = string.replace(/^\s+|\s+$/g, '') // trim
+  string = string.replace(/^\s+|\s+$/g, '')
   string = string.toLowerCase()
 
   const from = 'àáãäâèéëêìíïîòóöôùúüûñç·/_,:;'
