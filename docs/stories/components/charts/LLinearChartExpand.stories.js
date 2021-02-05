@@ -13,7 +13,8 @@ export default {
     eventClick: { action: 'eventClick', description: 'Event emitted when label is clicked' },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
     applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' },
-    tableHeight: { control: 'string', description: 'Add explicity heigth to table' }
+    tableHeight: { control: 'string', description: 'Add explicity heigth to table' },
+    showToolTip: { description: 'Props to control the visibility of tooltip on item labels' }
   },
 };
 
