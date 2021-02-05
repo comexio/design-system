@@ -2,7 +2,7 @@
   <div class="LCardHeader">
     <v-list-item-content class="pa-0 p-0">
       <v-list-item-title class="LCardHeader__title font-md">
-        {{ title }}
+        <span :id="idToSlug(title, 'card')">{{ title }}</span>
       </v-list-item-title>
       <v-list-item-subtitle
         v-if="description"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { slugify } from '~/utils/string.util'
+
 export default {
   props: {
     title: {
@@ -24,6 +26,11 @@ export default {
     description: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    idToSlug (title, prefix = '') {
+      return prefix + '-' + slugify(title)
     }
   }
 }
