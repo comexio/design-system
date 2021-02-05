@@ -105,7 +105,7 @@ export function formatYearMonthDay (date: string) {
 }
 
 export function sortDateISO (dates: ['string']) {
-  return dates.sort((date1, date2) => {
+  return [...dates].sort((date1, date2) => {
     const date1Timestamp = dayjs(date1).valueOf()
     const date2Timestamp = dayjs(date2).valueOf()
     if (date1Timestamp > date2Timestamp) {
