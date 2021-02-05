@@ -14,7 +14,8 @@ export default {
     height: { control: "text", description: "Card height" },
     default: { description: "Card content slot" },
     close: { table: { disable: true } },
-    error: { table: { disable: true } }
+    error: { table: { disable: true } },
+    generateId: { control: 'boolean', description: 'Controls if component will generate id selector for HTML elements' }
   }
 };
 

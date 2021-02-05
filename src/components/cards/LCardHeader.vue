@@ -1,8 +1,11 @@
 <template>
   <div class="LCardHeader">
     <v-list-item-content class="pa-0 p-0">
-      <v-list-item-title class="LCardHeader__title font-md">
-        <span :id="idToSlug(title, 'card-')">{{ title }}</span>
+      <v-list-item-title
+        :id="generateCardId(title, 'cardHeader-')"
+        class="LCardHeader__title font-md"
+      >
+        {{ title }}
       </v-list-item-title>
       <v-list-item-subtitle
         v-if="description"
@@ -26,10 +29,18 @@ export default {
     description: {
       type: String,
       default: null
+    },
+    generateId: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    idToSlug (title, prefix = '') {
+    generateCardId (title, prefix = '') {
+      if (!this.generateId) {
+        return
+      }
+
       return prefix + slugify(title)
     }
   }

@@ -12,6 +12,7 @@
         class="LCard__header"
         :title="title"
         :description="description"
+        :generate-id="generateId"
         @togglecard="$emit('close')"
       />
       <div class="LCard__content">
@@ -52,6 +53,10 @@ export default {
     height: {
       type: String,
       default: null
+    },
+    generateId: {
+      type: Boolean,
+      default: false
     }
   }
 }
