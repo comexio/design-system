@@ -21,7 +21,17 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            {{ data.label }}
+            <template v-if="applyCursorPointer">
+              <span
+                class="LLinearChartLine__cursor_pointer"
+                @click="eventClick(data.label)"
+              >
+                {{ data.label }}
+              </span>
+            </template>
+            <template v-else>
+              {{ data.label }}
+            </template>
             <slot
               v-if="!itemsWithoutDetails.includes(data.label)"
               name="sectionAfterValue"
@@ -62,9 +72,22 @@
             v-if="data.value !== null"
             class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
           >
-            <span>
-              {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
-            </span>
+            <v-tooltip
+              bottom
+              content-class="customTooltip pa-0"
+            >
+              <template v-slot:activator="{ on }">
+                <span v-on="on">
+                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                </span>
+              </template>
+              <span
+                v-if="showToolTip"
+                class="customTooltip__info"
+              >
+                {{ data.toolTipContent }}
+              </span>
+            </v-tooltip>
           </v-col>
 
           <v-col
@@ -142,6 +165,14 @@ export default {
     itemsWithoutDetails: {
       type: Array,
       default: () => []
+    },
+    applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -155,6 +186,9 @@ export default {
     },
     showPartition (item) {
       return item.value !== null ? ' | ' : ' '
+    },
+    eventClick (value) {
+      return this.$emit('eventClick', value)
     }
   }
 }
@@ -198,6 +232,9 @@ export default {
   .tagChartLinearChartLine {
     color: $martinique;
     font-size: 0.9rem;
+  }
+  .LLinearChartLine__cursor_pointer {
+    cursor: pointer;
   }
 }
 </style>

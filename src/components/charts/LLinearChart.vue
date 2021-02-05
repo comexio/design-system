@@ -10,6 +10,7 @@
         >
           <l-linear-chart-line
             v-slot:sectionAfterValue="slotProps"
+            :apply-cursor-pointer="applyCursorPointer"
             :data="item"
             :index="index"
             :color="colors[index]"
@@ -17,7 +18,9 @@
             :is-expandable="isExpandable"
             :translation-line="translationLine"
             :items-without-details="itemsWithoutDetails"
+            :show-tool-tip="showToolTip"
             @expand="expandList"
+            @eventClick="eventClick"
           >
             <slot
               name="sectionAfterValue"
@@ -90,6 +93,14 @@ export default {
     itemsWithoutDetails: {
       type: Array,
       default: () => []
+    },
+    applyCursorPointer: {
+      type: Boolean,
+      default: false
+    },
+    showToolTip: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -98,6 +109,9 @@ export default {
     },
     expandList () {
       this.$emit('expandList', this.type)
+    },
+    eventClick (value) {
+      this.$emit('eventClick', value)
     }
   }
 }
