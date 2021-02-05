@@ -2,7 +2,7 @@
   <div class="LCardHeader">
     <v-list-item-content class="pa-0 p-0">
       <v-list-item-title class="LCardHeader__title font-md">
-        <span :id="idToSlug(title, 'card')">{{ title }}</span>
+        <span :id="idToSlug(title, 'card-')">{{ title }}</span>
       </v-list-item-title>
       <v-list-item-subtitle
         v-if="description"
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     idToSlug (title, prefix = '') {
-      return prefix + '-' + slugify(title)
+      return prefix + slugify(title)
     }
   }
 }
