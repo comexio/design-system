@@ -56,7 +56,7 @@ describe('linearChartLine component with cursor pointer', () => {
         data: fakeData,
         isTagChart: false,
         applyCursorPointer: true,
-        lastItem: true,
+        lastItem: false,
         isExpanded: false,
         isExpandable: true
       }
@@ -76,6 +76,14 @@ describe('linearChartLine component with cursor pointer', () => {
 
     await llinearChartLine.vm.$nextTick()
     expect(llinearChartLine.emitted().eventClick).toBeTruthy()
+  })
+
+  it('render last item', async () => {
+    llinearChartLine.setProps({ lastItem: true })
+    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__cursor_pointer')
+    await llinearChartLine.vm.$nextTick()
+
+    expect(cursor().exists()).toBeFalsy()
   })
 
   it('emit expand event', async () => {
