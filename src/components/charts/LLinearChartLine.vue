@@ -21,7 +21,7 @@
             class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
-            <template v-if="applyCursorPointer">
+            <template v-if="applyCursorPointer && !lastItem">
               <span
                 class="LLinearChartLine__cursor_pointer"
                 @click="eventClick(data.label)"
