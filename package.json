@@ -82,5 +82,8 @@
     "types",
     "utils",
     "package.json"
+  ],
+  "browserslist": [
+    "> 5%"
   ]
 }
