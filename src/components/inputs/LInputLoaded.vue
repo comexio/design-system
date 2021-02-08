@@ -6,6 +6,7 @@
     :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: true }"
     :loading="loading"
     :placeholder="placeholder"
+    attach
     solo
     dense
     hide-details
