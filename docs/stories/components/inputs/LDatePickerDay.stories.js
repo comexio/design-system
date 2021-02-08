@@ -21,7 +21,26 @@ export default {
     },
     closeOnSelect: {
       control: "boolean",
-      description: 'Close datepicker on select two dates'
+      description: "Close datepicker on select two dates"
+    },
+    datepickerStatus: {
+      control: "boolean",
+      description: `Indicates the datepicker status according to parent: true (active) / false (inactive). 
+      It will not update to true automatically when datepicker opens. 
+      It is useful If you want to set the datepicker on/off according to parent events`
+    },
+    opened: {
+      action: "opened",
+      description: 'Emitted when datepicker is opened (full size)'
+    },
+    closed: {
+      action: "closed",
+      description: `Event avaliable when datepickerStatus is sent as false, making the datepicker get closed. 
+      With this the parent component can trigger some action according to the updated datepickerStatus`
+    },
+    itemsColor: {
+      control: 'color',
+      description: 'Color of the selected dates and icon'
     },
     input: {
       table: {
@@ -39,8 +58,15 @@ const Template = (args, { argTypes }) => ({
     }
   },
   components: { LDatePickerDay },
-  template:
-    '<l-date-picker-day v-model="date" v-bind="$props" style="max-width: 300px;" />'
+  template: `
+    <l-date-picker-day
+      v-model="date" 
+      v-bind="$props" 
+      @opened="opened"
+      @closed="closed"
+      style="max-width: 300px;" 
+    />
+  `
 })
 
 export const WithoutData = Template.bind({});

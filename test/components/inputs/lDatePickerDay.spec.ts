@@ -97,17 +97,27 @@ describe('datePicker component', () => {
 
   it('check multiple click in same date', async () => {
     datePicker.setProps({ value: ['2020-05-01', '2020-05-01'] })
-
+    
     await datePicker.vm.$nextTick()
-
+    
     const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
     const firstDatepicker = () => datepickers().at(0)
     const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
     dayPicker().trigger('click')
-
+    
     await datePicker.vm.$nextTick()
-
     expect(datePicker.vm.value).toStrictEqual(['2020-05-01'])
+  })
+  
+  it('check if gets closed by external call', async () => {
+    datePicker.setProps({ datepickerStatus: true })
+    await datePicker.vm.$nextTick()
+    expect(datePicker.vm.menu).toBe(true)
+
+    datePicker.setProps({ datepickerStatus: false })
+    await datePicker.vm.$nextTick()
+    expect(datePicker.vm.menu).toBe(false)
+    expect(datePicker.emitted().closed).toBeTruthy()
   })
 
   it('check if shows ordered date when is inputed high date on first place', async () => {

@@ -116,7 +116,11 @@ export default {
       type: String,
       default: '#9f6cbb'
     },
-    closeOnSelect: Boolean
+    closeOnSelect: Boolean,
+    datepickerStatus: {
+      type: Boolean,
+      default: null
+    }
   },
   data () {
     return {
@@ -250,6 +254,12 @@ export default {
 
       this.$emit('input', monthsPeriod)
     },
+    datepickerStatus (datepickerStatus) {
+      if(!datepickerStatus){ 
+        this.menu = false
+        this.$emit('closed')
+      }
+    },
     value: {
       immediate: true,
       handler (value) {
@@ -273,6 +283,7 @@ export default {
           () => this.$refs.secondDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
         )
       }, 0)
+      this.$emit('opened')
     },
     isDateAllowed (date) {
       const { year, month } = extractYearMonth(date)
