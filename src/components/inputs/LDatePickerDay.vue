@@ -244,18 +244,19 @@ export default {
           }
 
           if (equals(sortDateISO(monthsPeriod), this.monthsPeriod)) {
+            this.$emit('input', monthsPeriod)
+
             return
           }
 
           this.monthsPeriod = sortDateISO(monthsPeriod)
-
         }
       }
 
       this.$emit('input', monthsPeriod)
     },
     datepickerStatus (datepickerStatus) {
-      if(!datepickerStatus){ 
+      if (!datepickerStatus) {
         this.menu = false
         this.$emit('closed')
       }
