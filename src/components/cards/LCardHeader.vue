@@ -1,7 +1,10 @@
 <template>
   <div class="LCardHeader">
     <v-list-item-content class="pa-0 p-0">
-      <v-list-item-title class="LCardHeader__title font-md">
+      <v-list-item-title
+        :id="generateCardId(title, 'cardHeader-')"
+        class="LCardHeader__title font-md"
+      >
         {{ title }}
       </v-list-item-title>
       <v-list-item-subtitle
@@ -15,6 +18,8 @@
 </template>
 
 <script>
+import { slugify } from '~/utils/string.util'
+
 export default {
   props: {
     title: {
@@ -24,6 +29,19 @@ export default {
     description: {
       type: String,
       default: null
+    },
+    generateId: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    generateCardId (title, prefix = '') {
+      if (!this.generateId) {
+        return
+      }
+
+      return prefix + slugify(title)
     }
   }
 }

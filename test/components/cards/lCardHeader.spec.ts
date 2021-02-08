@@ -41,3 +41,24 @@ describe('LCardHeader component', () => {
     expect(description().text()).toBe('Descrição cabeçalho Card')
   })
 })
+
+describe('LCardHeader component rendering items when generateId props is true', () => {
+  let cardHeader: Wrapper<LCardHeader>
+
+  beforeAll(() => {
+    cardHeader = mount(LCardHeader, {
+      ...defaultParams,
+      propsData: {
+        title: 'Titulo Cabeçalho Card',
+        generateId: true
+      }
+    })
+  })
+
+  it('should return slugged id with prefix when using idToSlug method', async () => {
+    const expansionHeadersWithId = () => cardHeader.findAll('#cardHeader-titulo-cabecalho-card')
+    await cardHeader.vm.$nextTick()
+
+    expect(expansionHeadersWithId().length).toBe(1)
+  })
+})
