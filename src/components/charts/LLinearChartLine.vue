@@ -184,7 +184,7 @@ export default {
   },
   computed: {
     isTruncated () {
-      return this.data.label.length >= this.labelMaxLength
+      return this.data.label.length > this.labelMaxLength
     },
     dataLabel () {
        return this.isTruncated ? `${this.data.label.substring(0, this.labelMaxLength)}...` : this.data.label
