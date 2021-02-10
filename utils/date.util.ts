@@ -93,7 +93,8 @@ export function formatYearMonthDay (date: string) {
   const dates = date.toString().split(' - ')
   let formattedDate = ''
   dates.forEach((period) => {
-    const date = new Date(period + ' 12:00')
+    const periodParsed = period.split('-').join('/')
+    const date = new Date(periodParsed + ' 12:00')
     const day = date.getDate().toString().padStart(2, '0')
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
