@@ -31,7 +31,9 @@
               </span>
             </template>
             <template v-else>
-              {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
+              <span class="LLinearChartLine__label">
+                {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
+              </span>
             </template>
             <slot
               v-if="!itemsWithoutDetails.includes(data.label)"
