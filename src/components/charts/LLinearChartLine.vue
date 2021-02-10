@@ -27,12 +27,12 @@
                 class="LLinearChartLine__cursor_pointer"
                 @click="eventClick(data.label)"
               >
-                {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
+                {{ dataLabel }}
               </span>
             </template>
             <template v-else>
               <span class="LLinearChartLine__label">
-                {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
+                {{ dataLabel }}
               </span>
             </template>
             <slot
@@ -185,6 +185,9 @@ export default {
   computed: {
     isTruncated () {
       return this.data.label.length >= this.labelMaxLength
+    },
+    dataLabel () {
+       return this.isTruncated ? `${this.data.label.substring(0, this.labelMaxLength)}...` : this.data.label
     },
     showQuantity () {
       return this.lastItem ? `(${this.data.quantity})` : ''
