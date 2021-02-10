@@ -2,6 +2,7 @@
   <v-container class="LLinearChartLine pa-0">
     <div class="d-flex justify-space-between col-12 ma-0 pa-0">
       <v-tooltip
+        :disabled="!isTruncated"
         bottom
         content-class="customTooltip pa-0"
       >
@@ -26,11 +27,11 @@
                 class="LLinearChartLine__cursor_pointer"
                 @click="eventClick(data.label)"
               >
-                {{ data.label }}
+                {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
               </span>
             </template>
             <template v-else>
-              {{ data.label }}
+              {{ isTruncated ? `${data.label.substring(0, labelMaxLength)}...` : data.label }}
             </template>
             <slot
               v-if="!itemsWithoutDetails.includes(data.label)"
@@ -70,7 +71,7 @@
         >
           <v-col
             v-if="data.value !== null"
-            class="pl-2 py-0 pr-0 ml-n8 LLinearChartLine__result__value--first"
+            class="py-0 LLinearChartLine__result__value--first"
           >
             <v-tooltip
               bottom
@@ -89,13 +90,13 @@
               </span>
             </v-tooltip>
           </v-col>
-
+          <span style="marginRight: -4%; marginLeft: -4%">{{ showPartition(data) }}</span>
           <v-col
             v-if="data.total !== null"
-            class="py-0 pl-3 LLinearChartLine__result__value--second"
+            class="py-0 LLinearChartLine__result__value--second"
           >
             <span>
-              {{ showPartition(data) }}{{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
+              {{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -166,6 +167,10 @@ export default {
       type: Array,
       default: () => []
     },
+    labelMaxLength: {
+      type: Number,
+      default: 23
+    },
     applyCursorPointer: {
       type: Boolean,
       default: false
@@ -176,6 +181,9 @@ export default {
     }
   },
   computed: {
+    isTruncated () {
+      return this.data.label.length >= this.labelMaxLength
+    },
     showQuantity () {
       return this.lastItem ? `(${this.data.quantity})` : ''
     }
@@ -200,7 +208,6 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     max-width: 100%;
-    text-overflow: ellipsis;
     width: 0;
     flex-basis: 100%;
   }
@@ -223,6 +230,13 @@ export default {
     color: $silver;
     white-space: nowrap;
     min-width: 250px;
+    padding-left: 2%;
+  }
+  .LLinearChartLine__result__value--first{
+    flex-grow: 0;
+  }
+  .LLinearChartLine__result__value--second{
+    flex-grow: 0;
   }
   .LLinearChartLine__expand {
     @extend .globalLink;
