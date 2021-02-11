@@ -4,23 +4,24 @@ export default {
   title: 'Components/Charts/Primary Bar/Minimized',
   component: LLinearChart,
   argTypes: {
-    data: { control: 'object', description: 'Data object: label, percentage, total, quantity, value' },
+    applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' },
     colors: { control: 'array', description: 'Colors array (hexadecimal)' },
-    itemsWithoutDetails: { control: 'array', description: 'Receives info about when it should shows details icon' },
-    translationLine: { control: 'object', description: 'Subtitles translation object: value, records, seeMore' },
+    data: { control: 'object', description: 'Data object: label, percentage, total, quantity, value' },
     isExpanded: { control: 'boolean', description: 'Chart expanded: true / Chart minimized: false' },
     isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false' },
+    itemsWithoutDetails: { control: 'array', description: 'Receives info about when it should shows details icon' },
+    labelMaxLength: {control: 'number', description: 'Max characters allowed to label'},
+    maxQuantity: { action: 'number', description: 'Max items allowed' },
+    showToolTip: { control: 'boolean', description: 'Props to control the visibility of tooltip passed to child components' },
+    translationLine: { control: 'object', description: 'Subtitles translation object: value, records, seeMore' },
     expandList: { action: 'expandList', description: 'Toggle chart expanded when "See more" clicked' },
     eventClick: { action: 'eventClick', description: 'Event emitted when label is clicked' },
-    maxQuantity: { action: 'number', description: 'Max items allowed' },
     scroller: { table: {disable: true} },
     type: { table: {disable: true} },
     loadingExpand: { table: {disable: true} },
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
-    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
-    applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' },
-    showToolTip: { description: 'Props to control the visibility of tooltip passed to child components' }
+    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' }
   },
 };
 

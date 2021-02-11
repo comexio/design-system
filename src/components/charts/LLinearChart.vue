@@ -19,6 +19,7 @@
             :translation-line="translationLine"
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
+            :label-max-length="labelMaxLength"
             @expand="expandList"
             @eventClick="eventClick"
           >
@@ -101,6 +102,10 @@ export default {
     showToolTip: {
       type: Boolean,
       default: false
+    },
+    labelMaxLength: {
+      type: Number,
+      default: 23
     }
   },
   methods: {
