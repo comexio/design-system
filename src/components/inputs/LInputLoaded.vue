@@ -4,7 +4,7 @@
       v-model="selectedOptions"
       v-bind="$attrs"
       :items="items"
-      :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: true }"
+      :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="loading && !searchOnInput"
       :placeholder="placeholder"
@@ -18,9 +18,13 @@
       @change="changeFilter"
     >
       <template #append>
-        <v-icon color="wisteria">
+        <v-icon
+          v-if="icon"
+          color="wisteria"
+        >
           {{ searchOnInput ? 'mdi-magnify' : 'mdi-chevron-down' }}
         </v-icon>
+        <v-icon v-else />
       </template>
       <template
         v-if="searchInput && searchInput.length >= searchMinCharacteres && !loading"
@@ -47,16 +51,24 @@
 
 <script>
 
+
+import is from 'ramda/src/is'
+import equals from 'ramda/src/equals'
+
 export default {
   name: 'LInputLoaded',
   props: {
-    value: {
-      type: [String, Array],
-      default: ''
-    },
     field: {
       type: String,
       default: ''
+    },
+    icon: {
+      type: Boolean,
+      default: true
+    },
+    items: {
+      type: Array,
+      default: () => ([])
     },
     placeholder: {
       type: String,
@@ -70,13 +82,9 @@ export default {
       type: Number,
       default: 3
     },
-    items: {
-      type: Array,
-      default: () => ([])
-    },
-    removeTypedFilters: {
-      type: Boolean,
-      default: true
+    value: {
+      type: [String, Array, Object],
+      default: ''
     }
   },
   data () {
@@ -99,18 +107,20 @@ export default {
     value: {
       immediate: true,
       handler (val) {
-        this.selectedOptions = val
+        if (!equals(this.selectedOptions, val)) {
+          this.selectedOptions = val
+        }      
       }
     },
     items() {
       this.loading = false
     },
     selectedOptions (selectedOptions) {
-      this.$emit('input', selectedOptions)
+      const options = this.handleOptions(selectedOptions)
+      this.$emit('input', options)
     },
     searchInput (input) {
       if (this.searchOnInput && input && input.length >= this.searchMinCharacteres) {
-        console.log('Design ', input)
         this.loading = true
         this.getItems(input)
       }
@@ -128,7 +138,7 @@ export default {
       this.searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
     },
     changeFilter (filters) {
-      if (this.removeTypedFilters && Array.isArray(filters)) {
+      if (!this.searchOnInput && Array.isArray(filters)) {
         this.filterItems(filters)
       }
       this.searchInput = null
@@ -141,6 +151,26 @@ export default {
       })
 
       this.selectedOptions = filteredOptions
+    },
+    handleOptions (options) {
+      let newOptions
+      
+      if (typeof options === 'string') {
+        newOptions = { text: options, value: options }
+        if (!equals(newOptions, options)) {
+         return newOptions
+        }
+        return
+      }
+
+      if (is(Array, options)) {
+        newOptions = options.map((item) => {
+          return is(Object, item) ? item : { text: item, value: item }
+        })
+      return newOptions
+      } else if (is(Object, options)) {
+        return options
+      }
     }
   }
 }
