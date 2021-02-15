@@ -80,7 +80,7 @@ describe('linearChart component', () => {
 
     expect(linearChart.find('.LLinearChartLine__expand').text()).toBe('seeMoreTest')
     expect(linearChart.find('.LLinearChartLine__result__value--first').text()).toBe('valueTest: 16.535.343,00')
-    expect(linearChart.find('.LLinearChartLine__result__value--second').text()).toBe('| recordTest: 360')
+    expect(linearChart.find('.LLinearChartLine__result__value--second').text()).toBe('recordTest: 360')
   })
 
   it('emit expand list', async () => {
@@ -95,5 +95,11 @@ describe('linearChart component', () => {
 
   it('checks default value for props showToolTip', async () => {
     expect(linearChart.vm.showToolTip).toBe(false)
+  })
+
+  it('respects max length allowed for labels', async () => {
+    linearChart.setProps({labelMaxLength: 5})
+    await linearChart.vm.$nextTick()
+    expect(linearChart.find('.LLinearChartLine__label').text()).toBe('ASCEN...')
   })
 })
