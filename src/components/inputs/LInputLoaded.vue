@@ -13,7 +13,7 @@
       dense
       hide-details
       hide-selected
-      class="rm-radius-left rm-radius-right LInputLoaded main-expo__select main-expo__autocomplete"
+      class="rm-radius-left rm-radius-right LInputLoaded"
       :search-input.sync="searchInput"
       @change="changeFilter"
     >
@@ -193,8 +193,5 @@ export default {
 }
 ::v-deep .v-text-field {
   padding-top: 0;
-}
-::v-deep .v-text-field.v-text-field--solo.v-input--dense > .v-input__control{
-  min-height: 0;
 }
 </style>
