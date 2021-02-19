@@ -10,13 +10,16 @@ const defaultParams = {
 
 const fakeItems = ['Curitiba', 'Floripa', 'Umuarama']
 
-describe('InputLoaded component', () => {
+describe('InputLoaded component (default)', () => {
   addElemWithDataAppToBody()
   let inputLoaded: Wrapper<LInputLoaded>
 
   beforeAll(() => {
     inputLoaded = mount(LInputLoaded, {
       ...defaultParams,
+      propsData: {
+        field: 'myField'
+      }
     })
   })
 
@@ -24,12 +27,14 @@ describe('InputLoaded component', () => {
     expect(inputLoaded.exists()).toBe(true)
   })
 
-  it('change field and getItems', async () => {
-    inputLoaded.setProps({ field: 'city' })
 
-    await inputLoaded.vm.$nextTick()
+  it('getItems emitted correctly', () => {
+    expect(inputLoaded.emitted().getItems[0]).toEqual([{field: 'myField'}])
+  })
 
-    expect(inputLoaded.emitted().getItems[1]).toEqual([{ field: 'city' }])
+  it('render component with correct icon and without extra field', () => {
+    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-chevron-down')
+    expect(inputLoaded.find('.LInputLoaded__search--information').exists()).toBe(false)
   })
 
   it('select item from list', async () => {
@@ -59,5 +64,60 @@ describe('InputLoaded component', () => {
     await inputLoaded.vm.$nextTick()
 
     expect(inputLoaded.vm.searchInput).toBe(fakeItems[1])
+  })
+})
+
+describe('InputLoaded component (searchOnInput)', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        searchOnInput: true,
+        items: [],
+        value: 'myValue',
+        field: 'myField'
+      }
+    })
+  })
+
+  const input = () => inputLoaded.find('.LInputLoaded')
+  const mockInputResult = [{text: 'testInput', value: 'testInput'}]
+
+  it('render searchOnInput variant correctly', async () => {
+    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-magnify')
+    expect(inputLoaded.props('searchMinCharacteres')).toBe(3)
+
+    const extraField = inputLoaded.find('.LInputLoaded__search--information')
+
+    expect(extraField.exists()).toBe(true)
+    expect(extraField.text()).toBe('__translation__')
+  })
+
+  it('getItems emitted correctly', () => {
+    expect(inputLoaded.emitted().getItems[0]).toEqual([{field: 'myField', value: 'myValue'}])
+  })
+
+  it('handles text input', async () => {
+    input().vm.$emit('input', 'testInput')
+    await inputLoaded.vm.$nextTick()
+
+    expect(inputLoaded.emitted().input[0]).toEqual(mockInputResult)
+  })
+
+  it('handles array input', async () => {
+    input().vm.$emit('input', {value: ['test'], field: 'myField'})
+    await inputLoaded.vm.$nextTick()
+
+    expect(inputLoaded.emitted().input[0]).toEqual(mockInputResult)
+  })
+
+  it('handles object input', async () => {
+    input().vm.$emit('input',{value: {text: 'test', value: 'test'}, field: 'myField'})
+    await inputLoaded.vm.$nextTick()
+
+    expect(inputLoaded.emitted().input[0]).toEqual(mockInputResult)
   })
 })
