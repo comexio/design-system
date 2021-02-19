@@ -15,7 +15,6 @@
       hide-selected
       class="rm-radius-left rm-radius-right LInputLoaded"
       :search-input.sync="searchInput"
-      @change="changeFilter"
     >
       <template #append>
         <v-icon
@@ -27,7 +26,7 @@
         <v-icon v-else />
       </template>
       <template
-        v-if="searchInput && searchInput.length >= searchMinCharacteres && !loading"
+        v-if="hasEnoughCharacteres && !loading"
         #no-data
       >
         <v-list-item>
@@ -40,7 +39,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNotEnoughCharacteres"
+      v-if="hasNoItems"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -70,6 +69,10 @@ export default {
       type: Array,
       default: () => ([])
     },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: ''
@@ -90,45 +93,40 @@ export default {
   data () {
     return {
       selectedOptions: null,
-      loading: false,
       searchInput: null
     }
   },
   computed: {
-    hasNotEnoughCharacteres () {
+    hasEnoughCharacteres () {
+      const {searchOnInput, searchInput, searchMinCharacteres} = this
+      return searchOnInput && searchInput && searchInput.length >= searchMinCharacteres
+    },
+    hasNoItems () {
       return this.searchOnInput && !this.items.length
     }
   },
   watch: {
-    field () {
-      this.getItems()
-      this.selectedOptions = null
-    },
     value: {
       immediate: true,
       handler (val) {
+        debugger
         if (!equals(this.selectedOptions, val)) {
           this.selectedOptions = val
         }      
       }
-    },
-    items() {
-      this.loading = false
     },
     selectedOptions (selectedOptions) {
       const options = this.handleOptions(selectedOptions)
       this.$emit('input', options)
     },
     searchInput (input) {
-      if (this.searchOnInput && input && input.length >= this.searchMinCharacteres) {
-        this.loading = true
+      if (this.hasEnoughCharacteres) {
         this.getItems(input)
       }
     }
   },
   mounted () {
     if (!this.searchOnInput) {
-      this.loading = true
       this.getItems()
     }
   },
@@ -136,21 +134,6 @@ export default {
     getItems (value) {
       const { field } = this
       this.searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
-    },
-    changeFilter (filters) {
-      if (!this.searchOnInput && Array.isArray(filters)) {
-        this.filterItems(filters)
-      }
-      this.searchInput = null
-    },
-    filterItems (filters) {
-      const filteredOptions = filters.filter(item => {
-        if (item && item.text) {
-          return item
-        }
-      })
-
-      this.selectedOptions = filteredOptions
     },
     handleOptions (options) {
       let newOptions

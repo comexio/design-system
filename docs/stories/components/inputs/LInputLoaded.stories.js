@@ -9,6 +9,7 @@ export default {
     field: {control: 'text', description: 'Name of the field so you can identify it in an API call'},
     icon: {control: 'boolean', description: 'Indicates the icon visibility'},
     items: {control: 'array', description: 'Array of items that will appear as options to select'},
+    loading: {control: 'boolean', description: 'Indicates the loading state'},
     placeholder: {control: 'text', description: 'Input placeholder'},
     searchOnInput: {control: 'boolean', description: `Indicates if the component should search for items 
     after an input (true) or load all items from once (false)`},
@@ -32,9 +33,8 @@ const Template = (args, { argTypes }) => ({
 
 export const DefaultLoading = Template.bind({});
 DefaultLoading.args = {
-    field: 'myField',
-    placeholder: 'Im loading all items',
-    value: ''
+    placeholder: 'Im loading and Im disabled',
+    loading: true
 };
 
 export const DefaultLoaded = Template.bind({});
