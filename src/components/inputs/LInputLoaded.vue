@@ -15,6 +15,7 @@
       hide-selected
       class="rm-radius-left rm-radius-right LInputLoaded"
       :search-input.sync="searchInput"
+      @change="handleInput"
     >
       <template #append>
         <v-icon
@@ -98,8 +99,8 @@ export default {
   },
   computed: {
     hasEnoughCharacteres () {
-      const {searchOnInput, searchInput, searchMinCharacteres} = this
-      return searchOnInput && searchInput && searchInput.length >= searchMinCharacteres
+      const {searchInput, searchMinCharacteres} = this
+      return searchInput && searchInput.length >= searchMinCharacteres
     },
     hasNoItems () {
       return this.searchOnInput && !this.items.length
@@ -109,7 +110,6 @@ export default {
     value: {
       immediate: true,
       handler (val) {
-        debugger
         if (!equals(this.selectedOptions, val)) {
           this.selectedOptions = val
         }      
@@ -120,7 +120,7 @@ export default {
       this.$emit('input', options)
     },
     searchInput (input) {
-      if (this.hasEnoughCharacteres) {
+      if (this.searchOnInput && this.hasEnoughCharacteres) {
         this.getItems(input)
       }
     }
@@ -132,8 +132,12 @@ export default {
   },
   methods: {
     getItems (value) {
-      const { field } = this
-      this.searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
+      const { searchOnInput, field } = this
+      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
+    },
+    handleInput (values) {
+      if(!this.searchOnInput && is(Array, values)) this.handleSelectedOptions(values)
+      this.searchInput = null
     },
     handleOptions (options) {
       let newOptions
@@ -154,7 +158,11 @@ export default {
       } else if (is(Object, options)) {
         return options
       }
-    }
+    },
+    handleSelectedOptions (options) {
+      const addedItems = options.filter(i => i && i.text && i.value)
+      this.selectedOptions = addedItems
+    },
   }
 }
 </script>
