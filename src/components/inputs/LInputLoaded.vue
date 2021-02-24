@@ -155,7 +155,9 @@ export default {
           return is(Object, item) ? item : { text: item, value: item }
         })
       return newOptions
-      } else if (is(Object, options)) {
+      } 
+      
+      if (is(Object, options)) {
         return options
       }
     },
