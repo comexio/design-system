@@ -17,7 +17,7 @@ export default {
   name: 'LSelectNamed',
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Object],
       default: null
     },
     items: {
