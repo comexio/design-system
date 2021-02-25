@@ -2,6 +2,8 @@ export default {
   cancel: 'Cancel',
   confirm: 'Confirm',
   clear: 'Clear',
+  minimumCharacteres: 'Input at least {quantity} characteres',
+  noResults: 'No results found',
   others: 'Others',
   quantity: 'Quantity',
   records: 'Records',
