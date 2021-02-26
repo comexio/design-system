@@ -4,14 +4,24 @@
     :timeout="3000"
     absolute
     left
+    :color="backgroundColor"
+    v-bind="$attrs"
   >
-    {{ msg }}
+    <span :style="getColorText"> {{ msg }}</span>
   </v-snackbar>
 </template>
 
 <script>
 export default {
   props: {
+    backgroundColor: {
+      type: String,
+      default: '#333333'
+    },
+    colorText: {
+      type: String,
+      default: '#fff'
+    },
     msg: {
       type: String,
       default: null
@@ -21,6 +31,11 @@ export default {
     return {
       snackbar: false
     }
+  },
+  computed: {
+    getColorText () {
+      return this.colorText ? `color: ${this.colorText}` : ''
+    },
   },
   mounted () {
     this.$nextTick(() => {
