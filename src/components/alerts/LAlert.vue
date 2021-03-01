@@ -8,6 +8,7 @@
     v-bind="$attrs"
   >
     <span :style="getColorText"> {{ msg }}</span>
+    <slot />
   </v-snackbar>
 </template>
 
