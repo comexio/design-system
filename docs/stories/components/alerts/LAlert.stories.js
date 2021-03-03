@@ -23,5 +23,4 @@ Action.args = {
   msg: "Im an action alert!",
   backgroundColor: '#c00',
   colorText: '#fff',
-
 };

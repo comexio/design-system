@@ -10,7 +10,6 @@ export default {
     input: {action: 'input', description: 'Emitted when input received'},
     outlined: {control: 'boolean', description: 'Indicates the validity of the input according to the rules informed'},
     label: {control: 'text', description: 'Conteudo'},
-
   },
 };
 
