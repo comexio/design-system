@@ -1,9 +1,10 @@
 <template>
   <v-dialog
     v-model="dialog"
-    :max-width="maxWidth" 
+    :max-width="maxWidth"
     overlay-color="overlayColor"
     :persistent="true"
+    @click:outside="closeModal"
   >
     <v-card
       class="modal"
@@ -21,9 +22,9 @@
             min-width="29px"
             @click="closeModal"
           >
-            <v-icon 
-              size="20px" 
-              color="#fff" 
+            <v-icon
+              size="20px"
+              color="#fff"
               class="mt-1"
             >
               mdi-close
