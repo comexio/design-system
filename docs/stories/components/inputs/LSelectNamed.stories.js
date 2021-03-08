@@ -7,7 +7,9 @@ export default {
   argTypes: {
     value: {control: 'array', description: 'Input values array'},
     items: {control: 'array', description: 'Input items array'},
-    input: {action: 'input', description: 'Emitted when input received'}
+    input: {action: 'input', description: 'Emitted when input received'},
+    outlined: {control: 'boolean', description: 'Indicates the validity of the input according to the rules informed'},
+    label: {control: 'text', description: 'Conteudo'},
   },
 };
 
@@ -22,6 +24,6 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  value: [1, 2 ,3],
-  items: ['First item', 'Second item', 'Third item']
+  value: {text:"Inglês", value:"en"},
+  items: [ {text:"Inglês", value:"en"}, {text:"Portugês", value:"pt"} ]
 };
