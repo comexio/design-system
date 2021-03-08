@@ -58,4 +58,15 @@ describe('LModal component', () => {
     expect(modal.emitted().close).toBeTruthy()
   })
 
+  it('emit event on click outside', async () => {
+    const close = jest.fn()
+    modal.vm.$on('close', close)
+    expect(close).not.toHaveBeenCalled()
+
+    const dialog = () => modal.findComponent({ name: 'v-dialog' })
+    dialog().vm.onClickOutside(new Event('click'))
+    await modal.vm.$nextTick()
+
+    expect(close).toHaveBeenCalledTimes(1)
+  })
 })

@@ -3,6 +3,7 @@
     :outlined="outlined"
     :color="color"
     class="LButton"
+    :class="classesStyle"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -37,6 +38,14 @@ export default {
     outlined: {
       type: Boolean,
       default: true
+    },
+    removeShadow: Boolean
+  },
+  computed: {
+    classesStyle () {
+      return {
+        'LButton--noShadow': this.removeShadow
+      }
     }
   }
 }
@@ -47,6 +56,10 @@ export default {
   font-size: 13px;
   height: 30px !important;
   padding: 0 10px !important;
+}
+
+.LButton--noShadow {
+  box-shadow: none;
 }
 
 .orange {
