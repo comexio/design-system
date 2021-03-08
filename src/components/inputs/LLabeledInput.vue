@@ -7,6 +7,8 @@
       v-bind="$attrs"
       :rules="validityRules"
       class="l-labeled-input--input"
+      :background-color="disabled ? '#f8f8f8': ''"
+      :disabled="disabled"
       v-on="$listeners"
     />
   </div>
@@ -24,6 +26,10 @@ export default {
     rules: {
       type: Array,
       default: null
+    },
+    disabled:{
+      type: Boolean,
+      default: false
     }
   },
   computed: {
