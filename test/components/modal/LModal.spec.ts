@@ -35,6 +35,12 @@ describe('LModal component', () => {
     expect(modal.emitted().close).toBeTruthy()
   })
 
+  it('check if the cancel button does not exist', async () => {
+    modal.setProps({cancelButton: false})
+    await modal.vm.$nextTick()
+    expect(modal.find('.modal__button--cancel').exists()).toBeFalsy()
+  })
+
   it('Clear button event emitted', async () => {
     modal.setProps({clearButton: true})
     await modal.vm.$nextTick()

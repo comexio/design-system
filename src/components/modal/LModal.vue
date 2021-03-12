@@ -54,6 +54,7 @@
           </v-btn>
           <v-spacer />
           <v-btn
+            v-if="cancelButton"
             color="silver"
             text
             class="modal__button modal__button--cancel font-md"
@@ -110,6 +111,10 @@ export default {
     clearButton: {
       type: Boolean,
       default: false
+    },
+    cancelButton: {
+      type: Boolean,
+      default: true
     },
     clearText: {
       type: String,
