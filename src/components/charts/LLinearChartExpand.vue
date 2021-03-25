@@ -187,7 +187,7 @@ export default {
 
   .LLinearChartExpand__table {
     ::v-deep .v-data-table__wrapper {
-      max-height: 223px;
+      max-height: 195px;
     }
   }
 
