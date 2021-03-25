@@ -96,10 +96,6 @@ export default {
     LLoading
   },
   props: {
-    maxHeigth: {
-      type: Number,
-      default: 195
-    },
     data: {
       type: Array,
       default: () => ([])
@@ -115,7 +111,7 @@ export default {
     },
     tableHeight: {
       type: String,
-      default: 'auto'
+      default: '195'
     },
     showToolTip: {
       type: Boolean,
