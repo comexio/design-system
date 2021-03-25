@@ -123,9 +123,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .row{
-    float:right;
-}
 
 .LLinearChart__list__item{
   padding: 3px 10px;

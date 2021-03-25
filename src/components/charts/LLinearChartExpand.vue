@@ -12,6 +12,7 @@
     </div>
     <v-simple-table
       ref="LLinearChartExpand__table"
+      :style="{'max-heigth':maxHeigth + 'px'}"
       fixed-header
       dense
       :height="tableHeight"
@@ -95,6 +96,10 @@ export default {
     LLoading
   },
   props: {
+    maxHeigth: {
+      type: Number,
+      default: 195
+    },
     data: {
       type: Array,
       default: () => ([])
@@ -182,12 +187,6 @@ export default {
       .v-input__slot {
         min-height: 20px;
       }
-    }
-  }
-
-  .LLinearChartExpand__table {
-    ::v-deep .v-data-table__wrapper {
-      max-height: 195px;
     }
   }
 
