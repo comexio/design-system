@@ -12,7 +12,6 @@
     </div>
     <v-simple-table
       ref="LLinearChartExpand__table"
-      :style="{'max-heigth':maxHeigth + 'px'}"
       fixed-header
       dense
       :height="tableHeight"
