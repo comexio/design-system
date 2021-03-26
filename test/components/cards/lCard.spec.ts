@@ -22,4 +22,18 @@ describe('LCard component', () => {
   it('component lCard exists', () => {
     expect(card.exists()).toBeTruthy()
   })
+
+  it('check props value default forceShowSlot', () => {
+    expect(card.props().forceShowSlot).toBeFalsy()
+  })
+
+  it('check computed show Slot default falsy', () => {
+    expect(card.vm.showSlot).toBeFalsy()
+  })
+
+  it('check computed show Slot default truthy', async () => {
+    card.setProps({forceShowSlot : true})
+    await card.vm.$nextTick()
+    expect(card.vm.showSlot).toBeTruthy()
+  })
 })
