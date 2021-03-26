@@ -110,7 +110,7 @@ export default {
     },
     tableHeight: {
       type: String,
-      default: 'auto'
+      default: '195'
     },
     showToolTip: {
       type: Boolean,
@@ -182,12 +182,6 @@ export default {
       .v-input__slot {
         min-height: 20px;
       }
-    }
-  }
-
-  .LLinearChartExpand__table {
-    ::v-deep .v-data-table__wrapper {
-      max-height: 223px;
     }
   }
 
