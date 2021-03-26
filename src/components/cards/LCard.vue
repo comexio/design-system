@@ -17,7 +17,7 @@
       />
       <div class="LCard__content">
         <v-divider />
-        <slot v-if="data" />
+        <slot v-if="showSlot" />
       </div>
     </v-card>
   </v-skeleton-loader>
@@ -57,6 +57,14 @@ export default {
     generateId: {
       type: Boolean,
       default: false
+    },
+    forceShowSlot : {
+      type: Boolean
+    }
+  },
+  computed: {
+    showSlot () {
+      return this.data || this.forceShowSlot
     }
   }
 }
