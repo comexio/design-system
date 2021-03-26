@@ -69,7 +69,7 @@
         </v-row>
         <v-row
           v-else
-          class="flex-nowrap"
+          class="flex-nowrap justify-end"
         >
           <v-col
             v-if="data.value !== null"

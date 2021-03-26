@@ -123,6 +123,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.LLinearChart__list__item{
+  padding: 3px 10px;
+  }
 @media screen and (min-width: 1500px) {
   .LLinearChart__list__item {
     min-height: auto;
