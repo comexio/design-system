@@ -15,7 +15,8 @@ export default {
     default: { description: "Card content slot" },
     close: { table: { disable: true } },
     error: { table: { disable: true } },
-    generateId: { control: 'boolean', description: 'Controls if component will generate id selector for HTML elements' }
+    generateId: { control: 'boolean', description: 'Controls if component will generate id selector for HTML elements' },
+    hasShadow: { control: 'boolean', description: 'Controls if component has shadow' }
   }
 };
 
@@ -32,4 +33,11 @@ Default.args = {
   description: "Card description",
   data: { key: 0 },
   height: "150px"
+};
+
+export const Default2 = Template.bind({});
+Default2.args = {
+  data: { key: 0 },
+  height: "150px",
+  hasShadow: true
 };

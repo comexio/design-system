@@ -6,26 +6,30 @@
   >
     <v-card
       class="LCard"
+      v-bind="$att"
+      :class="{LCard__shadow: !hasShadow}"
       :min-height="height"
     >
       <l-card-header
+        v-if="title && description"
         class="LCard__header"
         :title="title"
         :description="description"
         :generate-id="generateId"
         @togglecard="$emit('close')"
       />
-      <div class="LCard__content">
-        <v-divider />
+      <div
+        class="LCard__content"
+        :class="contentClass"
+      >
+        <v-divider v-if="title && description" />
         <slot v-if="showSlot" />
       </div>
     </v-card>
   </v-skeleton-loader>
 </template>
-
 <script>
 import LCardHeader from './LCardHeader'
-
 export default {
   components: {
     LCardHeader
@@ -33,7 +37,7 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      default: null
     },
     description: {
       type: String,
@@ -43,12 +47,20 @@ export default {
       type: [Error, Boolean],
       default: false
     },
+    contentClass: {
+      type: String,
+      default: null
+    },
     data: {
       type: [Array, Object],
       default: null
     },
     loading: {
       type: Boolean
+    },
+    hasShadow: {
+      type: Boolean,
+      default: false
     },
     height: {
       type: String,
@@ -69,23 +81,22 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .LCard {
   position: relative;
   display: grid;
   grid-template-rows: 45px 1fr;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
   min-height: 272px;
   border-radius: 5px!important;
 }
-
+.LCard__shadow {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
+}
 @media screen and (min-width: 1500px) {
   .LCard {
     min-height: 320px;
   }
 }
-
 ::v-deep {
   .LCard__adversity img {
     max-height: 190px;
