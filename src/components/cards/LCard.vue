@@ -1,18 +1,18 @@
 <template>
   <v-skeleton-loader
     :loading="loading"
+    v-bind="$attrs"
     transition="fade-transition"
     type="card"
   >
     <v-card
       class="LCard"
-      v-bind="$att"
-      :class="{LCard__shadow: !hasShadow}"
+      :class="vCardClasses"
       :min-height="height"
       :width="width"
     >
       <l-card-header
-        v-if="title && description"
+        v-if="hasTitleOrDescription"
         class="LCard__header"
         :title="title"
         :description="description"
@@ -23,7 +23,7 @@
         class="LCard__content"
         :class="contentClass"
       >
-        <v-divider v-if="title && description" />
+        <v-divider v-if="hasTitleOrDescription" />
         <slot v-if="showSlot" />
       </div>
     </v-card>
@@ -82,6 +82,15 @@ export default {
   computed: {
     showSlot () {
       return this.data || this.forceShowSlot
+    },
+    vCardClasses () {
+      return {
+        'LCard--shadow' : !this.hasShadow,
+        'LCard--grid': this.hasTitleOrDescription      
+      }
+    },
+    hasTitleOrDescription () {
+      return this.title || this.description ? true : false
     }
   }
 }
@@ -90,17 +99,13 @@ export default {
 .LCard {
   position: relative;
   display: grid;
-  grid-template-rows: 45px 1fr;
-  min-height: 272px;
   border-radius: 5px!important;
 }
-.LCard__shadow {
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
+.LCard--grid {
+  grid-template-rows: 45px 1fr;
 }
-@media screen and (min-width: 1500px) {
-  .LCard {
-    min-height: 320px;
-  }
+.LCard--shadow {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
 }
 ::v-deep {
   .LCard__adversity img {
