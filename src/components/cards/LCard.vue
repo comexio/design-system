@@ -9,6 +9,7 @@
       v-bind="$att"
       :class="{LCard__shadow: !hasShadow}"
       :min-height="height"
+      :width="width"
     >
       <l-card-header
         v-if="title && description"
@@ -65,6 +66,10 @@ export default {
     height: {
       type: String,
       default: null
+    },
+    width: {
+      type: String,
+      default: '100%'
     },
     generateId: {
       type: Boolean,
