@@ -42,16 +42,16 @@ describe('LCard component', () => {
     expect(card.vm.showSlot).toBeTruthy()
   })
 
-  it('check doesnt show ".LCard__shadow" when props true', async () => {
+  it('check doesnt show ".LCard--shadow" when props true', async () => {
     card.setProps({hasShadow : true})
     await card.vm.$nextTick()
-    expect(card.find('.LCard__shadow').exists()).toBe(false)
+    expect(card.find('.LCard--shadow').exists()).toBe(false)
   })
 
-  it('check shows ".LCard__shadow" when props false', async () => {
+  it('check shows ".LCard--shadow" when props false', async () => {
     card.setProps({hasShadow : false})
     await card.vm.$nextTick()
-    expect(card.find('.LCard__shadow').exists()).toBe(true)
+    expect(card.find('.LCard--shadow').exists()).toBe(true)
   })
 
   it('check shows header and divider when has Title and Description', async () => {
@@ -60,8 +60,9 @@ describe('LCard component', () => {
     expect(card.find('.LCard__header').exists()).toBe(true)
     expect(card.findAllComponents({name:'VDivider'}).exists()).toBe(true)
   })
+
   it('check doenst show header and divider when hasnt Title and Description', async () => {
-    card.setProps({title: null})
+    card.setProps({title: null, description: null})
     await card.vm.$nextTick()
     expect(card.find('.LCard__header').exists()).toBe(false)
     expect(card.findAllComponents({name:'VDivider'}).exists()).toBe(false)
