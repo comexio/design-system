@@ -10,7 +10,6 @@ const defaultParams = {
   }
 }
 
-
 describe('LCard component', () => {
   let card: Wrapper<LCard>
 
