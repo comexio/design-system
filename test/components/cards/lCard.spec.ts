@@ -41,28 +41,28 @@ describe('LCard component', () => {
     expect(card.vm.showSlot).toBe(true)
   })
 
-  it('check doesnt show ".LCard--shadow" when props true', async () => {
+  it('check if adds LCard--withoutShadow when hasShadow is true', async () => {
     card.setProps({hasShadow : true})
     await card.vm.$nextTick()
     const classes = card.findComponent({name:'VCard'}).classes()
-    expect(classes).not.toContain('LCard--shadow')
+    expect(classes).not.toContain('LCard--withoutShadow')
   })
 
-  it('check shows ".LCard--shadow" when props false', async () => {
+  it('check if adds LCard--withoutShadow when hasShadow is true', async () => {
     card.setProps({hasShadow : false})
     await card.vm.$nextTick()
     const classes = card.findComponent({name:'VCard'}).classes()
-    expect(classes).toContain('LCard--shadow')
+    expect(classes).toContain('LCard--withoutShadow')
   })
 
-  it('check shows header and divider when has Title and Description', async () => {
+  it('check if adds header and divider when has Title and Description', async () => {
     card.setProps({title: 'Titulo teste', description: 'Teste'})
     await card.vm.$nextTick()
     expect(card.find('.LCard__header').exists()).toBe(true)
     expect(card.findAllComponents({name:'VDivider'}).exists()).toBe(true)
   })
 
-  it('check doenst show header and divider when hasnt Title and Description', async () => {
+  it('check if removes header and divider when has not Title and Description', async () => {
     card.setProps({title: null, description: null})
     await card.vm.$nextTick()
     expect(card.find('.LCard__header').exists()).toBe(false)

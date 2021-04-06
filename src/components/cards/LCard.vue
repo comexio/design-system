@@ -21,7 +21,7 @@
       />
       <div
         class="LCard__content"
-        :class="contentClass"
+        :class="contentClasses"
       >
         <v-divider v-if="hasTitleOrDescription" />
         <slot v-if="showSlot" />
@@ -85,7 +85,7 @@ export default {
     },
     vCardClasses () {
       return {
-        'LCard--shadow' : !this.hasShadow,
+        'LCard--withoutShadow' : !this.hasShadow,
         'LCard--grid': this.hasTitleOrDescription      
       }
     },
@@ -100,11 +100,12 @@ export default {
   position: relative;
   display: grid;
   border-radius: 5px!important;
+  
 }
 .LCard--grid {
   grid-template-rows: 45px 1fr;
 }
-.LCard--shadow {
+.LCard--withoutShadow {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
 }
 ::v-deep {
