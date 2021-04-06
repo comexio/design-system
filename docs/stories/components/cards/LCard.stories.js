@@ -35,8 +35,24 @@ Default.args = {
   height: "150px"
 };
 
-export const Default2 = Template.bind({});
-Default2.args = {
+export const WidthShadow = Template.bind({});
+WidthShadow.args = {
+  title: "Card Title",
+  description: "Card description",
+  data: { key: 0 },
+  height: "150px",
+  hasShadow: true
+};
+
+export const WithoutTitleAndDescription = Template.bind({});
+WithoutTitleAndDescription.args = {
+  data: { key: 0 },
+  height: "150px",
+};
+
+export const WithoutTitleAndWithShadow = Template.bind({});
+WithoutTitleAndWithShadow.args = {
+  description: "Card description",
   data: { key: 0 },
   height: "150px",
   hasShadow: true

@@ -20,37 +20,39 @@ describe('LCard component', () => {
   })
 
   it('component lCard exists', () => {
-    expect(card.exists()).toBeTruthy()
+    expect(card.exists()).toBe(true)
   })
 
   it('check props value default forceShowSlot', () => {
-    expect(card.props().forceShowSlot).toBeFalsy()
+    expect(card.props().forceShowSlot).toBe(false)
   })
 
   it('check props value default forceShowSlot', () => {
-    expect(card.props().forceShowSlot).toBeFalsy()
+    expect(card.props().forceShowSlot).toBe(false)
   })
 
   it('check computed show Slot default falsy', () => {
-    expect(card.vm.showSlot).toBeFalsy()
+    expect(card.vm.showSlot).toBe(false)
   })
 
   it('check computed show Slot default truthy', async () => {
     card.setProps({forceShowSlot : true})
     await card.vm.$nextTick()
-    expect(card.vm.showSlot).toBeTruthy()
+    expect(card.vm.showSlot).toBe(true)
   })
 
   it('check doesnt show ".LCard--shadow" when props true', async () => {
     card.setProps({hasShadow : true})
     await card.vm.$nextTick()
-    expect(card.find('.LCard--shadow').exists()).toBe(false)
+    const classes = card.findComponent({name:'VCard'}).classes()
+    expect(classes).not.toContain('LCard--shadow')
   })
 
   it('check shows ".LCard--shadow" when props false', async () => {
     card.setProps({hasShadow : false})
     await card.vm.$nextTick()
-    expect(card.find('.LCard--shadow').exists()).toBe(true)
+    const classes = card.findComponent({name:'VCard'}).classes()
+    expect(classes).toContain('LCard--shadow')
   })
 
   it('check shows header and divider when has Title and Description', async () => {

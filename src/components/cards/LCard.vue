@@ -1,12 +1,12 @@
 <template>
   <v-skeleton-loader
     :loading="loading"
-    v-bind="$attrs"
     transition="fade-transition"
     type="card"
   >
     <v-card
       class="LCard"
+      v-bind="$attrs"
       :class="vCardClasses"
       :min-height="height"
       :width="width"
@@ -48,7 +48,7 @@ export default {
       type: [Error, Boolean],
       default: false
     },
-    contentClass: {
+    contentClasses: {
       type: String,
       default: null
     },
