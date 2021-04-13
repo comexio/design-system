@@ -6,26 +6,31 @@
   >
     <v-card
       class="LCard"
+      v-bind="$attrs"
+      :class="vCardClasses"
       :min-height="height"
+      :width="width"
     >
       <l-card-header
+        v-if="hasTitleOrDescription"
         class="LCard__header"
         :title="title"
         :description="description"
         :generate-id="generateId"
         @togglecard="$emit('close')"
       />
-      <div class="LCard__content">
-        <v-divider />
+      <div
+        class="LCard__content"
+        :class="contentClasses"
+      >
+        <v-divider v-if="hasTitleOrDescription" />
         <slot v-if="showSlot" />
       </div>
     </v-card>
   </v-skeleton-loader>
 </template>
-
 <script>
 import LCardHeader from './LCardHeader'
-
 export default {
   components: {
     LCardHeader
@@ -33,7 +38,7 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      default: null
     },
     description: {
       type: String,
@@ -43,6 +48,10 @@ export default {
       type: [Error, Boolean],
       default: false
     },
+    contentClasses: {
+      type: String,
+      default: null
+    },
     data: {
       type: [Array, Object],
       default: null
@@ -50,9 +59,17 @@ export default {
     loading: {
       type: Boolean
     },
+    hasShadow: {
+      type: Boolean,
+      default: false
+    },
     height: {
       type: String,
       default: null
+    },
+    width: {
+      type: String,
+      default: '100%'
     },
     generateId: {
       type: Boolean,
@@ -65,27 +82,32 @@ export default {
   computed: {
     showSlot () {
       return this.data || this.forceShowSlot
+    },
+    vCardClasses () {
+      return {
+        'LCard--withoutShadow' : !this.hasShadow,
+        'LCard--grid': this.hasTitleOrDescription      
+      }
+    },
+    hasTitleOrDescription () {
+      return this.title || this.description ? true : false
     }
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .LCard {
   position: relative;
   display: grid;
-  grid-template-rows: 45px 1fr;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
-  min-height: 272px;
   border-radius: 5px!important;
+  
 }
-
-@media screen and (min-width: 1500px) {
-  .LCard {
-    min-height: 320px;
-  }
+.LCard--grid {
+  grid-template-rows: 45px 1fr;
 }
-
+.LCard--withoutShadow {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.04) !important;
+}
 ::v-deep {
   .LCard__adversity img {
     max-height: 190px;
