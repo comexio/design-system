@@ -4,7 +4,7 @@
     :max-width="maxWidth"
     overlay-color="overlayColor"
     :persistent="true"
-    @click:outside="closeModal"
+    @click:outside="closeOnOutsideClick ? closeModal : ''"
   >
     <v-card
       class="modal"
@@ -112,6 +112,10 @@ export default {
       type: Boolean,
       default: false
     },
+    closeOnOutsideClick: {
+      type: Boolean,
+      default: true
+    },
     cancelButton: {
       type: Boolean,
       default: true
@@ -139,7 +143,7 @@ export default {
   },
   methods: {
     closeModal () {
-      this.$emit('close')
+        this.$emit('close')
     },
     confirm () {
       this.$emit('confirm')

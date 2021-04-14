@@ -11,6 +11,7 @@ export default {
       confirmButton: {control: 'boolean', description: 'Indicates if confirm button will be rendered or not'},
       clearButton: {control: 'boolean', description: 'Indicates if clear button will be rendered or not'},
       clearIcon: {control: 'text', description: 'Clear icon value (mdi)'},
+      closeOnOutsideClick: {control: 'boolean', description: 'Indicates if outside click will close modal'},
       confirmText: {control: 'text', description: 'Confirm button text'},
       cancelText: {control: 'text', description: 'Cancel button text'},
       clearText: {control: 'text', description: 'Clear button text'},
