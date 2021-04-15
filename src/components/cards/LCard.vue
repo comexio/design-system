@@ -10,6 +10,7 @@
       :class="vCardClasses"
       :min-height="height"
       :width="width"
+      v-on="$listeners"
     >
       <l-card-header
         v-if="hasTitleOrDescription"
