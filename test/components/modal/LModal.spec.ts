@@ -9,6 +9,7 @@ const defaultParams = {
 
 describe('LModal component', () => {
   addElemWithDataAppToBody()
+  const spyCloseModal = jest.spyOn(LModal.methods, 'closeModal')
 
   let modal: Wrapper<LModal>
 
@@ -65,14 +66,22 @@ describe('LModal component', () => {
   })
 
   it('emit event on click outside', async () => {
-    const close = jest.fn()
-    modal.vm.$on('close', close)
-    expect(close).not.toHaveBeenCalled()
-
     const dialog = () => modal.findComponent({ name: 'v-dialog' })
-    dialog().vm.onClickOutside(new Event('click'))
+    dialog().vm.$emit('click:outside')
     await modal.vm.$nextTick()
 
-    expect(close).toHaveBeenCalledTimes(1)
+    expect(spyCloseModal).toHaveBeenCalledTimes(2)
+    expect(modal.emitted().close).toBeTruthy()
+  })
+
+  it('doesnt emit event on click outside when closeOnOutsideClick is false', async () => {
+    modal.setProps({closeOnOutsideClick: false})
+    await modal.vm.$nextTick()
+
+    const dialog = () => modal.findComponent({ name: 'v-dialog' })
+    dialog().vm.$emit('click:outside')
+    await modal.vm.$nextTick()
+
+    expect(spyCloseModal).toHaveBeenCalledTimes(2)
   })
 })
