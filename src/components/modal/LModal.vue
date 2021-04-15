@@ -4,7 +4,7 @@
     :max-width="maxWidth"
     overlay-color="overlayColor"
     :persistent="true"
-    @click:outside="closeModal"
+    @click:outside="closeOnOutsideClick ? closeModal : ''"
   >
     <v-card
       class="modal"
@@ -111,6 +111,10 @@ export default {
     clearButton: {
       type: Boolean,
       default: false
+    },
+    closeOnOutsideClick: {
+      type: Boolean,
+      default: true
     },
     cancelButton: {
       type: Boolean,
