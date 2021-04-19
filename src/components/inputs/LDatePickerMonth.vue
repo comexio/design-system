@@ -133,13 +133,14 @@ export default {
         const magicPeriodMinimumDate = new Date(this.dateFilterLimits('min') + ' 00:00')
         const subtractedDateTime = new Date(subtractedDate.getFullYear(), subtractedDate.getMonth()).getTime()
         const magicPeriodMinimumDateTime = new Date(magicPeriodMinimumDate.getFullYear(), magicPeriodMinimumDate.getMonth()).getTime()
+        const isSubtractedDateLessThanActualDate = magicPeriodMinimumDateTime > subtractedDateTime
 
-        subtractedDate.setMonth(magicPeriodMinimumDateTime > subtractedDateTime
+        subtractedDate.setMonth(isSubtractedDateLessThanActualDate
             ? magicPeriodMinimumDate.getMonth()
             : subtractedDate.getMonth()
         )
 
-        subtractedDate.setFullYear(magicPeriodMinimumDateTime > subtractedDateTime
+        subtractedDate.setFullYear(isSubtractedDateLessThanActualDate
             ? magicPeriodMinimumDate.getFullYear()
             : subtractedDate.getFullYear()
         )
