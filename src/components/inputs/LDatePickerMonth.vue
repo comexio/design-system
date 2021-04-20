@@ -131,12 +131,19 @@ export default {
         const monthsDiff = periodKey.split('_')
         const subtractedDate = new Date(currentYear, currentDate.getMonth() - (parseInt(monthsDiff[1]) - 1))
         const magicPeriodMinimumDate = new Date(this.dateFilterLimits('min') + ' 00:00')
+        const subtractedDateTime = new Date(subtractedDate.getFullYear(), subtractedDate.getMonth()).getTime()
+        const magicPeriodMinimumDateTime = new Date(magicPeriodMinimumDate.getFullYear(), magicPeriodMinimumDate.getMonth()).getTime()
+        const isSubtractedDateLessThanActualDate = magicPeriodMinimumDateTime > subtractedDateTime
 
-        subtractedDate.setMonth(
-          new Date(magicPeriodMinimumDate.getFullYear(), magicPeriodMinimumDate.getMonth()).getTime() >
-          new Date(subtractedDate.getFullYear(), subtractedDate.getMonth()).getTime()
+        subtractedDate.setMonth(isSubtractedDateLessThanActualDate
             ? magicPeriodMinimumDate.getMonth()
-            : subtractedDate.getMonth())
+            : subtractedDate.getMonth()
+        )
+
+        subtractedDate.setFullYear(isSubtractedDateLessThanActualDate
+            ? magicPeriodMinimumDate.getFullYear()
+            : subtractedDate.getFullYear()
+        )
 
         this.monthsPeriod = [
           `${subtractedDate.getFullYear()}-${('00' + (subtractedDate.getMonth() + 1)).substr(-2)}`,
