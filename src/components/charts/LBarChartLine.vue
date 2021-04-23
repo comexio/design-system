@@ -20,7 +20,9 @@
           <span
             v-else
             class="LBarChart__title font-md"
+            :class="{'LBarChart__title__clickable': isClickable}"
             :style="{minWidth: titleWidth}"
+            @click="tittleClick(data.title)"
           >
             {{ data.title }}
           </span>
@@ -195,6 +197,10 @@ export default {
     minLineHeight: {
       type: String,
       default: 'auto'
+    },
+    isClickable: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -222,6 +228,9 @@ export default {
     },
     toggleLastItem () {
       this.$emit('toggleLast')
+    },
+    tittleClick (value) {
+      this.$emit('tittleClick', value)
     }
   }
 }
@@ -244,6 +253,9 @@ export default {
   }
   .LBarChart__title, .LBarChart__description {
     font-size: 0.7rem;
+  }
+  .LBarChart__title__clickable {
+    cursor: pointer;
   }
   .LBarChart__title {
     display: inline-block;

@@ -9,8 +9,10 @@
       :is-last-item="isLastItem(index)"
       :others-label="othersLabel"
       :min-line-height="minLineHeight"
+      :is-clickable="isClickable"
       v-bind="$attrs"
       @toggleLast="toggleLast"
+      @tittleClick="tittleClick"
     />
   </v-list>
 </template>
@@ -43,6 +45,10 @@ export default {
     minLineHeight: {
       type: String,
       default: 'auto'
+    },
+    isClickable: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -51,6 +57,9 @@ export default {
     },
     toggleLast () {
       this.$emit('toggleLast')
+    },
+    tittleClick (value) {
+      this.$emit('tittleClick', value)
     }
   }
 }
