@@ -103,7 +103,7 @@ describe('LTable', () => {
   })
 
   it('click on data', async () => {
-    table.setProps({ data: itemsFake.slice(0, 1), isClickable: true })
+    table.setProps({ data: itemsFake.slice(0, 1) })
     await table.vm.$nextTick()
 
     const lines = () => table.find('.LSimpleTable__table__line')
