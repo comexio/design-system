@@ -7,6 +7,8 @@ export default {
   argTypes: {
     data: { control: 'object', description: 'Chart data object: title, description, quantity, total, percentage' },
     color: { control: 'color', description: 'Chart color' },
+    isClickable: { control: 'boolean', description: 'Set the mouse type as a pointer when hovering over the title' },
+    click: { action: 'click', description: 'Trigger a click event' },
     maxQuantity: { table: {disable: true} },
     othersLabel: { table: {disable: true} },
     toggleLast: { table: {disable: true} },
@@ -20,7 +22,7 @@ const Template = (args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: { LBarChart },
-  template: '<l-bar-chart v-bind="$props"> </l-bar-chart>'
+  template: '<l-bar-chart @click="click" v-bind="$props"> </l-bar-chart>'
 });
 
 export const Default = Template.bind({});
@@ -48,4 +50,32 @@ Default.args = {
   },],
   color: '#D4C5EB',
   hasTitle: true,
+};
+
+export const TitleClickable = Template.bind({});
+TitleClickable.args = {
+  data: [{
+    title: "Label",
+    description: "Description",
+    quantity: "Quantity",
+    total: "Value",
+    percentage: 0
+  },
+  {
+    title: "Label",
+    description: "Description",
+    quantity: "Quantity",
+    total: "Value",
+    percentage: 0
+  },
+  {
+    title: "Label",
+    description: "Description",
+    quantity: "Quantity",
+    total: "Value",
+    percentage: 0
+  },],
+  color: '#D4C5EB',
+  hasTitle: true,
+  isClickable: true,
 };

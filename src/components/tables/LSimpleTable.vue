@@ -35,6 +35,8 @@
             v-for="(item, index) in data"
             :key="index"
             class="LSimpleTable__table__line"
+            :class="{'LSimpleTable__table__line--clickable': isClickable}"
+            @click="handleTitleClick(item.title)"
           >
             <td
               v-for="(value, key) in Object.values(item)"
@@ -74,7 +76,11 @@ export default {
       type: Array,
       default: () => ([])
     },
-    loading: Boolean
+    loading: Boolean,
+    isClickable: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
@@ -112,6 +118,11 @@ export default {
       const bottomOfPage = scrollTop + visible + 25 >= pageHeight
 
       return bottomOfPage
+    },
+    handleTitleClick (value) {
+      if (this.isClickable) {
+        this.$emit('click', value)
+      }
     }
   }
 }
@@ -165,6 +176,10 @@ export default {
 
   .LSimpleTable__table__line__value {
     white-space: nowrap;
+  }
+
+  .LSimpleTable__table__line--clickable {
+    cursor: pointer;
   }
 
   .LSimpleTable__loading {
