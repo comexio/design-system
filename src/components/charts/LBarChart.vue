@@ -12,7 +12,7 @@
       :is-clickable="isClickable"
       v-bind="$attrs"
       @toggleLast="toggleLast"
-      @tittleClick="tittleClick"
+      @titleClick="handleTitleClick"
     />
   </v-list>
 </template>
@@ -58,8 +58,8 @@ export default {
     toggleLast () {
       this.$emit('toggleLast')
     },
-    tittleClick (value) {
-      this.$emit('tittleClick', value)
+    handleTitleClick (value) {
+      this.$emit('click', value)
     }
   }
 }

@@ -11,6 +11,8 @@ export default {
     othersLabel: { table: {disable: true} },
     toggleLast: { table: {disable: true} },
     hasTitle: { table: {disable: true} },
+    isClickable: { default: true },
+    click: { action: 'click', description: 'Trigger a click event' },
   },
 };
 

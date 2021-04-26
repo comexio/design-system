@@ -20,9 +20,9 @@
           <span
             v-else
             class="LBarChart__title font-md"
-            :class="{'LBarChart__title__clickable': isClickable}"
+            :class="{'LBarChart__title--clickable': isClickable}"
             :style="{minWidth: titleWidth}"
-            @click="tittleClick(data.title)"
+            @click="titleClick(data.title)"
           >
             {{ data.title }}
           </span>
@@ -229,8 +229,8 @@ export default {
     toggleLastItem () {
       this.$emit('toggleLast')
     },
-    tittleClick (value) {
-      this.$emit('tittleClick', value)
+    titleClick (value) {
+      this.$emit('titleClick', value)
     }
   }
 }
@@ -254,7 +254,7 @@ export default {
   .LBarChart__title, .LBarChart__description {
     font-size: 0.7rem;
   }
-  .LBarChart__title__clickable {
+  .LBarChart__title--clickable {
     cursor: pointer;
   }
   .LBarChart__title {

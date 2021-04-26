@@ -35,8 +35,8 @@
             v-for="(item, index) in data"
             :key="index"
             class="LSimpleTable__table__line"
-            :class="{'LSimpleTable__table__line_clickable': isClickable}"
-            @click="tittleClick(item.title)"
+            :class="{'LSimpleTable__table__line--clickable': isClickable}"
+            @click="handleTitleClick(item.title)"
           >
             <td
               v-for="(value, key) in Object.values(item)"
@@ -119,8 +119,8 @@ export default {
 
       return bottomOfPage
     },
-    tittleClick (value) {
-      this.$emit('tittleClick', value)
+    handleTitleClick (value) {
+      this.$emit('click', value)
     }
   }
 }
@@ -176,7 +176,7 @@ export default {
     white-space: nowrap;
   }
 
-  .LSimpleTable__table__line_clickable {
+  .LSimpleTable__table__line--clickable {
     cursor: pointer;
   }
 
