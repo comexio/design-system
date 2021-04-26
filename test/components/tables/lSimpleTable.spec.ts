@@ -72,7 +72,7 @@ const itemsFake = [
   }
 ]
 
-describe('LTable', () => {
+describe('LSimpleTable', () => {
   let table: Wrapper<LSimpleTable>
   beforeAll(() => {
     table = mount(LSimpleTable, {
@@ -102,13 +102,23 @@ describe('LTable', () => {
     expect(lines().length).toBe(11)
   })
 
-  it('click on data', async () => {
-    table.setProps({ data: itemsFake.slice(0, 1) })
+  it('click on data with clickable false', async () => {
+    table.setProps({ data: itemsFake.slice(0, 1), isClickable: false })
     await table.vm.$nextTick()
 
     const lines = () => table.find('.LSimpleTable__table__line')
     lines().trigger('click')
-    expect(table.emitted().expandList).toBeFalsy()
+    expect(table.emitted().click).toBeFalsy()
+    await table.vm.$nextTick()
+  })
+
+  it('click on data with clickable true', async () => {
+    table.setProps({ data: itemsFake.slice(0, 1), isClickable: true })
+    await table.vm.$nextTick()
+    expect(table.emitted().click).toBeFalsy()
+
+    const lines = () => table.find('.LSimpleTable__table__line')
+    lines().trigger('click')
     await table.vm.$nextTick()
     expect(table.emitted().click).toBeTruthy()
   })
@@ -118,7 +128,7 @@ describe('LTable', () => {
     await table.vm.$nextTick()
 
     let classes = table.find('.LSimpleTable__table__line').classes()
-    expect(classes.length).toBe(1)
+    expect(classes.length).toBe(2)
     table.setProps({ isClickable: true })
     await table.vm.$nextTick()
 

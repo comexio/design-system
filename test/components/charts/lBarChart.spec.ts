@@ -96,8 +96,19 @@ describe('barChart component', () => {
     expect(listItens().length).toBe(0)
   })
 
-  it('click on data', async () => {
-    barChart.setProps({ data: barChartData.slice(0, 1) })
+  it('click on data with clickable false', async () => {
+    barChart.setProps({ data: barChartData.slice(0, 1), isClickable: false })
+    await barChart.vm.$nextTick()
+
+    expect(barChart.emitted().click).toBeFalsy()
+    barChart.find('.LBarChart__title').trigger('click')
+    await barChart.vm.$nextTick()
+
+    expect(barChart.emitted().click).toEqual(undefined)
+  })
+
+  it('click on data with clickable true', async () => {
+    barChart.setProps({ data: barChartData.slice(0, 1), isClickable: true })
     await barChart.vm.$nextTick()
 
     expect(barChart.emitted().click).toBeFalsy()
@@ -113,7 +124,7 @@ describe('barChart component', () => {
     await barChart.vm.$nextTick()
 
     let classes = barChart.find('.LBarChart__title').classes()
-    expect(classes.length).toBe(2)
+    expect(classes.length).toBe(3)
     barChart.setProps({ isClickable: true })
     await barChart.vm.$nextTick()
 

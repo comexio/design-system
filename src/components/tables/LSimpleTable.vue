@@ -120,7 +120,9 @@ export default {
       return bottomOfPage
     },
     handleTitleClick (value) {
-      this.$emit('click', value)
+      if (this.isClickable) {
+        this.$emit('click', value)
+      }
     }
   }
 }

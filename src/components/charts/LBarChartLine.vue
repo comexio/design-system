@@ -230,7 +230,9 @@ export default {
       this.$emit('toggleLast')
     },
     titleClick (value) {
-      this.$emit('titleClick', value)
+      if (this.isClickable) {
+        this.$emit('titleClick', value)
+      }
     }
   }
 }
