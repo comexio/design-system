@@ -97,8 +97,34 @@ describe('LTable', () => {
   it('render body', async () => {
     table.setProps({ data: itemsFake })
     await table.vm.$nextTick()
-    console.log(table.html())
+
     const lines = () => table.findAll('tbody tr')
     expect(lines().length).toBe(11)
+  })
+
+  it('click on data', async () => {
+    table.setProps({ data: itemsFake.slice(0, 1), isClickable: true })
+    await table.vm.$nextTick()
+
+    const lines = () => table.find('.LSimpleTable__table__line')
+    lines().trigger('click')
+    expect(table.emitted().expandList).toBeFalsy()
+    await table.vm.$nextTick()
+    expect(table.emitted().click).toBeTruthy()
+  })
+
+  it('has class clickable', async () => {
+    table.setProps({ data: itemsFake.slice(0, 1) })
+    await table.vm.$nextTick()
+
+    let classes = table.find('.LSimpleTable__table__line').classes()
+    expect(classes.length).toBe(1)
+    table.setProps({ isClickable: true })
+    await table.vm.$nextTick()
+
+    classes = table.find('.LSimpleTable__table__line').classes()
+
+    expect(classes.length).toBe(2)
+    expect(classes[1]).toEqual('LSimpleTable__table__line--clickable')
   })
 })
