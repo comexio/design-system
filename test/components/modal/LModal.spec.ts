@@ -20,6 +20,9 @@ describe('LModal component', () => {
     modal.setProps({dialog: true})
   })
 
+  afterEach(() =>{
+    jest.clearAllMocks()
+  })
   it('rendering as confirmational modal (default)', () => {
     expect(modal.props('modalType')).toEqual({confirmational: true})
     expect(modal.find('.modal__button--confirm').exists()).toBe(true)
@@ -70,7 +73,7 @@ describe('LModal component', () => {
     dialog().vm.$emit('click:outside')
     await modal.vm.$nextTick()
 
-    expect(spyCloseModal).toHaveBeenCalledTimes(2)
+    expect(spyCloseModal).toHaveBeenCalledTimes(1)
     expect(modal.emitted().close).toBeTruthy()
   })
 
@@ -82,6 +85,6 @@ describe('LModal component', () => {
     dialog().vm.$emit('click:outside')
     await modal.vm.$nextTick()
 
-    expect(spyCloseModal).toHaveBeenCalledTimes(2)
+    expect(spyCloseModal).toHaveBeenCalledTimes(0)
   })
 })
