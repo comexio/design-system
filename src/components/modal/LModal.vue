@@ -4,7 +4,7 @@
     :max-width="maxWidth"
     overlay-color="overlayColor"
     :persistent="true"
-    @click:outside="closeOnOutsideClick ? closeModal : ''"
+    @click:outside="handleClickOutside"
   >
     <v-card
       class="modal"
@@ -150,6 +150,11 @@ export default {
     },
     clear () {
       this.$emit('clear')
+    },
+    handleClickOutside () {
+      if (this.closeOnOutsideClick){
+        this.closeModal()
+      }
     }
   }
 }
