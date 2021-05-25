@@ -219,6 +219,7 @@ export default {
 
   &__title, &__percent, &__number {
     font-size: 0.9rem;
+    line-height: 0.9rem;
     margin-bottom: 0px;
   }
   &__title, &__percent {
@@ -231,8 +232,9 @@ export default {
     color: $silver;
   }
   & .LLinearChartLine__result {
-    font-size: 0.8rem;
-    color: $silver;
+    font-size: 0.9rem;
+    line-height: 0.9rem;
+    color: $doveGray;
     white-space: nowrap;
     min-width: 250px;
     padding-left: 2%;
