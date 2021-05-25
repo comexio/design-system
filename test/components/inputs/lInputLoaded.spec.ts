@@ -78,7 +78,8 @@ describe('InputLoaded component (searchOnInput)', () => {
         searchOnInput: true,
         items: [],
         value: 'myValue',
-        field: 'myField'
+        field: 'myField',
+        returnObjectArray: true
       }
     })
   })

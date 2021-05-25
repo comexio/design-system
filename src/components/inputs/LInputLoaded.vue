@@ -89,7 +89,8 @@ export default {
     value: {
       type: [String, Array, Object],
       default: ''
-    }
+    },
+    returnObjectArray: Boolean
   },
   data () {
     return {
@@ -112,10 +113,16 @@ export default {
       handler (val) {
         if (!equals(this.selectedOptions, val)) {
           this.selectedOptions = val
-        }      
+        }
       }
     },
     selectedOptions (selectedOptions) {
+      if (!this.returnObjectArray) {
+        this.$emit('input', selectedOptions)
+
+        return
+      }
+
       const options = this.handleOptions(selectedOptions)
       this.$emit('input', options)
     },
@@ -133,15 +140,15 @@ export default {
   methods: {
     getItems (value) {
       const { searchOnInput, field } = this
-      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
+      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field })
     },
     handleInput (values) {
-      if(!this.searchOnInput && is(Array, values)) this.handleSelectedOptions(values)
+      if(!this.searchOnInput && is(Array, values) && this.returnObjectArray) this.handleSelectedOptions(values)
       this.searchInput = null
     },
     handleOptions (options) {
       let newOptions
-      
+
       if (typeof options === 'string') {
         newOptions = { text: options, value: options }
         if (!equals(newOptions, options)) {
@@ -155,15 +162,21 @@ export default {
           return is(Object, item) ? item : { text: item, value: item }
         })
       return newOptions
-      } 
-      
+      }
+
       if (is(Object, options)) {
         return options
       }
     },
     handleSelectedOptions (options) {
-      const addedItems = options.filter(i => i && i.text && i.value)
-      this.selectedOptions = addedItems
+      if(this.returnObjectArray) {
+        const addedItems = options.filter(i => i && i.text && i.value)
+        this.selectedOptions = addedItems
+
+        return
+      }
+
+      this.selectedOptions = options
     },
   }
 }
