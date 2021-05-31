@@ -52,21 +52,25 @@ export default {
 .LCardHeader {
   max-width: 100%;
   overflow: hidden;
-  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15px;
 }
 
 .LCardHeader {
   &__title {
-    color: #2E264D;
-    font-size: 1rem;
+    color: $martinique;
+    font-size: 14px;
     overflow: hidden;
     max-width: 100%;
   }
   &__subtitle {
     font-size: 12px;
-    color: #B8B8B8 !important;
+    color: $doveGray !important;
     overflow: hidden;
     max-width: 100%;
+    margin-top: 3px;
   }
 }
 </style>
