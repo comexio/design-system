@@ -2,7 +2,7 @@
   <v-dialog
     v-model="dialog"
     :max-width="maxWidth"
-    overlay-color="overlayColor"
+    :overlay-color="overlayColor"
     :persistent="true"
     @click:outside="handleClickOutside"
   >
