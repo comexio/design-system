@@ -12,6 +12,7 @@ export default {
     itemsWithoutDetails: { control: 'array', description: 'Receives info about when it should shows details icon' },
     labelMaxLength: {control: 'number', description: 'Max characters allowed to label'},
     maxQuantity: { action: 'number', description: 'Max items allowed' },
+    nonClickableItems: { action: 'array', description: 'List of Items that won\'t apply the cursor pointer even when the applyCursorPointer is true'},
     showToolTip: { control: 'boolean', description: 'Props to control the visibility of tooltip passed to child components' },
     translationLine: { control: 'object', description: 'Subtitles translation object: value, records, seeMore' },
     expandList: { action: 'expandList', description: 'Toggle chart expanded when "See more" clicked' },
