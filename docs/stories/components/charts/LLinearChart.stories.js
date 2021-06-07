@@ -12,7 +12,7 @@ export default {
     itemsWithoutDetails: { control: 'array', description: 'Receives info about when it should shows details icon' },
     labelMaxLength: {control: 'number', description: 'Max characters allowed to label'},
     maxQuantity: { action: 'number', description: 'Max items allowed' },
-    nonClickableItems: { action: 'array', description: 'List of Items that won\'t apply the cursor pointer even when the applyCursorPointer is true'},
+    nonClickableItems: { control: 'array', description: 'List of Items that won\'t apply the cursor pointer even when the applyCursorPointer is true'},
     showToolTip: { control: 'boolean', description: 'Props to control the visibility of tooltip passed to child components' },
     translationLine: { control: 'object', description: 'Subtitles translation object: value, records, seeMore' },
     expandList: { action: 'expandList', description: 'Toggle chart expanded when "See more" clicked' },
@@ -50,4 +50,25 @@ Minimized.args = {
         "#ae77d8"
     ],
     translationLine: { "value":"Value","records":"Percentage","seeMore":"See more" },
+};
+
+export const NonClickableItems = Template.bind({});
+NonClickableItems.args = {
+  data: [
+    { "label":"NONCLICKABLE","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
+    { "label":"CLICKABLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+    { "label":"CLICKABLE","percentage":"16.14","total":"total%","quantity":0,"value":"value" },
+    { "label":"NONCLICKABLE1","percentage":"10.29","total":"total%","quantity":0,"value":"value" },
+    { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }
+  ],
+  colors: [
+    "#51a59a",
+    "#e291da",
+    "#7dbaff",
+    "#ffb57d",
+    "#ae77d8"
+  ],
+  translationLine: { "value":"Value","records":"Percentage","seeMore":"See more" },
+  applyCursorPointer: true,
+  nonClickableItems: ['NONCLICKABLE', 'NONCLICKABLE1']
 };

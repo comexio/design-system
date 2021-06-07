@@ -129,7 +129,7 @@ export default {
       this.$emit('expandList', this.type)
     },
     eventClick (value) {
-      const hasNonClickableItems = this.nonClickableItems.find(value => value === value)
+      const hasNonClickableItems = this.nonClickableItems.find(item => item === value)
 
       if (hasNonClickableItems) {
         return
