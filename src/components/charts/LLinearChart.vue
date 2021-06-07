@@ -117,7 +117,7 @@ export default {
       return index === this.maxQuantity
     },
     isClickable(item) {
-      const hasNonClickableItems = this.nonClickableItems.find(value => value === item.label)
+      const hasNonClickableItems = this.nonClickableItems.find(label => label === item.label)
 
       if (hasNonClickableItems) {
         return false
@@ -129,7 +129,7 @@ export default {
       this.$emit('expandList', this.type)
     },
     eventClick (value) {
-      const hasNonClickableItems = this.nonClickableItems.find(item => item === value)
+      const hasNonClickableItems = this.nonClickableItems.find(label => label === value)
 
       if (hasNonClickableItems) {
         return
