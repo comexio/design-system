@@ -18,21 +18,21 @@ const dataFake = [{
     value: "16.535.343,00",
   },
   {
-    label: "ASCENSUS TRADING LOGISTICA LTDA",
+    label: "KUEHNE NAGEL SERVICOS LOGISTICOS LTDA",
     percentage: 30.92,
     quantity: 1,
     total: "360",
     value: "16.535.343,00",
   },
   {
-    label: "ASCENSUS TRADING LOGISTICA LTDA",
+    label: "SCHENKER DO BRASIL TRANSPORTES INTERNACIONAIS LTDA",
     percentage: 30.92,
     quantity: 1,
     total: "360",
     value: "16.535.343,00",
   },
   {
-    label: "ASCENSUS TRADING LOGISTICA LTDA",
+    label: "AGILITY DO BRASIL LOGISTICA INTERNACIONAL SA",
     percentage: 30.92,
     quantity: 1,
     total: "360",
@@ -47,6 +47,9 @@ const dataFake = [{
   }
 ]
 
+const nonClickableItemsFake = [
+  'ASCENSUS TRADING LOGISTICA LTDA'
+]
 
 describe('linearChart component', () => {
   let linearChart: Wrapper<LLinearChart>
@@ -101,5 +104,14 @@ describe('linearChart component', () => {
     linearChart.setProps({labelMaxLength: 5})
     await linearChart.vm.$nextTick()
     expect(linearChart.find('.LLinearChartLine__label').text()).toBe('ASCEN...')
+  })
+
+  it('check if have non clickable items',  () =>{
+    linearChart.setProps({ nonClickableItems: nonClickableItemsFake, applyCursorPointer: true})
+    const isClickableFalse = linearChart.vm.isClickable(dataFake[0])
+    const isClickableTrue = linearChart.vm.isClickable(dataFake[1])
+
+    expect(isClickableFalse).toBeFalsy()
+    expect(isClickableTrue).toBeTruthy()
   })
 })
