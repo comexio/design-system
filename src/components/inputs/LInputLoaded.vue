@@ -16,6 +16,8 @@
       class="rm-radius-left rm-radius-right LInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
+      @focus="isInputSelected = true"
+      @blur="isInputSelected = false"
     >
       <template #append>
         <v-icon
@@ -40,7 +42,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNoItems"
+      v-if="hasNoItems && isInputSelected"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -93,6 +95,7 @@ export default {
   },
   data () {
     return {
+      isInputSelected: false,
       selectedOptions: null,
       searchInput: null
     }
@@ -164,7 +167,7 @@ export default {
     handleSelectedOptions (options) {
       const addedItems = options.filter(i => i && i.text && i.value)
       this.selectedOptions = addedItems
-    },
+    }
   }
 }
 </script>
