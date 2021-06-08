@@ -150,6 +150,7 @@ export default {
         if (!equals(newOptions, options)) {
          return newOptions
         }
+        
         return
       }
 
@@ -157,6 +158,7 @@ export default {
         newOptions = options.map((item) => {
           return is(Object, item) ? item : { text: item, value: item }
         })
+
       return newOptions
       } 
       
