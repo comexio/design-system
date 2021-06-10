@@ -1,3 +1,5 @@
+import { String2HexCodeColor } from 'string-to-hex-code-color'
+
 export function stringColorToRGBA (color: string, colorRelation = {}, alpha: Number | null = null) {
   const regexp = /^#(?:[0-9a-fA-F]{3}){1,2}$/
   const regexTest = regexp.test(color)
@@ -21,4 +23,9 @@ export function stringColorToRGBA (color: string, colorRelation = {}, alpha: Num
   }
 
   return `rgb(${red}, ${green}, ${blue})`
+}
+
+export function generateHexColorByString(string: string) {
+  const string2HexCodeColor = new String2HexCodeColor()
+  return string2HexCodeColor.stringToColor(string, -0.2)
 }
