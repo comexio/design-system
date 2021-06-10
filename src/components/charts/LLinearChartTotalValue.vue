@@ -189,26 +189,6 @@ export default {
       white-space: nowrap;
     }
   }
-
-  .modalAutomaticFilter__modal__title,
-  .modalAutomaticFilter__modal__text {
-    color: $martinique;
-    text-align: center;
-  }
-  .modalAutomaticFilter__modal__title {
-    font-size: 1.2rem;
-  }
-  .modalAutomaticFilter__modal {
-    min-width: 415px !important;
-  }
-  .modalAutomaticFilter__modal__text,
-  .modalAutomaticFilter__modal__remaining {
-    font-size: 1rem;
-  }
-  .modalAutomaticFilter__modal__remaining {
-    color: $silver;
-    text-align: center;
-  }
   .v-card__text {
     padding-bottom: 0 !important;
   }
