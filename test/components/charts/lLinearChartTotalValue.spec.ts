@@ -16,9 +16,7 @@ const defaultParams = {
   propsData: {
     data,
     title: 'titulo do grafico',
-    totalValue: '890919',
-    generateColor: true,
-    isTagChart: true,
+    totalValue: '890919'
   }
 }
 

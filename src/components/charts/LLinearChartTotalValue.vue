@@ -51,15 +51,7 @@ export default {
     totalValue: {
       type: String,
       default: '',
-    },
-    generateColor: {
-      type: Boolean,
-      default: false,
-    },
-    isTagChart: {
-      type: Boolean,
-      default: false,
-    },
+    }
   },
   data() {
     return {
@@ -68,6 +60,8 @@ export default {
       colors: ["#7d8aff", "#ffa57d", "#ff7da9", "#51a59a", "#7851a5"],
       isExpanded: false,
       isExpandable: false,
+      generateColor: true,
+      isTagChart: true,
       chartsIndicator: CHARTS_INDICATOR.FOB,
     };
   },
@@ -149,7 +143,7 @@ export default {
     },
 
     colorize(color, text) {
-      return this.$props.generateColor ? generateHexColorByString(text) : color;
+      return this.generateColor ? generateHexColorByString(text) : color;
     },
     quantityData(data) {
       if ("shipmentQuantity" in data) {
