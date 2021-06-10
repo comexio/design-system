@@ -112,6 +112,9 @@ export default {
       default: () => []
     }
   },
+  creeated() {
+    console.log('BRASIL', this.data)
+  },
   methods: {
     isLastItem (index) {
       return index === this.maxQuantity
