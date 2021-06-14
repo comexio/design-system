@@ -99,6 +99,10 @@ export default {
     monthsList: {
       type: Array,
       required: true
+    },
+    periodKeys: {
+      type: Object,
+      default: () => ({})
     }
   },
   data () {
@@ -161,6 +165,10 @@ export default {
       const { min, max } = this.dateLimit
       const months = monthDiff(new Date(min), new Date(max))
       const periods = monthPeriodsByQuantity(months)
+
+      Object.keys(periods).forEach((key) => {
+        periods[key] = this.periodKeys[key]
+      })
 
       return Object.keys(periods).length
         ? periods : null
