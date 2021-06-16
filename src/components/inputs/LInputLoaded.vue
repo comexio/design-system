@@ -24,7 +24,7 @@
           v-if="icon"
           color="wisteria"
         >
-          {{ searchOnInput ? 'mdi-magnify' : 'mdi-chevron-down' }}
+          {{ searchOnInput ? '' : 'mdi-chevron-down' }}
         </v-icon>
         <v-icon v-else />
       </template>

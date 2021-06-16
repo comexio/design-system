@@ -87,7 +87,6 @@ describe('InputLoaded component (searchOnInput)', () => {
   const mockInputResult = [{text: 'testInput', value: 'testInput'}]
 
   it('render searchOnInput variant correctly', async () => {
-    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-magnify')
     expect(inputLoaded.props('searchMinCharacteres')).toBe(3)
 
     const extraField = inputLoaded.find('.LInputLoaded__search--information')
