@@ -29,5 +29,4 @@ Default.args = {
         {label: 'Item4', value: 4},
       ],
     selectedItems: [1, 3],
-
 };
