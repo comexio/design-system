@@ -102,6 +102,10 @@ export default {
         }
       }
 
+      if(this.selected.length) {
+        this.$emit('input', this.selected)
+      }
+
       this.$emit('updatedItems', this.selected)
     },
     inputSearch () {
