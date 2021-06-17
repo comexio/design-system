@@ -15,7 +15,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LCheckboxList },
-  template: `<l-checkbox-list v-bind="$props" @input="input" @updatedItems="updatedItems"></l-checkbox-list>`,
+  template: `<l-checkbox-list v-bind="$props" @updatedItems="updatedItems"></l-checkbox-list>`,
 });
 
 export const Default = Template.bind({});
