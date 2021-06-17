@@ -54,14 +54,16 @@ describe('selectNamed component', () => {
   })
 
   it('select first item', async () => {
-    const list = () => checkboxList.findAll('.LCheckboxList__group__list .LCheckboxList__group__item')
-    const firstItem = () => list().at(0)
+    const itemList = () => checkboxList.findAll('.LCheckboxList__group__list .LCheckboxList__group__item')
+    const firstItem = () => itemList().at(0)
 
     firstItem().find('.v-label').trigger('click')
 
     await checkboxList.vm.$nextTick()
 
     expect(checkboxList.vm.selected).toEqual(['armador'])
+    expect(checkboxList.emitted().input).toEqual([[['armador']]])
+
   })
 
   it('toggle select all items', async () => {

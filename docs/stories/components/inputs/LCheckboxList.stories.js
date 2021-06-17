@@ -15,16 +15,16 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LCheckboxList },
-  template: `<l-checkbox-list v-bind="$props" @updatedItems="updatedItems"></l-checkbox-list>`,
+  template: `<l-checkbox-list v-bind="$props" @input="input" @updatedItems="updatedItems"></l-checkbox-list>`,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   items: [
-      {label: 'Item1', value: 1}, 
-      {label: 'Item2', value: 2}, 
-      {label: 'Item3', value: 3}, 
-      {label: 'Item4', value: 4}, 
+      {label: 'Item1', value: 1},
+      {label: 'Item2', value: 2},
+      {label: 'Item3', value: 3},
+      {label: 'Item4', value: 4},
     ],
   selectedItems: [1, 3],
   translation: {input: 'Search', select: 'Select all'}
