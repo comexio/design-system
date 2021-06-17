@@ -10,37 +10,37 @@ const defaultParams = {
 const headerFake = ['Posição', 'Empresas', 'Valores', 'Quantidade']
 
 const fakeData = [{
-    label: "DIAGEO BRASIL LTDA",
+    label: "KUEHNE NAGEL SERVICOS LOGISTICOS LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "AGILITY DO BRASIL LOGISTICA INTERNACIONAL SA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "DHL GLOBAL FORWARDING BRAZIL LOGISTICS LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "HAND LINE TRANSPORTES INTERNACIONAIS LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "BLU LOGISTICS BRASIL TRANSPORTES INTERNACIONAIS LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
     value: "3.208.864,00"
   }, {
-    label: "DIAGEO BRASIL LTDA",
+    label: "ASCENSUS TRADING LOGISTICA LTDA",
     percentage: 6,
     quantity: 1,
     total: "81",
@@ -52,6 +52,12 @@ const fakeData = [{
     total: "81",
     value: "3.208.864,00"
   }
+]
+
+const nonClickableItemsFake = [
+  'AGILITY DO BRASIL LOGISTICA INTERNACIONAL SA',
+  'KUEHNE NAGEL SERVICOS LOGISTICOS LTDA',
+  'DHL GLOBAL FORWARDING BRAZIL LOGISTICS LTDA'
 ]
 
 describe('linearChartExpand component', () => {
@@ -175,5 +181,22 @@ describe('linearChartExpand component with data to show in ToolTip', () => {
 
     expect(toolTips().length).toBe(2)
     expect(linearChartExpand.vm.data[0].toolTipContent).toBe('One message')
+  })
+
+  it('check if have non clickable items',  () =>{
+    linearChartExpand.setProps({ nonClickableItems: nonClickableItemsFake, applyCursorPointer: true})
+    const isClickableFalseOne= linearChartExpand.vm.isClickable(fakeData[0])
+    const isClickableFalseTwo = linearChartExpand.vm.isClickable(fakeData[1])
+    const isClickableFalseTree = linearChartExpand.vm.isClickable(fakeData[2])
+    const isClickableTrueOne = linearChartExpand.vm.isClickable(fakeData[3])
+    const isClickableTrueTwo = linearChartExpand.vm.isClickable(fakeData[4])
+    const isClickableTrueTree = linearChartExpand.vm.isClickable(fakeData[5])
+
+    expect(isClickableFalseOne).toBeFalsy()
+    expect(isClickableFalseTwo).toBeFalsy()
+    expect(isClickableFalseTree).toBeFalsy()
+    expect(isClickableTrueOne).toBeTruthy()
+    expect(isClickableTrueTwo).toBeTruthy()
+    expect(isClickableTrueTree).toBeTruthy()
   })
 })
