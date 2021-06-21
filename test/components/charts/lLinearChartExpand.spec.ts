@@ -200,3 +200,31 @@ describe('linearChartExpand component with data to show in ToolTip', () => {
     expect(isClickableTrueTree).toBeTruthy()
   })
 })
+
+describe('linearChartExpand component with data and nonClickableItems', () => {
+  let linearChartExpand: Wrapper<LLinearChartExpand>
+
+  beforeAll(() => {
+    linearChartExpand = mount(LLinearChartExpand, {
+      ...defaultParams,
+      propsData: {
+        data: fakeData,
+        nonClickableItems: nonClickableItemsFake,
+        applyCursorPointer: true,
+        showToolTip: true
+      }
+    })
+  })
+
+  it('check eventClicks on nonClickableItems and clickableItems', async () => {
+    const dataItem = () => linearChartExpand.findAll('.LLinearChartExpand__table__line')
+    dataItem().at(5).findAll('td').at(1).trigger('click')
+    await linearChartExpand.vm.$nextTick()
+    expect(linearChartExpand.emitted()).toEqual({"hook:beforeCreate": [[]], "hook:beforeMount": [[]], "hook:created": [[]], "hook:mounted": [[]]})
+
+    dataItem().at(5).find('span').trigger('click')
+    await linearChartExpand.vm.$nextTick()
+    expect(linearChartExpand.emitted()).toEqual({"eventClick": [["ASCENSUS TRADING LOGISTICA LTDA"]],"hook:beforeCreate": [[]], "hook:beforeMount": [[]], "hook:created": [[]], "hook:mounted": [[]]})
+  })
+
+})
