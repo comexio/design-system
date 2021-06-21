@@ -13,8 +13,18 @@
     class="elevation-1 LTable"
   >
     <template
+      v-for="(index, name) in $scopedSlots"
+      #[name]="data"
+    >
+      <slot
+        :name="name"
+        v-bind="data"
+      />
+    </template>
+
+    <template
       v-if="truncateItems"
-      v-slot:body
+      #[`body.append`]
     >
       <tbody v-if="filteredItem.length">
         <tr
