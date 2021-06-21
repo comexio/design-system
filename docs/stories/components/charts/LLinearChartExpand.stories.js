@@ -49,9 +49,10 @@ NonClickableItems.args = {
     { "label":"NONCLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
     { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
     { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-    { "label":"NONCLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"NONCLICKABLE1","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
     { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
     { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" }
   ],
+  applyCursorPointer: true,
   nonClickableItems: ['NONCLICKABLE', 'NONCLICKABLE1']
 };
