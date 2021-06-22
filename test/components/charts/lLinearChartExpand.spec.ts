@@ -220,11 +220,11 @@ describe('linearChartExpand component with data and nonClickableItems', () => {
     const dataItem = () => linearChartExpand.findAll('.LLinearChartExpand__table__line')
     dataItem().at(5).findAll('td').at(1).trigger('click')
     await linearChartExpand.vm.$nextTick()
-    expect(linearChartExpand.emitted()).toEqual({"hook:beforeCreate": [[]], "hook:beforeMount": [[]], "hook:created": [[]], "hook:mounted": [[]]})
+    expect(linearChartExpand.emitted().eventClick).toBeFalsy()
 
     dataItem().at(5).find('span').trigger('click')
     await linearChartExpand.vm.$nextTick()
-    expect(linearChartExpand.emitted()).toEqual({"eventClick": [["ASCENSUS TRADING LOGISTICA LTDA"]],"hook:beforeCreate": [[]], "hook:beforeMount": [[]], "hook:created": [[]], "hook:mounted": [[]]})
+    expect(linearChartExpand.emitted().eventClick).toBeTruthy()
   })
 
 })
