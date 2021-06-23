@@ -44,6 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_main.scss';
+
 .LInputSolo {
   ::v-deep {
     @extend .commonInput;
