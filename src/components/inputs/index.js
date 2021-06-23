@@ -1,4 +1,5 @@
 import LLabeledInput from './LLabeledInput'
+import LLabeledSelect from "./LLabeledSelect";
 import LInputButton from './LInputButton'
 import LInputSolo from './LInputSolo'
 import LSelectSolo from './LSelectSolo'
@@ -15,6 +16,7 @@ import LCheckbox from './LCheckbox'
 
 export {
     LLabeledInput,
+    LLabeledSelect,
     LInputButton,
     LInputSolo,
     LSelectSolo,
