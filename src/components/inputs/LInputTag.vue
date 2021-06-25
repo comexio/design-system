@@ -2,14 +2,15 @@
   <v-combobox
     v-model="inputValue"
     v-bind="$attrs"
+    :hide-details="hideDetails"
     multiple
     chips
     deletable-chips
     outlined
     dense
     small-chips
-    hide-details
     class="LInputTag"
+    :class="{['hide-details']: hideDetails}"
     v-on="$listeners"
   >
     <template
@@ -37,6 +38,10 @@ export default {
       type: [String, Number, Array],
       default: null
     },
+    hideDetails: {
+      type: Boolean,
+      default: true
+    },
     expand: Boolean
   },
   computed: {
@@ -58,10 +63,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.LInputTag.hide-details {
+  ::v-deep {
+    @extend .commonCombobox;
+  }
+}
 .LInputTag {
   ::v-deep {
     @extend .commonInput;
-    @extend .commonCombobox;
   }
 }
 </style>

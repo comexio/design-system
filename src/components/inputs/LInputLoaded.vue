@@ -7,13 +7,16 @@
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="loading && !searchOnInput"
-      :placeholder="placeholder"
-      attach
-      solo
+      :placeholder="handlePla"
+      :label="handleLabel"
+      :attach="!outlined"
+      :solo="!outlined"
       dense
-      hide-details
+      :hide-details="!outlined"
       hide-selected
-      class="rm-radius-left rm-radius-right LInputLoaded"
+      :outlined="outlined"
+      class="LInputLoaded"
+      :class="{['rm-radius-left rm-radius-right']: !outlined}"
       :search-input.sync="searchInput"
       @change="handleInput"
       @focus="isInputSelected = true"
@@ -42,7 +45,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNoItems && isInputSelected"
+      v-if="hasNoItems && isInputSelected && showInformation"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -84,6 +87,14 @@ export default {
       type: Boolean,
       default: false
     },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    showInformation: {
+      type: Boolean,
+      default: true
+    },
     searchMinCharacteres: {
       type: Number,
       default: 3
@@ -107,6 +118,12 @@ export default {
     },
     hasNoItems () {
       return this.searchOnInput && !this.items.length
+    },
+    handlePlaceholder () {
+      return this.outlined ? '' : this.placeholder
+    },
+    handleLabel () {
+      return this.outlined ? this.placeholder : ''
     }
   },
   watch: {
@@ -175,7 +192,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LInputLoaded {
+.LInputLoaded.rm-radius-left {
   ::v-deep {
     @extend .commonInput;
     @extend .commonCombobox;
