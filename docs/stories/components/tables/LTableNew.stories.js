@@ -16,7 +16,7 @@ const Template = (args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: { LTableNew },
-  template: '<l-table-new v-bind="$props" v-model="date"></l-table-new>',
+  template: '<l-table-new v-bind="$props" @input="input"></l-table-new>',
 });
 
 export const Default = Template.bind({});
