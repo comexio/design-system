@@ -39,7 +39,7 @@
           >
             <td>{{ index + 5 }}</td>
             <td>
-              <template v-if="applyCursorPointer">
+              <template v-if="isClickable(item)">
                 <span
                   class="LLinearChartLine__cursor_pointer"
                   @click="eventClick(item.label)"
@@ -115,6 +115,10 @@ export default {
     showToolTip: {
       type: Boolean,
       default: false
+    },
+    nonClickableItems: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -164,6 +168,15 @@ export default {
     },
     eventClick (value) {
       return this.$emit('eventClick', value)
+    },
+    isClickable(item) {
+      const hasNonClickableItems = this.nonClickableItems.find(label => label === item.label)
+
+      if (hasNonClickableItems) {
+        return false
+      }
+
+      return this.applyCursorPointer
     }
   }
 }
