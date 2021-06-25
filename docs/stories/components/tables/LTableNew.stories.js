@@ -5,9 +5,9 @@ export default {
   title: 'Components/Tables/TableNew',
   component: LTableNew,
   argTypes: {
-    headers: {control: 'object', description: 'Chart headers object'},
-    items: { control: 'object', description: 'Chart items object'},
-    itemsPerPage: {table: {disable: true}},
+    headers: { control: 'object', description: 'Table headers object' },
+    items: { control: 'object', description: 'Table items object' },
+    input: { action: 'input', description: 'Emmited when select columns' }
   },
 };
 
