@@ -16,7 +16,7 @@ const Template = (args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: { LTableNew },
-  template: '<l-table-new v-bind="$props"></l-table-new>',
+  template: '<l-table-new v-bind="$props" v-model="date"></l-table-new>',
 });
 
 export const Default = Template.bind({});
@@ -30,5 +30,21 @@ Default.args = {
     {firstHeader: 'Item', secondHeader: 10, thirdHeader: 7.5},
     {firstHeader: 'Item', secondHeader: 15, thirdHeader: 14.3},
     {firstHeader: 'Item', secondHeader: 20, thirdHeader: 22.53},
-  ],
+  ]
 };
+
+export const SelectableRows = Template.bind({});
+SelectableRows.args = {
+  headers: [
+    {text: 'Header Example', value: 'firstHeader'},
+    {text: 'Header Example', value: 'secondHeader'},
+    {text: 'Header Example1', value: 'thirdHeader'},
+  ],
+  items: [
+    {firstHeader: 'Item1', secondHeader: 10, thirdHeader: 7.5},
+    {firstHeader: 'Item2', secondHeader: 15, thirdHeader: 14.3},
+    {firstHeader: 'Item3', secondHeader: 20, thirdHeader: 22.53},
+  ],
+  showSelect: true,
+  itemKey: 'firstHeader'
+}
