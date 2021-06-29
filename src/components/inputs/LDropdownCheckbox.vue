@@ -17,6 +17,7 @@
         </l-button-select>
       </template>
       <l-checkbox-list
+        v-model="inputValue"
         :items="items"
         :selected-items="selectedItems"
         @updatedItems="updatedItems"
@@ -43,6 +44,20 @@ export default {
     selectedItems: {
       type: Array,
       default: () => ([])
+    },
+    value: {
+      type: [String, Object, Number, Array, Boolean],
+      default: null
+    },
+  },
+  computed: {
+    inputValue: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
     }
   },
   methods: {

@@ -61,12 +61,3 @@ SearchOnInputLoaded.args = {
     placeholder: 'Im already loaded with items',
     searchOnInput: true
 };
-
-export const NoIcon = Template.bind({});
-NoIcon.args = {
-    field: 'myField',
-    icon: false,
-    items: ['First item', 'Second item', 'Third item'],
-    placeholder: 'I dont have an icon',
-    searchOnInput: true
-};

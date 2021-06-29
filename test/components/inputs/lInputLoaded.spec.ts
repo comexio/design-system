@@ -87,13 +87,27 @@ describe('InputLoaded component (searchOnInput)', () => {
   const mockInputResult = [{text: 'testInput', value: 'testInput'}]
 
   it('render searchOnInput variant correctly', async () => {
-    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-magnify')
     expect(inputLoaded.props('searchMinCharacteres')).toBe(3)
 
     const extraField = inputLoaded.find('.LInputLoaded__search--information')
+    expect(extraField.exists()).toBe(false)
+  })
 
+  it('shows information field when input is focused', async () => {
+    inputLoaded.findComponent({ name: 'v-combobox' }).vm.$emit('focus')
+    await inputLoaded.vm.$nextTick()
+    
+    const extraField = inputLoaded.find('.LInputLoaded__search--information')
     expect(extraField.exists()).toBe(true)
     expect(extraField.text()).toBe('__translation__')
+  })
+
+  it('hides information field when input is blurred', async () => {    
+    inputLoaded.findComponent({ name: 'v-combobox' }).vm.$emit('blur')
+    await inputLoaded.vm.$nextTick()
+    
+    const extraField = inputLoaded.find('.LInputLoaded__search--information')
+    expect(extraField.exists()).toBe(false)
   })
 
   it('getItems emitted correctly', () => {
