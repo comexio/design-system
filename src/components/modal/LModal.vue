@@ -35,7 +35,7 @@
       </template>
       <slot name="modalContent" />
       <template v-if="modalType.confirmational">
-        <v-divider />
+        <v-divider v-if="cancelButton || confirmButton || clearButton" />
         <v-card-actions>
           <v-btn
             v-if="clearButton"
