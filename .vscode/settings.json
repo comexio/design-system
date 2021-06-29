@@ -1,0 +1,11 @@
+{
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+    ],
+    "prettier.jsxSingleQuote": true,
+    "prettier.printWidth": 150,
+    "prettier.singleQuote": true,
+    "prettier.semi": false
+  }

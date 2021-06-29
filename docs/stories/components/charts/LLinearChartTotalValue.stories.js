@@ -4,7 +4,7 @@ import LLinearChartTotalValue from "@components/charts/LLinearChartTotalValue.vu
 const initObjects = initializeObjects()
 
 export default {
-  title: 'Components/Charts/TotalValue',
+  title: 'omponents/Charts/Primary Bar/TotalValue',
   component: LLinearChartTotalValue,
   argTypes: {
     data: { control: 'object', description: 'Data array of objects: label, percentage, total, tagToken' },
@@ -24,12 +24,12 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
     data: [{
-      label: "label teste",
+      label: "Comex",
       percentage: 100,
       tagToken: "1234",
       total: 4530
     }],
-    title: 'Titulo de teste',
+    title: 'Title comex',
     totalValue: '1234'
 };
 
