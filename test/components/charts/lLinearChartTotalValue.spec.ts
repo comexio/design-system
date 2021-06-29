@@ -7,8 +7,9 @@ const setupDefault = initSetupComponent()
 const data = [{
   label: "filter 01",
   percentage: 100,
-  tagToken: "60ba5194a191b",
-  total: 4530.32992208004
+  quantity: null,
+  value: '4.530,33',
+  total: null
 }]
 
 const defaultParams = {
