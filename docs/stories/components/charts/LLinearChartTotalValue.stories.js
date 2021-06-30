@@ -24,13 +24,12 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
     data: [{
-      label: 'Valor inicio',
-      percentage: 100,
+      label: 'An amazing label here',
+      percentage: 95,
       quantity: null,
       value: '4.530,33',
-      total: null
+      total: '4.535,00'
     }],
-    title: 'Valores de exportacao',
-    totalValue: '129502'
+    title: 'An awesome title',
+    totalValue: '6.000'
 };
-
