@@ -30,17 +30,17 @@ describe('linearChartTotalValue component', () => {
     })
   })
 
-  it('render component correctly', async () => {
+  it('renders component correctly', async () => {
     const value = linearChartTotalValue.find('h1')
     const title = linearChartTotalValue.find('h5')
     const chart = linearChartTotalValue.find('.LLinearChart')
 
     expect(value.text()).toBe('890919')
     expect(title.text()).toBe('titulo do grafico')
-    expect(chart.exists()).toBeTruthy()
+    expect(chart.exists()).toBe(true)
   })
 
-  it('render chart correctly', async () => {
+  it('renders chart correctly', async () => {
     const label = linearChartTotalValue.find('.LLinearChartLine__label')
     const value = linearChartTotalValue.find('.LLinearChartLine__result__value--first')
 
