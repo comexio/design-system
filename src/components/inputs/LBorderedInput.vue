@@ -33,8 +33,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/_variables.scss';
-
 .LBorderedInput {
   position: relative;
   border: 1px solid rgba(0, 0, 0, .24);

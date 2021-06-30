@@ -11,30 +11,30 @@ export * from './components/inputs'
 // export * from './components/bars'
 
 import * as inputs from './components/inputs'
-// import * as filters from './components/filters'
-// import * as cards from './components/cards'
-// import * as buttons from './components/buttons'
-// import * as tags from './components/tags'
-// import * as modal from './components/modal'
-// import * as charts from './components/charts'
-// import * as alerts from './components/alerts'
-// import * as tables from './components/tables'
-// import * as loadings from './components/loadings'
-// import * as bars from './components/bars'
+import * as filters from './components/filters'
+import * as cards from './components/cards'
+import * as buttons from './components/buttons'
+import * as tags from './components/tags'
+import * as modal from './components/modal'
+import * as charts from './components/charts'
+import * as alerts from './components/alerts'
+import * as tables from './components/tables'
+import * as loadings from './components/loadings'
+import * as bars from './components/bars'
 
 
 const components = {
     ...inputs,
-    // ...filters,
-    // ...cards,
-    // ...buttons,
-    // ...tags,
-    // ...modal,
-    // ...charts,
-    // ...alerts,
-    // ...tables,
-    // ...loadings,
-    // ...bars
+    ...filters,
+    ...cards,
+    ...buttons,
+    ...tags,
+    ...modal,
+    ...charts,
+    ...alerts,
+    ...tables,
+    ...loadings,
+    ...bars
 }
 
 export function install (Vue) {
