@@ -23,10 +23,10 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
     items: [
-        {label: 'Item1', value: 1}, 
-        {label: 'Item2', value: 2}, 
-        {label: 'Item3', value: 3}, 
-        {label: 'Item4', value: 4}, 
+        {label: 'Item1', value: 1},
+        {label: 'Item2', value: 2},
+        {label: 'Item3', value: 3},
+        {label: 'Item4', value: 4},
       ],
     selectedItems: [1, 3],
 };

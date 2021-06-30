@@ -42,6 +42,10 @@ export default {
       control: 'color',
       description: 'Color of the selected dates and icon'
     },
+    locale: {
+      control: 'text',
+      description: 'Locale of the datepicker'
+    },
     input: {
       table: {
         disable: true
@@ -83,3 +87,13 @@ Filled.args = {
   closeOnSelect: true
 }
 
+export const FilledEnglish = Template.bind({});
+FilledEnglish.args = {
+  date: ["2020-12-08","2020-12-18"],
+  value: ["2020-12-08","2020-12-18"],
+  limit: { min: '2020-10-01', max: '2021-01-25' },
+  rangeDays: 15,
+  itemsColor: '#FF8F1C',
+  closeOnSelect: true,
+  locale: 'en'
+}
