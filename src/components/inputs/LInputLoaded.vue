@@ -16,13 +16,15 @@
       class="rm-radius-left rm-radius-right LInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
+      @focus="isInputSelected = true"
+      @blur="isInputSelected = false"
     >
       <template #append>
         <v-icon
           v-if="icon"
           color="wisteria"
         >
-          {{ searchOnInput ? 'mdi-magnify' : 'mdi-chevron-down' }}
+          {{ searchOnInput ? '' : 'mdi-chevron-down' }}
         </v-icon>
         <v-icon v-else />
       </template>
@@ -40,7 +42,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNoItems"
+      v-if="hasNoItems && isInputSelected"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -93,6 +95,7 @@ export default {
   },
   data () {
     return {
+      isInputSelected: false,
       selectedOptions: null,
       searchInput: null
     }
@@ -147,6 +150,7 @@ export default {
         if (!equals(newOptions, options)) {
          return newOptions
         }
+        
         return
       }
 
@@ -154,6 +158,7 @@ export default {
         newOptions = options.map((item) => {
           return is(Object, item) ? item : { text: item, value: item }
         })
+
       return newOptions
       } 
       
@@ -164,7 +169,7 @@ export default {
     handleSelectedOptions (options) {
       const addedItems = options.filter(i => i && i.text && i.value)
       this.selectedOptions = addedItems
-    },
+    }
   }
 }
 </script>
