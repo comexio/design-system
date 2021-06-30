@@ -24,6 +24,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
     data: [{
+      label: 'Valor inicio',
       percentage: 100,
       quantity: null,
       value: '4.530,33',
