@@ -37,7 +37,7 @@ describe('linearChartTotalValue component', () => {
 
     expect(value.text()).toBe('890919')
     expect(title.text()).toBe('titulo do grafico')
-    expect(chart.exists()).toBeTruthy()
+    expect(chart.exists()).toBe(true)
   })
 
   it('render chart correctly', async () => {
