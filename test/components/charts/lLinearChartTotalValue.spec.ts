@@ -30,7 +30,7 @@ describe('linearChartTotalValue component', () => {
     })
   })
 
-  it('render component correctly', async () => {
+  it('renders component correctly', async () => {
     const value = linearChartTotalValue.find('h1')
     const title = linearChartTotalValue.find('h5')
     const chart = linearChartTotalValue.find('.LLinearChart')
