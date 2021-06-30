@@ -40,7 +40,7 @@ describe('linearChartTotalValue component', () => {
     expect(chart.exists()).toBe(true)
   })
 
-  it('render chart correctly', async () => {
+  it('renders chart correctly', async () => {
     const label = linearChartTotalValue.find('.LLinearChartLine__label')
     const value = linearChartTotalValue.find('.LLinearChartLine__result__value--first')
 
