@@ -102,7 +102,7 @@ export default {
   .LLinearChartLine {
     & .LLinearChartLine__result {
       font-size: 0.8rem;
-      color: #b8b8b8;
+      color: $silver;
       white-space: nowrap;
     }
   }
