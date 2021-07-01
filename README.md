@@ -1,4 +1,4 @@
-<!-- Badges session -->
+<!-- Badges sessio -->
 <p align="center">
 
   <img alt="Package version" src="https://img.shields.io/npm/v/@logcomex/design?e&style=for-the-badge">
