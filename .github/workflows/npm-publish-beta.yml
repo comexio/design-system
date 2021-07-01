@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: yarn build
     - name: Publish library
-      run: export AWS_ACCESS_KEY_ID=${RELEASE_PERSONAL_TOKEN} && npm run release
+      run: export GITHUB_TOKEN=${RELEASE_PERSONAL_TOKEN} && npm run release
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           RELEASE_PERSONAL_TOKEN: ${{ secrets.RELEASE_PERSONAL_TOKEN }}
