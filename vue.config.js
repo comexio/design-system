@@ -8,7 +8,10 @@ module.exports = {
       }
     },
     externals: [
-      // 'moment',
+      'dayjs',
+      'moment',
+      'ramda',
+      'sortablejs'
     ],
   },
   css: {
