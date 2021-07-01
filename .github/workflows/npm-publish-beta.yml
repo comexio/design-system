@@ -1,6 +1,6 @@
 name: npm-publish-beta
 on:
-  pull_request:
+  push:
     branches:
       - homol
 jobs:
@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/homol'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/homol'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
