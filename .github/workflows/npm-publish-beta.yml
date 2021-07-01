@@ -18,7 +18,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       with:
-        token: '${{ secrets.RELEASE_PERSONAL_TOKEN }}'
+        token: '${{ secrets.GITHUB_TOKEN }}'
     - name: Cache node_modules
       id: cache-modules
       uses: actions/cache@v1
@@ -30,7 +30,6 @@ jobs:
     - name: Build
       run: yarn build
     - name: Publish library
-      run: export GITHUB_TOKEN=${RELEASE_PERSONAL_TOKEN} && npm run release
+      run: npm run release
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          RELEASE_PERSONAL_TOKEN: ${{ secrets.RELEASE_PERSONAL_TOKEN }}
