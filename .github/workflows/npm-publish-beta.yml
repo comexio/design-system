@@ -15,12 +15,14 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.RELEASE_PERSONAL_TOKEN }}
     - uses: actions/setup-node@v2
       with:
         registry-url: 'https://registry.npmjs.org'
     - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
+        token: '${{ secrets.RELEASE_PERSONAL_TOKEN }}'
     - name: Cache node_modules
       id: cache-modules
       uses: actions/cache@v1
@@ -35,4 +37,4 @@ jobs:
       run: npm run release
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PERSONAL_TOKEN }}
