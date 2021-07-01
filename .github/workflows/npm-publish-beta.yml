@@ -1,8 +1,9 @@
 name: npm-publish-beta
 on:
-  push:
+  workflow_run:
+    workflows: ['pr-validate']
     branches:
-      - homol
+      - 'beta/**'
 jobs:
   publish:
     name: Build & Publish
@@ -10,7 +11,6 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/homol'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -33,4 +33,4 @@ jobs:
       run: npm run release
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
