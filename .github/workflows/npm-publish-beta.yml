@@ -2,7 +2,7 @@ name: npm-publish-beta
 on:
   push:
     branches:
-      - 'homol'
+      - homol
 jobs:
   publish:
     name: Build & Publish
@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
+    if: github.event_name == 'push' && github.ref != 'refs/heads/homol'
     steps:
     - uses: actions/checkout@v2
       with:
