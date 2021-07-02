@@ -18,7 +18,7 @@
     "docs": "start-storybook -p 6006",
     "build-docs": "build-storybook",
     "chromatic": "npx chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
-    "release": "release-it prerelease --ci"
+    "release-beta": "release-it prerelease --ci"
   },
   "main": "./dist/design.common.js",
   "types": "./types",
