@@ -1,8 +1,10 @@
 name: npm-publish-beta
 on:
-  pull_request:
+  push:
     branches:
       - homol
+    paths-ignore:
+      - 'package.json'
 jobs:
   publish:
     name: Build & Publish
