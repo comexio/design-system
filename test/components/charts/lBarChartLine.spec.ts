@@ -15,7 +15,7 @@ const dataMock = {
   total: '116.613.349,5174'
 }
 
-describe('barChartLine only with data', () => {
+describe('LBarChartLine only with data', () => {
   addElemWithDataAppToBody()
   let barChartLine: Wrapper<LBarChartLine>
 
@@ -34,7 +34,7 @@ describe('barChartLine only with data', () => {
   })
 })
 
-describe('barChartLine with data and hasTitle property', () => {
+describe('LBarChartLine with data and hasTitle property', () => {
   addElemWithDataAppToBody()
   let barChartLine: Wrapper<LBarChartLine>
 
@@ -60,7 +60,7 @@ describe('barChartLine with data and hasTitle property', () => {
   })
 })
 
-describe('barChartLine with data, hasTitle, toggleLast and isLastItem', () => {
+describe('LBarChartLine with data, hasTitle, toggleLast and isLastItem', () => {
   addElemWithDataAppToBody()
   let barChartLine: Wrapper<LBarChartLine>
 
