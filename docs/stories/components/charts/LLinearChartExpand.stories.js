@@ -14,7 +14,8 @@ export default {
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
     applyCursorPointer: { control: 'boolean', description: 'Validation to apply css with pointer' },
     tableHeight: { control: 'string', description: 'Add explicity heigth to table' },
-    showToolTip: { description: 'Props to control the visibility of tooltip on item labels' }
+    showToolTip: { description: 'Props to control the visibility of tooltip on item labels' },
+    nonClickableItems: { control: 'array', description: 'List of Items that won\'t apply the cursor pointer even when the applyCursorPointer is true'},
   },
 };
 
@@ -30,13 +31,28 @@ const Template = (args, { argTypes }) => ({
 
 export const Expanded = Template.bind({});
 Expanded.args = {
-    headers: ["Header","Header","Header","Header"],
-    data: [
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
-        { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" }
-    ]
+  headers: ["Header","Header","Header","Header"],
+  data: [
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"Value","percentage":"Value","total":"Value","quantity":0,"value":"Value" }
+  ]
+};
+
+export const NonClickableItems = Template.bind({});
+NonClickableItems.args = {
+  headers: ["Header","Header","Header","Header"],
+  data: [
+    { "label":"NONCLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"NONCLICKABLE1","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" },
+    { "label":"CLICKABLE","percentage":"Value","total":"Value","quantity":0,"value":"Value" }
+  ],
+  applyCursorPointer: true,
+  nonClickableItems: ['NONCLICKABLE', 'NONCLICKABLE1']
 };

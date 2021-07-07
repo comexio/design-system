@@ -45,7 +45,7 @@
         range
         :show-current="false"
         :allowed-dates="isDateAllowed"
-        :locale="i18nLocale"
+        :locale="locale"
         type="month"
         color="blurred"
         event-color="blurred"
@@ -99,6 +99,10 @@ export default {
     monthsList: {
       type: Array,
       required: true
+    },
+    locale: {
+      type: String,
+      default: 'pt'
     }
   },
   data () {
@@ -164,9 +168,6 @@ export default {
 
       return Object.keys(periods).length
         ? periods : null
-    },
-    i18nLocale () {
-      return this.$i18n.locale
     }
   },
   watch: {
