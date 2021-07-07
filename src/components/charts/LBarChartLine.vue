@@ -1,25 +1,27 @@
 <template>
   <v-list-item
-    class="LBarChart__list__item"
+    class="LBarChart__list__item pr-0"
     :min-height="minLineHeight"
     dense
   >
     <v-row class="align-center controlRowWidth pb-1 flex-nowrap">
       <v-col
         v-if="hasTitle"
-        class="py-0 pr-0 flex-grow-0"
+        class="py-0 pr-0 pl-0 flex-grow-0"
       >
         <div
           class="d-flex align-center"
         >
           <span
             v-if="isLastItem"
-            class="LBarChart__title"
+            class="LBarChart__title font-md mr-1"
             :style="{minWidth: titleWidth}"
-          />
+          >
+            {{ othersLabel }}
+          </span>
           <span
             v-else
-            class="LBarChart__title font-md"
+            class="LBarChart__title font-md mr-1"
             :class="{'LBarChart__title--clickable': isClickable}"
             :style="{minWidth: titleWidth}"
             @click="titleClick(data.title)"
@@ -32,7 +34,7 @@
         <div>
           <v-row>
             <v-col
-              cols="3"
+              cols="4"
               class="py-0 d-flex"
             >
               <v-tooltip
@@ -47,7 +49,7 @@
                       class="LBarChart__description"
                       v-on="on"
                     >
-                      {{ othersLabel }}
+                      {{ !toggleLast ? othersLabel : '' }}
                       <span
                         v-if="toggleLast"
                         class="LBarChart__description__toggle"
@@ -81,7 +83,7 @@
               </v-tooltip>
             </v-col>
             <v-col
-              cols="9"
+              cols="8"
               class="py-0 pl-0"
             >
               <v-tooltip
@@ -97,6 +99,7 @@
                       :background-color=" hover ? hoverBarColor() : ''"
                       :color="color"
                       class="LBarChart__progress"
+                      height="18px"
                       :style="percentageBarFill(data, index, color)"
                       v-on="on"
                     >
@@ -239,10 +242,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .LBarChart__list__item {
-    padding-top: 1px;
-    padding-bottom: 1px;
-  }
   .LBarChart__info {
     width: 100%;
     display: inline-block;
@@ -254,14 +253,15 @@ export default {
     text-align: right;
   }
   .LBarChart__title, .LBarChart__description {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    color: $martinique;
   }
   .LBarChart__title--clickable {
     cursor: pointer;
   }
   .LBarChart__title {
     display: inline-block;
-    min-width: 60px;
+    min-width: 70px;
   }
   .LBarChart__description {
     text-overflow: ellipsis;
@@ -271,6 +271,7 @@ export default {
     display: inline-block;
     cursor: pointer;
     max-width: 250px;
+    text-align: right;
   }
   .LBarChart__description__toggle {
     @extend .globalLink;
@@ -280,7 +281,7 @@ export default {
   .LBarChart__value {
     text-align: right;
     width: 100%;
-    font-size: 9px;
+    font-size: 0.9rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -290,6 +291,10 @@ export default {
   }
   ::v-deep .v-progress-linear__content {
     z-index: unset;
+  }
+
+  .LBarChart__progress {
+    color: $martinique;
   }
 
 .controlRowWidth {
