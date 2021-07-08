@@ -1,12 +1,12 @@
 <template>
-  <div class="l-labeled-select">
+  <div class="LLabeledSelect">
     <v-select
       dense
       outlined
       height="35px"
       v-bind="$attrs"
       :rules="validityRules"
-      class="l-labeled-select--input"
+      class="LLabeledSelect__input"
       :background-color="disabled ? '#f8f8f8': ''"
       :disabled="disabled"
       v-on="$listeners"
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.l-labeled-select {
+.LLabeledSelect {
     width: 100%;
 }
 </style>

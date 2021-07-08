@@ -10,14 +10,16 @@ export default {
     items: {control: 'array', description: 'Array of items that will appear as options to select'},
     loading: {control: 'boolean', description: 'Indicates the loading state'},
     placeholder: {control: 'text', description: 'Input placeholder'},
-    searchOnInput: {control: 'boolean', description: `Indicates if the component should search for items 
+    searchOnInput: {control: 'boolean', description: `Indicates if the component should search for items
     after an input (true) or load all items from once (false)`},
     searchMinCharacteres: {control: 'number', description: 'Minimum characteres length to make a search after input'},
     value: {control: 'text', description: 'Current option selected'},
-    input: {action: 'input', description: `Emitted when an option is selected. Returns an array of objects containing options 
+    input: {action: 'input', description: `Emitted when an option is selected. Returns an array of objects containing options
     selected with text/value from each one`},
-    getItems: {action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request. 
-    It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true`}
+    getItems: {action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request.
+    It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true`},
+    outlined: {control: 'boolean', description: 'Applies the outlined style to the input'},
+    showInformation: {control: 'boolean', description: 'Displays information at search time'},
   },
 };
 
@@ -60,4 +62,22 @@ SearchOnInputLoaded.args = {
     items: ['First item', 'Second item', 'Third item'],
     placeholder: 'Im already loaded with items',
     searchOnInput: true
+};
+
+export const SearchOnInputLoadedOutlined = Template.bind({});
+SearchOnInputLoaded.args = {
+    field: 'myField',
+    items: ['First item', 'Second item', 'Third item'],
+    placeholder: 'Im already loaded with items',
+    searchOnInput: true,
+    outlined: true
+};
+
+export const SearchOnInputLoadedWithoutInformation = Template.bind({});
+SearchOnInputLoaded.args = {
+    field: 'myField',
+    items: ['First item', 'Second item', 'Third item'],
+    placeholder: 'Im already loaded with items',
+    searchOnInput: true,
+    showInformation: false
 };

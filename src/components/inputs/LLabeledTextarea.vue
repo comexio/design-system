@@ -1,11 +1,11 @@
 <template>
-  <div class="l-labeled-input">
+  <div class="LLabeledTextarea">
     <v-textarea
       dense
       outlined
       v-bind="$attrs"
       :rules="validityRules"
-      class="l-labeled-input--input"
+      class="LLabeledTextarea__input"
       :background-color="disabled ? '#f8f8f8': ''"
       :disabled="disabled"
       v-on="$listeners"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'LabeledTextArea',
+  name: 'LLabeledTextArea',
   inheritAttrs: false,
   props: {
     validity: {
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.l-labeled-input {
+.LLabeledTextarea {
     width: 100%;
 }
 </style>

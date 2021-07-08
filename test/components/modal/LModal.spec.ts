@@ -17,14 +17,14 @@ describe('LModal component', () => {
     modal = mount(LModal, {
       ...defaultParams,
     })
-    modal.setProps({dialog: true})
+    modal.setProps({ dialog: true })
   })
 
-  afterEach(() =>{
+  afterEach(() => {
     jest.clearAllMocks()
   })
   it('rendering as confirmational modal (default)', () => {
-    expect(modal.props('modalType')).toEqual({confirmational: true})
+    expect(modal.props('modalType')).toEqual({ confirmational: true })
     expect(modal.find('.modal__button--confirm').exists()).toBe(true)
     expect(modal.find('.modal__button--cancel').exists()).toBe(true)
   })
@@ -40,13 +40,13 @@ describe('LModal component', () => {
   })
 
   it('check if the cancel button does not exist', async () => {
-    modal.setProps({cancelButton: false})
+    modal.setProps({ cancelButton: false })
     await modal.vm.$nextTick()
     expect(modal.find('.modal__button--cancel').exists()).toBeFalsy()
   })
 
   it('Clear button event emitted', async () => {
-    modal.setProps({clearButton: true})
+    modal.setProps({ clearButton: true })
     await modal.vm.$nextTick()
 
     modal.find('.modal__button--clear').trigger('click')
@@ -55,10 +55,10 @@ describe('LModal component', () => {
   })
 
   it('rendering as informational modal', async () => {
-    modal.setProps({ modalType: {informational: true}})
+    modal.setProps({ modalType: { informational: true } })
     await modal.vm.$nextTick()
 
-    expect(modal.props('modalType')).toEqual({informational: true})
+    expect(modal.props('modalType')).toEqual({ informational: true })
     expect(modal.find('.modal__title__button').exists()).toBe(true)
   })
 
@@ -78,7 +78,7 @@ describe('LModal component', () => {
   })
 
   it('doesnt emit event on click outside when closeOnOutsideClick is false', async () => {
-    modal.setProps({closeOnOutsideClick: false})
+    modal.setProps({ closeOnOutsideClick: false })
     await modal.vm.$nextTick()
 
     const dialog = () => modal.findComponent({ name: 'v-dialog' })
@@ -86,5 +86,32 @@ describe('LModal component', () => {
     await modal.vm.$nextTick()
 
     expect(spyCloseModal).toHaveBeenCalledTimes(0)
+  })
+})
+
+describe('LModal component variant', () => {
+  addElemWithDataAppToBody()
+
+  let modal: Wrapper<LModal>
+
+  beforeAll(() => {
+    modal = mount(LModal, {
+      ...defaultParams,
+      propsData: {
+        dialog: true,
+        cancelButton: false,
+        confirmButton: false,
+        clearButton: false
+      }
+    })
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('variant without divider', async () => {
+    await modal.vm.$nextTick()
+    expect(modal.find('.v-divider').exists()).toBe(false)
   })
 })

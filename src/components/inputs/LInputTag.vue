@@ -10,7 +10,7 @@
     dense
     small-chips
     class="LInputTag"
-    :class="{['hide-details']: hideDetails}"
+    :class="classInputTag"
     v-on="$listeners"
   >
     <template
@@ -45,6 +45,11 @@ export default {
     expand: Boolean
   },
   computed: {
+    classInputTag () {
+      return {
+        'hide-details': !this.hideDetails
+      }
+    },
     inputValue: {
       get () {
         return this.value

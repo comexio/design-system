@@ -12,11 +12,11 @@
       :attach="!outlined"
       :solo="!outlined"
       dense
-      :hide-details="!outlined"
+      :hide-details="hideDetails"
       hide-selected
       :outlined="outlined"
       class="LInputLoaded"
-      :class="{['rm-radius-left rm-radius-right']: !outlined}"
+      :class="classInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
       @focus="isInputSelected = true"
@@ -67,6 +67,10 @@ export default {
       type: String,
       default: ''
     },
+    hideDetails: {
+      type: Boolean,
+      default: true
+    },
     icon: {
       type: Boolean,
       default: true
@@ -112,6 +116,11 @@ export default {
     }
   },
   computed: {
+    classInputLoaded () {
+      return {
+        'rm-radius-left rm-radius-right': !this.outlined
+        }
+    },
     hasEnoughCharacteres () {
       const {searchInput, searchMinCharacteres} = this
       return searchInput && searchInput.length >= searchMinCharacteres
@@ -132,7 +141,7 @@ export default {
       handler (val) {
         if (!equals(this.selectedOptions, val)) {
           this.selectedOptions = val
-        }      
+        }
       }
     },
     selectedOptions (selectedOptions) {
@@ -153,7 +162,7 @@ export default {
   methods: {
     getItems (value) {
       const { searchOnInput, field } = this
-      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
+      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field })
     },
     handleInput (values) {
       if(!this.searchOnInput && is(Array, values)) this.handleSelectedOptions(values)
@@ -161,13 +170,13 @@ export default {
     },
     handleOptions (options) {
       let newOptions
-      
+
       if (typeof options === 'string') {
         newOptions = { text: options, value: options }
         if (!equals(newOptions, options)) {
          return newOptions
         }
-        
+
         return
       }
 
@@ -177,8 +186,8 @@ export default {
         })
 
       return newOptions
-      } 
-      
+      }
+
       if (is(Object, options)) {
         return options
       }
