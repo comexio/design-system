@@ -124,14 +124,14 @@ describe('barChart component', () => {
     await barChart.vm.$nextTick()
 
     let classes = barChart.find('.LBarChart__title').classes()
-    expect(classes.length).toBe(3)
+    expect(classes.length).toBe(4)
     barChart.setProps({ isClickable: true })
     await barChart.vm.$nextTick()
 
     classes = barChart.find('.LBarChart__title').classes()
 
-    expect(classes.length).toBe(3)
-    expect(classes[2]).toEqual('LBarChart__title--clickable')
+    expect(classes.length).toBe(4)
+    expect(classes).toContain('LBarChart__title--clickable')
   })
 
   it('barChart rendered', async () => {
