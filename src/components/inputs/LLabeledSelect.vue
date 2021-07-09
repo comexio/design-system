@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'LabeledSelect',
+  name: 'LLabeledSelect',
   inheritAttrs: false,
   props: {
     validity: {
