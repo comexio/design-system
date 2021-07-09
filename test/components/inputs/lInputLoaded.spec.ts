@@ -164,7 +164,7 @@ describe('InputLoaded component (searchOnInput)', () => {
     expect(inputLoaded.find('.v-text-field--outlined').exists()).toBe(true)
   })
 
-  it('render searchOnInput variant correctly', async () => {
+  it('renders searchOnInput variant correctly', async () => {
     const tag = inputLoaded.attributes()
 
     expect(tag.message).toBe('blablabla')
