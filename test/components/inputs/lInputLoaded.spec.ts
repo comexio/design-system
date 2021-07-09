@@ -156,7 +156,7 @@ describe('InputLoaded component (searchOnInput)', () => {
     })
   })
 
-  it('render component InputLoaded', async () => {
+  it('renders component', async () => {
     expect(inputLoaded.exists()).toBe(true)
   })
 
