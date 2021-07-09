@@ -110,7 +110,7 @@ describe('LModal component variant', () => {
     jest.clearAllMocks()
   })
 
-  it('variant without divider', async () => {
+  it('renders variant without divider', async () => {
     await modal.vm.$nextTick()
     expect(modal.find('.v-divider').exists()).toBe(false)
   })
