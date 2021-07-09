@@ -7,13 +7,16 @@
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="loading && !searchOnInput"
-      :placeholder="placeholder"
-      attach
-      solo
+      :placeholder="handlePla"
+      :label="handleLabel"
+      :attach="!outlined"
+      :solo="!outlined"
       dense
-      hide-details
+      :hide-details="hideDetails"
       hide-selected
-      class="rm-radius-left rm-radius-right LInputLoaded"
+      :outlined="outlined"
+      class="LInputLoaded"
+      :class="classInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
       @focus="isInputSelected = true"
@@ -42,7 +45,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNoItems && isInputSelected"
+      v-if="hasNoItems && isInputSelected && showInformation"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -64,6 +67,10 @@ export default {
       type: String,
       default: ''
     },
+    hideDetails: {
+      type: Boolean,
+      default: true
+    },
     icon: {
       type: Boolean,
       default: true
@@ -84,6 +91,14 @@ export default {
       type: Boolean,
       default: false
     },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    showInformation: {
+      type: Boolean,
+      default: true
+    },
     searchMinCharacteres: {
       type: Number,
       default: 3
@@ -101,12 +116,23 @@ export default {
     }
   },
   computed: {
+    classInputLoaded () {
+      return {
+        'rm-radius-left rm-radius-right': !this.outlined
+      }
+    },
     hasEnoughCharacteres () {
       const {searchInput, searchMinCharacteres} = this
       return searchInput && searchInput.length >= searchMinCharacteres
     },
     hasNoItems () {
       return this.searchOnInput && !this.items.length
+    },
+    handlePlaceholder () {
+      return this.outlined ? '' : this.placeholder
+    },
+    handleLabel () {
+      return this.outlined ? this.placeholder : ''
     }
   },
   watch: {
@@ -115,7 +141,7 @@ export default {
       handler (val) {
         if (!equals(this.selectedOptions, val)) {
           this.selectedOptions = val
-        }      
+        }
       }
     },
     selectedOptions (selectedOptions) {
@@ -136,7 +162,7 @@ export default {
   methods: {
     getItems (value) {
       const { searchOnInput, field } = this
-      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field }) 
+      searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field })
     },
     handleInput (values) {
       if(!this.searchOnInput && is(Array, values)) this.handleSelectedOptions(values)
@@ -144,13 +170,13 @@ export default {
     },
     handleOptions (options) {
       let newOptions
-      
+
       if (typeof options === 'string') {
         newOptions = { text: options, value: options }
         if (!equals(newOptions, options)) {
          return newOptions
         }
-        
+
         return
       }
 
@@ -160,8 +186,8 @@ export default {
         })
 
       return newOptions
-      } 
-      
+      }
+
       if (is(Object, options)) {
         return options
       }
