@@ -119,7 +119,7 @@ export default {
     classInputLoaded () {
       return {
         'rm-radius-left rm-radius-right': !this.outlined
-        }
+      }
     },
     hasEnoughCharacteres () {
       const {searchInput, searchMinCharacteres} = this
