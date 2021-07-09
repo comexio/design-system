@@ -15,12 +15,8 @@
           v-bind="data"
         />
       </template>
-      <template
-        v-slot:no-data
-      >
-        <slot
-          name="no-data"
-        />
+      <template v-slot:no-data>
+        <slot name="no-data" />
       </template>
     </v-data-table>
   </div>
