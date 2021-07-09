@@ -160,7 +160,7 @@ describe('InputLoaded component (searchOnInput)', () => {
     expect(inputLoaded.exists()).toBe(true)
   })
 
-  it('outline-style text field', async () => {
+  it('sets outlined style', async () => {
     expect(inputLoaded.find('.v-text-field--outlined').exists()).toBe(true)
   })
 
