@@ -201,7 +201,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LInputLoaded.rm-radius-left {
+.LInputLoaded {
   ::v-deep {
     @extend .commonInput;
     @extend .commonCombobox;
