@@ -151,7 +151,7 @@ describe('InputLoaded component (searchOnInput)', () => {
         outlined: true,
         showInformation: false,
         hideDetails: false,
-        message: 'blablabla'
+        message: 'testMessage'
       }
     })
   })
@@ -167,6 +167,6 @@ describe('InputLoaded component (searchOnInput)', () => {
   it('renders searchOnInput variant correctly', async () => {
     const tag = inputLoaded.attributes()
 
-    expect(tag.message).toBe('blablabla')
+    expect(tag.message).toBe('testMessage')
   })
 })

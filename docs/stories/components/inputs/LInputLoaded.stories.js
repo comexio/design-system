@@ -13,13 +13,13 @@ export default {
     searchOnInput: {control: 'boolean', description: `Indicates if the component should search for items
     after an input (true) or load all items from once (false)`},
     searchMinCharacteres: {control: 'number', description: 'Minimum characteres length to make a search after input'},
+    showInformation: {control: 'boolean', description: 'Displays information at search time'},
+    outlined: {control: 'boolean', description: 'Applies the outlined style to the input'},
     value: {control: 'text', description: 'Current option selected'},
     input: {action: 'input', description: `Emitted when an option is selected. Returns an array of objects containing options
     selected with text/value from each one`},
     getItems: {action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request.
     It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true`},
-    outlined: {control: 'boolean', description: 'Applies the outlined style to the input'},
-    showInformation: {control: 'boolean', description: 'Displays information at search time'},
   },
 };
 
