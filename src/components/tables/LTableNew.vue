@@ -1,20 +1,29 @@
 <template>
-  <v-data-table
-    v-model="inputValue"
-    class="elevation-1 LTableNew"
-    v-bind="$attrs"
-    v-on="$listeners"
-  >
-    <template
-      v-for="(index, name) in $scopedSlots"
-      v-slot:[name]="data"
+  <div>
+    <v-data-table
+      v-model="inputValue"
+      class="elevation-1 LTableNew"
+      v-bind="$attrs"
+      v-on="$listeners"
     >
-      <slot
-        :name="name"
-        v-bind="data"
-      />
-    </template>
-  </v-data-table>
+      <template
+        v-for="(index, name) in $scopedSlots"
+        v-slot:[name]="data"
+      >
+        <slot
+          :name="name"
+          v-bind="data"
+        />
+      </template>
+      <template
+        v-slot:no-data
+      >
+        <slot
+          name="no-data"
+        />
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
