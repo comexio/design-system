@@ -162,4 +162,29 @@ describe('LTable', () => {
     expect(table.emitted().headersChange[0]).toEqual([["name", "calories", "fat", "download"]])
     expect(table.emitted().ordination[0]).toEqual([{"sortColumn": null, "sortOrder": null}])
   })
+
+  it('renders custom slot with truncated table', () => {
+    table = mount(LTable, {
+      ...defaultParams,
+      propsData:{
+        truncateItems: true
+      },
+      slots:{
+        'no-data': '<div class="test-slot">teste</div>'
+      }
+    })
+
+    expect(table.html()).toContain('<div class="test-slot">teste</div>')
+  })
+
+  it('renders custom slot without truncated table', () => {
+    table = mount(LTable, {
+      ...defaultParams,
+      slots:{
+        'no-data': '<div class="test-slot">teste</div>'
+      }
+    })
+
+    expect(table.html()).toContain('<div class="test-slot">teste</div>')
+  })
 })

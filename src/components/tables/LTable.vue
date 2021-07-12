@@ -16,7 +16,7 @@
       v-if="truncateItems"
       v-slot:body
     >
-      <tbody>
+      <tbody v-if="filteredItem.length">
         <tr
           v-for="(item, itemkey) in filteredItem"
           :key="itemkey"
@@ -76,6 +76,12 @@
           </td>
         </tr>
       </tbody>
+      <tbody v-else>
+        <slot name="no-data" />
+      </tbody>
+    </template>
+    <template v-slot:no-data>
+      <slot name="no-data" />
     </template>
   </v-data-table>
 </template>

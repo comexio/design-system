@@ -51,7 +51,7 @@
           multiple
           range
           :show-current="false"
-          :locale="i18nLocale"
+          :locale="locale"
           type="date"
           :color="itemsColor"
           :event-color="itemsColor"
@@ -71,7 +71,7 @@
           multiple
           range
           :show-current="false"
-          :locale="i18nLocale"
+          :locale="locale"
           type="date"
           :color="itemsColor"
           :event-color="itemsColor"
@@ -120,6 +120,10 @@ export default {
     datepickerStatus: {
       type: Boolean,
       default: null
+    },
+    locale: {
+      type: String,
+      default: 'pt'
     }
   },
   data () {
@@ -211,14 +215,6 @@ export default {
 
       return Object.keys(periods).length
         ? periods : null
-    },
-    i18nLocale () {
-      const { $i18n } = this
-      if ($i18n) {
-        return $i18n.locale
-      }
-
-      return null
     }
   },
   watch: {

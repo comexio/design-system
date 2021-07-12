@@ -6,7 +6,7 @@
     "github": {
       "release": true,
       "releaseName": "v%s",
-      "tokenRef": "GITHUB_TOKEN"
+      "tokenRef": "RELEASE_PERSONAL_TOKEN"
     },
     "npm": {
       "publish": true

@@ -2,7 +2,7 @@
   <v-dialog
     v-model="dialog"
     :max-width="maxWidth"
-    overlay-color="overlayColor"
+    :overlay-color="overlayColor"
     :persistent="true"
     @click:outside="handleClickOutside"
   >
@@ -35,7 +35,7 @@
       </template>
       <slot name="modalContent" />
       <template v-if="modalType.confirmational">
-        <v-divider />
+        <v-divider v-if="isDividerVisible" />
         <v-card-actions>
           <v-btn
             v-if="clearButton"
@@ -139,6 +139,11 @@ export default {
     overlayColor: {
       type: String,
       default: undefined
+    }
+  },
+  computed: {
+    isDividerVisible () {
+      return this.cancelButton || this.confirmButton || this.clearButton
     }
   },
   methods: {

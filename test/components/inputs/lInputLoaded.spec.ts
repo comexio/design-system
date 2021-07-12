@@ -29,11 +29,11 @@ describe('InputLoaded component (default)', () => {
 
 
   it('getItems emitted correctly', () => {
-    expect(inputLoaded.emitted().getItems[0]).toEqual([{field: 'myField'}])
+    expect(inputLoaded.emitted().getItems[0]).toEqual([{ field: 'myField' }])
   })
 
   it('render component with correct icon and without extra field', () => {
-    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-chevron-down')
+    expect(inputLoaded.findComponent({ name: 'v-icon' }).classes()).toContain('mdi-chevron-down')
     expect(inputLoaded.find('.LInputLoaded__search--information').exists()).toBe(false)
   })
 
@@ -85,20 +85,34 @@ describe('InputLoaded component (searchOnInput)', () => {
   })
 
   const input = () => inputLoaded.find('.LInputLoaded')
-  const mockInputResult = [{text: 'testInput', value: 'testInput'}]
+  const mockInputResult = [{ text: 'testInput', value: 'testInput' }]
 
   it('render searchOnInput variant correctly', async () => {
-    expect(inputLoaded.findComponent({name: 'v-icon'}).classes()).toContain('mdi-magnify')
     expect(inputLoaded.props('searchMinCharacteres')).toBe(3)
 
     const extraField = inputLoaded.find('.LInputLoaded__search--information')
+    expect(extraField.exists()).toBe(false)
+  })
 
+  it('shows information field when input is focused', async () => {
+    inputLoaded.findComponent({ name: 'v-combobox' }).vm.$emit('focus')
+    await inputLoaded.vm.$nextTick()
+
+    const extraField = inputLoaded.find('.LInputLoaded__search--information')
     expect(extraField.exists()).toBe(true)
     expect(extraField.text()).toBe('__translation__')
   })
 
+  it('hides information field when input is blurred', async () => {
+    inputLoaded.findComponent({ name: 'v-combobox' }).vm.$emit('blur')
+    await inputLoaded.vm.$nextTick()
+
+    const extraField = inputLoaded.find('.LInputLoaded__search--information')
+    expect(extraField.exists()).toBe(false)
+  })
+
   it('getItems emitted correctly', () => {
-    expect(inputLoaded.emitted().getItems[0]).toEqual([{field: 'myField', value: 'myValue'}])
+    expect(inputLoaded.emitted().getItems[0]).toEqual([{ field: 'myField', value: 'myValue' }])
   })
 
   it('handles text input', async () => {
@@ -109,16 +123,51 @@ describe('InputLoaded component (searchOnInput)', () => {
   })
 
   it('handles array input', async () => {
-    input().vm.$emit('input', {value: ['test'], field: 'myField'})
+    input().vm.$emit('input', { value: ['test'], field: 'myField' })
     await inputLoaded.vm.$nextTick()
 
     expect(inputLoaded.emitted().input[0]).toEqual(mockInputResult)
   })
 
   it('handles object input', async () => {
-    input().vm.$emit('input',{value: {text: 'test', value: 'test'}, field: 'myField'})
+    input().vm.$emit('input', { value: { text: 'test', value: 'test' }, field: 'myField' })
     await inputLoaded.vm.$nextTick()
 
     expect(inputLoaded.emitted().input[0]).toEqual(mockInputResult)
+  })
+})
+
+describe('InputLoaded component (searchOnInput)', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        searchOnInput: true,
+        items: [],
+        value: 'myValue',
+        field: 'myField',
+        outlined: true,
+        showInformation: false,
+        hideDetails: false,
+        message: 'testMessage'
+      }
+    })
+  })
+
+  it('renders component', async () => {
+    expect(inputLoaded.exists()).toBe(true)
+  })
+
+  it('sets outlined style', async () => {
+    expect(inputLoaded.find('.v-text-field--outlined').exists()).toBe(true)
+  })
+
+  it('renders searchOnInput variant correctly', async () => {
+    const tag = inputLoaded.attributes()
+
+    expect(tag.message).toBe('testMessage')
   })
 })

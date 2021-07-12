@@ -10,7 +10,7 @@
         >
           <l-linear-chart-line
             v-slot:sectionAfterValue="slotProps"
-            :apply-cursor-pointer="applyCursorPointer"
+            :apply-cursor-pointer="isClickable(item)"
             :data="item"
             :index="index"
             :color="colors[index]"
@@ -106,16 +106,35 @@ export default {
     labelMaxLength: {
       type: Number,
       default: 23
+    },
+    nonClickableItems: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
     isLastItem (index) {
       return index === this.maxQuantity
     },
+    isClickable(item) {
+      const hasNonClickableItems = this.nonClickableItems.find(label => label === item.label)
+
+      if (hasNonClickableItems) {
+        return false
+      }
+
+      return this.applyCursorPointer
+    },
     expandList () {
       this.$emit('expandList', this.type)
     },
     eventClick (value) {
+      const hasNonClickableItems = this.nonClickableItems.find(label => label === value)
+
+      if (hasNonClickableItems) {
+        return
+      }
+
       this.$emit('eventClick', value)
     }
   }

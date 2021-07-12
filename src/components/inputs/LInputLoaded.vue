@@ -7,22 +7,27 @@
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="loading && !searchOnInput"
-      :placeholder="placeholder"
-      attach
-      solo
+      :placeholder="handlePla"
+      :label="handleLabel"
+      :attach="!outlined"
+      :solo="!outlined"
       dense
-      hide-details
+      :hide-details="hideDetails"
       hide-selected
-      class="rm-radius-left rm-radius-right LInputLoaded"
+      :outlined="outlined"
+      class="LInputLoaded"
+      :class="classInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
+      @focus="isInputSelected = true"
+      @blur="isInputSelected = false"
     >
       <template #append>
         <v-icon
           v-if="icon"
           color="wisteria"
         >
-          {{ searchOnInput ? 'mdi-magnify' : 'mdi-chevron-down' }}
+          {{ searchOnInput ? '' : 'mdi-chevron-down' }}
         </v-icon>
         <v-icon v-else />
       </template>
@@ -40,7 +45,7 @@
       </template>
     </v-combobox>
     <template
-      v-if="hasNoItems"
+      v-if="hasNoItems && isInputSelected && showInformation"
     >
       <div class="LInputLoaded__search--information">
         {{ $t('ayla.minimumCharacteres', {quantity: searchMinCharacteres}) }}
@@ -62,6 +67,10 @@ export default {
       type: String,
       default: ''
     },
+    hideDetails: {
+      type: Boolean,
+      default: true
+    },
     icon: {
       type: Boolean,
       default: true
@@ -82,6 +91,14 @@ export default {
       type: Boolean,
       default: false
     },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    showInformation: {
+      type: Boolean,
+      default: true
+    },
     searchMinCharacteres: {
       type: Number,
       default: 3
@@ -94,17 +111,29 @@ export default {
   },
   data () {
     return {
+      isInputSelected: false,
       selectedOptions: null,
       searchInput: null
     }
   },
   computed: {
+    classInputLoaded () {
+      return {
+        'rm-radius-left rm-radius-right': !this.outlined
+      }
+    },
     hasEnoughCharacteres () {
       const {searchInput, searchMinCharacteres} = this
       return searchInput && searchInput.length >= searchMinCharacteres
     },
     hasNoItems () {
       return this.searchOnInput && !this.items.length
+    },
+    handlePlaceholder () {
+      return this.outlined ? '' : this.placeholder
+    },
+    handleLabel () {
+      return this.outlined ? this.placeholder : ''
     }
   },
   watch: {
@@ -154,6 +183,7 @@ export default {
         if (!equals(newOptions, options)) {
          return newOptions
         }
+
         return
       }
 
@@ -161,6 +191,7 @@ export default {
         newOptions = options.map((item) => {
           return is(Object, item) ? item : { text: item, value: item }
         })
+
       return newOptions
       }
 
