@@ -33,7 +33,7 @@ jobs:
     - name: Build
       run: yarn build
     - name: Publish library
-      run: npm run release
+      run: npm run release-beta
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.RELEASE_PERSONAL_TOKEN }}

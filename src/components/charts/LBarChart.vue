@@ -1,5 +1,5 @@
 <template>
-  <v-list class="LBarChart">
+  <v-list class="LBarChart px-4">
     <l-bar-chart-line
       v-for="(item, index) in data"
       :key="index"
