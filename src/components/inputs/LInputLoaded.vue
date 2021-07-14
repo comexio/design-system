@@ -106,7 +106,8 @@ export default {
     value: {
       type: [String, Array, Object],
       default: ''
-    }
+    },
+    returnObjectArray: Boolean
   },
   data () {
     return {
@@ -145,6 +146,12 @@ export default {
       }
     },
     selectedOptions (selectedOptions) {
+      if (!this.returnObjectArray) {
+        this.$emit('input', selectedOptions)
+
+        return
+      }
+
       const options = this.handleOptions(selectedOptions)
       this.$emit('input', options)
     },
@@ -165,7 +172,7 @@ export default {
       searchOnInput ? this.$emit('getItems', { field,value }) : this.$emit('getItems', { field })
     },
     handleInput (values) {
-      if(!this.searchOnInput && is(Array, values)) this.handleSelectedOptions(values)
+      if(!this.searchOnInput && is(Array, values) && this.returnObjectArray) this.handleSelectedOptions(values)
       this.searchInput = null
     },
     handleOptions (options) {
@@ -193,9 +200,15 @@ export default {
       }
     },
     handleSelectedOptions (options) {
-      const addedItems = options.filter(i => i && i.text && i.value)
-      this.selectedOptions = addedItems
-    }
+      if(this.returnObjectArray) {
+        const addedItems = options.filter(i => i && i.text && i.value)
+        this.selectedOptions = addedItems
+
+        return
+      }
+
+      this.selectedOptions = options
+    },
   }
 }
 </script>
