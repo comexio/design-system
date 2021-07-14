@@ -92,7 +92,12 @@
               </span>
             </v-tooltip>
           </v-col>
-          <span style="marginRight: -4%; marginLeft: -4%">{{ showPartition(data) }}</span>
+          <span
+            v-if="data.total !== null"
+            style="marginRight: -4%; marginLeft: -4%"
+          >
+            {{ showPartition(data) }}
+          </span>
           <v-col
             v-if="data.total !== null"
             class="py-0 LLinearChartLine__result__value--second"
