@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Vuetify from 'vuetify'
 import Vuei18n from 'vue-i18n'
 import '@testing-library/jest-dom'
@@ -7,7 +6,7 @@ import { render } from '@testing-library/vue'
 
 import messages from '~/src/locale';
 
-function renderComponentWithVuetify (component: any, options: any, callback: any) {
+function renderComponentWithVuetify (component, options, callback) {
   const root = document.createElement('div')
   root.setAttribute('data-app', 'true')
   
@@ -22,7 +21,7 @@ function renderComponentWithVuetify (component: any, options: any, callback: any
     )
   }
   
-function translateComponent (vue: any, locale?: string) {
+function translateComponent (vue, locale) {
   vue.use(Vuei18n)
 
   const i18n = new Vuei18n({
@@ -36,6 +35,6 @@ function translateComponent (vue: any, locale?: string) {
   }
 }
 
-export function renderComponent (component: any, options: any, locale?: string) {
-  return renderComponentWithVuetify(component, options, (vue: any) => translateComponent(vue, locale))
+export function renderComponent (component, options, locale) {
+  return renderComponentWithVuetify(component, options, vue => translateComponent(vue, locale))
 }
