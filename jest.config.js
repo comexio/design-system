@@ -25,6 +25,6 @@ module.exports = {
       }
     },
     setupFiles: [
-      '<rootDir>/test/vue.setup.js'
+      '<rootDir>/test/vue.setup.ts'
     ]
 }
