@@ -1,34 +1,20 @@
-// .storybook/YourTheme.js
-
-import { create } from "@storybook/theming/create"
-
-import { primary, purpleDark, secondary, terciary, textColorLight } from "./colors"
+import { create } from '@storybook/theming/create'
 
 export default create({
-  brandTitle: "Ayla",
-  base: "light",
-
-  colorPrimary: primary,
-  colorSecondary: secondary,
-
-  // UI
-  appBg: terciary,
-
-  // Typography
-  fontBase: '"Open Sans", sans-serif',
-  fontCode: "monospace",
-
-  // Text colors
-  textColor: purpleDark,
-  textInverseColor: "rgba(255,255,255,0.9)",
-
-  // Toolbar default and active colors
-  barTextColor: terciary,
-  barSelectedColor: textColorLight,
-  barBg: primary,
-
-  //Image and link project
-  brandUrl: "https://github.com/comexio/design-system",
-  brandImage:
-    "https://raw.githubusercontent.com/comexio/design-system/master/.github/assets/ayla-logo.png"
+  appBg: '#FAF6FF',
+  appBorderRadius: 10,
+  barBg: '#5C068C',
+  barSelectedColor: '#E2DAF8',
+  base: 'light',
+  barTextColor: '#FAF6FF',
+  brandImage: 'https://raw.githubusercontent.com/comexio/design-system/master/.github/assets/ayla-logo.png',
+  brandTitle: 'Ayla',
+  brandUrl: 'https://github.com/comexio/design-system',
+  colorPrimary: '#5C068C',
+  colorSecondary: '#8345A5',
+  inputTextColor: '#20083E',
+  inputBorderRadius: 5,
+  textColor: '#20083E',
+  textMutedColor: '#20083E',
+  textInverseColor: 'rgba(255,255,255,0.9)'
 });
