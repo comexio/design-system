@@ -51,8 +51,6 @@ const Template = (args, { argTypes }) => ({
     <l-date-picker-month
       v-model='date' 
       v-bind='$props' 
-      @opened='opened'
-      @closed='closed'
       style='max-width: 300px;' 
     />
   `
