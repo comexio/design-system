@@ -1,3 +1,4 @@
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LRouteChart from "@components/charts/LRouteChart.vue";
 
 export default {
@@ -11,7 +12,10 @@ export default {
   },
 };
 
+const initObjects = initializeObjects()
+
 const Template = (args, { argTypes }) => ({
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LRouteChart },
   template: '<l-route-chart v-bind="$props"> </l-route-chart>'
