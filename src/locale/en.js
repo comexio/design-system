@@ -2,6 +2,8 @@ export default {
   cancel: 'Cancel',
   confirm: 'Confirm',
   clear: 'Clear',
+  likelyExporter: 'Likely exporter',
+  likelyImporter: 'Likely importer',
   minimumCharacteres: 'Input at least {quantity} characteres',
   noResults: 'No results found',
   others: 'Others',
@@ -13,5 +15,6 @@ export default {
   select: 'Select',
   seeMore: 'More',
   total: 'Total',
-  value: 'Value'
+  value: 'Value',
+  weight: 'Weight'
 }

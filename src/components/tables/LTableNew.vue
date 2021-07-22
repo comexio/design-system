@@ -14,6 +14,9 @@
         v-bind="data"
       />
     </template>
+    <template #no-data>
+      <slot name="no-data" />
+    </template>
   </v-data-table>
 </template>
 
@@ -132,8 +135,8 @@ export default {
 
   ::v-deep .v-data-table__checkbox {
     .v-icon {
-      color: $gallery;
-      font-size: 17px;
+      color: $silver;
+      font-size: 20px;
       &.mdi-checkbox-marked {
         color: $purpleHaze;
       }

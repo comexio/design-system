@@ -3,6 +3,8 @@ export default {
   cancel: 'Cancelar',
   confirm: 'Confirmar',
   clear: 'Limpar',
+  likelyExporter: 'Provável exportador',
+  likelyImporter: 'Provável importador',
   minimumCharacteres: 'Digite ao menos {quantity} letras e aguarde',
   noResults: 'Nenhum resultado encontrado',
   others: 'Outros',
@@ -14,5 +16,6 @@ export default {
   select: 'Selecionar',
   seeMore: 'Ver mais',
   total: 'Total',
-  value: 'Valor'
+  value: 'Valor',
+  weight: 'Peso'
 }
