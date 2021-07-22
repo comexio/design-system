@@ -47,15 +47,14 @@
         :allowed-dates="isDateAllowed"
         :locale="locale"
         type="month"
-        color="blurred"
-        event-color="blurred"
+        color="wisteria"
+        event-color="wisteria"
         width="200px"
         class="d-flex flex-row-reverse datepicker__calendar"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
         <div
-          v-if="periodsEnum"
           column
           active-class="primary--text"
           class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
@@ -71,7 +70,7 @@
             <span
               class="select-period"
             >
-              {{ period }}
+              {{ $t(`ayla.${period}`) }}
             </span>
           </v-chip>
         </div>
