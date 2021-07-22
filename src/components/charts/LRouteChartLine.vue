@@ -16,7 +16,7 @@
         v-if="data.quantity"
         class="customTooltip__info"
       >
-        {{ data.quantity.name }} : {{ data.quantity.value }}
+        {{ $t(data.quantity.name) }} : {{ data.quantity.value }}
       </div>
     </v-tooltip>
     <div
