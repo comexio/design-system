@@ -10,6 +10,7 @@ const defaultParams = {
     descriptionClass: "",
     error: null,
     hasTitle: true,
+    lineLink: false,
     legend: [],
     loading:false,
     loadingExpand:false,
@@ -206,4 +207,32 @@ describe('barChart component', () => {
     await barChart.vm.$nextTick()
     expect(barChart.emitted().toggleLast).toBeTruthy()
   })
+})
+
+describe('barChart line click', () => {
+  addElemWithDataAppToBody()
+  let barChart: Wrapper<BarChart>
+
+  beforeAll(() => {
+    barChart = mount(BarChart, {
+      ...defaultParams
+    })
+  })
+
+  it('check if click emitted', async () => {
+    barChart.setProps({ data: barChartData.slice(0, 1), isClickable: true, hasTitle: false, lineLink: true })
+
+    await barChart.vm.$nextTick()
+    expect(barChart.emitted().click).toBeFalsy()
+
+    const lines = () => barChart.findAll('.LBarChart__list__item')
+    expect(lines().length > 0).toBeTruthy()
+    lines().at(0).trigger('click')
+    await barChart.vm.$nextTick()
+
+    expect(barChart.emitted().click).toBeTruthy()
+    expect(barChart.emitted().click).toEqual([[' UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS']])
+
+  })
+
 })

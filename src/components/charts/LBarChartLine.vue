@@ -3,6 +3,7 @@
     class="LBarChart__list__item pr-0"
     :min-height="minLineHeight"
     dense
+    @click="(lineClick(data.description))"
   >
     <v-row class="align-center controlRowWidth pb-1 flex-nowrap">
       <v-col
@@ -164,8 +165,8 @@ export default {
       default: null
     },
     color: {
-       type: String,
-       default: null
+      type: String,
+      default: null
     },
     chart: {
       type: String,
@@ -204,6 +205,10 @@ export default {
     isClickable: {
       type: Boolean,
       default: false
+    },
+    lineLink: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -236,66 +241,71 @@ export default {
       if (this.isClickable) {
         this.$emit('titleClick', value)
       }
+    },
+    lineClick (value) {
+      if (this.lineLink) {
+        this.$emit('lineClick', value)
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .LBarChart__info {
-    width: 100%;
-    display: inline-block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-  .LBarChart__info--right {
-    text-align: right;
-  }
-  .LBarChart__title, .LBarChart__description {
-    font-size: 0.9rem;
-    color: $martinique;
-  }
-  .LBarChart__title--clickable {
-    cursor: pointer;
-  }
-  .LBarChart__title {
-    display: inline-block;
-    min-width: 70px;
-  }
-  .LBarChart__description {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-    white-space: nowrap;
-    display: inline-block;
-    cursor: pointer;
-    max-width: 250px;
-    text-align: right;
-  }
-  .LBarChart__description__toggle {
-    @extend .globalLink;
-    font-size: 0.9rem;
-    font-family: Rubik;
-  }
-  .LBarChart__value {
-    text-align: right;
-    width: 100%;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-  .LBarChart__tooltip__info {
-    font-size: 6px;
-  }
-  ::v-deep .v-progress-linear__content {
-    z-index: unset;
-  }
+.LBarChart__info {
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.LBarChart__info--right {
+  text-align: right;
+}
+.LBarChart__title, .LBarChart__description {
+  font-size: 0.9rem;
+  color: $martinique;
+}
+.LBarChart__title--clickable {
+  cursor: pointer;
+}
+.LBarChart__title {
+  display: inline-block;
+  min-width: 70px;
+}
+.LBarChart__description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+  max-width: 250px;
+  text-align: right;
+}
+.LBarChart__description__toggle {
+  @extend .globalLink;
+  font-size: 0.9rem;
+  font-family: Rubik;
+}
+.LBarChart__value {
+  text-align: right;
+  width: 100%;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.LBarChart__tooltip__info {
+  font-size: 6px;
+}
+::v-deep .v-progress-linear__content {
+  z-index: unset;
+}
 
-  .LBarChart__progress {
-    color: $martinique;
-  }
+.LBarChart__progress {
+  color: $martinique;
+}
 
 .controlRowWidth {
   width: 0;

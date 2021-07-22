@@ -10,9 +10,11 @@
       :others-label="othersLabel"
       :min-line-height="minLineHeight"
       :is-clickable="isClickable"
+      :line-link="lineLink"
       v-bind="$attrs"
       @toggleLast="toggleLast"
       @titleClick="handleTitleClick"
+      @lineClick="handleLineClick(item.description)"
     />
   </v-list>
 </template>
@@ -49,6 +51,10 @@ export default {
     isClickable: {
       type: Boolean,
       default: false
+    },
+    lineLink: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -60,6 +66,11 @@ export default {
     },
     handleTitleClick (value) {
       if (this.isClickable) {
+        this.$emit('click', value)
+      }
+    },
+    handleLineClick (value) {
+      if (this.lineLink && !this.hasTitle) {
         this.$emit('click', value)
       }
     }
