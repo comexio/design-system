@@ -10,7 +10,7 @@
         <l-button-select
           v-on="on"
         >
-          {{ $t('ayla.selectColumns') }}
+          {{ placeholder || $t('ayla.selectColumns') }}
           <v-icon>
             mdi-chevron-down
           </v-icon>
@@ -20,6 +20,7 @@
         v-model="inputValue"
         :items="items"
         :selected-items="selectedItems"
+        :translation="{ input: checkboxListPlaceholder, select: checkboxListSelectAllText }"
         @updatedItems="updatedItems"
       />
     </v-menu>
@@ -37,9 +38,21 @@ export default {
     LCheckboxList
   },
   props: {
+    checkboxListPlaceholder: {
+      type: String,
+      default: ''
+    },
+    checkboxListSelectAllText: {
+      type: String,
+      default: ''
+    },
     items: {
       type: Array,
       default: () => ([])
+    },
+    placeholder: {
+      type: String,
+      default: ''
     },
     selectedItems: {
       type: Array,
