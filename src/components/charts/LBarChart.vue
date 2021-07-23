@@ -14,7 +14,7 @@
       v-bind="$attrs"
       @toggleLast="toggleLast"
       @titleClick="handleTitleClick"
-      @lineClick="handleLineClick"
+      @line-click="handleLineClick"
     />
   </v-list>
 </template>
@@ -71,7 +71,7 @@ export default {
     },
     handleLineClick (value) {
       if (this.lineLink && !this.hasTitle) {
-        this.$emit('lineClick', value)
+        this.$emit('line-click', value)
       }
     }
   }

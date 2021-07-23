@@ -229,7 +229,7 @@ describe('barChart line click', () => {
     lines().at(0).trigger('click')
     await barChart.vm.$nextTick()
 
-    expect(barChart.emitted().lineClick).toEqual([[
+    expect(barChart.emitted('line-click')).toEqual([[
       {
         title:"2208.30.20",
         description: " UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS",

@@ -244,7 +244,7 @@ export default {
     },
     handleLineClick (value) {
       if (this.lineLink) {
-        this.$emit('lineClick', value)
+        this.$emit('line-click', value)
       }
     }
   }
