@@ -13,6 +13,7 @@ export default {
     othersLabel: { table: {disable: true} },
     toggleLast: { table: {disable: true} },
     hasTitle: { table: {disable: true} },
+    lineLink: { control: 'boolean', description: 'Sets onClick event for whole line and return line\'s data' },
   },
 };
 
