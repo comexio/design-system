@@ -3,7 +3,7 @@
     class="LBarChart__list__item pr-0"
     :min-height="minLineHeight"
     dense
-    @click="(lineClick(data.description))"
+    @click="handleLineClick(data)"
   >
     <v-row class="align-center controlRowWidth pb-1 flex-nowrap">
       <v-col
@@ -242,7 +242,7 @@ export default {
         this.$emit('titleClick', value)
       }
     },
-    lineClick (value) {
+    handleLineClick (value) {
       if (this.lineLink) {
         this.$emit('lineClick', value)
       }

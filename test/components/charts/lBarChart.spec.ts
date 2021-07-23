@@ -223,16 +223,21 @@ describe('barChart line click', () => {
     barChart.setProps({ data: barChartData.slice(0, 1), isClickable: true, hasTitle: false, lineLink: true })
 
     await barChart.vm.$nextTick()
-    expect(barChart.emitted().click).toBeFalsy()
 
     const lines = () => barChart.findAll('.LBarChart__list__item')
-    expect(lines().length > 0).toBeTruthy()
+    expect(lines().length === 1).toBeTruthy()
     lines().at(0).trigger('click')
     await barChart.vm.$nextTick()
 
-    expect(barChart.emitted().click).toBeTruthy()
-    expect(barChart.emitted().click).toEqual([[' UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS']])
-
+    expect(barChart.emitted().lineClick).toEqual([[
+      {
+        title:"2208.30.20",
+        description: " UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS",
+        quantity: "4.593",
+        total: "32.873.626,5510",
+        percentage: 59.37
+      }
+    ]])
   })
 
 })
