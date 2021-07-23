@@ -80,3 +80,32 @@ TitleClickable.args = {
   hasTitle: true,
   isClickable: true,
 };
+
+export const LineLink = Template.bind({});
+LineLink.args = {
+  data: [{
+    title: "Label",
+    description: "Description",
+    quantity: "Quantity",
+    total: "Value",
+    percentage: 0
+  },
+    {
+      title: "Label",
+      description: "Description",
+      quantity: "Quantity",
+      total: "Value",
+      percentage: 0
+    },
+    {
+      title: "Label",
+      description: "Description",
+      quantity: "Quantity",
+      total: "Value",
+      percentage: 0
+    },],
+  color: '#D4C5EB',
+  hasTitle: false,
+  isClickable: true,
+  lineLink: true
+};
