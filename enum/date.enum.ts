@@ -1,9 +1,8 @@
 export const MONTH_PERIODS_TEXT = {
-  // TODO: aplicar tradução
-  last_3_months: 'Últimos 3 meses',
-  last_6_months: 'Últimos 6 meses',
-  last_9_months: 'Últimos 9 meses',
-  last_12_months: 'Últimos 12 meses'
+  last_3_months: 'datepickerPeriods.last_3_months',
+  last_6_months: 'datepickerPeriods.last_6_months',
+  last_9_months: 'datepickerPeriods.last_9_months',
+  last_12_months: 'datepickerPeriods.last_12_months'
 }
 
 export const MONTH_PERIODS_VALUES_TO_KEYS = {
