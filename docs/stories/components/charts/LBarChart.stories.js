@@ -14,6 +14,7 @@ export default {
     toggleLast: { table: {disable: true} },
     hasTitle: { table: {disable: true} },
     lineLink: { control: 'boolean', description: 'Sets onClick event for whole line and return line\'s data' },
+    'line-click': { action: 'line-click', description: 'Triggers a click event for the Chart\'s line' }
   },
 };
 
