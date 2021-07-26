@@ -224,7 +224,7 @@ describe('barChart line click', () => {
     await barChart.vm.$nextTick()
 
     const lines = () => barChart.findAll('.LBarChart__list__item')
-    expect(lines().length === 1).toBeTruthy()
+    expect(lines().length).toBe(1)
     lines().at(0).trigger('click')
     await barChart.vm.$nextTick()
 
