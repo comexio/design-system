@@ -221,7 +221,6 @@ describe('barChart line click', () => {
 
   it('check if click emitted', async () => {
     barChart.setProps({ data: barChartData.slice(0, 1), isClickable: true, hasTitle: false, lineLink: true })
-
     await barChart.vm.$nextTick()
 
     const lines = () => barChart.findAll('.LBarChart__list__item')
