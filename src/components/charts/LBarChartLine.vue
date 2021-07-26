@@ -297,7 +297,7 @@ export default {
   overflow: hidden;
 }
 .LBarChart__tooltip__info {
-  font-size: 6px;
+  font-size: 0.37rem;
 }
 ::v-deep .v-progress-linear__content {
   z-index: unset;
