@@ -238,5 +238,4 @@ describe('barChart line click', () => {
       }
     ]])
   })
-
 })
