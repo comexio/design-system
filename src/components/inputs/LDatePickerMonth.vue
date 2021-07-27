@@ -14,7 +14,7 @@
             class="mr-2"
           >
             <v-icon
-              color="blurred"
+              :color="itemsColor"
               size="20px"
             >
               mdi-calendar-month
@@ -30,7 +30,7 @@
           </v-col>
           <v-spacer />
           <v-icon
-            color="blurred"
+            :color="itemsColor"
             size="15px"
           >
             mdi-chevron-down
@@ -47,15 +47,14 @@
         :allowed-dates="isDateAllowed"
         :locale="locale"
         type="month"
-        color="blurred"
-        event-color="blurred"
+        :color="itemsColor"
+        :event-color="itemsColor"
         width="200px"
         class="d-flex flex-row-reverse datepicker__calendar"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
         <div
-          v-if="periodsEnum"
           column
           active-class="primary--text"
           class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
@@ -71,7 +70,7 @@
             <span
               class="select-period"
             >
-              {{ period }}
+              {{ $t(`ayla.${period}`) }}
             </span>
           </v-chip>
         </div>
@@ -103,7 +102,11 @@ export default {
     locale: {
       type: String,
       default: 'pt'
-    }
+    },
+    itemsColor: {
+      type: String,
+      default: '#9f6cbb'
+    },
   },
   data () {
     return {
