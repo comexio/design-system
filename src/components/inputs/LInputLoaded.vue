@@ -7,7 +7,7 @@
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="loading && !searchOnInput"
-      :placeholder="handlePla"
+      :placeholder="handlePlaceholder"
       :label="handleLabel"
       :attach="!outlined"
       :solo="!outlined"
