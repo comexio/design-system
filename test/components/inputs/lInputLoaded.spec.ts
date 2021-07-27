@@ -169,4 +169,20 @@ describe('InputLoaded component (searchOnInput)', () => {
 
     expect(tag.message).toBe('testMessage')
   })
+
+  it('handlePlaceholder is to return placeholder', async () => {
+    inputLoaded.setProps({outlined: false, placeholder: 'PlaceHolderText'})
+    const result = inputLoaded.vm.handlePlaceholder
+    await inputLoaded.vm.$nextTick()
+
+    expect(result).toBe('PlaceHolderText')
+  })
+
+  it('handlePlaceholder is to return empty when outline is true', async () => {
+    inputLoaded.setProps({outlined: true, placeholder: 'PlaceHolderText'})
+    const result = inputLoaded.vm.handlePlaceholder
+    await inputLoaded.vm.$nextTick()
+
+    expect(result).toBe('')
+  })
 })
