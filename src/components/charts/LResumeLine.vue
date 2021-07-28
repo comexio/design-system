@@ -1,7 +1,12 @@
 <template>
   <div class="resumeLine d-flex justify-space-between">
     <div class="resumeLine__title font-md">
-      {{ title }}
+      <img
+        :src="imagePath"
+        :alt="title"
+        class="resumeLine__image ml-n4 mr-5"
+      >
+      <span>{{ title }}</span>
     </div>
     <div class="resumeLine__description">
       {{ description }}
@@ -20,6 +25,10 @@ export default {
     description: {
       type: String,
       default: null
+    },
+    imagePath: {
+      type: String,
+      default: null
     }
   }
 }
@@ -28,21 +37,32 @@ export default {
 <style lang="scss" scoped>
 .resumeLine {
   color: $martinique;
-  font-size: 0.9rem;
 }
 
 .resumeLine__title {
+  display: flex;
   position: relative;
-  padding-left: 10px;
-  &::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 100%;
-    background: $prelude;
-    position: absolute;
-    left: 0px;
-    top: 7px;
+  span {
+    font-size: 0.923rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: $doveGray;
+    margin: auto;  
   }
+}
+
+.resumeLine__description {
+  color: $martinique;
+  margin: auto 0;
+  font-size: 0.923rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1rem;
+}
+
+.resumeLine__image {
+  height: auto;
+  width: 34px;
 }
 </style>
