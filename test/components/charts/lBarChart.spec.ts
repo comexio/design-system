@@ -10,6 +10,7 @@ const defaultParams = {
     descriptionClass: "",
     error: null,
     hasTitle: true,
+    lineLink: false,
     legend: [],
     loading:false,
     loadingExpand:false,
@@ -205,5 +206,36 @@ describe('barChart component', () => {
 
     await barChart.vm.$nextTick()
     expect(barChart.emitted().toggleLast).toBeTruthy()
+  })
+})
+
+describe('barChart line click', () => {
+  addElemWithDataAppToBody()
+  let barChart: Wrapper<BarChart>
+
+  beforeAll(() => {
+    barChart = mount(BarChart, {
+      ...defaultParams
+    })
+  })
+
+  it('check if click emitted', async () => {
+    barChart.setProps({ data: barChartData.slice(0, 1), isClickable: true, hasTitle: false, lineLink: true })
+    await barChart.vm.$nextTick()
+
+    const lines = () => barChart.findAll('.LBarChart__list__item')
+    expect(lines().length).toBe(1)
+    lines().at(0).trigger('click')
+    await barChart.vm.$nextTick()
+
+    expect(barChart.emitted('line-click')).toEqual([[
+      {
+        title:"2208.30.20",
+        description: " UÍSQUES, EM EMBALAGENS DE CAPACIDADE INFERIOR OU IGUAL A 2 LITROS",
+        quantity: "4.593",
+        total: "32.873.626,5510",
+        percentage: 59.37
+      }
+    ]])
   })
 })

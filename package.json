@@ -1,6 +1,6 @@
 {
   "name": "@logcomex/design",
-  "version": "1.0.19-1",
+  "version": "1.0.19-2",
   "license": "MIT",
   "author": {
     "name": "Rafael Bastiansch",
@@ -15,8 +15,9 @@
     "lint": "eslint --ext .js,.vue src test",
     "lint:fix": "yarn lint --fix",
     "demo:build": "yarn --cwd demo && yarn --cwd=demo build",
-    "docs": "start-storybook -p 6006",
-    "build-docs": "build-storybook",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "storybook-docs": "start-storybook -p 6006 -c .storybook --docs --no-manager-cache",
+    "build-storybook": "build-storybook -c .storybook",
     "chromatic": "npx chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "release-beta": "release-it prerelease --ci"
   },
@@ -43,12 +44,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@mdi/font": "^5.8.55",
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-essentials": "^6.1.11",
-    "@storybook/addon-links": "^6.1.11",
-    "@storybook/addons": "^6.1.11",
-    "@storybook/theming": "^6.1.11",
-    "@storybook/vue": "^6.1.11",
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-essentials": "^6.3.4",
+    "@storybook/addon-links": "^6.3.4",
+    "@storybook/addons": "^6.3.4",
+    "@storybook/theming": "^6.3.4",
+    "@storybook/vue": "^6.3.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.1.9",
     "@testing-library/vue": "^5.8.1",
