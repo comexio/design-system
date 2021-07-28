@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LInputLoaded from '@components/inputs/LInputLoaded.vue';
+import LInputLoaded from '~/src/components/inputs/LInputLoaded.vue';
 
 export default {
   title: 'Components/Inputs/Loaded',

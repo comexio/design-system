@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LBarChart from "@components/charts/LBarChart.vue";
+import LBarChart from "~/src/components/charts/LBarChart.vue";
 
 export default {
   title: 'Components/Charts/Secondary Bar',

@@ -1,42 +1,36 @@
-import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent } from '~/test/utils.setup'
-import LResumeChart from '~/src/components/charts/LResumeChart.vue'
+import { screen } from '@testing-library/vue'
+import { composeStories } from '@storybook/testing-vue'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+import * as stories from '~/docs/stories/components/charts/LResumeChart.stories'
 
+const { Default, Dense } = composeStories(stories)
 
-const setupDefault = initSetupComponent()
-const defaultParams = {
-  ...setupDefault,
-  propsData: {
-    data: [{
-      title: 'Registro 1',
-      description: '1000'
-    },
-    {
-      title: 'Registro 2',
-      description: '2000'
-    },
-    {
-      title: 'Registro 3',
-      description: '3000'
-    }],
-    title: 'Titulo',
-    description: 'Descrição'
-  }
+const checkRenderedComponent = () => {
+  const images = screen.getAllByRole('img', { name: 'Label' })
+  const texts = screen.getAllByText('Label')
+  const descriptions = screen.getAllByText('Value/Description')
+  const dividers = screen.getAllByRole('separator', { hidden: true })
+
+  expect(images.length).toBe(5)
+  expect(texts.length).toBe(5)
+  expect(descriptions.length).toBe(5)
+  expect(dividers.length).toBe(4)
 }
 
-describe('LResumeChart component', () => {
-  let resumeChart: Wrapper<LResumeChart>
+describe('LResumeChart', () => {
+  it('renders default args', () => {
+    renderComponent(Default())
+    checkRenderedComponent()
 
-  beforeAll(() => {
-    resumeChart = mount(LResumeChart, {
-      ...defaultParams,
-    })
+    const lineWrappers = screen.getAllByTestId('LResumeLine__wrapper')
+    lineWrappers.forEach(line => expect(line).toHaveClass('py-3'))
   })
 
-  it('render list', () => {
-    const lines = () => resumeChart.findAll('.resumeLine')
-    expect(lines().length).toBe(3)
-    expect(lines().at(0).find('.resumeLine__title').text()).toBe('Registro 1')
-    expect(lines().at(0).find('.resumeLine__description').text()).toBe('1000')
+  it('renders dense args', () => {
+    renderComponent(Dense())
+    checkRenderedComponent()
+
+    const lineWrappers = screen.getAllByTestId('LResumeLine__wrapper')
+    lineWrappers.forEach(line => expect(line).not.toHaveClass('py-3'))
   })
 })

@@ -1,4 +1,4 @@
-import LCard from "@components/cards/LCard.vue";
+import LCard from "~/src/components/cards/LCard.vue";
 
 export default {
   title: "Components/Cards/Card",

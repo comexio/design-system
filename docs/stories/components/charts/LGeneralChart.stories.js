@@ -1,4 +1,4 @@
-import LGeneralChart from "@components/charts/LGeneralChart.vue";
+import LGeneralChart from "~/src/components/charts/LGeneralChart.vue";
 
 export default {
   title: "Components/Charts/General",
