@@ -54,7 +54,7 @@ export default {
 .resumeLine__description {
   color: $martinique;
   margin: auto 0;
-  font-size: 0.923rem;
+  font-size: 1.077rem;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -63,6 +63,6 @@ export default {
 
 .resumeLine__image {
   height: auto;
-  width: 34px;
+  width: 52px;
 }
 </style>
