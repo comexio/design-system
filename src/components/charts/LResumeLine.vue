@@ -42,6 +42,7 @@ export default {
 .resumeLine__title {
   display: flex;
   position: relative;
+  
   span {
     font-size: 0.923rem;
     font-weight: 500;
