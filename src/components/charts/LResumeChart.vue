@@ -10,6 +10,7 @@
           :title="item.title"
           :description="item.description"
           :image-path="item.imagePath"
+          data-testid="LResumeLine__wrapper"
           style="paddingBottom: 2px"
         />
         <v-divider
