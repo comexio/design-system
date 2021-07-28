@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LDatePickerMonth from '@components/inputs/LDatePickerMonth.vue';
+import LDatePickerMonth from '~/src/components/inputs/LDatePickerMonth.vue';
 
 export default {
   title: 'Components/Inputs/DatePicker/Month',

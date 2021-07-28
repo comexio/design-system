@@ -1,4 +1,4 @@
-import LInputSolo from '@components/inputs/LInputSolo.vue';
+import LInputSolo from '~/src/components/inputs/LInputSolo.vue';
 
 export default {
   title: 'Components/Inputs/Solo',

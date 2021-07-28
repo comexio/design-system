@@ -1,4 +1,4 @@
-import LCircularChart from "@components/charts/LCircularChart.vue";
+import LCircularChart from "~/src/components/charts/LCircularChart.vue";
 
 export default {
   title: "Components/Charts/Donut",

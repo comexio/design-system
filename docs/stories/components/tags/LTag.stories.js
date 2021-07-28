@@ -1,4 +1,4 @@
-import LTag from "@components/tags/LTag.vue";
+import LTag from "~/src/components/tags/LTag.vue";
 
 export default {
   title: "Components/Base/Tag",

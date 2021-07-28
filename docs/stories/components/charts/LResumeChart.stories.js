@@ -1,4 +1,4 @@
-import LResumeChart from '@components/charts/LResumeChart.vue';
+import LResumeChart from '~/src/components/charts/LResumeChart.vue';
 
 export default {
   title: 'Components/Charts/List',

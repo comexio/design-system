@@ -1,4 +1,4 @@
-import LCheckbox from '@components/inputs/LCheckbox.vue';
+import LCheckbox from '~/src/components/inputs/LCheckbox.vue';
 
 export default {
   title: 'Components/Inputs/Checkbox',

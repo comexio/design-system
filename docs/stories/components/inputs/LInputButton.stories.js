@@ -1,4 +1,4 @@
-import LInputButton from '@components/inputs/LInputButton.vue';
+import LInputButton from '~/src/components/inputs/LInputButton.vue';
 
 export default {
   title: 'Components/Inputs/With Button',

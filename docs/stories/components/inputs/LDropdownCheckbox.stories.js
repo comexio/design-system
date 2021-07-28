@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LDropdownCheckbox from '@components/inputs/LDropdownCheckbox.vue';
+import LDropdownCheckbox from '~/src/components/inputs/LDropdownCheckbox.vue';
 
 export default {
   title: 'Components/Inputs/Checkbox/Dropdown',

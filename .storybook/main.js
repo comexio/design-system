@@ -12,8 +12,7 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '~': path.resolve(__dirname, '../'),
-      '@components': path.resolve(__dirname, '../src/components'),
+      '~': path.resolve(__dirname, '../')
     };
     config.module.rules.push({
       test: /\.scss$/,

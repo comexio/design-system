@@ -1,4 +1,4 @@
-import LLabeledInput from '@components/inputs/LLabeledInput.vue';
+import LLabeledInput from '~/src/components/inputs/LLabeledInput.vue';
 
 export default {
   title: 'Components/Inputs/Labeled',

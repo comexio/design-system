@@ -1,4 +1,4 @@
-import LDatePickerDay from "@components/inputs/LDatePickerDay.vue";
+import LDatePickerDay from "~/src/components/inputs/LDatePickerDay.vue";
 
 export default {
   title: "Components/Inputs/DatePicker/Day",

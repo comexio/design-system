@@ -1,4 +1,4 @@
-import LRouteChart from "@components/charts/LRouteChart.vue";
+import LRouteChart from "~/src/components/charts/LRouteChart.vue";
 
 export default {
   title: 'Components/Charts/Flow',
