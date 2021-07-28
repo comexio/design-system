@@ -33,10 +33,7 @@ export default {
       type: Array,
       default: () => ([])
     },
-    dense: {
-      type: Boolean,
-      default: false
-    }
+    dense: Boolean
   },
   computed: {
     chartClass () {
