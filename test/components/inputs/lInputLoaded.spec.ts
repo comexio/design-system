@@ -169,20 +169,46 @@ describe('InputLoaded component (searchOnInput)', () => {
 
     expect(tag.message).toBe('testMessage')
   })
+})
 
-  it('handlePlaceholder is to return placeholder', async () => {
-    inputLoaded.setProps({outlined: false, placeholder: 'PlaceHolderText'})
-    const result = inputLoaded.vm.handlePlaceholder
-    await inputLoaded.vm.$nextTick()
 
-    expect(result).toBe('PlaceHolderText')
+describe('returns placeholder when is not outlined', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        outlined: false,
+        placeholder: 'PlaceHolderText'
+      }
+    })
   })
 
-  it('handlePlaceholder is to return empty when outline is true', async () => {
-    inputLoaded.setProps({outlined: true, placeholder: 'PlaceHolderText'})
-    const result = inputLoaded.vm.handlePlaceholder
-    await inputLoaded.vm.$nextTick()
+  it('returns placeholder when is not outlined', async () => {
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('PlaceHolderText')
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('')
+  })
+})
 
-    expect(result).toBe('')
+
+describe('returns empty placeholder when is outlined', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        outlined: true,
+        placeholder: 'PlaceHolderText'
+      }
+    })
+  })
+
+  it('returns empty placeholder when is outlined', async () => {
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('')
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('PlaceHolderText')
   })
 })
