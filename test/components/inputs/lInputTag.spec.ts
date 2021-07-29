@@ -1,6 +1,7 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent } from '~/test/utils.setup'
 import LInputTag from '~/src/components/inputs/LInputTag.vue'
+import { hasUncaughtExceptionCaptureCallback } from 'process'
 
 
 const setupDefault = initSetupComponent()
@@ -21,7 +22,7 @@ describe('inputTag component', () => {
     expect(inputTag.exists()).toBe(true)
   })
 
-  it('show expand item', async () => {
+  it('shows expand item', async () => {
     inputTag.setProps({ expand: true })
     const iconAppendOuter = () => inputTag.find('.v-input__append-outer')
 
@@ -34,6 +35,21 @@ describe('inputTag component', () => {
     await inputTag.vm.$nextTick()
 
     expect(inputTag.emitted().clickAppendOuter).toBeTruthy()
+  })
 
+  it('emits input on type value and keydown enter', async () => {
+    const inputElement = () => inputTag.find('input')
+    await inputElement().setValue('value')
+    await inputElement().trigger('keydown.enter')
+    expect(inputTag.emitted().input[0]).toEqual([['value']])
+  })
+
+  it('renders class only hideDetails is true', async () => {
+    // default is hideDetails true
+    expect(inputTag.find('.hide-details').exists()).toBe(true)
+
+    await inputTag.setProps({ hideDetails: false })
+
+    expect(inputTag.find('.hide-details').exists()).toBe(false)
   })
 })

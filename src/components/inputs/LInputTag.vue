@@ -47,7 +47,7 @@ export default {
   computed: {
     classInputTag () {
       return {
-        'hide-details': !this.hideDetails
+        'hide-details': this.hideDetails
       }
     },
     inputValue: {
