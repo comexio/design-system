@@ -1,7 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent } from '~/test/utils.setup'
 import LInputTag from '~/src/components/inputs/LInputTag.vue'
-import { hasUncaughtExceptionCaptureCallback } from 'process'
 
 
 const setupDefault = initSetupComponent()
@@ -46,10 +45,10 @@ describe('inputTag component', () => {
 
   it('renders class only hideDetails is true', async () => {
     // default is hideDetails true
-    expect(inputTag.find('.hide-details').exists()).toBe(true)
+    expect(inputTag.find('.LInputTag--hideDetails').exists()).toBe(true)
 
     await inputTag.setProps({ hideDetails: false })
 
-    expect(inputTag.find('.hide-details').exists()).toBe(false)
+    expect(inputTag.find('.LInputTag--hideDetails').exists()).toBe(false)
   })
 })
