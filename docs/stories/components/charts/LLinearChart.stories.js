@@ -1,4 +1,4 @@
-import LLinearChart from "@components/charts/LLinearChart.vue";
+import LLinearChart from "~/src/components/charts/LLinearChart.vue";
 
 export default {
   title: 'Components/Charts/Primary Bar/Minimized',

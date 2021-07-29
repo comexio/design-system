@@ -1,4 +1,4 @@
-import LButton from "@components/buttons/LButton.vue";
+import LButton from "~/src/components/buttons/LButton.vue";
 
 export default {
   title: "Components/Base/Button",

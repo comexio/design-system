@@ -1,4 +1,4 @@
-import LCheckboxList from '@components/inputs/LCheckboxList.vue';
+import LCheckboxList from '~/src/components/inputs/LCheckboxList.vue';
 
 export default {
   title: 'Components/Inputs/Checkbox/List',

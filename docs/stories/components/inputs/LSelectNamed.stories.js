@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LSelectNamed from '@components/inputs/LSelectNamed.vue';
+import LSelectNamed from '~/src/components/inputs/LSelectNamed.vue';
 
 export default {
   title: 'Components/Inputs/Select/Primary',

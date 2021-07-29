@@ -1,4 +1,4 @@
-import LLoading from "@components/loadings/LLoading.vue";
+import LLoading from "~/src/components/loadings/LLoading.vue";
 
 export default {
   title: "Components/Base/Loading",

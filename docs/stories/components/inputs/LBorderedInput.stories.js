@@ -1,4 +1,4 @@
-import LBorderedInput from '@components/inputs/LBorderedInput.vue';
+import LBorderedInput from '~/src/components/inputs/LBorderedInput.vue';
 
 export default {
   title: 'Components/Inputs/Bordered',

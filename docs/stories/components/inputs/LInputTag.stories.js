@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LInputTag from '@components/inputs/LInputTag.vue';
+import LInputTag from '~/src/components/inputs/LInputTag.vue';
 
 export default {
   title: 'Components/Inputs/With Tags',

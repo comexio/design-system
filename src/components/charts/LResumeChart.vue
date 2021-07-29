@@ -6,9 +6,12 @@
         :key="key"
       >
         <l-resume-line
-          class="py-3"
+          :class="chartClass"
           :title="item.title"
           :description="item.description"
+          :image-path="item.imagePath"
+          data-testid="LResumeLine__wrapper"
+          style="paddingBottom: 2px"
         />
         <v-divider
           v-if="data.length !== key + 1"
@@ -29,6 +32,14 @@ export default {
     data: {
       type: Array,
       default: () => ([])
+    },
+    dense: Boolean
+  },
+  computed: {
+    chartClass () {
+      return {
+        'py-3': !this.dense
+      }
     }
   }
 }

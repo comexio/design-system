@@ -1,4 +1,4 @@
-import LLabeledChip from "@components/filters/LLabeledChip.vue";
+import LLabeledChip from "~/src/components/filters/LLabeledChip.vue";
 
 export default {
   title: "Components/Filters/LabeledChip",

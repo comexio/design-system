@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LSelectSolo from '@components/inputs/LSelectSolo.vue';
+import LSelectSolo from '~/src/components/inputs/LSelectSolo.vue';
 
 export default {
   title: 'Components/Inputs/Select/Solo',
