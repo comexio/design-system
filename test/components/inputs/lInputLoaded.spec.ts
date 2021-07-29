@@ -170,3 +170,45 @@ describe('InputLoaded component (searchOnInput)', () => {
     expect(tag.message).toBe('testMessage')
   })
 })
+
+
+describe('returns placeholder when is not outlined', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        outlined: false,
+        placeholder: 'PlaceHolderText'
+      }
+    })
+  })
+
+  it('returns placeholder when is not outlined', async () => {
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('PlaceHolderText')
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('')
+  })
+})
+
+
+describe('returns empty placeholder when is outlined', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        outlined: true,
+        placeholder: 'PlaceHolderText'
+      }
+    })
+  })
+
+  it('returns empty placeholder when is outlined', async () => {
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('')
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('PlaceHolderText')
+  })
+})
