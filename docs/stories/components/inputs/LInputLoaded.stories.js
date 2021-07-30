@@ -5,6 +5,7 @@ export default {
   title: 'Components/Inputs/Loaded',
   component: LInputLoaded,
   argTypes: {
+    disabled: {control: 'boolean', description: 'Indicates the disable of the input'},
     field: {control: 'text', description: 'Name of the field so you can identify it in an API call'},
     icon: {control: 'boolean', description: 'Indicates the icon visibility'},
     items: {control: 'array', description: 'Array of items that will appear as options to select'},
