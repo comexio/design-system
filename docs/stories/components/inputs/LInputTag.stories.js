@@ -32,3 +32,10 @@ Expandable.args = {
   value: ['First item', 'Second item', 'Third item'],
   expand: true
 };
+
+export const ShowDetails = Template.bind({});
+ShowDetails.args = {
+  value: ['First item', 'Second item', 'Third item'],
+  expand: false,
+  hideDetails: false
+};

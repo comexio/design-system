@@ -47,7 +47,7 @@ export default {
   computed: {
     classInputTag () {
       return {
-        'hide-details': !this.hideDetails
+        'LInputTag--hideDetails': this.hideDetails
       }
     },
     inputValue: {
@@ -68,11 +68,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LInputTag.hide-details {
+.LInputTag--hideDetails {
   ::v-deep {
     @extend .commonCombobox;
   }
 }
+
 .LInputTag {
   ::v-deep {
     @extend .commonInput;
