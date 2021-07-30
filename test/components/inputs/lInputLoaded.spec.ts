@@ -233,7 +233,7 @@ describe('renders component when is disabled', () => {
     })
   })
 
-  it('renders component when is disabled', async () => {
+  it('sets disabled style when disabled prop is true', async () => {
     const isDisabled = inputLoaded.find('.v-input--is-disabled')
     expect(isDisabled.exists()).toBe(true)
   })
