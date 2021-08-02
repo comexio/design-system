@@ -212,3 +212,30 @@ describe('returns empty placeholder when is outlined', () => {
     expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('PlaceHolderText')
   })
 })
+
+describe('renders component when is disabled', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        disabled: true,
+        items: [],
+        value: 'myValue',
+        field: 'myField',
+        outlined: true,
+        showInformation: false,
+        hideDetails: false,
+        message: 'testMessage'
+      }
+    })
+  })
+
+  it('sets disabled style when disabled prop is true', async () => {
+    const isDisabled = inputLoaded.find('.v-input--is-disabled')
+    expect(isDisabled.exists()).toBe(true)
+  })
+})
+
