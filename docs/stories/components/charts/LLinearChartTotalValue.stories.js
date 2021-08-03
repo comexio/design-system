@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LLinearChartTotalValue from "@components/charts/LLinearChartTotalValue.vue";
+import LLinearChartTotalValue from "~/src/components/charts/LLinearChartTotalValue.vue";
 
 const initObjects = initializeObjects()
 

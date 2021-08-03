@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LLinearChartExpand from "@components/charts/LLinearChartExpand.vue";
+import LLinearChartExpand from "~/src/components/charts/LLinearChartExpand.vue";
 
 export default {
   title: 'Components/Charts/Primary Bar/Expanded',

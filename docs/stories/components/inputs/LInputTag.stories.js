@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LInputTag from '@components/inputs/LInputTag.vue';
+import LInputTag from '~/src/components/inputs/LInputTag.vue';
 
 export default {
   title: 'Components/Inputs/With Tags',
@@ -31,4 +31,11 @@ export const Expandable = Template.bind({});
 Expandable.args = {
   value: ['First item', 'Second item', 'Third item'],
   expand: true
+};
+
+export const ShowDetails = Template.bind({});
+ShowDetails.args = {
+  value: ['First item', 'Second item', 'Third item'],
+  expand: false,
+  hideDetails: false
 };

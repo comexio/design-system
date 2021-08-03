@@ -1,4 +1,4 @@
-import LDatePickerDay from "@components/inputs/LDatePickerDay.vue";
+import LDatePickerDay from "~/src/components/inputs/LDatePickerDay.vue";
 
 export default {
   title: "Components/Inputs/DatePicker/Day",
@@ -83,7 +83,7 @@ Filled.args = {
   value: ["2020-12-08","2020-12-18"],
   limit: { min: '2020-10-01', max: '2021-01-25' },
   rangeDays: 15,
-  itemsColor: '#FF8F1C',
+  itemsColor: '#9f6cbb',
   closeOnSelect: true
 }
 
@@ -93,7 +93,7 @@ FilledEnglish.args = {
   value: ["2020-12-08","2020-12-18"],
   limit: { min: '2020-10-01', max: '2021-01-25' },
   rangeDays: 15,
-  itemsColor: '#FF8F1C',
+  itemsColor: '#9f6cbb',
   closeOnSelect: true,
   locale: 'en'
 }

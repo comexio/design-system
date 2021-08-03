@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LBarChart from "@components/charts/LBarChart.vue";
+import LBarChart from "~/src/components/charts/LBarChart.vue";
 
 export default {
   title: 'Components/Charts/Secondary Bar',
@@ -13,6 +13,8 @@ export default {
     othersLabel: { table: {disable: true} },
     toggleLast: { table: {disable: true} },
     hasTitle: { table: {disable: true} },
+    lineLink: { control: 'boolean', description: 'Sets onClick event for whole line and return line\'s data' },
+    'line-click': { action: 'line-click', description: 'Triggers a click event for the Chart\'s line' }
   },
 };
 
@@ -22,7 +24,7 @@ const Template = (args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: { LBarChart },
-  template: '<l-bar-chart @click="click" v-bind="$props"> </l-bar-chart>'
+  template: '<l-bar-chart @click="click" @line-click="line-click" v-bind="$props"> </l-bar-chart>'
 });
 
 export const Default = Template.bind({});
@@ -78,4 +80,33 @@ TitleClickable.args = {
   color: '#D4C5EB',
   hasTitle: true,
   isClickable: true,
+};
+
+export const LineLink = Template.bind({});
+LineLink.args = {
+  data: [{
+    title: "Label",
+    description: "Description",
+    quantity: "Quantity",
+    total: "Value",
+    percentage: 0
+  },
+    {
+      title: "Label",
+      description: "Description",
+      quantity: "Quantity",
+      total: "Value",
+      percentage: 0
+    },
+    {
+      title: "Label",
+      description: "Description",
+      quantity: "Quantity",
+      total: "Value",
+      percentage: 0
+    },],
+  color: '#D4C5EB',
+  hasTitle: false,
+  isClickable: true,
+  lineLink: true
 };

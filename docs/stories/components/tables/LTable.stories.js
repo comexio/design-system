@@ -1,5 +1,5 @@
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LTable from '@components/tables/LTable.vue';
+import LTable from '~/src/components/tables/LTable.vue';
 
 export default {
   title: 'Components/Tables/Table',

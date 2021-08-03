@@ -1,4 +1,4 @@
-import LAlert from "@components/alerts/LAlert.vue";
+import LAlert from "~/src/components/alerts/LAlert.vue";
 
 export default {
   title: "Components/Base/Alert",

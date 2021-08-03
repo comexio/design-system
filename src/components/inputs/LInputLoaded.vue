@@ -6,8 +6,8 @@
       :items="items"
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
-      :disabled="loading && !searchOnInput"
-      :placeholder="handlePla"
+      :disabled="isDisabled"
+      :placeholder="handlePlaceholder"
       :label="handleLabel"
       :attach="!outlined"
       :solo="!outlined"
@@ -67,6 +67,10 @@ export default {
       type: String,
       default: ''
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     hideDetails: {
       type: Boolean,
       default: true
@@ -116,6 +120,9 @@ export default {
     }
   },
   computed: {
+    isDisabled () {
+      return (this.loading && !this.searchOnInput) || this.disabled
+    },
     classInputLoaded () {
       return {
         'rm-radius-left rm-radius-right': !this.outlined

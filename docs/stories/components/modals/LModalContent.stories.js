@@ -1,6 +1,6 @@
 
 import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
-import LModalContent from '@components/modal/LModalContent.vue';
+import LModalContent from '~/src/components/modal/LModalContent.vue';
 
 export default {
   title: 'Components/Modals/Modal Content',
