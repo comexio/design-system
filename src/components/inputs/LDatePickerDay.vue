@@ -6,10 +6,20 @@
       :close-on-content-click="false"
     >
       <template #activator="{ on }">
+        <labeled-input
+          :value="formattedMonths"
+          v-bind="$attrs"
+          v-on="{...$listeners, ...on}"
+          @click="openMenu"
+        >
+          <slot
+            v-for="(_, name) in $slots"
+            :slot="name"
+            :name="name"
+          />
+        </labeled-input>
         <v-row
           class="pointer mx-0 activator"
-          v-on="on"
-          @click="openMenu"
         >
           <v-col
             cols="1"
@@ -96,9 +106,11 @@ import equals from 'ramda/src/equals'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES } from '~/enum/datepicker.enum'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO } from '~/utils/date.util.ts'
+import LabeledInput from "./LLabeledInput";
 
 export default {
   name: 'LDatePickerDay',
+  components: {LabeledInput},
   props: {
     value: {
       type: [String, Array],

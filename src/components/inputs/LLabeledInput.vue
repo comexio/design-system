@@ -10,7 +10,13 @@
       :background-color="disabled ? '#f8f8f8': ''"
       :disabled="disabled"
       v-on="$listeners"
-    />
+    >
+      <slot
+        v-for="(_, name) in $slots"
+        :slot="name"
+        :name="name"
+      />
+    </v-text-field>
   </div>
 </template>
 
