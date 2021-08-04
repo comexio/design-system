@@ -13,6 +13,9 @@
     :class="classInputTag"
     v-on="$listeners"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
     <template
       v-if="expand"
       v-slot:append-outer
@@ -77,6 +80,11 @@ export default {
 .LInputTag {
   ::v-deep {
     @extend .commonInput;
+
+    .v-label {
+      pointer-events: unset;
+      cursor: pointer;
+    }
   }
 }
 </style>

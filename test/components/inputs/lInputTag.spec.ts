@@ -13,7 +13,10 @@ describe('inputTag component', () => {
 
   beforeAll(() => {
     inputTag = mount(LInputTag, {
-      ...defaultParams
+      ...defaultParams,
+      scopedSlots: {
+        'label': '<p slot-scope="label">Label Test</p>',
+      }
     })
   })
 
@@ -50,5 +53,11 @@ describe('inputTag component', () => {
     await inputTag.setProps({ hideDetails: false })
 
     expect(inputTag.find('.LInputTag--hideDetails').exists()).toBe(false)
+  })
+
+  it('renders label slot', async () => {
+    const slotLabel = inputTag.find('.v-label')
+
+    expect(slotLabel.text()).toBe('Label Test')
   })
 })
