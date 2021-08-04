@@ -8,7 +8,8 @@ export default {
     value: {control: 'array', description: 'Array of input items'},
     expand: {control: 'boolean', description: 'Indicates if input is expandable or not'},
     input: {action: 'input', description: 'Emitted when input is received'},
-    clickAppendOuter: {action: 'clickAppendOuter', description: 'Emitted when "E" button is clicked (expand must be true)'}
+    clickAppendOuter: {action: 'clickAppendOuter', description: 'Emitted when "E" button is clicked (expand must be true)'},
+    labelPointer: {control: 'boolean', description: 'Indicates if label with cursor pointer'},
   },
 };
 

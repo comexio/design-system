@@ -14,6 +14,9 @@ describe('inputTag component', () => {
   beforeAll(() => {
     inputTag = mount(LInputTag, {
       ...defaultParams,
+      props: {
+        labelPointer: true
+      },
       scopedSlots: {
         'label': '<p slot-scope="label">Label Test</p>',
       }
