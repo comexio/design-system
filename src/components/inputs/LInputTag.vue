@@ -13,6 +13,9 @@
     :class="classInputTag"
     v-on="$listeners"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
     <template
       v-if="expand"
       v-slot:append-outer
@@ -42,12 +45,14 @@ export default {
       type: Boolean,
       default: true
     },
+    labelPointer: Boolean,
     expand: Boolean
   },
   computed: {
     classInputTag () {
       return {
-        'LInputTag--hideDetails': this.hideDetails
+        'LInputTag--hideDetails': this.hideDetails,
+        'LInputTag--labelPointer': this.labelPointer
       }
     },
     inputValue: {
@@ -77,6 +82,15 @@ export default {
 .LInputTag {
   ::v-deep {
     @extend .commonInput;
+  }
+}
+
+.LInputTag--labelPointer {
+  ::v-deep {
+    .v-label {
+      pointer-events: unset;
+      cursor: pointer;
+    }
   }
 }
 </style>
