@@ -45,10 +45,7 @@ export default {
       type: Boolean,
       default: true
     },
-    labelPointer: {
-      type: Boolean,
-      default: false
-    },
+    labelPointer: Boolean,
     expand: Boolean
   },
   computed: {
