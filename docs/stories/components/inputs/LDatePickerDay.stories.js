@@ -17,7 +17,12 @@ export default {
     rangeDays: {
       control: "number",
       description:
-        "Number of range after selection of date"
+        "Number of days to limit the range after selection of date (this prop has priority over years, if you pass rangeYears and rangeDays props, rangeDays will be used to limit selection)"
+    },
+    rangeYears: {
+      control: "number",
+      description:
+        "Number of years to limit the range after selection of date"
     },
     closeOnSelect: {
       control: "boolean",
@@ -25,8 +30,8 @@ export default {
     },
     datepickerStatus: {
       control: "boolean",
-      description: `Indicates the datepicker status according to parent: true (active) / false (inactive). 
-      It will not update to true automatically when datepicker opens. 
+      description: `Indicates the datepicker status according to parent: true (active) / false (inactive).
+      It will not update to true automatically when datepicker opens.
       It is useful If you want to set the datepicker on/off according to parent events`
     },
     opened: {
@@ -35,7 +40,7 @@ export default {
     },
     closed: {
       action: "closed",
-      description: `Event avaliable when datepickerStatus is sent as false, making the datepicker get closed. 
+      description: `Event avaliable when datepickerStatus is sent as false, making the datepicker get closed.
       With this the parent component can trigger some action according to the updated datepickerStatus`
     },
     itemsColor: {
@@ -64,11 +69,11 @@ const Template = (args, { argTypes }) => ({
   components: { LDatePickerDay },
   template: `
     <l-date-picker-day
-      v-model="date" 
-      v-bind="$props" 
+      v-model="date"
+      v-bind="$props"
       @opened="opened"
       @closed="closed"
-      style="max-width: 300px;" 
+      style="max-width: 300px;"
     />
   `
 })
