@@ -16,13 +16,11 @@ export default {
     },
     rangeDays: {
       control: "number",
-      description:
-        "Number of days to limit the range after selection of date (this prop has priority over years, if you pass rangeYears and rangeDays props, rangeDays will be used to limit selection)"
+      description: 'Number of days to limit the range after selection of date (this prop has priority over years, if you pass rangeYears and rangeDays props, rangeDays will be used to limit selection)'
     },
     rangeYears: {
       control: "number",
-      description:
-        "Number of years to limit the range after selection of date"
+      description: 'Number of years to limit the range after selection of date'
     },
     closeOnSelect: {
       control: "boolean",

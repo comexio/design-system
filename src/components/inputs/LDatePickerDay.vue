@@ -373,13 +373,13 @@ export default {
         const currentDate = period[0]
 
         if (this.rangeDays) {
-          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeDays,'day')
+          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeDays, 'day')
 
           return
         }
 
         if (this.rangeYears) {
-          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeYears,'year')
+          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeYears, 'year')
 
           return
         }
