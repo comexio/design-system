@@ -375,8 +375,7 @@ export default {
           day: this.rangeDays,
           year: this.rangeYears
         }
-        const rangesKeys = Object.keys(ranges)
-        for (const range of rangesKeys) {
+        for (const range in ranges) {
           if (ranges[range]) {
             this.rangeLimit = this.getDateLimitRange(currentDate, ranges[range], range)
 
