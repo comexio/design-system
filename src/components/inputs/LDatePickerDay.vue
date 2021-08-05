@@ -371,17 +371,17 @@ export default {
     validateRange (period) {
       if (period && period.length === 1) {
         const currentDate = period[0]
-
-        if (this.rangeDays) {
-          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeDays, 'day')
-
-          return
+        const ranges = {
+          day: this.rangeDays,
+          year: this.rangeYears
         }
+        const rangesKeys = Object.keys(ranges)
+        for(const range of rangesKeys) {
+          if(ranges[range]){
+            this.rangeLimit = this.getDateLimitRange(currentDate, ranges[range], range)
 
-        if (this.rangeYears) {
-          this.rangeLimit = this.getDateLimitRange(currentDate, this.rangeYears, 'year')
-
-          return
+            return
+          }
         }
       }
 
