@@ -390,18 +390,23 @@ export default {
     getDateLimitRange(currentDate, quantity, unit) {
       const minCalculatedRangeProp = dayjs(currentDate).subtract(quantity, unit)
       const maxCalculatedRangeProp = dayjs(currentDate).add(quantity, unit)
+      const minCalculatedRangePropFormatted = minCalculatedRangeProp.format('YYYY-MM-DD')
+      const maxCalculatedRangePropFormatted = maxCalculatedRangeProp.format('YYYY-MM-DD')
 
       if (this.limit) {
         return {
-          min: minCalculatedRangeProp.isBefore(dayjs(this.limit.min)) ? this.limit.min : minCalculatedRangeProp.format('YYYY-MM-DD'),
-          max: maxCalculatedRangeProp.isAfter(dayjs(this.limit.max)) ? this.limit.max : maxCalculatedRangeProp.format('YYYY-MM-DD')
+          min: minCalculatedRangeProp.isBefore(dayjs(this.limit.min)) ? this.limit.min : minCalculatedRangePropFormatted,
+          max: maxCalculatedRangeProp.isAfter(dayjs(this.limit.max)) ? this.limit.max : maxCalculatedRangePropFormatted
         }
       }
 
       return {
-        min: minCalculatedRangeProp.format('YYYY-MM-DD'),
-        max: maxCalculatedRangeProp.format('YYYY-MM-DD')
+        min: minCalculatedRangePropFormatted,
+        max: maxCalculatedRangePropFormatted
       }
+    },
+    getRangeDateByLimit() {
+
     },
     hoverDate(date) {
       this.temporaryDate = date
