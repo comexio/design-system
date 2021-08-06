@@ -4,7 +4,7 @@ export default {
   title: 'Components/Inputs/Checkbox/CheckboxNew',
   component: LCheckboxNew,
   argTypes: {
-    value: {control: 'text', description: 'Input content'},
+    value: { control: 'text', description: 'Input content' },
     color: { control: 'color', description: 'Content color' },
   },
 };
