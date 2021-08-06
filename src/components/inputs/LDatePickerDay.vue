@@ -405,9 +405,6 @@ export default {
         max: maxCalculatedRangePropFormatted
       }
     },
-    getRangeDateByLimit() {
-
-    },
     hoverDate(date) {
       this.temporaryDate = date
     },
