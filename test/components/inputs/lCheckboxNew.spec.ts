@@ -23,7 +23,6 @@ describe('LCheckboxNew', () => {
     expect(lCheckboxNew).toBeChecked()
   })
 
-
   it('renders component checked with color', async () => {
     renderComponent(WithColor())
 
