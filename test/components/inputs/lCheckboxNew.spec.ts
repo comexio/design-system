@@ -14,11 +14,10 @@ describe('LCheckboxNew', () => {
     expect(lCheckboxNew).not.toBeChecked()
   })
 
-  it('check by clicking on the checkbox', async () => {
+  it('toggles checkbox state, async () => {
     renderComponent(Default())
 
     const lCheckboxNew = screen.getByRole('checkbox')
-
     await userEvent.click(lCheckboxNew)
 
     expect(lCheckboxNew).toBeChecked()
