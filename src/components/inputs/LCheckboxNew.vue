@@ -1,7 +1,7 @@
 <template>
   <v-checkbox
     v-model="inputValue"
-    class="LCheckbox"
+    class="LCheckboxNew"
     v-bind="$attrs"
     v-on="$listeners"
   />
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LCheckbox {
+.LCheckboxNew {
   ::v-deep {
     .v-icon {
       color: $silver;
