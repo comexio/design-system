@@ -20,3 +20,9 @@ export const Default = Template.bind({});
 Default.args = {
   value: false,
 };
+
+export const WithColor = Template.bind({});
+WithColor.args = {
+  value: true,
+  color: '#f2f'
+};

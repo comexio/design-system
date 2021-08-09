@@ -1,45 +1,36 @@
-import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent } from '~/test/utils.setup'
-import LCheckbox from '~/src/components/inputs/LCheckboxNew.vue'
+import { screen } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { composeStories } from '@storybook/testing-vue'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+import * as stories from '~/docs/stories/components/inputs/LCheckboxNew.stories'
 
-const setupDefault = initSetupComponent()
-const defaultParams = {
-  ...setupDefault,
-  props: {
-    value: false,
-  }
-}
+const { Default, WithColor } = composeStories(stories)
 
+describe('LCheckboxNew', () => {
+  it('renders component unchecked', () => {
+    renderComponent(Default())
 
-describe('LCheckboxNew component', () => {
-  let checkboxNew: Wrapper<LCheckbox>
-
-  beforeAll(() => {
-    checkboxNew = mount(LCheckbox, {
-      ...defaultParams,
-    })
-  })
-
-  it('renders component', () => {
-    expect(checkboxNew.exists()).toBe(true)
-  })
-
-  it('renders default unchecked', () => {
-    expect(checkboxNew.find('.v-input--is-label-active').exists()).toBe(false)
+    const lCheckboxNew = screen.getByRole('checkbox')
+    expect(lCheckboxNew).not.toBeChecked()
   })
 
   it('check by clicking on the checkbox', async () => {
-    const input = checkboxNew.find('.LCheckboxNew')
+    renderComponent(Default())
 
-    input.find('input').trigger('click')
-    await checkboxNew.vm.$nextTick()
+    const lCheckboxNew = screen.getByRole('checkbox')
 
-    expect(checkboxNew.find('.v-input--is-label-active').exists()).toBe(true)
+    await userEvent.click(lCheckboxNew)
+
+    expect(lCheckboxNew).toBeChecked()
   })
 
-  it('check by clicking on the checkbox', async () => {
-    checkboxNew.setProps({ color: '#f2f', value: true })
 
-    expect(checkboxNew.find('.v-input--is-label-active').exists()).toBe(true)
+  it('renders component checked with color', async () => {
+    renderComponent(WithColor())
+
+    const lCheckboxNew = screen.getByRole('checkbox')
+
+    expect(lCheckboxNew).toHaveStyle({ color: 'rgb(255, 34, 255);' })
+    expect(lCheckboxNew).toBeChecked()
   })
 })
