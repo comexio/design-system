@@ -14,7 +14,7 @@ describe('LCheckboxNew', () => {
     expect(lCheckboxNew).not.toBeChecked()
   })
 
-  it('toggles checkbox state, async () => {
+  it('toggles checkbox state', async () => {
     renderComponent(Default())
 
     const lCheckboxNew = screen.getByRole('checkbox')
