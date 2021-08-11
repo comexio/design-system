@@ -3,12 +3,16 @@
     v-model="inputValue"
     v-bind="$attrs"
     :hide-details="hideDetails"
+    :disabled="disabled"
+    :background-color="inputBackgroundColor"
+    :height="inputHeight"
     multiple
     chips
     deletable-chips
     outlined
     dense
     small-chips
+    append-icon=""
     class="LInputTag"
     :class="classInputTag"
     v-on="$listeners"
@@ -23,7 +27,11 @@
       <v-btn
         text
         tile
-        color="primary"
+        color="#5C068C"
+        class="ml-1"
+        :height="inputHeight"
+        small
+        :disabled="disabled"
         @click="clickAppendOuter"
         v-on="$attrs.iconListeners"
       >
@@ -46,7 +54,10 @@ export default {
       default: true
     },
     labelPointer: Boolean,
-    expand: Boolean
+    expand: Boolean,
+    disabled: Boolean,
+    large: Boolean,
+    small: Boolean
   },
   computed: {
     classInputTag () {
@@ -62,6 +73,30 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
+    },
+    inputBackgroundColor () {
+      if (this.disabled) {
+        return '#F8F8F8'
+      }
+
+      return ''
+    },
+    inputHeight () {
+      const { large, small, $attrs } = this
+
+      if (large) {
+        return '40'
+      }
+
+      if (small) {
+        return '25'
+      }
+
+      if ($attrs.height) {
+        return $attrs.height
+      }
+
+      return '35'
     }
   },
   methods: {
@@ -91,6 +126,32 @@ export default {
       pointer-events: unset;
       cursor: pointer;
     }
+  }
+}
+
+::v-deep .v-input__control {
+  min-height: 25px !important;
+  border-radius: 5px;
+
+  fieldset {
+    border-width: 1px;
+  }
+}
+
+::v-deep {
+  .v-input__slot {
+    min-height: 25px !important;
+  }
+  .v-select__slot {
+    padding: 0 12px;
+  }
+  .v-input__append-outer {
+    margin: 0 !important;
+  }
+  .v-btn {
+    box-shadow: inset 0 0 0 1px #5c068c;
+    background-color: #faf6ff;
+    border-radius: 4px;
   }
 }
 </style>

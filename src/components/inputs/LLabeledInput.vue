@@ -1,13 +1,14 @@
 <template>
-  <div class="l-labeled-input">
+  <div class="LLabeledInput">
     <v-text-field
       dense
       outlined
-      height="35px"
+      :height="inputHeight"
       v-bind="$attrs"
       :rules="validityRules"
-      class="l-labeled-input--input"
-      :background-color="disabled ? '#f8f8f8': ''"
+      class="LLabeledInput__input"
+      :class="inputClass"
+      :background-color="inputBackgroundColor"
       :disabled="disabled"
       v-on="$listeners"
     />
@@ -16,21 +17,17 @@
 
 <script>
 export default {
-  name: 'LabeledInput',
+  name: 'LLabeledInput',
   inheritAttrs: false,
   props: {
-    validity: {
-      type: Boolean,
-      default: false
-    },
     rules: {
       type: Array,
       default: null
     },
-    disabled:{
-      type: Boolean,
-      default: false
-    }
+    validity: Boolean,
+    disabled: Boolean,
+    large: Boolean,
+    small: Boolean
   },
   computed: {
     showValidity () {
@@ -42,13 +39,78 @@ export default {
       }
 
       return this.rules
+    },
+    inputBackgroundColor () {
+      if (this.disabled) {
+        return '#F8F8F8'
+      }
+
+      return ''
+    },
+    inputClass () {
+      const { large, small } = this
+
+      return {
+        'LLabeledInput__input--large': large,
+        'LLabeledInput__input--small': small
+      }
+    },
+    inputHeight () {
+      const { large, small, $attrs } = this
+
+      if (large) {
+        return '40'
+      }
+
+      if (small) {
+        return '25'
+      }
+
+      if ($attrs.height) {
+        return $attrs.height
+      }
+
+      return '35'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.l-labeled-input {
-    width: 100%;
+
+.LLabeledInput {
+  width: 100%;
+}
+
+::v-deep {
+  .v-input__control {
+    min-height: 25px !important;
+  }
+  .v-input__slot {
+    min-height: 25px !important;
+  }
+  .v-text-field--outlined, .v-text-field--solo {
+    border-radius: 5px;
+    
+    fieldset {
+      border-width: 1px;
+    }
+  }
+  .v-label {
+    top: 8px !important;
+  }
+  .LLabeledInput__input--large {
+    .v-label {
+      top: 10px !important;
+    }
+  }
+  .LLabeledInput__input--small {
+    .v-label {
+      top: 2px !important;
+    }
+    .v-label--active {
+      top: 8px !important;
+    }
+  }
 }
 </style>
