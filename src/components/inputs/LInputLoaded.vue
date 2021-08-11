@@ -61,6 +61,7 @@
 
 import is from 'ramda/src/is'
 import equals from 'ramda/src/equals'
+import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LInputLoaded',
@@ -139,19 +140,7 @@ export default {
     inputHeight () {
       const { large, small, $attrs } = this
 
-      if (large) {
-        return '40'
-      }
-
-      if (small) {
-        return '25'
-      }
-
-      if ($attrs.height) {
-        return $attrs.height
-      }
-
-      return '35'
+      return getInputHeight({large, small, custom: $attrs.height})
     }
   },
   watch: {
