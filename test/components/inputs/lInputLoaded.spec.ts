@@ -188,12 +188,11 @@ describe('returns placeholder when is not outlined', () => {
 
   it('returns placeholder when is not outlined', async () => {
     expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('PlaceHolderText')
-    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('')
   })
 })
 
 
-describe('returns empty placeholder when is outlined', () => {
+describe('returns placeholder when is outlined', () => {
   addElemWithDataAppToBody()
   let inputLoaded: Wrapper<LInputLoaded>
 
@@ -207,9 +206,8 @@ describe('returns empty placeholder when is outlined', () => {
     })
   })
 
-  it('returns empty placeholder when is outlined', async () => {
-    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('')
-    expect(inputLoaded.findComponent({name:'v-combobox'}).props().label).toBe('PlaceHolderText')
+  it('returns placeholder when is outlined', async () => {
+    expect(inputLoaded.findComponent({name:'v-combobox'}).props().placeholder).toBe('PlaceHolderText')
   })
 })
 
