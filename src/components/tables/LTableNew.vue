@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     handleRowClick (row) {
-      if (this.$attrs.showSelect && this.toggleCheckboxOnRowClick) {
+      const { $attrs, toggleCheckboxOnRowClick } = this
+
+      if ($attrs.showSelect && toggleCheckboxOnRowClick) {
         const hasAlreadyChecked = this.inputValue.find((r)  => r === row)
         hasAlreadyChecked ? this.inputValue.pop(row) : this.inputValue.push(row)
       }
