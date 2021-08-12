@@ -4,6 +4,7 @@
     class="elevation-1 LTableNew"
     v-bind="$attrs"
     v-on="$listeners"
+    @click:row="handleRowClick"
   >
     <template
       v-for="(index, name) in $scopedSlots"
@@ -28,7 +29,8 @@ export default {
     value: {
       type: Array,
       default: () => ([])
-    }
+    },
+    toggleCheckboxOnRowClick: Boolean
   },
   computed: {
     inputValue: {
@@ -37,6 +39,14 @@ export default {
       },
       set (value) {
         this.$emit('input', value)
+      }
+    }
+  },
+  methods: {
+    handleRowClick (row) {
+      if (this.$attrs.showSelect && this.toggleCheckboxOnRowClick) {
+        const hasAlreadyChecked = this.inputValue.find((r)  => r === row)
+        hasAlreadyChecked ? this.inputValue.pop(row) : this.inputValue.push(row)
       }
     }
   }

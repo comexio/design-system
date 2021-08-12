@@ -1,20 +1,16 @@
-import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent } from '~/test/utils.setup'
+import { screen } from '@testing-library/vue'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import LTableNew from '~/src/components/tables/LTableNew.vue'
+import userEvent from '@testing-library/user-event'
 
-const setupDefault = initSetupComponent()
-const defaultParams = {
-  ...setupDefault
-}
-
-const headerDataFake = [
+const headers = [
   { text: 'Dessert (100g serving)', value: 'name' },
   { text: 'Calories', value: 'calories' },
   { text: 'Fat (g)', value: 'fat' },
   { text: 'Download', value: 'download' }
 ]
 
-const itemsFake = [
+const items = [
   {
     name: 'Frozen Yogurt',
     calories: 159,
@@ -32,75 +28,97 @@ const itemsFake = [
   }
 ]
 
-describe('LTableNew', () => {
-  let table: Wrapper<LTableNew>
-  beforeAll(() => {
-    table = mount(LTableNew, {
-      ...defaultParams,
-      scopedSlots: {
-        'item.calories': '<p slot-scope="item.calories">external content</p>'
-      }
-    })
+interface CustomProps {
+  toggleCheckboxOnRowClick?: boolean;
+}
+
+interface CustomOptions {
+  attrs?: Object,
+  scopedSlots?: Object
+}
+
+const render = (customProps?: CustomProps, customOptions?: CustomOptions) => {
+  return renderComponent(LTableNew, { 
+    propsData: {
+      headers,
+      items,
+      ...customProps
+    },
+    ...customOptions
   })
+}
 
-  it('renders LTableNew', () => {
-    expect(table.exists()).toBe(true)
-    expect(table.find('.v-data-table__empty-wrapper').text()).toBe('No data available')
-  })
-
-  it('renders header', async () => {
-    table.setProps({ headers: headerDataFake })
-    await table.vm.$nextTick()
-
-    const header = () => table.find('.v-data-table-header')
-    const headerItems = () => header().findAll('th')
-    expect(headerItems().length).toBe(4)
-  })
-
-  it('renders body', async () => {
-    table.setProps({ items: itemsFake })
-    await table.vm.$nextTick()
-
-    const lines = () => table.findAll('tbody tr')
-    expect(lines().length).toBe(3)
-  })
-
-  it('check renders of slots', () => {
-    const firstLine = () => table.find('tbody tr')
-    const secondCeil = () => firstLine().findAll('td').at(1)
-    expect(secondCeil().text()).toBe('external content')
-  })
-})
 
 describe('LTableNew', () => {
-  let table: Wrapper<LTableNew>
-  beforeAll(() => {
-    table = mount(LTableNew, {
-      ...defaultParams,
-      propsData: {
-        headers: headerDataFake,
-        items: itemsFake
-      },
-      scopedSlots: {
-        'item.calories': '<p slot-scope="item.calories">external content</p>'
-      },
-      attrs: {
-        'show-select': true
-      }
-    })
+  it('renders external content', () => {
+    const scopedSlots = { 'item.calories': '<p slot-scope="item.calories">external content</p>' }
+    render({}, { scopedSlots })
+
+    const externalTexts = screen.getAllByText('external content')
+    
+    expect(externalTexts.length).toBe(3)
   })
 
-  it('renders checkbox list', () => {
-    const checkboxList = () => table.findAll('.v-data-table__checkbox')
-    expect(checkboxList().length).toBe(4)
+  it('renders table headers', () => {
+    render()
+
+    const headers = screen.getAllByRole('columnheader')
+
+    expect(headers.length).toBe(4)
+
+    expect(headers[0]).toHaveTextContent('Dessert (100g serving)')
+    expect(headers[1]).toHaveTextContent('Calories')
+    expect(headers[2]).toHaveTextContent('Fat (g)')
+    expect(headers[3]).toHaveTextContent('Download')
   })
 
-  it('check if was emitted on click checkbox', async () => {
-    const checkbox = () => table.find('.v-data-table__checkbox')
+  it('renders table rows', () => {
+    render()
 
-    checkbox().trigger('click')
-    await table.vm.$nextTick()
+    const rows = screen.getAllByRole('row')
 
-    expect(table.emitted('input')).toBeTruthy()
+    expect(rows.length).toBe(4)
+
+    expect(rows[1]).toHaveTextContent(/Frozen Yogurt/)
+    expect(rows[2]).toHaveTextContent(/Lollipop/)
+    expect(rows[3]).toHaveTextContent(/Honeycomb/)
+  })
+
+  /* TODO: Criar issue no vuetify para tornar o checkbox da v-data-table acessível via árvore de acessibilidade
+    pois não é uma boa prática testar através de classes */
+  it('renders table with selects', () => {
+    const attrs = { 'show-select': true }
+    const { container } = render({}, { attrs })
+    
+    const checkboxes = container.getElementsByClassName('mdi-checkbox-blank-outline')
+    
+    expect(checkboxes.length).toBe(4)
+  })
+
+  it('toggles checkbox', async () => {
+    const attrs = { 'show-select': true }
+    const { container, emitted } = render({}, { attrs })
+
+    const uncheckedCheckboxes = container.getElementsByClassName('mdi-checkbox-blank-outline')
+    expect(uncheckedCheckboxes.length).toBe(4)
+
+    await userEvent.click(uncheckedCheckboxes[0])
+
+    expect(uncheckedCheckboxes.length).toBe(0)
+    expect(container.getElementsByClassName('mdi-checkbox-marked').length).toBe(4)
+    
+    expect(emitted().input).toBeTruthy()
+  })
+
+  it('toggles checkbox on row click', async () => {
+    const attrs = { showSelect: true }
+    const { container, emitted } = render({ toggleCheckboxOnRowClick: true  }, { attrs })
+
+    const rows = screen.getAllByRole('row')
+
+    await userEvent.click(rows[1])
+    
+    expect(container.getElementsByClassName('mdi-checkbox-marked').length).toBe(4)
+    expect(emitted().input).toBeTruthy()
   })
 })
