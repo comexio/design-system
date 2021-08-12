@@ -112,6 +112,10 @@ export default {
       type: Number,
       default: null
     },
+    rangeYears: {
+      type: Number,
+      default: null
+    },
     itemsColor: {
       type: String,
       default: '#9f6cbb'
@@ -365,19 +369,41 @@ export default {
       }
     },
     validateRange (period) {
-      if (this.rangeDays && period && period.length === 1) {
+      if (period && period.length === 1) {
         const currentDate = period[0]
-        const minDateByRange = dayjs(currentDate).subtract(this.rangeDays, 'day')
-        const maxDateByRange = dayjs(currentDate).add(this.rangeDays, 'day')
+        const ranges = {
+          day: this.rangeDays,
+          year: this.rangeYears
+        }
+        for (const range in ranges) {
+          if (ranges[range]) {
+            this.rangeLimit = this.getDateLimitRange(currentDate, ranges[range], range)
 
-        this.rangeLimit.min = minDateByRange.format('YYYY-MM-DD')
-        this.rangeLimit.max = maxDateByRange.format('YYYY-MM-DD')
-
-        return
+            return
+          }
+        }
       }
 
       this.rangeLimit.min = null
       this.rangeLimit.max = null
+    },
+    getDateLimitRange(currentDate, quantity, unit) {
+      const minCalculatedRangeProp = dayjs(currentDate).subtract(quantity, unit)
+      const maxCalculatedRangeProp = dayjs(currentDate).add(quantity, unit)
+      const minCalculatedRangePropFormatted = minCalculatedRangeProp.format('YYYY-MM-DD')
+      const maxCalculatedRangePropFormatted = maxCalculatedRangeProp.format('YYYY-MM-DD')
+
+      if (this.limit) {
+        return {
+          min: minCalculatedRangeProp.isBefore(dayjs(this.limit.min)) ? this.limit.min : minCalculatedRangePropFormatted,
+          max: maxCalculatedRangeProp.isAfter(dayjs(this.limit.max)) ? this.limit.max : maxCalculatedRangePropFormatted
+        }
+      }
+
+      return {
+        min: minCalculatedRangePropFormatted,
+        max: maxCalculatedRangePropFormatted
+      }
     },
     hoverDate(date) {
       this.temporaryDate = date

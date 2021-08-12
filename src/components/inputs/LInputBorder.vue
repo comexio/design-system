@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{ focused: isFocused }"
-    class="LBorderedInput"
+    class="LInputBorder"
     @click="focus"
   >
     <input
@@ -9,7 +9,7 @@
       class="hidden-input"
       @blur="isFocused = false"
     >
-    <div class="LBorderedInput__slot">
+    <div class="LInputBorder__content">
       <slot />
     </div>
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'LBorderedInput',
+  name: 'LInputBorder',
   data () {
     return {
       isFocused: false
@@ -33,13 +33,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LBorderedInput {
+.LInputBorder {
   position: relative;
-  border: 1px solid rgba(0, 0, 0, .24);
+  border: 1px solid $silver;
   border-radius: 5px;
   transition: border-color ease .2s;
   &:hover {
-    border-color: #000;
+    border-color: $purpleHaze;
   }
   &.focused {
     border-color: $purpleHaze;

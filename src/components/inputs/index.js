@@ -11,9 +11,10 @@ import LSelectNamed from './LSelectNamed'
 import LInputLoaded from './LInputLoaded'
 import LCheckboxList from './LCheckboxList'
 import LDropdownCheckbox from './LDropdownCheckbox'
-import LBorderedInput from './LBorderedInput'
+import LInputBorder from './LInputBorder'
 import LInputTag from './LInputTag'
 import LCheckbox from './LCheckbox'
+import LCheckboxNew from './LCheckboxNew'
 
 export {
     LLabeledInput,
@@ -29,7 +30,8 @@ export {
     LInputLoaded,
     LCheckboxList,
     LDropdownCheckbox,
-    LBorderedInput,
+    LInputBorder,
     LInputTag,
-    LCheckbox
+    LCheckbox,
+    LCheckboxNew
 }

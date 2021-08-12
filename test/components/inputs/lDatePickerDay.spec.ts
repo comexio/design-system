@@ -13,6 +13,24 @@ const updatedDateLimit = {
 }
 
 const setupDefault = initSetupComponent()
+const mountWithoutLimit = () => {
+  return mount(LDatePickerDay, {
+    ...setupDefault,
+    propsData: {
+      value: ['2020-03-01', '2020-05-31']
+    },
+    data() {
+      return {
+        monthsPeriod: ['2020-03-01', '2020-05-31']
+      }
+    },
+    computed: {
+      i18nLocale() {
+        return 'pt'
+      }
+    }
+  })
+}
 const defaultParams = {
   ...setupDefault,
   propsData: {
@@ -79,7 +97,7 @@ describe('datePicker component', () => {
     expect(nextButton().props().disabled).toBe(true)
   })
 
-  it('Check date limit by range', async () => {
+  it('Check date limit by days range', async () => {
     datePicker.setProps({ rangeDays: 30 })
 
     await datePicker.vm.$nextTick()
@@ -93,6 +111,62 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-05-01", "min": "2020-03-02"})
+  })
+
+  it('Check date limit by years range', async () => {
+    datePicker = mountWithoutLimit()
+    datePicker.setProps({ rangeYears: 1 })
+    const activator = () => datePicker.find('.activator')
+    activator().trigger('click')
+
+    await datePicker.vm.$nextTick()
+
+    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
+    const firstDatepicker = () => datepickers().at(0)
+    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
+    expect(dayPicker().text()).toBe('1')
+    dayPicker().trigger('click')
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.rangeLimit).toEqual({"max": "2021-04-01", "min": "2019-04-01"})
+  })
+
+  it('should return limit by days when has days and years range', async () => {
+    datePicker.setProps({ rangeYears: 1 , rangeDays: 10})
+
+    await datePicker.vm.$nextTick()
+
+    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
+    const firstDatepicker = () => datepickers().at(0)
+    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
+    expect(dayPicker().text()).toBe('1')
+    dayPicker().trigger('click')
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-04-11", "min": "2020-03-22"})
+  })
+
+  it('should limit select range with limit prop over rangeDays and rangeYears props', async () => {
+    datePicker.setProps({
+      limit: {
+        min: '2020-03-30',
+        max: '2020-04-30'
+      }
+    })
+
+    await datePicker.vm.$nextTick()
+
+    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
+    const firstDatepicker = () => datepickers().at(0)
+    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
+    expect(dayPicker().text()).toBe('1')
+    dayPicker().trigger('click')
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-04-11", "min": "2020-03-30"})
   })
 
   it('check multiple click in same date', async () => {

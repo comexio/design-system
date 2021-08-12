@@ -7,15 +7,17 @@
       :menu-props="{ offsetY: true, maxHeight: 200, closeOnContentClick: searchOnInput }"
       :loading="loading"
       :disabled="isDisabled"
-      :placeholder="handlePlaceholder"
-      :label="handleLabel"
+      :placeholder="placeholder"
       :attach="!outlined"
       :solo="!outlined"
+      :background-color="inputBackgroundColor"
+      flat
       dense
       :hide-details="hideDetails"
       hide-selected
       :outlined="outlined"
       class="LInputLoaded"
+      :height="inputHeight"
       :class="classInputLoaded"
       :search-input.sync="searchInput"
       @change="handleInput"
@@ -25,7 +27,7 @@
       <template #append>
         <v-icon
           v-if="icon"
-          color="wisteria"
+          color="#9F6CBB"
         >
           {{ searchOnInput ? '' : 'mdi-chevron-down' }}
         </v-icon>
@@ -59,6 +61,7 @@
 
 import is from 'ramda/src/is'
 import equals from 'ramda/src/equals'
+import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LInputLoaded',
@@ -66,10 +69,6 @@ export default {
     field: {
       type: String,
       default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     },
     hideDetails: {
       type: Boolean,
@@ -83,21 +82,9 @@ export default {
       type: Array,
       default: () => ([])
     },
-    loading: {
-      type: Boolean,
-      default: false
-    },
     placeholder: {
       type: String,
       default: ''
-    },
-    searchOnInput: {
-      type: Boolean,
-      default: false
-    },
-    outlined: {
-      type: Boolean,
-      default: false
     },
     showInformation: {
       type: Boolean,
@@ -110,7 +97,13 @@ export default {
     value: {
       type: [String, Array, Object],
       default: ''
-    }
+    },
+    disabled: Boolean,
+    loading: Boolean,
+    searchOnInput: Boolean,
+    outlined: Boolean,
+    large: Boolean,
+    small: Boolean
   },
   data () {
     return {
@@ -125,7 +118,9 @@ export default {
     },
     classInputLoaded () {
       return {
-        'rm-radius-left rm-radius-right': !this.outlined
+        'LInputLoaded--withoutBorder': !this.outlined,
+        'LInputLoaded--large': this.large,
+        'LInputLoaded--small': this.small
       }
     },
     hasEnoughCharacteres () {
@@ -135,11 +130,17 @@ export default {
     hasNoItems () {
       return this.searchOnInput && !this.items.length
     },
-    handlePlaceholder () {
-      return this.outlined ? '' : this.placeholder
+    inputBackgroundColor () {
+      if (this.isDisabled) {
+        return '#F8F8F8'
+      }
+
+      return ''
     },
-    handleLabel () {
-      return this.outlined ? this.placeholder : ''
+    inputHeight () {
+      const { large, small, $attrs } = this
+
+      return getInputHeight({large, small, custom: $attrs.height})
     }
   },
   watch: {
@@ -214,7 +215,7 @@ export default {
     @extend .commonCombobox;
   }
 }
-.LInputLoaded__search--information{
+.LInputLoaded__search--information {
   text-align: center;
   font-size: 12px;
   border: 1px solid transparent;
@@ -222,7 +223,45 @@ export default {
   box-shadow: 5px 5px 11px rgb(194, 194, 194);
   height: 25px;
 }
-::v-deep .v-text-field {
-  padding-top: 0;
+::v-deep {
+  .v-text-field {
+    padding-top: 0;
+  }
+  .v-text-field--outlined, .v-text-field--solo {
+    border-radius: 5px;
+
+    fieldset {
+      border-width: 1px;
+    }
+  }
+  .LInputLoaded--withoutBorder.v-text-field--outlined, .LInputLoaded--withoutBorder.v-text-field--solo {
+    border-radius: unset !important;
+
+    fieldset {
+      border-width: unset !important;
+    }
+  }
+  .v-input__control {
+    min-height: 25px !important;
+  }
+  .v-input__slot {
+    min-height: 25px !important;
+  }
+  .v-select__slot {
+    padding: 0 12px;
+  }
+  .v-icon {
+    height: 20px;
+  }
+  .LInputLoaded--large {
+    .v-icon {
+      height: 26px;
+    }
+  }
+  .LInputLoaded--small {
+    .v-icon {
+      height: 8px;
+    }
+  }
 }
 </style>
