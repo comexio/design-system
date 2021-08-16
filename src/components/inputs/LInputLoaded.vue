@@ -23,6 +23,7 @@
       @change="handleInput"
       @focus="isInputSelected = true"
       @blur="isInputSelected = false"
+      v-on="$listeners"
     >
       <template #append>
         <v-icon
