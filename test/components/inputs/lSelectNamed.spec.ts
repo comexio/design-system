@@ -62,3 +62,25 @@ describe('selectNamed component', () => {
     expect(selectNamed.emitted().input).toEqual([["one"]])
   })
 })
+
+describe('renders component when is disabled', () => {
+  addElemWithDataAppToBody()
+  let selectNamed: Wrapper<LSelectNamed>
+
+  beforeAll(() => {
+    selectNamed = mount(LSelectNamed, {
+      ...defaultParams,
+      propsData: {
+        disabled: true,
+        items: [],
+        value: 0
+      }
+    })
+  })
+
+  it('sets disabled style when disabled prop is true', async () => {
+    const isDisabled = selectNamed.find('.v-input--is-disabled')
+    expect(isDisabled.exists()).toBe(true)
+  })
+})
+

@@ -3,6 +3,8 @@
     v-model="inputValue"
     v-bind="$attrs"
     :items="items"
+    :disabled="disabled"
+    :background-color="inputBackgroundColor"
     class="LSelectNamed__select"
     item-value="value"
     item-text="text"
@@ -23,7 +25,8 @@ export default {
     items: {
       type: Array,
       default: () => []
-    }
+    },
+    disabled: Boolean
   },
   computed: {
     inputValue: {
@@ -33,7 +36,14 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
-    }
+    },
+    inputBackgroundColor () {
+      if (this.disabled) {
+        return '#F8F8F8'
+      }
+
+      return ''
+    },
   }
 }
 </script>
@@ -41,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .LSelectNamed__select {
   font-size: 13px;
-  height: 30px !important;
+  min-height: 30px !important;
   max-width: 220px !important;
   padding: 0px !important;
   margin-top: -4px !important;
