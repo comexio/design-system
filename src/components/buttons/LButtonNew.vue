@@ -94,7 +94,7 @@ export default {
   background-color: $Alto !important;
 }
 
-.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--primary {
+.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--primary {
   color: $white !important;
   background-color: $macaroni !important;
 }
@@ -121,9 +121,9 @@ export default {
   color: $Alto !important;
 }
 
-.theme--light.v-btn.v-btn--disabled.LButton--secondary, 
-.theme--light.v-btn.v-btn--disabled .v-btn__loading.LButton--secondary, 
-.theme--light.v-btn.v-btn--disabled .v-icon.LButton--secondary {
+.v-btn.v-btn--disabled.LButton--secondary, 
+.v-btn.v-btn--disabled .v-btn__loading.LButton--secondary, 
+.v-btn.v-btn--disabled .v-icon.LButton--secondary {
   color: $macaroni !important;
   border-color: $macaroni !important;
 }
@@ -145,9 +145,9 @@ export default {
   color: $Alto !important;
 }
 
-.theme--light.v-btn.v-btn--disabled.LButton--tertiary, 
-.theme--light.v-btn.v-btn--disabled .v-btn__loading.LButton--tertiary, 
-.theme--light.v-btn.v-btn--disabled .v-icon.LButton--tertiary {
+.v-btn.v-btn--disabled.LButton--tertiary, 
+.v-btn.v-btn--disabled .v-btn__loading.LButton--tertiary, 
+.v-btn.v-btn--disabled .v-icon.LButton--tertiary {
   color: $macaroni !important;
 }
 
@@ -166,7 +166,7 @@ export default {
   transition: 0.3s;
 }
 
-.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--purple {
+.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--purple {
   color: $frenchLilac !important;
   background-color: $whiteLilac !important;
 }
@@ -202,9 +202,7 @@ export default {
   margin-right: unset !important;
 }
 
-.LButton .v-btn.v-btn--disabled, 
-.theme--light.v-btn.v-btn--disabled.LButton .v-btn__loading, 
-.theme--light.v-btn.v-btn--disabled.LButton .v-icon {
+.LButton--disabled.v-btn--disabled .v-btn__content .v-icon {
   color: unset !important;
 }
 </style>
