@@ -1,7 +1,7 @@
 import LButton from "~/src/components/buttons/LButton.vue";
 
 export default {
-  title: "Components/Base/Button",
+  title: "Components/Base/Button/Deprecated",
   component: LButton,
   argTypes: {
     iconValue: { control: "text", description: "Prefix icon" },
