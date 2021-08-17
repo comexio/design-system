@@ -1,7 +1,7 @@
 import LButtonIcon from "~/src/components/buttons/LButtonIcon.vue";
 
 export default {
-  title: "Components/Base/Button/Icon Button",
+  title: "Components/Base/Button/Deprecated/Icon Button",
   component: LButtonIcon,
   argTypes: {
     iconColor: {
