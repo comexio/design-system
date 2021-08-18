@@ -108,3 +108,8 @@
     content: "\F0156" !important;
   }
 }
+
+// removes error color from label
+.v-application .error--text .v-label {
+  color: $doveGray !important;
+}
