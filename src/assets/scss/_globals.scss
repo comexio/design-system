@@ -38,6 +38,7 @@
   }
 }
 
+// TODO: Validar se depois isso tudo vai poder ser deletado 
 .commonInput {
   ::v-deep {
     font-size: 1rem;
@@ -71,6 +72,7 @@
   }
 }
 
+// TODO: Validar se depois isso vai pra outro lugar e se vai manter o mesmo nome
 .commonCombobox {
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
@@ -80,18 +82,14 @@
   .v-input__control {
     min-height: 26px;
     > .v-input__slot {
-      padding: 0px 4px !important;
       height: auto;
       .v-select__selections {
         min-height: 26px !important;
-        input {
-          padding: 0px;
-        }
       }
     }
   }
   .v-chip {
-    border:solid 1px $purpleHaze;
+    border: solid 1px $purpleHaze;
     background: transparent;
     font-size: 0.9rem;
     height: 18px;
@@ -107,9 +105,4 @@
   .v-chip__close::before {
     content: "\F0156" !important;
   }
-}
-
-// removes error color from label
-.v-application .error--text .v-label {
-  color: $doveGray !important;
 }

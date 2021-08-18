@@ -41,11 +41,6 @@ const TemplateWithSlot = (args, { argTypes }) => ({
   ` 
 });
 
-export const Vanilla = Template.bind({});
-Vanilla.args = {
-  placeholder: 'Placeholder'
-}
-
 export const Default = Template.bind({});
 Default.args = {
   outlined: true,
@@ -65,13 +60,6 @@ Small.args = {
   small: true
 }
 
-export const DefaultWithPlaceholder = Template.bind({});
-DefaultWithPlaceholder.args = {
-  outlined: true,
-  dense: true,
-  placeholder: 'Placeholder'
-}
-
 export const DefaultDisabled = Template.bind({});
 DefaultDisabled.args = {
   ...Default.args,
@@ -84,7 +72,7 @@ DefaultWithError.args = {
   error: true
 }
 
-export const WithSlot = TemplateWithSlot.bind({});
-WithSlot.args = {
+export const DefaultWithSlot = TemplateWithSlot.bind({});
+DefaultWithSlot.args = {
   ...Default.args
 }

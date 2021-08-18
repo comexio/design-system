@@ -7,7 +7,7 @@ const {
     Large,
     Small,
     DefaultDisabled,
-    WithSlot
+    DefaultWithSlot
 } = composeStories(stories)
 
 describe('LTextField', () => {
@@ -33,7 +33,7 @@ describe('LTextField', () => {
   })
 
   it('renders textfield with slot', () => {
-    renderComponent(WithSlot())
+    renderComponent(DefaultWithSlot())
 
     const icon = screen.getByTestId('LTextField__icon')
     expect(icon).toBeInTheDocument()
