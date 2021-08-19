@@ -1,6 +1,6 @@
 <template>
   <div
-    class="LDatePickerMonth"
+    class="datepicker"
     :class="datePickerClass"
   >
     <v-menu
@@ -25,7 +25,7 @@
           </v-col>
           <v-col
             cols="8"
-            class="LDatePickerMonth__input text-center"
+            class="datepicker__input text-center"
           >
             <small class="pl-1 formatted-months">
               {{ formattedMonths }}
@@ -53,21 +53,21 @@
         :color="itemsColor"
         :event-color="itemsColor"
         width="200px"
-        class="d-flex flex-row-reverse LDatePickerMonth__calendar"
+        class="d-flex flex-row-reverse datepicker__calendar"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
         <div
           column
           active-class="primary--text"
-          class="LDatePickerMonth__calendar__period full-height d-flex flex-column justify-space-around pa-2"
+          class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
         >
           <v-chip
             v-for="(period, index) of periodsEnum"
             :key="index"
             label
             class="justify-center"
-            :class="{ 'LDatePickerMonth__calendar__period__chip--active' : periodChip === index }"
+            :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
             @click="periodChip = index"
           >
             <span
@@ -239,7 +239,7 @@ export default {
   padding-left: 8px;
 }
 
-.LDatePickerMonth {
+.datepicker {
   min-width: 160px;
   width: 100%;
   background-color: #fff;
@@ -268,7 +268,7 @@ export default {
   }
 }
 
-.LDatePickerMonth__calendar {
+.datepicker__calendar {
   ::v-deep .v-date-picker-header {
     padding: 4px 8px;
     .v-btn {
@@ -303,14 +303,14 @@ export default {
     }
   }
 
-  .LDatePickerMonth__calendar__period {
+  .datepicker__calendar__period {
     .v-chip {
       background: none;
       border: thin solid $gallery;
       height: 20px;
     }
 
-    .LDatePickerMonth__calendar__period__chip--active {
+    .datepicker__calendar__period__chip--active {
       background: $wisteria;
       color: #fff;
     }

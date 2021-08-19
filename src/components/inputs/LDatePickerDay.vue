@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="LDatePickerDay"
-    :class="datePickerClass"
-  >
+  <div class="datepicker">
     <v-menu
       v-model="menu"
       offset-y
@@ -27,7 +24,7 @@
           </v-col>
           <v-col
             cols="8"
-            class="LDatePickerDay__input text-center"
+            class="datepicker__input text-center"
           >
             <small class="pl-1 formatted-months">
               {{ formattedMonths }}
@@ -59,7 +56,7 @@
           :color="itemsColor"
           :event-color="itemsColor"
           width="200px"
-          class="d-flex flex-row-reverse LDatePickerDay__calendar"
+          class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.FIRST)"
@@ -79,7 +76,7 @@
           :color="itemsColor"
           :event-color="itemsColor"
           width="200px"
-          class="d-flex flex-row-reverse LDatePickerDay__calendar"
+          class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.SECOND)"
@@ -461,7 +458,7 @@ export default {
   padding-left: 8px;
 }
 
-.LDatePickerDay {
+.datepicker {
   min-width: 160px;
   width: 100%;
   background-color: #fff;
@@ -490,7 +487,7 @@ export default {
   }
 }
 
-.LDatePickerDay__calendar {
+.datepicker__calendar {
   ::v-deep {
     .v-date-picker-table table {
       border-spacing: 1px;
@@ -531,14 +528,14 @@ export default {
     }
   }
 
-  .LDatePickerDay__calendar__period {
+  .datepicker__calendar__period {
     .v-chip {
       background: none;
       border: thin solid $gallery;
       height: 20px;
     }
 
-    .LDatePickerDay__calendar__period__chip--active {
+    .datepicker__calendar__period__chip--active {
       background: $wisteria;
       color: #fff;
     }
@@ -563,7 +560,7 @@ export default {
     }
   }
 
-  ::v-deep .LDatePickerDay__calendar:last-child {
+  ::v-deep .datepicker__calendar:last-child {
     .v-date-picker-header {
       .v-btn:first-child {
         display: none;
@@ -571,7 +568,7 @@ export default {
     }
   }
 
-  ::v-deep .v-btn.LDatePickerDay__calendar__selectedDay {
+  ::v-deep .v-btn.datepicker__calendar__selectedDay {
     background-color: $moonRaker !important;
     border-color: $moonRaker !important;
     color: $martinique;
