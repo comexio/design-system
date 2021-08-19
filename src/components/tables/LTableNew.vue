@@ -150,7 +150,10 @@ export default {
       color: $silver;
       font-size: 20px;
       &.mdi-checkbox-marked {
-        color: $purpleHaze;
+        color: $wisteria;
+      }
+      &:hover {
+        color: $wisteria;
       }
     }
   }
