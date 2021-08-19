@@ -1,0 +1,78 @@
+<template>
+  <div class="LSelect">
+    <v-select
+      :height="inputHeight"
+      v-bind="$attrs"
+      class="LSelect__input"
+      :class="inputClass"
+      v-on="$listeners"
+    >
+      <template #append>
+        <v-icon v-if="!dropdownIcon" />
+      </template>
+      
+      <template
+        v-for="(index, name) in $scopedSlots"
+        v-slot:[name]="scope"
+      >
+        <slot
+          :name="name"
+          v-bind="scope"
+        />
+      </template>
+
+      <template
+        v-for="(index, name) in $slots"
+        v-slot:[name]
+      >
+        <slot :name="name" />
+      </template>
+    </v-select>
+  </div>
+</template>
+
+<script>
+import { getInputHeight } from '~/utils/size.util'
+
+export default {
+  name: 'LSelect',
+  props: {
+    dropdownIcon: {
+      type: Boolean,
+      default: true
+    },
+    large: Boolean,
+    small: Boolean
+  },
+  computed: {
+    inputClass () {
+      const { dropdownIcon, large, small, $attrs } = this
+
+      return {
+        'LSelect--dropdownIcon': dropdownIcon,
+        'LSelect--disabled': $attrs.disabled,
+        'LSelect--large': large,
+        'LSelect--small': small
+      }
+    },
+    inputHeight () {
+      const { large, small, $attrs } = this
+
+      return getInputHeight({large, small, custom: $attrs.height})
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../../assets/scss/inputs';
+
+::v-deep { 
+  .v-input__slot::before {
+    border-color: $wisteria !important;
+  }
+  .v-input__slot::after {
+    transform: scaleX(0) !important;
+  }
+}
+</style>
