@@ -1,13 +1,36 @@
-$defaultLabelTop: 8px !default;
+$defaultLabelTop: 11px !default;
+
+$largeLabelTop: 13px !default;
+$smallLabelTop: 5px !default;
+
+$largeActiveLabelTop: 10.5px !default;
+$smallActiveLabelTop: 9.5px !default;
 
 $defaultIconHeight: 20px !default;
 
-$largeLabelTop: 10px !default;
-$smallLabelTop: 2px !default;
-$smallActiveLabelTop: 8px !default;
-
 $largeIconHeight: 24px !default;
 $smallIconHeight: 10px !default;
+
+$defaultFontSize: 12px;
+$largeFontSize: 14px;
+
+.defaultText {
+  font-family: Rubik;
+  font-size: $defaultFontSize;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+[class*="__input"] {
+  @extend .defaultText;
+}
+
+[class*="__input"][class*="--large"] {
+  font-size: $largeFontSize;
+}
 
 ::v-deep {
   .v-input__control {
@@ -26,16 +49,30 @@ $smallIconHeight: 10px !default;
   .v-label {
     top: $defaultLabelTop !important;
     color: $doveGray !important;
+    @extend .defaultText;
   }
-  .v-icon {
+  .v-icon, .v-input__icon--append {
     height: $defaultIconHeight;
+  }
+  .v-chip__close {
+    font-size: 16px !important;
+  }
+  .v-chip__content {
+    font-size: $defaultFontSize;
   }
   [class*="--large"] {
     .v-label {
       top: $largeLabelTop !important;
+      font-size: $largeFontSize;
     }
-    .v-icon {
+    .v-label--active {
+      top: $largeActiveLabelTop !important;
+    }
+    .v-icon, .v-input__icon--append {
       height: $largeIconHeight !important;
+    }
+    .v-chip__content {
+      font-size: $largeFontSize;
     }
   }
   [class*="--small"] {
@@ -45,13 +82,20 @@ $smallIconHeight: 10px !default;
     .v-label--active {
       top: $smallActiveLabelTop !important;
     }
-    .v-icon {
+    .v-icon, .v-input__icon--append {
       height: $smallIconHeight !important;
     }
   }
   [class*="__input"][class*="--disabled"] {
     .v-input__slot {
         background-color: $gallery;
+    }
+  }
+  [class*="--dropdownIcon"] {
+    .v-input__icon .v-icon::before {
+      content: "\F0140";
+      color: $wisteria;
+      font-size: 18px;
     }
   }
 }
