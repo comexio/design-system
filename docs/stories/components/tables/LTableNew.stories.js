@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LTableNew from '~/src/components/tables/LTableNew.vue';
 
 export default {
-  title: 'Components/Tables/TableNew',
+  title: 'Components/Tables/Table',
   component: LTableNew,
   argTypes: {
     headers: { control: 'object', description: 'Table headers object' },

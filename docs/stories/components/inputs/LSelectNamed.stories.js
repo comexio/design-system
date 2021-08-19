@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LSelectNamed from '~/src/components/inputs/LSelectNamed.vue';
 
 export default {
-  title: 'Components/Inputs/Select/Primary',
+  title: 'Deprecated/Inputs/Select/Primary',
   component: LSelectNamed,
   argTypes: {
     value: {control: 'array', description: 'Input values array'},

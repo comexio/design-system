@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LInputLoaded from '~/src/components/inputs/LInputLoaded.vue';
 
 export default {
-  title: 'Components/Inputs/Filters Input/Loaded Input',
+  title: 'Deprecated/Inputs/Filters Input/Loaded Input',
   component: LInputLoaded,
   argTypes: {
     disabled: { control: 'boolean', description: 'Toggles input disabled style' },

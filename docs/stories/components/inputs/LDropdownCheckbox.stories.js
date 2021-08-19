@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LDropdownCheckbox from '~/src/components/inputs/LDropdownCheckbox.vue';
 
 export default {
-  title: 'Components/Inputs/Checkbox/Dropdown',
+  title: 'Deprecated/Inputs/Checkbox/Dropdown',
   component: LDropdownCheckbox,
   argTypes: {
     checkboxListPlaceholder: {control: 'text', description: 'checkbox list placeholder'},

@@ -1,7 +1,7 @@
 import LLabeledInput from '~/src/components/inputs/LLabeledInput.vue';
 
 export default {
-  title: 'Components/Inputs/Text Input',
+  title: 'Deprecated/Inputs/Text Input',
   component: LLabeledInput,
   argTypes: {
     rules: { control: 'array', description: 'Array of input rules according to vuetify rules prop' },

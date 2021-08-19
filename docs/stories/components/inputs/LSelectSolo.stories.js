@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LSelectSolo from '~/src/components/inputs/LSelectSolo.vue';
 
 export default {
-  title: 'Components/Inputs/Select/Solo',
+  title: 'Deprecated/Inputs/Select/Solo',
   component: LSelectSolo,
   argTypes: {
     value: {control: 'array', description: 'Input values array'},
