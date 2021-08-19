@@ -15,7 +15,7 @@ const Template = (args, { argTypes }) => ({
   template: `
     <l-text-field
       v-bind="$props" 
-      style="width: 400px"
+      style="width: 200px"
     />
   ` 
 });
@@ -26,7 +26,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
   template: `
     <l-text-field
       v-bind="$props" 
-      style="width: 400px"
+      style="width: 200px"
     >
       <template v-slot:append>
         <v-icon

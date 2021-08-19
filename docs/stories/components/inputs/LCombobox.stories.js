@@ -16,7 +16,7 @@ const Template = (args, { argTypes }) => ({
   template: `
     <l-combobox
       v-bind="$props" 
-      style="width: 600px"
+      style="width: 350px"
     />
   ` 
 });
@@ -27,7 +27,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
   template: `
     <l-combobox
       v-bind="$props" 
-      style="width: 400px"
+      style="width: 350px"
     >
       <template v-slot:append>
         <v-icon
