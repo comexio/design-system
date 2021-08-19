@@ -19,8 +19,8 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LTableNew },
   template: `
-    <l-table-new 
-      v-bind="$props" 
+    <l-table-new
+      v-bind="$props"
       @input="input"
     />
   `,
