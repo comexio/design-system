@@ -1,5 +1,8 @@
 <template>
-  <div class="datepicker">
+  <div
+    class="LDatePickerMonth"
+    :class="datePickerClass"
+  >
     <v-menu
       offset-y
       :close-on-content-click="false"
@@ -22,7 +25,7 @@
           </v-col>
           <v-col
             cols="8"
-            class="datepicker__input text-center"
+            class="LDatePickerMonth__input text-center"
           >
             <small class="pl-1 formatted-months">
               {{ formattedMonths }}
@@ -31,7 +34,7 @@
           <v-spacer />
           <v-icon
             :color="itemsColor"
-            size="15px"
+            size="20px"
           >
             mdi-chevron-down
           </v-icon>
@@ -50,21 +53,21 @@
         :color="itemsColor"
         :event-color="itemsColor"
         width="200px"
-        class="d-flex flex-row-reverse datepicker__calendar"
+        class="d-flex flex-row-reverse LDatePickerMonth__calendar"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
         <div
           column
           active-class="primary--text"
-          class="datepicker__calendar__period full-height d-flex flex-column justify-space-around pa-2"
+          class="LDatePickerMonth__calendar__period full-height d-flex flex-column justify-space-around pa-2"
         >
           <v-chip
             v-for="(period, index) of periodsEnum"
             :key="index"
             label
             class="justify-center"
-            :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
+            :class="{ 'LDatePickerMonth__calendar__period__chip--active' : periodChip === index }"
             @click="periodChip = index"
           >
             <span
@@ -107,6 +110,7 @@ export default {
       type: String,
       default: '#9f6cbb'
     },
+    bordered: Boolean
   },
   data () {
     return {
@@ -171,6 +175,11 @@ export default {
 
       return Object.keys(periods).length
         ? periods : null
+    },
+    datePickerClass () {
+      return {
+        'LDatePickerMonth--bordered': this.bordered
+      }
     }
   },
   watch: {
@@ -230,10 +239,24 @@ export default {
   padding-left: 8px;
 }
 
-.datepicker {
+.LDatePickerMonth {
   min-width: 160px;
   width: 100%;
   background-color: #fff;
+}
+
+.LDatePickerMonth--bordered {
+  cursor: pointer;
+  position: relative;
+  border: 1px solid $silver;
+  border-radius: 5px;
+  transition: border-color ease .2s;
+  &:hover {
+    border-color: $purpleHaze;
+  }
+  &.focused {
+    border-color: $purpleHaze;
+  }
 }
 
 .datapicker__input {
@@ -245,7 +268,7 @@ export default {
   }
 }
 
-.datepicker__calendar {
+.LDatePickerMonth__calendar {
   ::v-deep .v-date-picker-header {
     padding: 4px 8px;
     .v-btn {
@@ -280,14 +303,14 @@ export default {
     }
   }
 
-  .datepicker__calendar__period {
+  .LDatePickerMonth__calendar__period {
     .v-chip {
       background: none;
       border: thin solid $gallery;
       height: 20px;
     }
 
-    .datepicker__calendar__period__chip--active {
+    .LDatePickerMonth__calendar__period__chip--active {
       background: $wisteria;
       color: #fff;
     }
