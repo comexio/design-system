@@ -25,11 +25,11 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LInputTag },
   template: `
-    <l-input-tag 
-      v-bind="$props" 
-      @input="input" 
-      @clickAppendOuter="clickAppendOuter" 
-      style="width: 600px" 
+    <l-input-tag
+      v-bind="$props"
+      @input="input"
+      @clickAppendOuter="clickAppendOuter"
+      style="width: 600px"
     />
   `,
 });
@@ -50,6 +50,12 @@ export const Small = Template.bind({});
 Small.args = {
   ...Default.args,
   small: true
+};
+
+export const MultipleTags = Template.bind({});
+MultipleTags.args = {
+  ...Default.args,
+  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item']
 };
 
 export const Disabled = Template.bind({});

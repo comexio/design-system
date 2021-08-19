@@ -17,8 +17,8 @@
       hide-selected
       :outlined="outlined"
       class="LInputLoaded"
-      :height="inputHeight"
       :class="classInputLoaded"
+      :style="cssVars"
       :search-input.sync="searchInput"
       @change="handleInput"
       @focus="isInputSelected = true"
@@ -142,6 +142,11 @@ export default {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    cssVars() {
+      return {
+        '--minHeight': this.inputHeight + 'px'
+      }
     }
   },
   watch: {
@@ -263,6 +268,13 @@ export default {
     .v-icon {
       height: 8px;
     }
+  }
+}
+
+// overwrite min-height with vars cuz we cant pass min-height to vuetify component and we need to let input grow height
+::v-deep {
+  .v-input__control .v-input__slot {
+    min-height: var(--minHeight) !important;
   }
 }
 </style>

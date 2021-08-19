@@ -33,11 +33,11 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LInputLoaded },
   template: `
-    <l-input-loaded 
-      v-bind="$props" 
-      style="width: 400px" 
-      @getItems="getItems" 
-      @input="input" 
+    <l-input-loaded
+      v-bind="$props"
+      style="width: 400px"
+      @getItems="getItems"
+      @input="input"
     />
   `,
 });
@@ -62,12 +62,21 @@ SmallAutocomplete.args = {
   small: true
 };
 
+export const AutocompleteLoadedWithMultipleTags = Template.bind({});
+AutocompleteLoadedWithMultipleTags.args = {
+  ...DefaultAutocomplete.args,
+  items: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
+  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
+  multiple: true,
+  chips: true
+};
+
 export const AutocompleteWithoutInfo = Template.bind({});
 AutocompleteWithoutInfo.args = {
   ...DefaultAutocomplete.args,
   showInformation: false,
 };
-  
+
 export const AutocompleteLoaded = Template.bind({});
 AutocompleteLoaded.args = {
   ...DefaultAutocomplete.args,
