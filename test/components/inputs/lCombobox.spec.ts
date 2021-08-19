@@ -5,6 +5,8 @@ import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/inputs/LCombobox.stories'
 
 const { 
+    DefaultLarge,
+    DefaultSmall,
     DefaultLoaded,
     DefaultDropdownLoaded,
     DefaultLoading,
@@ -13,10 +15,24 @@ const {
 } = composeStories(stories)
 
 describe('LCombobox', () => {
+  it('renders large combobox with correct class', () => {
+    const { container } = renderComponent(DefaultLarge())
+
+    const textField = container.getElementsByClassName('LCombobox--large')
+    expect(textField.length).toBe(1)
+  })
+
+  it('renders small combobox with correct class', () => {
+    const { container } = renderComponent(DefaultSmall())
+
+    const textField = container.getElementsByClassName('LCombobox--small')
+    expect(textField.length).toBe(1)
+  })
+
   it('renders default combobox loaded', async () => {
     const { container } = renderComponent(DefaultLoaded())
 
-    const comboboxWithClass = container.getElementsByClassName('LCombobox--icon')
+    const comboboxWithClass = container.getElementsByClassName('LCombobox--dropdownIcon')
     expect(comboboxWithClass.length).toBe(0)
     
     await userEvent.click(screen.getByRole('combobox'))
@@ -32,7 +48,7 @@ describe('LCombobox', () => {
   it('renders dropdown combobox loaded', async () => {
     const { container } = renderComponent(DefaultDropdownLoaded())
 
-    const comboboxWithClass = container.getElementsByClassName('LCombobox--icon')
+    const comboboxWithClass = container.getElementsByClassName('LCombobox--dropdownIcon')
     expect(comboboxWithClass.length).toBe(1)
     
     await userEvent.click(screen.getByRole('combobox'))

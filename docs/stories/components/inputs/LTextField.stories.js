@@ -48,14 +48,14 @@ Default.args = {
   label: 'Label'
 }
 
-export const Large = Template.bind({});
-Large.args = {
+export const DefaultLarge = Template.bind({});
+DefaultLarge.args = {
   ...Default.args,
   large: true
 }
 
-export const Small = Template.bind({});
-Small.args = {
+export const DefaultSmall = Template.bind({});
+DefaultSmall.args = {
   ...Default.args,
   small: true
 }

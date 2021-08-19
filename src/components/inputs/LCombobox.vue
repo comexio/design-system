@@ -8,16 +8,7 @@
       v-on="$listeners"
     >
       <template #append>
-        <v-icon
-          v-if="icon"
-          class="LCombobox__dropdownIcon"
-          color="#9F6CBB"
-        >
-          {{ 'mdi-chevron-down' }}
-        </v-icon>
-        <v-icon 
-          v-else 
-        />
+        <v-icon v-if="!dropdownIcon" />
       </template>
 
       <template
@@ -46,16 +37,16 @@ import { getInputHeight } from '~/utils/size.util'
 export default {
   name: 'LCombobox',
   props: {
-    icon: Boolean,
+    dropdownIcon: Boolean,
     large: Boolean,
     small: Boolean
   },
   computed: {
     inputClass () {
-      const { icon, large, small, $attrs } = this
+      const { dropdownIcon, large, small, $attrs } = this
 
       return {
-        'LCombobox--icon': icon,
+        'LCombobox--dropdownIcon': dropdownIcon,
         'LCombobox--disabled': $attrs.disabled,
         'LCombobox--large': large,
         'LCombobox--small': small

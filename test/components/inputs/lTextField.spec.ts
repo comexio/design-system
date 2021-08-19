@@ -4,22 +4,22 @@ import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/inputs/LTextField.stories'
 
 const { 
-    Large,
-    Small,
+    DefaultLarge,
+    DefaultSmall,
     DefaultDisabled,
     DefaultWithSlot
 } = composeStories(stories)
 
 describe('LTextField', () => {
   it('renders large textfield with correct class', () => {
-    const { container } = renderComponent(Large())
+    const { container } = renderComponent(DefaultLarge())
 
     const textField = container.getElementsByClassName('LTextField--large')
     expect(textField.length).toBe(1)
   })
 
   it('renders small textfield with correct class', () => {
-    const { container } = renderComponent(Small())
+    const { container } = renderComponent(DefaultSmall())
 
     const textField = container.getElementsByClassName('LTextField--small')
     expect(textField.length).toBe(1)

@@ -4,7 +4,7 @@ export default {
   title: 'Components/Inputs/Combobox',
   component: LCombobox,
   argTypes: {
-    icon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
+    dropdownIcon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
     large: { control: 'boolean', description: 'Sets the input to its large size: 40px (Default 35px)' },
     small: { control: 'boolean', description: 'Sets the input to its small size: 25px (Default 35px)' }
   },
@@ -62,14 +62,14 @@ DefaultLoaded.args = {
   items: ['First item', 'Second item', 'Third item']
 }
 
-export const Large = Template.bind({});
-Large.args = {
+export const DefaultLarge = Template.bind({});
+DefaultLarge.args = {
   ...DefaultLoaded.args,
   large: true
 }
 
-export const Small = Template.bind({});
-Small.args = {
+export const DefaultSmall = Template.bind({});
+DefaultSmall.args = {
   ...DefaultLoaded.args,
   small: true
 }
@@ -82,13 +82,13 @@ DefaultWithSlot.args = {
 export const DefaultDropdownLoaded = Template.bind({});
 DefaultDropdownLoaded.args = {
   ...DefaultLoaded.args,
-  icon: true
+  dropdownIcon: true
 }
 
 export const DefaultDropdownLoading = Template.bind({});
 DefaultDropdownLoading.args = {
   ...DefaultLoading.args,
-  icon: true
+  dropdownIcon: true
 }
 
 export const WithoutBorder = Template.bind({});
