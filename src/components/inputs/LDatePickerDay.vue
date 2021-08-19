@@ -1,5 +1,8 @@
 <template>
-  <div class="datepicker">
+  <div
+    class="datepicker"
+    :class="datePickerClass"
+  >
     <v-menu
       v-model="menu"
       offset-y

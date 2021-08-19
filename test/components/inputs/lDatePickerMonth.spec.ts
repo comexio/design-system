@@ -65,4 +65,13 @@ describe('datePicker component', () => {
     expect(datePickerVuetify().vm.$props.min).toBe(updatedDateLimit.min)
     expect(datePickerVuetify().vm.$props.max).toBe(updatedDateLimit.max)
   })
+
+  it('renders bordered datepicker', async () => {
+    expect(datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(false)
+
+    datePicker.setProps({ bordered: true })
+    await datePicker.vm.$nextTick()
+
+    expect( datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(true)
+  })
 })
