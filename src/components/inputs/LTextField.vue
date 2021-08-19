@@ -5,7 +5,6 @@
       v-bind="$attrs"
       class="LTextField__input"
       :class="inputClass"
-      :background-color="inputBackgroundColor"
       v-on="$listeners"
     >
       <template
