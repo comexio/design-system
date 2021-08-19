@@ -33,23 +33,16 @@ import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LTextField',
-  inheritAttrs: false,
   props: {
     large: Boolean,
     small: Boolean
   },
   computed: {
-    inputBackgroundColor () {
-      if (this.$attrs.disabled) {
-        return '#F1EFEF'
-      }
-
-      return ''
-    },
     inputClass () {
-      const { large, small } = this
+      const { large, small, $attrs } = this
 
       return {
+        'LTextField--disabled': $attrs.disabled,
         'LTextField--large': large,
         'LTextField--small': small
       }
@@ -64,45 +57,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .v-input__control {
-    min-height: 25px !important;
-  }
-  .v-input__slot {
-    min-height: 25px !important;
-  }
-  .v-text-field--outlined {
-    border-radius: 5px;
-    
-    fieldset {
-      border-width: 1px;
-    }
-  }
-  .v-label {
-    top: 8px !important;
-    color: $doveGray !important;
-  }
-  .v-icon {
-    height: 20px;
-  }
-  .LTextField--large {
-    .v-label {
-      top: 10px !important;
-    }
-    .v-icon {
-      height: 24px;
-    }
-  }
-  .LTextField--small {
-    .v-label {
-      top: 2px !important;
-    }
-    .v-label--active {
-      top: 8px !important;
-    }
-    .v-icon {
-      height: 10px;
-    }
-  }
-}
+@import '../../assets/scss/inputs';
 </style>

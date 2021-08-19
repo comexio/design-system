@@ -1,0 +1,57 @@
+$defaultLabelTop: 8px !default;
+
+$defaultIconHeight: 20px !default;
+
+$largeLabelTop: 10px !default;
+$smallLabelTop: 2px !default;
+$smallActiveLabelTop: 8px !default;
+
+$largeIconHeight: 24px !default;
+$smallIconHeight: 10px !default;
+
+::v-deep {
+  .v-input__control {
+    min-height: 25px !important;
+  }
+  .v-input__slot {
+    min-height: 25px !important;
+  }
+  .v-text-field--outlined {
+    border-radius: 5px;
+    
+    fieldset {
+      border-width: 1px;
+    }
+  }
+  .v-label {
+    top: $defaultLabelTop !important;
+    color: $doveGray !important;
+  }
+  .v-icon {
+    height: $defaultIconHeight;
+  }
+  [class*="--large"] {
+    .v-label {
+      top: $largeLabelTop !important;
+    }
+    .v-icon {
+      height: $largeIconHeight !important;
+    }
+  }
+  [class*="--small"] {
+    .v-label {
+      top: $smallLabelTop !important;
+    }
+    .v-label--active {
+      top: $smallActiveLabelTop !important;
+    }
+    .v-icon {
+      height: $smallIconHeight !important;
+    }
+  }
+  [class*="__input"][class*="--disabled"] {
+    .v-input__slot {
+        background-color: $gallery;
+    }
+  }
+}

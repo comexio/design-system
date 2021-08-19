@@ -25,11 +25,11 @@ describe('LTextField', () => {
     expect(textField.length).toBe(1)
   })
 
-  it('renders disabled textfield with backgroundColor', () => {
+  it('renders disabled textfield with correct class', () => {
     const { container } = renderComponent(DefaultDisabled())
 
-    const inputControl = container.getElementsByClassName('v-input__slot')[0]
-    expect(inputControl).toHaveStyle('background-color: rgb(241, 239, 239)')
+    const textField = container.getElementsByClassName('LTextField--disabled')
+    expect(textField.length).toBe(1)
   })
 
   it('renders textfield with slot', () => {
