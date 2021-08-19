@@ -1,7 +1,7 @@
 import LInputBorder from '~/src/components/inputs/LInputBorder.vue';
 
 export default {
-  title: 'Components/Inputs/Border',
+  title: 'Deprecated/Inputs/Border',
   component: LInputBorder,
   argTypes: {
     default: { control: { disable: true }, description: 'Content' },

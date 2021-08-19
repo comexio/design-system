@@ -50,6 +50,7 @@ export default {
       control: 'text',
       description: 'Locale of the datepicker'
     },
+    bordered: { control: 'boolean', description: 'Toggles datepicker border and adds LDatePickerDay--bordered class' },
     input: {
       table: {
         disable: true
@@ -77,9 +78,8 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
-export const WithoutData = Template.bind({});
-WithoutData.args = {
-}
+export const Default = Template.bind({});
+Default.args = {}
 
 export const Filled = Template.bind({});
 Filled.args = {
@@ -93,11 +93,12 @@ Filled.args = {
 
 export const FilledEnglish = Template.bind({});
 FilledEnglish.args = {
-  date: ["2020-12-08","2020-12-18"],
-  value: ["2020-12-08","2020-12-18"],
-  limit: { min: '2020-10-01', max: '2021-01-25' },
-  rangeDays: 15,
-  itemsColor: '#9f6cbb',
-  closeOnSelect: true,
+  ...Filled.args,
   locale: 'en'
+}
+
+export const Bordered = Template.bind({});
+Bordered.args = {
+  ...Filled.args,
+  bordered: true
 }
