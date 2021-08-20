@@ -1,7 +1,7 @@
 import LInputSolo from '~/src/components/inputs/LInputSolo.vue';
 
 export default {
-  title: 'Components/Inputs/Filters Input/Text Input',
+  title: 'Deprecated/Inputs/Filters Input/Text Input',
   component: LInputSolo,
   argTypes: {
       appendIcon: { control: 'text', description: 'MDI icon to be appended' },

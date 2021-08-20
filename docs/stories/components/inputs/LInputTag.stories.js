@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LInputTag from '~/src/components/inputs/LInputTag.vue';
 
 export default {
-  title: 'Components/Inputs/Filters Input/Tag Input',
+  title: 'Deprecated/Inputs/Filters Input/Tag Input',
   component: LInputTag,
   argTypes: {
     value: { control: 'array', description: 'Array of input items' },

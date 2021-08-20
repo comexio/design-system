@@ -1,5 +1,8 @@
 <template>
-  <div class="datepicker">
+  <div
+    class="datepicker LDatePickerDay"
+    :class="datePickerClass"
+  >
     <v-menu
       v-model="menu"
       offset-y
@@ -33,7 +36,7 @@
           <v-spacer />
           <v-icon
             :color="itemsColor"
-            size="15px"
+            size="20px"
           >
             mdi-chevron-down
           </v-icon>
@@ -128,7 +131,8 @@ export default {
     locale: {
       type: String,
       default: 'pt'
-    }
+    },
+    bordered: Boolean
   },
   data () {
     return {
@@ -219,6 +223,11 @@ export default {
 
       return Object.keys(periods).length
         ? periods : null
+    },
+    datePickerClass () {
+      return { 
+        'LDatePickerDay--bordered': this.bordered
+      }
     }
   },
   watch: {
@@ -464,6 +473,20 @@ export default {
   }
   ::v-deep .v-input__icon--prepend-inner .v-icon {
     color: $wisteria;
+  }
+}
+
+.LDatePickerDay--bordered {
+  cursor: pointer;
+  position: relative;
+  border: 1px solid $silver;
+  border-radius: 5px;
+  transition: border-color ease .2s;
+  &:hover {
+    border-color: $purpleHaze;
+  }
+  &.focused {
+    border-color: $purpleHaze;
   }
 }
 

@@ -1,3 +1,7 @@
+.full-height {
+  height: 100%;
+}
+
 // Fonts
 .font-md {
   font-family: Rubik;
@@ -8,7 +12,6 @@
   font-family: Rubik;
   font-weight: 600;
 }
-
 
 // tooltips
 .customTooltip {
@@ -38,6 +41,7 @@
   }
 }
 
+// TODO: Validar se depois isso tudo vai poder ser deletado 
 .commonInput {
   ::v-deep {
     font-size: 1rem;
@@ -71,6 +75,15 @@
   }
 }
 
+// AllowHeightGrow for deprecated commonInput
+.commonInput--allowHeightGrow {
+  .v-input__control .v-input__slot {
+    min-height: var(--inputMinHeight) !important;
+    height: unset !important;
+  }
+}
+
+// TODO: Validar se depois isso vai pra outro lugar e se vai manter o mesmo nome
 .commonCombobox {
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
@@ -80,18 +93,14 @@
   .v-input__control {
     min-height: 26px;
     > .v-input__slot {
-      padding: 0px 4px !important;
       height: auto;
       .v-select__selections {
         min-height: 26px !important;
-        input {
-          padding: 0px;
-        }
       }
     }
   }
   .v-chip {
-    border:solid 1px $purpleHaze;
+    border: solid 1px $purpleHaze;
     background: transparent;
     font-size: 0.9rem;
     height: 18px;

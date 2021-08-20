@@ -25,65 +25,65 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LButtonNew },
   template: `
-  <div>
-    <l-button-new 
-      v-bind="$props" 
-      style="width: 85px"
-      large
-    >
-      Button
-    </l-button-new>
+    <div>
+      <l-button-new 
+        v-bind="$props" 
+        style="width: 85px"
+        large
+      >
+        Button
+      </l-button-new>
 
-    <l-button-new 
-      v-bind="$props" 
-      style="width: 85px"
-    >
-      Button
-    </l-button-new>
+      <l-button-new 
+        v-bind="$props" 
+        style="width: 85px"
+      >
+        Button
+      </l-button-new>
 
-    <l-button-new 
-      v-bind="$props" 
-      style="width: 85px"
-      small
-    >
-      Button
-    </l-button-new>
-  </div>
-`
+      <l-button-new 
+        v-bind="$props" 
+        style="width: 85px"
+        small
+      >
+        Button
+      </l-button-new>
+    </div>
+  `
 });
 
 const TemplateOnlyIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LButtonNew },
   template: `
-  <l-button-new TemplateDefault
-    v-bind="$props" 
-    icon
-    style="maxHeight: 16px; maxWidth: 16px"
-  >
-    <v-icon size="16">mdi-arrow-left-circle</v-icon>
-  </l-button-new>
-`
+    <l-button-new TemplateDefault
+      v-bind="$props" 
+      icon
+      style="maxHeight: 16px; maxWidth: 16px"
+    >
+      <v-icon size="16">mdi-arrow-left-circle</v-icon>
+    </l-button-new>
+  `
 });
 
 const TemplateWithIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LButtonNew },
   template: `
-  <l-button-new 
-    class="teste"
-    v-bind="$props" 
-    style="width: 106px"
-  >
-    <v-icon
-      left
-      size="16"
+    <l-button-new 
+      class="teste"
+      v-bind="$props" 
+      style="width: 106px"
     >
-      mdi-chevron-left
-    </v-icon>
-    Button
-  </l-button-new>
-`
+      <v-icon
+        left
+        size="16"
+      >
+        mdi-chevron-left
+      </v-icon>
+      Button
+    </l-button-new>
+  `
 });
 
 export const Primary = Template.bind({});

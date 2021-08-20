@@ -1,7 +1,7 @@
 import LInputButton from '~/src/components/inputs/LInputButton.vue';
 
 export default {
-  title: 'Components/Inputs/With Button',
+  title: 'Deprecated/Inputs/With Button',
   component: LInputButton,
   argTypes: {
     buttonLabel: {control: 'text', description: 'Label content'},

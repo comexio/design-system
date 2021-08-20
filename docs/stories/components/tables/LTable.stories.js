@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LTable from '~/src/components/tables/LTable.vue';
 
 export default {
-  title: 'Components/Tables/Table',
+  title: 'Deprecated/Tables/Table',
   component: LTable,
   argTypes: {
     headers: {control: 'object', description: 'Chart headers object'},
