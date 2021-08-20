@@ -55,7 +55,8 @@ Small.args = {
 export const MultipleTags = Template.bind({});
 MultipleTags.args = {
   ...Default.args,
-  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item']
+  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
+  allowHeightGrow: true
 };
 
 export const Disabled = Template.bind({});

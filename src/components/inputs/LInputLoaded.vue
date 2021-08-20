@@ -11,6 +11,7 @@
       :attach="!outlined"
       :solo="!outlined"
       :background-color="inputBackgroundColor"
+      :height="!allowHeightGrow ? inputHeight : ''"
       flat
       dense
       :hide-details="hideDetails"
@@ -104,7 +105,8 @@ export default {
     searchOnInput: Boolean,
     outlined: Boolean,
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    allowHeightGrow: Boolean
   },
   data () {
     return {

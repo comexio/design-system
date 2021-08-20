@@ -5,6 +5,7 @@
     :hide-details="hideDetails"
     :disabled="disabled"
     :background-color="inputBackgroundColor"
+    :height="!allowHeightGrow ? inputHeight : ''"
     multiple
     chips
     deletable-chips
@@ -59,7 +60,8 @@ export default {
     expand: Boolean,
     disabled: Boolean,
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    allowHeightGrow: Boolean
   },
   computed: {
     classInputTag () {

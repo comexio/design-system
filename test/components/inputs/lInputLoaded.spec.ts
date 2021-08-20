@@ -237,3 +237,23 @@ describe('renders component when is disabled', () => {
   })
 })
 
+describe('InputLoaded component (allowHeightGrow)', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams
+    })
+  })
+
+  it('renders component height based on allowHeightGrow', async () => {
+    const combobox = () => inputLoaded.findComponent({ name: 'v-combobox' })
+    expect(combobox().props().height).toBe('35')
+
+    await inputLoaded.setProps({ allowHeightGrow: true })
+
+    expect(combobox().props().height).toBe('')
+  })
+})
+

@@ -64,3 +64,22 @@ describe('inputTag component', () => {
     expect(slotLabel.text()).toBe('Label Test')
   })
 })
+
+describe('InputLoaded component (allowHeightGrow)', () => {
+  let inputTag: Wrapper<LInputTag>
+
+  beforeAll(() => {
+    inputTag = mount(LInputTag, {
+      ...defaultParams
+    })
+  })
+
+  it('renders component height based on allowHeightGrow', async () => {
+    const combobox = () => inputTag.findComponent({ name: 'v-combobox' })
+    expect(combobox().props().height).toBe('35')
+
+    await inputTag.setProps({ allowHeightGrow: true })
+
+    expect(combobox().props().height).toBe('')
+  })
+})

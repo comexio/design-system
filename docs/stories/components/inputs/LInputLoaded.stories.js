@@ -68,7 +68,8 @@ AutocompleteLoadedWithMultipleTags.args = {
   items: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
   value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
   multiple: true,
-  chips: true
+  chips: true,
+  allowHeightGrow: true
 };
 
 export const AutocompleteWithoutInfo = Template.bind({});
