@@ -90,7 +90,7 @@ export default {
 
       return getInputHeight({large, small, custom: $attrs.height})
     },
-    cssVars() {
+    cssVars () {
       return {
         '--minHeight': this.inputHeight + 'px'
       }
