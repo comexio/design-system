@@ -5,7 +5,7 @@
     :hide-details="hideDetails"
     :disabled="disabled"
     :background-color="inputBackgroundColor"
-    :height="!allowHeightGrow ? inputHeight : ''"
+    :height="inputHeight"
     multiple
     chips
     deletable-chips
@@ -67,7 +67,8 @@ export default {
     classInputTag () {
       return {
         'LInputTag--hideDetails': this.hideDetails,
-        'LInputTag--labelPointer': this.labelPointer
+        'LInputTag--labelPointer': this.labelPointer,
+        'LInputTag--allowHeightGrow': this.allowHeightGrow
       }
     },
     inputValue: {
@@ -92,7 +93,7 @@ export default {
     },
     cssVars () {
       return {
-        '--minHeight': this.inputHeight + 'px'
+        '--inputMinHeight': this.inputHeight + 'px'
       }
     }
   },
@@ -149,13 +150,6 @@ export default {
     box-shadow: inset 0 0 0 1px #5c068c;
     background-color: #faf6ff;
     border-radius: 4px;
-  }
-}
-
-// overwrite min-height with vars cuz we cant pass min-height to vuetify component and we need to let input grow height
-::v-deep {
-  .v-input__control .v-input__slot {
-    min-height: var(--minHeight) !important;
   }
 }
 </style>

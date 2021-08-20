@@ -11,7 +11,7 @@
       :attach="!outlined"
       :solo="!outlined"
       :background-color="inputBackgroundColor"
-      :height="!allowHeightGrow ? inputHeight : ''"
+      :height="inputHeight"
       flat
       dense
       :hide-details="hideDetails"
@@ -123,7 +123,8 @@ export default {
       return {
         'LInputLoaded--withoutBorder': !this.outlined,
         'LInputLoaded--large': this.large,
-        'LInputLoaded--small': this.small
+        'LInputLoaded--small': this.small,
+        'LInputLoaded--allowHeightGrow': this.allowHeightGrow
       }
     },
     hasEnoughCharacteres () {
@@ -147,7 +148,7 @@ export default {
     },
     cssVars () {
       return {
-        '--minHeight': this.inputHeight + 'px'
+        '--inputMinHeight': this.inputHeight + 'px'
       }
     }
   },
@@ -270,13 +271,6 @@ export default {
     .v-icon {
       height: 8px;
     }
-  }
-}
-
-// overwrite min-height with vars cuz we cant pass min-height to vuetify component and we need to let input grow height
-::v-deep {
-  .v-input__control .v-input__slot {
-    min-height: var(--minHeight) !important;
   }
 }
 </style>

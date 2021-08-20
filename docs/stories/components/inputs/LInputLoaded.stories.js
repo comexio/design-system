@@ -23,6 +23,7 @@ export default {
     selected with text/value from each one` },
     getItems: { action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request.
     It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true` },
+    allowHeightGrow: { control: 'boolean', description: 'Allow if input can grows height' },
   },
 };
 

@@ -1,0 +1,7 @@
+// overwrite min-height with vars cuz we cant pass min-height to vuetify component and we need to let input grow height
+[class*="--allowHeightGrow"] {
+  .v-input__control .v-input__slot {
+    min-height: var(--inputMinHeight) !important;
+    height: unset !important;
+  }
+}

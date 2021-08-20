@@ -247,13 +247,13 @@ describe('InputLoaded component (allowHeightGrow)', () => {
     })
   })
 
-  it('renders component height based on allowHeightGrow', async () => {
+  it('renders component class based on allowHeightGrow', async () => {
     const combobox = () => inputLoaded.findComponent({ name: 'v-combobox' })
-    expect(combobox().props().height).toBe('35')
+    expect(combobox().classes('LInputLoaded--allowHeightGrow')).toBe(false)
 
     await inputLoaded.setProps({ allowHeightGrow: true })
 
-    expect(combobox().props().height).toBe('')
+    expect(combobox().classes('LInputLoaded--allowHeightGrow')).toBe(true)
   })
 })
 

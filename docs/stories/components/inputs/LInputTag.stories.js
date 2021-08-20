@@ -14,7 +14,8 @@ export default {
     large: { control: 'boolean', description: 'Sets the input to its large size: 40px' },
     small: { control: 'boolean', description: 'Sets the input to its small size: 25px' },
     input: { action: 'input', description: 'Emitted when input is received'},
-    clickAppendOuter: { action: 'clickAppendOuter', description: 'Emitted when expand button is clicked' }
+    clickAppendOuter: { action: 'clickAppendOuter', description: 'Emitted when expand button is clicked' },
+    allowHeightGrow: { control: 'boolean', description: 'Allow if input can grows height' },
   },
 };
 
