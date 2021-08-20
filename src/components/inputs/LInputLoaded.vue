@@ -273,4 +273,10 @@ export default {
     }
   }
 }
+
+.LInputLoaded--allowHeightGrow {
+  ::v-deep {
+    @extend .commonInput--allowHeightGrow;
+  }
+}
 </style>

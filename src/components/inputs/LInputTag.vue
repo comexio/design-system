@@ -152,4 +152,10 @@ export default {
     border-radius: 4px;
   }
 }
+
+.LInputTag--allowHeightGrow {
+  ::v-deep {
+    @extend .commonInput--allowHeightGrow;
+  }
+}
 </style>
