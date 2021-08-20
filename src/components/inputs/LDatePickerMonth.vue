@@ -1,6 +1,6 @@
 <template>
   <div
-    class="datepicker"
+    class="datepicker LDatePickerMonth"
     :class="datePickerClass"
   >
     <v-menu
