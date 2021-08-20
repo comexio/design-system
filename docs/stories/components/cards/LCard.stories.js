@@ -9,7 +9,7 @@ export default {
     data: {
       control: "object",
       description:
-        "Data object that will be used in the card content. It must exist so you can use the default slot - teste"
+        "Data object that will be used in the card content. It must exist so you can use the default slot"
     },
     height: { control: "text", description: "Card height" },
     default: { description: "Card content slot" },

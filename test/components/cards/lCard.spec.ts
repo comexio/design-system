@@ -10,7 +10,7 @@ const defaultParams = {
   }
 }
 
-describe('LCard component - teste', () => {
+describe('LCard component', () => {
   let card: Wrapper<LCard>
 
   beforeAll(() => {
