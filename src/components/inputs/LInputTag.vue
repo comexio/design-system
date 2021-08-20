@@ -15,6 +15,7 @@
     append-icon=""
     class="LInputTag"
     :class="classInputTag"
+    :style="cssVars"
     v-on="$listeners"
   >
     <template #label>
@@ -59,13 +60,15 @@ export default {
     expand: Boolean,
     disabled: Boolean,
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    allowHeightGrow: Boolean
   },
   computed: {
     classInputTag () {
       return {
         'LInputTag--hideDetails': this.hideDetails,
-        'LInputTag--labelPointer': this.labelPointer
+        'LInputTag--labelPointer': this.labelPointer,
+        'LInputTag--allowHeightGrow': this.allowHeightGrow
       }
     },
     inputValue: {
@@ -87,6 +90,11 @@ export default {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    cssVars () {
+      return {
+        '--inputMinHeight': this.inputHeight + 'px'
+      }
     }
   },
   methods: {
@@ -142,6 +150,12 @@ export default {
     box-shadow: inset 0 0 0 1px #5c068c;
     background-color: #faf6ff;
     border-radius: 4px;
+  }
+}
+
+.LInputTag--allowHeightGrow {
+  ::v-deep {
+    @extend .commonInput--allowHeightGrow;
   }
 }
 </style>

@@ -23,6 +23,7 @@ export default {
     selected with text/value from each one` },
     getItems: { action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request.
     It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true` },
+    allowHeightGrow: { control: 'boolean', description: 'Allow if input can grows height' },
   },
 };
 
@@ -33,11 +34,11 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LInputLoaded },
   template: `
-    <l-input-loaded 
-      v-bind="$props" 
-      style="width: 400px" 
-      @getItems="getItems" 
-      @input="input" 
+    <l-input-loaded
+      v-bind="$props"
+      style="width: 400px"
+      @getItems="getItems"
+      @input="input"
     />
   `,
 });
@@ -62,12 +63,22 @@ SmallAutocomplete.args = {
   small: true
 };
 
+export const AutocompleteLoadedWithMultipleTags = Template.bind({});
+AutocompleteLoadedWithMultipleTags.args = {
+  ...DefaultAutocomplete.args,
+  items: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
+  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item', 'Sixth item', 'Seventh item'],
+  multiple: true,
+  chips: true,
+  allowHeightGrow: true
+};
+
 export const AutocompleteWithoutInfo = Template.bind({});
 AutocompleteWithoutInfo.args = {
   ...DefaultAutocomplete.args,
   showInformation: false,
 };
-  
+
 export const AutocompleteLoaded = Template.bind({});
 AutocompleteLoaded.args = {
   ...DefaultAutocomplete.args,
