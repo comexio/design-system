@@ -75,6 +75,14 @@
   }
 }
 
+// AllowHeightGrow for deprecated commonInput
+.commonInput--allowHeightGrow {
+  .v-input__control .v-input__slot {
+    min-height: var(--inputMinHeight) !important;
+    height: unset !important;
+  }
+}
+
 // TODO: Validar se depois isso vai pra outro lugar e se vai manter o mesmo nome
 .commonCombobox {
   input[type=number]::-webkit-inner-spin-button,
