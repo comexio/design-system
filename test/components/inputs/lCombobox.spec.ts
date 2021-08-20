@@ -25,8 +25,8 @@ describe('LCombobox', () => {
   it('renders small combobox with correct class', () => {
     const { container } = renderComponent(DefaultSmall())
 
-    const textField = container.getElementsByClassName('LCombobox--small')
-    expect(textField.length).toBe(1)
+    const comboboxWithClass = container.getElementsByClassName('LCombobox--small')
+    expect(comboboxWithClass.length).toBe(1)
   })
 
   it('renders default combobox loaded', async () => {
@@ -80,15 +80,20 @@ describe('LCombobox', () => {
   })
 
   it('render combobox with tags', async () => {
-    renderComponent(WithTags())
+    const { container } = renderComponent(WithTags())
+
+    const comboboxWithClass = container.getElementsByClassName('LCombobox--allowHeightGrow')
+    expect(comboboxWithClass.length).toBe(1)
 
     await userEvent.click(screen.getByRole('combobox'))
     
     const closeButtons = screen.getAllByRole('button', { hidden: true })
     
-    expect(closeButtons.length).toBe(3)
+    expect(closeButtons.length).toBe(5)
     expect(screen.getByText('First item')).toBeInTheDocument()
     expect(screen.getByText('Second item')).toBeInTheDocument()
     expect(screen.getByText('Third item')).toBeInTheDocument()
+    expect(screen.getByText('Fourth item')).toBeInTheDocument()
+    expect(screen.getByText('Fifth item')).toBeInTheDocument()
   })
 })

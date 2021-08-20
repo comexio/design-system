@@ -39,6 +39,12 @@ $largeFontSize: 14px;
   .v-input__slot {
     min-height: 25px !important;
   }
+  [class*="--allowHeightGrow"] {
+    .v-input__control .v-input__slot {
+      min-height: var(--minHeight) !important;
+      height: unset !important;
+    }
+  }
   .v-text-field--outlined {
     border-radius: 5px;
     

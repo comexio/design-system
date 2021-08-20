@@ -107,6 +107,7 @@ WithoutBorderDisabled.args = {
 export const WithTags = Template.bind({});
 WithTags.args = {
   placeholder: 'Placeholder',
+  allowHeightGrow: true,
   dense: true,
   multiple: true,
   chips: true,
@@ -115,7 +116,7 @@ WithTags.args = {
   dense: true,
   smallChips: true,
   hideDetails: true,
-  value: ['First item', 'Second item', 'Third item']
+  value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item']
 }
 
 export const WithTagsDisabled = Template.bind({});

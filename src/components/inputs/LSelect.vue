@@ -5,6 +5,7 @@
       v-bind="$attrs"
       class="LSelect__input"
       :class="inputClass"
+      :style="inputStyleVariables"
       v-on="$listeners"
     >
       <template #append>
@@ -37,6 +38,7 @@ import { getInputHeight } from '~/utils/size.util'
 export default {
   name: 'LSelect',
   props: {
+    allowHeightGrow: Boolean,
     dropdownIcon: {
       type: Boolean,
       default: true
@@ -46,9 +48,10 @@ export default {
   },
   computed: {
     inputClass () {
-      const { dropdownIcon, large, small, $attrs } = this
+      const { allowHeightGrow, dropdownIcon, large, small, $attrs } = this
 
       return {
+        'LSelect--allowHeightGrow': allowHeightGrow,
         'LSelect--dropdownIcon': dropdownIcon,
         'LSelect--disabled': $attrs.disabled,
         'LSelect--large': large,
@@ -59,6 +62,13 @@ export default {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    inputStyleVariables () {
+      const { inputHeight } = this
+
+      return {
+        '--minHeight': `${inputHeight}px`
+      }
     }
   }
 }

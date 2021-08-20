@@ -47,6 +47,7 @@ Default.args = {
   placeholder: 'Placeholder',
   dense: true,
   menuProps: { bottom: true, offsetY: true },
+  multiple: true,
   items: ['First item', 'Second item', 'Third item']
 }
 
@@ -79,6 +80,13 @@ export const DefaultSolo = Template.bind({});
 DefaultSolo.args = {
   ...Default.args,
   solo: true
+}
+
+export const DefaultMultiple = Template.bind({});
+DefaultMultiple.args = {
+  ...Default.args,
+  multiple: true,
+  allowHeightGrow: true
 }
 
 export const DefaultWithSlot = TemplateWithSlot.bind({});

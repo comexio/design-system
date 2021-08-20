@@ -9,6 +9,7 @@ const {
     DefaultLarge,
     DefaultSmall,
     DefaultBorderedDisabled,
+    DefaultMultiple,
     DefaultWithSlot
 } = composeStories(stories)
 
@@ -32,22 +33,29 @@ describe('LSelect', () => {
   it('renders large select with correct class', () => {
     const { container } = renderComponent(DefaultLarge())
 
-    const textField = container.getElementsByClassName('LSelect--large')
-    expect(textField.length).toBe(1)
+    const selectWithClass = container.getElementsByClassName('LSelect--large')
+    expect(selectWithClass.length).toBe(1)
   })
 
   it('renders small select with correct class', () => {
     const { container } = renderComponent(DefaultSmall())
 
-    const textField = container.getElementsByClassName('LSelect--small')
-    expect(textField.length).toBe(1)
+    const selectWithClass = container.getElementsByClassName('LSelect--small')
+    expect(selectWithClass.length).toBe(1)
   })
 
   it('renders disabled select with correct class', () => {
     const { container } = renderComponent(DefaultBorderedDisabled())
 
-    const textField = container.getElementsByClassName('LSelect--disabled')
-    expect(textField.length).toBe(1)
+    const selectWithClass = container.getElementsByClassName('LSelect--disabled')
+    expect(selectWithClass.length).toBe(1)
+  })
+
+  it('renders multiple select with correct class', () => {
+    const { container } = renderComponent(DefaultMultiple())
+  
+    const selectWithClass = container.getElementsByClassName('LSelect--allowHeightGrow')
+    expect(selectWithClass.length).toBe(1)
   })
 
   it('renders select with slot', () => {
