@@ -6,7 +6,8 @@ export default {
   argTypes: {
     dropdownIcon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
     large: { control: 'boolean', description: 'Sets the input to its large size: 40px (Default 35px)' },
-    small: { control: 'boolean', description: 'Sets the input to its small size: 25px (Default 35px)' }
+    small: { control: 'boolean', description: 'Sets the input to its small size: 25px (Default 35px)' },
+    allowHeightGrow: { control: 'boolean', description: 'Allows input to grow beyond its height'}
   },
 };
 
@@ -47,7 +48,6 @@ Default.args = {
   placeholder: 'Placeholder',
   dense: true,
   menuProps: { bottom: true, offsetY: true },
-  multiple: true,
   items: ['First item', 'Second item', 'Third item']
 }
 
