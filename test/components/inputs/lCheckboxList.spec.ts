@@ -116,4 +116,11 @@ describe('selectNamed component', () => {
     expect(list().length).toBe(4)
     expect(checkboxList.vm.selected.length).toBe(2)
   })
+
+  it('trigger items clear selectedItems', async () => {
+    checkboxList.setProps({ selectedItems: null })
+    await checkboxList.vm.$nextTick()
+
+    expect(checkboxList.vm.$data.selected).toBe(null)
+  })
 })
