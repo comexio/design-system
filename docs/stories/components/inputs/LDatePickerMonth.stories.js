@@ -28,6 +28,7 @@ export default {
       control: 'text',
       description: 'Locale of the datepicker'
     },
+    bordered: { control: 'boolean', description: 'Toggles datepicker border and adds LDatePickerMonth--bordered class' },
     input: {
       table: {
         disable: true
@@ -56,8 +57,8 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
-export const WithoutData = Template.bind({});
-WithoutData.args = {
+export const Default = Template.bind({});
+Default.args = {
   limit: { min: '2020-01-01', max: '2021-06-28' },
   monthsList: [
     'Janeiro',
@@ -77,43 +78,19 @@ WithoutData.args = {
 
 export const Filled = Template.bind({});
 Filled.args = {
+  ...Default.args,
   date: ['2020-01','2021-02'],
   value: ['2020-01','2020-12'],
-  limit: { min: '2020-01-01', max: '2021-06-28' },
-  monthsList: [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
-  ]
 }
 
 export const FilledEnglish = Template.bind({});
-  FilledEnglish.args = {
-    date: ['2020-01','2021-02'],
-    value: ['2020-01','2020-12'],
-    limit: { min: '2020-01-01', max: '2021-06-28' },
-    monthsList: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    locale: 'en'
+FilledEnglish.args = {
+  ...Filled.args,
+  locale: 'en'
+}
+
+export const Bordered = Template.bind({});
+Bordered.args = {
+  ...Filled.args,
+  bordered: true
 }

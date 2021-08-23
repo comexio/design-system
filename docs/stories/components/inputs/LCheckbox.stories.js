@@ -1,7 +1,7 @@
 import LCheckbox from '~/src/components/inputs/LCheckbox.vue';
 
 export default {
-  title: 'Components/Inputs/Checkbox',
+  title: 'Deprecated/Inputs/Checkbox',
   component: LCheckbox,
   argTypes: {
     options: {control: 'array', description: 'Array of checkbox items'},

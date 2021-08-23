@@ -1,3 +1,6 @@
+import LTextField from './LTextField'
+import LCombobox from './LCombobox'
+import LSelect from './LSelect'
 import LLabeledInput from './LLabeledInput'
 import LLabeledSelect from "./LLabeledSelect";
 import LLabeledTextarea from "./LLabeledTextarea";
@@ -17,6 +20,9 @@ import LCheckbox from './LCheckbox'
 import LCheckboxNew from './LCheckboxNew'
 
 export {
+    LTextField,
+    LCombobox,
+    LSelect,
     LLabeledInput,
     LLabeledSelect,
     LLabeledTextarea,

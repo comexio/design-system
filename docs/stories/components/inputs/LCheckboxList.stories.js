@@ -1,7 +1,7 @@
 import LCheckboxList from '~/src/components/inputs/LCheckboxList.vue';
 
 export default {
-  title: 'Components/Inputs/Checkbox/List',
+  title: 'Deprecated/Inputs/Checkbox/List',
   component: LCheckboxList,
   argTypes: {
     items: {control: 'object', description: 'Array of objects containing all items. Items must have label and value.'},

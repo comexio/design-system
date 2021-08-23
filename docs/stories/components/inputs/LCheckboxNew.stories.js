@@ -1,7 +1,7 @@
 import LCheckboxNew from '~/src/components/inputs/LCheckboxNew.vue';
 
 export default {
-  title: 'Components/Inputs/Checkbox/CheckboxNew',
+  title: 'Components/Inputs/Checkbox',
   component: LCheckboxNew,
   argTypes: {
     value: { control: 'text', description: 'Input content' },

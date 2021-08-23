@@ -11,18 +11,20 @@
       :attach="!outlined"
       :solo="!outlined"
       :background-color="inputBackgroundColor"
+      :height="inputHeight"
       flat
       dense
       :hide-details="hideDetails"
       hide-selected
       :outlined="outlined"
       class="LInputLoaded"
-      :height="inputHeight"
       :class="classInputLoaded"
+      :style="cssVars"
       :search-input.sync="searchInput"
       @change="handleInput"
       @focus="isInputSelected = true"
       @blur="isInputSelected = false"
+      v-on="$listeners"
     >
       <template #append>
         <v-icon
@@ -103,7 +105,8 @@ export default {
     searchOnInput: Boolean,
     outlined: Boolean,
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    allowHeightGrow: Boolean
   },
   data () {
     return {
@@ -120,7 +123,8 @@ export default {
       return {
         'LInputLoaded--withoutBorder': !this.outlined,
         'LInputLoaded--large': this.large,
-        'LInputLoaded--small': this.small
+        'LInputLoaded--small': this.small,
+        'LInputLoaded--allowHeightGrow': this.allowHeightGrow
       }
     },
     hasEnoughCharacteres () {
@@ -141,6 +145,11 @@ export default {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    cssVars () {
+      return {
+        '--inputMinHeight': this.inputHeight + 'px'
+      }
     }
   },
   watch: {
@@ -262,6 +271,12 @@ export default {
     .v-icon {
       height: 8px;
     }
+  }
+}
+
+.LInputLoaded--allowHeightGrow {
+  ::v-deep {
+    @extend .commonInput--allowHeightGrow;
   }
 }
 </style>

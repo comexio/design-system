@@ -237,6 +237,14 @@ describe('datePicker component', () => {
 
     expect(datepickers().at(0).vm.activePicker).toBe('MONTH')
     expect(secondHeaderButton().attributes('disabled')).toBeDefined()
+  })
 
+  it('renders bordered datepicker', async () => {
+    expect(datePicker.find('.LDatePickerDay--bordered').exists()).toBe(false)
+
+    datePicker.setProps({ bordered: true })
+    await datePicker.vm.$nextTick()
+
+    expect( datePicker.find('.LDatePickerDay--bordered').exists()).toBe(true)
   })
 })
