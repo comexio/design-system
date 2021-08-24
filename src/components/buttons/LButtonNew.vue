@@ -3,6 +3,7 @@
     class="LButton"
     :class="buttonClass"
     v-bind="$attrs"
+    :height="buttonHeight"
     :disabled="disabled"
     :icon="icon"
     :outlined="secondary || $attrs.outlined"
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { getButtonHeight } from '~/utils/size.util'
+
 export default {
   name: 'LButton',
   props: {
@@ -42,6 +45,11 @@ export default {
         'LButton--small': this.small,
         'LButton__label--sentenceCase': this.sentenceCasedLabel
       }
+    },
+    buttonHeight () {
+      const { large, small, $attrs } = this
+
+      return getButtonHeight({large, small, custom: $attrs.height})
     }
   }
 }
@@ -57,22 +65,23 @@ export default {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  height: 40px !important;
-  font-size: 14px !important;
+  font-size: 14px;
 }
 
 .LButton--large {
-  height: 45px !important;
-  font-size: 16px !important;
+  font-size: 16px;
 }
 
 .LButton--small {
-  height: 35px !important;
-  font-size: 12px !important;
+  font-size: 12px;
 }
 
 .LButton__label--sentenceCase {
   text-transform: none;
+}
+
+.v-btn {
+  min-width: unset !important;
 }
 
 .LButton--primary {
