@@ -130,7 +130,7 @@ describe('lCheckboxList component (clear selectedItems)', () => {
   })
 
 
-  it('triggers items clear selectedItems', async () => {
+  it('clears selectedItems with selectedItems prop', async () => {
     const listGroup = () => checkboxList.find('.LCheckboxList__group__list')
 
     checkboxList.setProps({ selectedItems: null })
