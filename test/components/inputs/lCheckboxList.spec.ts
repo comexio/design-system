@@ -119,7 +119,7 @@ describe('lCheckboxList component', () => {
 })
 
 
-describe('lCheckboxList component(clear selectedItems)', () => {
+describe('lCheckboxList component (clear selectedItems)', () => {
   let checkboxList: Wrapper<LCheckboxList>
 
   beforeAll(() => {
