@@ -132,18 +132,11 @@ describe('lCheckboxList component(clear selectedItems)', () => {
 
   it('triggers items clear selectedItems', async () => {
     const listGroup = () => checkboxList.find('.LCheckboxList__group__list')
-    const listItems = listGroup().findAll('.LCheckboxList__group__item')
 
     checkboxList.setProps({ selectedItems: null })
     await checkboxList.vm.$nextTick()
 
-    const getItemWithChecked = (index: number) => listItems
-      .at(index)
-      .find('.v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
-
-    expect(getItemWithChecked(0).exists()).toBe(true)
-    expect(getItemWithChecked(1).exists()).toBe(true)
-    expect(getItemWithChecked(2).exists()).toBe(true)
-    expect(getItemWithChecked(3).exists()).toBe(true)
+    const listItemsWithIcon = listGroup().findAll('.LCheckboxList__group__item > .v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
+    expect(listItemsWithIcon.length).toBe(4)
   })
 })
