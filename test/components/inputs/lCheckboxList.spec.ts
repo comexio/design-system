@@ -136,7 +136,7 @@ describe('lCheckboxList component (clear selectedItems)', () => {
     checkboxList.setProps({ selectedItems: null })
     await checkboxList.vm.$nextTick()
 
-    const listItemsWithIcon = listGroup().findAll('.LCheckboxList__group__item > .v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
-    expect(listItemsWithIcon.length).toBe(4)
+    const uncheckedItems = listGroup().findAll('.LCheckboxList__group__item > .v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
+    expect(uncheckedItems.length).toBe(4)
   })
 })
