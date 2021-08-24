@@ -21,7 +21,7 @@ const itemsFake = [{
   label: 'Estado do Exportador'
 }]
 
-describe('selectNamed component', () => {
+describe('lCheckboxList component', () => {
   let checkboxList: Wrapper<LCheckboxList>
 
   beforeAll(() => {
@@ -116,11 +116,34 @@ describe('selectNamed component', () => {
     expect(list().length).toBe(4)
     expect(checkboxList.vm.selected.length).toBe(2)
   })
+})
 
-  it('trigger items clear selectedItems', async () => {
+
+describe('lCheckboxList component(clear selectedItems)', () => {
+  let checkboxList: Wrapper<LCheckboxList>
+
+  beforeAll(() => {
+    checkboxList = mount(LCheckboxList, {
+      ...defaultParams,
+      propsData: { items: itemsFake }
+    })
+  })
+
+
+  it('triggers items clear selectedItems', async () => {
+    const listGroup = () => checkboxList.find('.LCheckboxList__group__list')
+    const listItems = listGroup().findAll('.LCheckboxList__group__item')
+
     checkboxList.setProps({ selectedItems: null })
     await checkboxList.vm.$nextTick()
 
-    expect(checkboxList.vm.$data.selected).toBe(null)
+    const getItemWithChecked = (index: number) => listItems
+      .at(index)
+      .find('.v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
+
+    expect(getItemWithChecked(0).exists()).toBe(true)
+    expect(getItemWithChecked(1).exists()).toBe(true)
+    expect(getItemWithChecked(2).exists()).toBe(true)
+    expect(getItemWithChecked(3).exists()).toBe(true)
   })
 })
