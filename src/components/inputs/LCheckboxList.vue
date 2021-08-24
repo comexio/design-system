@@ -94,7 +94,7 @@ export default {
   },
   watch: {
     selectedItems (val) {
-      if(!val) {
+      if (!val) {
         this.selectAll = false
       }
 
