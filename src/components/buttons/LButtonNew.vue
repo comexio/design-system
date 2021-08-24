@@ -192,12 +192,6 @@ export default {
 .LButton--icon {
   background-color: unset !important;
 }
-
-::v-deep {
-  .v-btn__content {
-    padding: 13px 15px !important;
-  }
-}
 </style>
 
 <style lang="scss">
