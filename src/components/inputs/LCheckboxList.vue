@@ -93,12 +93,12 @@ export default {
     }
   },
   watch: {
-    selectedItems (val) {
-      if (!val) {
+    selectedItems (newValue) {
+      if (!newValue) {
         this.selectAll = false
       }
 
-      this.selected = val
+      this.selected = newValue
     },
     selected (val, oldval) {
       this.checkAllItemsSelected()
