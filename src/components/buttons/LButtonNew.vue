@@ -65,15 +65,15 @@ export default {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  font-size: 14px;
+  font-size: 1.077rem;
 }
 
 .LButton--large {
-  font-size: 16px;
+  font-size: 1.231rem;
 }
 
 .LButton--small {
-  font-size: 12px;
+  font-size: 0.923rem;
 }
 
 .LButton__label--sentenceCase {

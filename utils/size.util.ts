@@ -1,4 +1,5 @@
 interface HeightOption {
+  [key: string]: unknown;
   large?: boolean;
   small?: boolean;
   custom?: string;
@@ -17,16 +18,10 @@ const INPUT_HEIGHT = {
 }
 
 function getElementHeight (elementHeight: Record<string, string>, heightOption: HeightOption): string {
-  if (heightOption.large) {
-    return elementHeight.large
-  }
-  
-  if (heightOption.small) {
-    return elementHeight.small
-  }
-
-  if (heightOption.custom) {
-    return heightOption.custom
+  for (const height of Object.keys(heightOption)) {
+    if (heightOption[height]) {
+      return heightOption.custom || elementHeight[height]
+    }
   }
 
   return elementHeight.default
