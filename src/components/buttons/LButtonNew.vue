@@ -29,7 +29,10 @@ export default {
     disabled: Boolean,
     large: Boolean,
     small: Boolean,
-    sentenceCasedLabel: Boolean
+    uppercase: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     buttonClass () {
@@ -43,7 +46,7 @@ export default {
         'LButton--cancel': this.cancel,
         'LButton--large': this.large,
         'LButton--small': this.small,
-        'LButton__label--sentenceCase': this.sentenceCasedLabel
+        'LButton__label--withoutUppercase': !this.uppercase
       }
     },
     buttonHeight () {
@@ -76,7 +79,7 @@ export default {
   font-size: 0.923rem;
 }
 
-.LButton__label--sentenceCase {
+.LButton__label--withoutUppercase {
   text-transform: none;
 }
 
