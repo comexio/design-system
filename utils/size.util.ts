@@ -1,4 +1,4 @@
-interface HeightVariation {
+interface HeightOption {
   large?: boolean;
   small?: boolean;
   custom?: string;
@@ -16,7 +16,7 @@ const INPUT_HEIGHT = {
   default: '35'
 }
 
-function getElementHeight (elementHeight: Record<string, string>, heightOption: HeightVariation): string {
+function getElementHeight (elementHeight: Record<string, string>, heightOption: HeightOption): string {
   if (heightOption.large) {
     return elementHeight.large
   }
@@ -32,10 +32,10 @@ function getElementHeight (elementHeight: Record<string, string>, heightOption: 
   return elementHeight.default
 }
 
-export function getInputHeight (heightOption: HeightVariation): string {
+export function getInputHeight (heightOption: HeightOption): string {
   return getElementHeight(INPUT_HEIGHT, heightOption)
 }
 
-export function getButtonHeight (heightOption: HeightVariation): string {
+export function getButtonHeight (heightOption: HeightOption): string {
   return getElementHeight(BUTTON_HEIGHT, heightOption)
 }
