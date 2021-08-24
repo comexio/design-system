@@ -140,9 +140,6 @@ export default {
   .v-input__slot {
     min-height: 25px !important;
   }
-  .v-select__slot {
-    padding: 0 12px;
-  }
   .v-input__append-outer {
     margin: 0 !important;
   }
