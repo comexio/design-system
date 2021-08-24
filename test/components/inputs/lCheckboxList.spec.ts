@@ -21,7 +21,7 @@ const itemsFake = [{
   label: 'Estado do Exportador'
 }]
 
-describe('selectNamed component', () => {
+describe('lCheckboxList component', () => {
   let checkboxList: Wrapper<LCheckboxList>
 
   beforeAll(() => {
@@ -115,5 +115,28 @@ describe('selectNamed component', () => {
 
     expect(list().length).toBe(4)
     expect(checkboxList.vm.selected.length).toBe(2)
+  })
+})
+
+
+describe('lCheckboxList component (clear selectedItems)', () => {
+  let checkboxList: Wrapper<LCheckboxList>
+
+  beforeAll(() => {
+    checkboxList = mount(LCheckboxList, {
+      ...defaultParams,
+      propsData: { items: itemsFake }
+    })
+  })
+
+
+  it('clears selectedItems with selectedItems prop', async () => {
+    const listGroup = () => checkboxList.find('.LCheckboxList__group__list')
+
+    checkboxList.setProps({ selectedItems: null })
+    await checkboxList.vm.$nextTick()
+
+    const uncheckedItems = listGroup().findAll('.LCheckboxList__group__item > .v-input__control > .v-input__slot > .v-input--selection-controls__input > .mdi-checkbox-blank-outline')
+    expect(uncheckedItems.length).toBe(4)
   })
 })
