@@ -11,9 +11,9 @@ export default {
     cancel: { control: 'boolean', description: 'Sets LButton--cancel class and cancel style' },
     icon: { control: 'boolean', description: 'Sets LButton--icon class and vuetify icon prop' },
     disabled: { control: 'boolean', description: 'Sets LButton--disabled class and disables button' },
-    sentenceCasedLabel: { 
+    uppercase: { 
       control: 'boolean', 
-      description: 'Sets LButton__label--sentenceCase class and removes text-transform from label' 
+      description: 'Toggles uppercase on text and sets LButton__label--withoutUppercase class when false' 
     },
     large: { control: 'boolean', description: 'Sets the button to its large size: 45px (40px default size)' },
     small: { control: 'boolean', description: 'Sets the button to its small size: 35px (40px default size)' },
@@ -89,7 +89,7 @@ const TemplateWithIcon = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  sentenceCasedLabel: true
+  uppercase: false
 };
 
 export const PrimaryCancel = Template.bind({});
@@ -107,7 +107,7 @@ PrimaryDisabled.args = {
 export const Secondary = Template.bind({});
 Secondary.args = {
   secondary: true,
-  sentenceCasedLabel: true
+  uppercase: false
 };
 
 export const SecondaryCancel = Template.bind({});
@@ -142,7 +142,7 @@ TertiaryDisabled.args = {
 export const Purple = Template.bind({});
 Purple.args = {
   purple: true,
-  sentenceCasedLabel: true
+  uppercase: false
 };
 
 export const PurpleDisabled = Template.bind({});
