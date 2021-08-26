@@ -14,12 +14,11 @@
       <template v-if="modalType.informational">
         <v-card-title>
           <slot name="modalTitle" />
-          <v-btn
+          <l-button-new
             class="modal__title__button pa-0"
-            color="lightGrey"
-            height="25px"
-            min-height="27px"
-            min-width="29px"
+            color="#D4D4D4"
+            height="27px"
+            width="29px"
             @click="closeModal"
           >
             <v-icon
@@ -29,7 +28,7 @@
             >
               mdi-close
             </v-icon>
-          </v-btn>
+          </l-button-new>
         </v-card-title>
         <v-divider />
       </template>
@@ -37,10 +36,11 @@
       <template v-if="modalType.confirmational">
         <v-divider v-if="isDividerVisible" />
         <v-card-actions>
-          <v-btn
+          <l-button-new
             v-if="clearButton"
             class="modal__button--clear float-left"
             text
+            small
             @click="clear()"
           >
             <v-icon
@@ -51,27 +51,26 @@
             <span>
               {{ clearText || $t('ayla.clear') }}
             </span>
-          </v-btn>
+          </l-button-new>
           <v-spacer />
-          <v-btn
+          <l-button-new
             v-if="cancelButton"
-            color="silver"
-            text
+            tertiary
+            gray
             class="modal__button modal__button--cancel font-md"
             @click="closeModal"
           >
             {{ cancelText || $t('ayla.cancel') }}
-          </v-btn>
-          <v-btn
+          </l-button-new>
+          <l-button-new
             v-if="confirmButton"
             :disabled="disabledConfirm"
-            color="secondary"
-            text
+            tertiary
             class="modal__button modal__button--confirm font-md"
             @click="confirm"
           >
             {{ confirmText || $t('ayla.confirm') }}
-          </v-btn>
+          </l-button-new>
         </v-card-actions>
       </template>
     </v-card>
@@ -79,8 +78,13 @@
 </template>
 
 <script>
+import LButtonNew from '../buttons/LButtonNew.vue'
+
 export default {
   name: 'LModal',
+  components: {
+    LButtonNew
+  },
   props: {
     modalType: {
       type: Object,
@@ -170,6 +174,7 @@ export default {
 .modal {
   .modal__button {
     font-size: 1.1rem;
+    font-weight: bold;
     text-transform: uppercase;
   }
   .modal__title__button {
