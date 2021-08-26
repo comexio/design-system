@@ -25,7 +25,7 @@ export default {
     tertiary: Boolean,
     icon: Boolean,
     purple: Boolean,
-    cancel: Boolean,
+    gray: Boolean,
     disabled: Boolean,
     large: Boolean,
     small: Boolean,
@@ -43,7 +43,7 @@ export default {
         'LButton--icon': this.icon,
         'LButton--purple': this.purple,
         'LButton--disabled': this.disabled,
-        'LButton--cancel': this.cancel,
+        'LButton--gray': this.gray,
         'LButton--large': this.large,
         'LButton--small': this.small,
         'LButton__label--withoutUppercase': !this.uppercase
@@ -97,12 +97,12 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--primary.LButton--cancel {
+.LButton--primary.LButton--gray {
   background-color: $silver !important;
   color: $white !important;
 }
 
-.LButton--primary.LButton--cancel:hover {
+.LButton--primary.LButton--gray:hover {
   background-color: $Alto !important;
 }
 
@@ -123,12 +123,12 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--secondary.LButton--cancel {
+.LButton--secondary.LButton--gray {
   border-color: $silver !important;
   color: $silver !important;
 }
 
-.LButton--secondary.LButton--cancel:hover {
+.LButton--secondary.LButton--gray:hover {
   border-color: $Alto !important;
   color: $Alto !important;
 }
@@ -149,11 +149,11 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--tertiary.LButton--cancel {
+.LButton--tertiary.LButton--gray {
   color: $silver !important;
 }
 
-.LButton--tertiary.LButton--cancel:hover {
+.LButton--tertiary.LButton--gray:hover {
   color: $Alto !important;
 }
 
