@@ -83,6 +83,10 @@ export default {
   text-transform: none;
 }
 
+.LButton--icon { 
+  border-radius: 50%;
+}
+
 .v-btn {
   min-width: unset !important;
 }
