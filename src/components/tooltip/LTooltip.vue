@@ -3,6 +3,7 @@
     v-model="inputValue"
     :content-class="tooltipClass"
     v-bind="$attrs"
+    v-on="$listeners"
   >
     <template
       v-for="(index, name) in $scopedSlots"
@@ -36,7 +37,7 @@ export default {
     tooltipClass () {
       const { left, right, top, bottom } = this.$attrs
 
-      const componentClasses = {
+      const availableClasses = {
         'LTooltip LTooltip--pointer': true,
         'LTooltip--pointer-left': left,
         'LTooltip--pointer-right': right,
@@ -44,9 +45,10 @@ export default {
         'LTooltip--pointer-bottom': bottom
       }
 
-      const formattedClassesNameToString = Object.keys(componentClasses).filter(className => !isNil(componentClasses[className])).join(' ')
+      const formattedClasses = Object.keys(availableClasses)
+        .filter(className => !isNil(availableClasses[className])).join(' ')
 
-      return formattedClassesNameToString
+      return formattedClasses
     }
   }
 }
