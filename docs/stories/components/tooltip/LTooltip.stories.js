@@ -30,7 +30,7 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
-const TemplateMultipleTooltip = (args, { argTypes }) => ({
+const TemplateMultipleTooltips = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LTooltip },
   template: `
@@ -124,5 +124,5 @@ Default.args = {
   right: false
 }
 
-export const MultipleTooltips = TemplateMultipleTooltip.bind({})
+export const MultipleTooltips = TemplateMultipleTooltips.bind({})
 MultipleTooltips.args = {}

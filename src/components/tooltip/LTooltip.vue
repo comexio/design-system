@@ -61,7 +61,7 @@ export default {
       line-height: 0.92rem;
     }
     .v-divider {
-      border-color: white;
+      border-color: $white;
     }
   }
 }
