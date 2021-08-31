@@ -1,18 +1,16 @@
-$defaultLabelTop: 11px !default;
-
 $largeLabelTop: 13px !default;
-$smallLabelTop: 5px !default;
+$smallLabelTop: 6px !default;
 
 $largeActiveLabelTop: 10.5px !default;
 $smallActiveLabelTop: 9.5px !default;
 
-$defaultIconHeight: 20px !default;
+$defaultIconHeight: 19px !default;
 
 $largeIconHeight: 24px !default;
 $smallIconHeight: 10px !default;
 
-$defaultFontSize: 12px;
-$largeFontSize: 14px;
+$defaultFontSize: 0.923rem;
+$largeFontSize: 1.077rem;
 
 .defaultText {
   font-family: Rubik;
@@ -33,10 +31,10 @@ $largeFontSize: 14px;
 }
 
 ::v-deep {
-  .v-input__control {
-    min-height: 25px !important;
+  .v-input input {
+    color: $martinique;
   }
-  .v-input__slot {
+  .v-input__control, .v-input__slot {
     min-height: 25px !important;
   }
   [class*="--allowHeightGrow"] {
@@ -53,9 +51,11 @@ $largeFontSize: 14px;
     }
   }
   .v-label {
-    top: $defaultLabelTop !important;
-    color: $doveGray !important;
+    color: $silver;
     @extend .defaultText;
+  }
+  .v-input:not(.v-input--is-focused) .v-label--active {
+    color: $doveGray;
   }
   .v-icon, .v-input__icon--append {
     height: $defaultIconHeight;
@@ -68,14 +68,14 @@ $largeFontSize: 14px;
   }
   [class*="--large"] {
     .v-label {
-      top: $largeLabelTop !important;
+      top: $largeLabelTop;
       font-size: $largeFontSize;
     }
     .v-label--active {
-      top: $largeActiveLabelTop !important;
+      top: $largeActiveLabelTop;
     }
     .v-icon, .v-input__icon--append {
-      height: $largeIconHeight !important;
+      height: $largeIconHeight;
     }
     .v-chip__content {
       font-size: $largeFontSize;
@@ -83,13 +83,13 @@ $largeFontSize: 14px;
   }
   [class*="--small"] {
     .v-label {
-      top: $smallLabelTop !important;
+      top: $smallLabelTop;
     }
     .v-label--active {
-      top: $smallActiveLabelTop !important;
+      top: $smallActiveLabelTop;
     }
     .v-icon, .v-input__icon--append {
-      height: $smallIconHeight !important;
+      height: $smallIconHeight;
     }
   }
   [class*="__input"][class*="--disabled"] {
