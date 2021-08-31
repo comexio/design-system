@@ -9,6 +9,7 @@ export * from './components/alerts'
 export * from './components/tables'
 export * from './components/loadings'
 export * from './components/bars'
+export * from './components/tooltip'
 
 import * as inputs from './components/inputs'
 import * as filters from './components/filters'
@@ -21,6 +22,7 @@ import * as alerts from './components/alerts'
 import * as tables from './components/tables'
 import * as loadings from './components/loadings'
 import * as bars from './components/bars'
+import * as tooltip from './components/tooltip'
 
 
 const components = {
@@ -34,7 +36,8 @@ const components = {
     ...alerts,
     ...tables,
     ...loadings,
-    ...bars
+    ...bars,
+    ...tooltip
 }
 
 export function install (Vue) {

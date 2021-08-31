@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import Design from '@logcomex/design'
 import 'vuetify/dist/vuetify.min.css';
 import '@mdi/font/css/materialdesignicons.css';
+import '@logcomex/design/dist/design.css'
 
 Vue.use(Vuetify);
+Vue.use(Design.install);
 
 export default new Vuetify({
   theme: {
