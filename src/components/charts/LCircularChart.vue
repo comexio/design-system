@@ -60,8 +60,13 @@
 </template>
 
 <script>
+import LTooltip from '~/src/components/tooltip/LTooltip'
+
 export default {
   name: 'LCircularChart',
+  components: {
+    LTooltip
+  },
   props: {
     items: {
       type: Array,

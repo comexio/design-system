@@ -45,9 +45,13 @@
 </template>
 
 <script>
+import LTooltip from '~/src/components/tooltip/LTooltip'
 
 export default {
   name: 'LRouteChartLine',
+  components: {
+    LTooltip
+  },
   props: {
     data: {
       type: Object,
