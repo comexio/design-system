@@ -6,31 +6,6 @@ export default {
   component: LTooltip
 }
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { LTooltip, LButtonNew },
-  template: `
-    <l-tooltip
-      v-bind="$props"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <l-button-new
-          primary
-          small
-          style="width: 200px; margin: auto"
-          v-bind="attrs"
-          v-on="on"
-        >Left</l-button-new>
-      </template>
-      <div>
-        <span>Left tooltip</span>
-        <v-divider />
-        <span>Left tooltip</span>
-      </div>
-    </l-tooltip>
-  `
-})
-
 const TemplateMultipleTooltips = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LTooltip, LButtonNew },
@@ -47,12 +22,14 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
             style="width: 200px; margin: auto"
             v-bind="attrs"
             v-on="on"
-          >Left</l-button-new>
+          >
+            Button - Tooltip on the left
+          </l-button-new>
         </template>
         <div>
-          <span>Left tooltip</span>
+          <span>Tooltip content</span>
           <v-divider />
-          <span>Left tooltip</span>
+          <span>Tooltip more content</span>
         </div>
       </l-tooltip>
       <l-tooltip
@@ -66,15 +43,16 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
             style="width: 200px; margin: auto"
             v-bind="attrs"
             v-on="on"
-          >Top</l-button-new>
+          >
+            Button - Tooltip on the top
+          </l-button-new>
         </template>
         <div>
-          <span>Top tooltip</span>
+          <span>Tooltip content</span>
           <v-divider />
-          <span>Top tooltip</span>
+          <span>Tooltip more content</span>
         </div>
       </l-tooltip>
-
       <l-tooltip
         bottom
         v-bind="$props"
@@ -86,12 +64,14 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
             style="width: 200px; margin: auto"
             v-bind="attrs"
             v-on="on"
-          >Bottom</l-button-new>
+          >
+            Button - Tooltip on the bottom
+          </l-button-new>
         </template>
         <div>
-          <span>Bottom tooltip</span>
+          <span>Tooltip content</span>
           <v-divider />
-          <span>Bottom tooltip</span>
+          <span>Tooltip more content</span>
         </div>
       </l-tooltip>
       <l-tooltip
@@ -105,25 +85,19 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
             style="width: 200px; margin: auto"
             v-bind="attrs"
             v-on="on"
-          >Right</l-button-new>
+          >
+            Button - Tooltip on the right
+          </l-button-new>
         </template>
         <div>
-          <span>Right tooltip</span>
+          <span>Tooltip content</span>
           <v-divider />
-          <span>Right tooltip</span>
+          <span>Tooltip more content</span>
         </div>
       </l-tooltip>
     </div>
   `
 })
-
-export const Default = Template.bind({})
-Default.args = {
-  left: true,
-  top: false,
-  bottom: false,
-  right: false
-}
 
 export const MultipleTooltips = TemplateMultipleTooltips.bind({})
 MultipleTooltips.args = {}

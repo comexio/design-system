@@ -1,7 +1,7 @@
 <template>
   <v-tooltip
     v-model="inputValue"
-    :content-class="classesStyle"
+    :content-class="tooltipClass"
     v-bind="$attrs"
   >
     <template
@@ -33,9 +33,10 @@ export default {
         this.$emit('input', value)
       }
     },
-    classesStyle () {
+    tooltipClass () {
       const { left, right, top, bottom } = this.$attrs
-      const classes = {
+
+      const componentClasses = {
         'LTooltip LTooltip--pointer': true,
         'LTooltip--pointer-left': left,
         'LTooltip--pointer-right': right,
@@ -43,9 +44,9 @@ export default {
         'LTooltip--pointer-bottom': bottom
       }
 
-      const stringClasses = Object.keys(classes).filter(key => !isNil(classes[key])).join(' ')
+      const formattedClassesNameToString = Object.keys(classes).filter(className => !isNil(componentClasses[className])).join(' ')
 
-      return stringClasses
+      return formattedClassesNameToString
     }
   }
 }
