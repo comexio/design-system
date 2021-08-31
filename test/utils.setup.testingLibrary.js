@@ -1,7 +1,5 @@
-import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Vuei18n from 'vue-i18n'
-import Design from '@logcomex/design'
 import '@testing-library/jest-dom'
 
 import { render } from '@testing-library/vue'
@@ -37,12 +35,6 @@ function translateComponent (vue, locale) {
   }
 }
 
-function instantiateDesignSystem () {
-  Vue.use(Design.install)
-}
-
 export function renderComponent (component, options, locale) {
-  instantiateDesignSystem()
-
   return renderComponentWithVuetify(component, options, vue => translateComponent(vue, locale))
 }

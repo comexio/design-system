@@ -1,4 +1,5 @@
 import LTooltip from '~/src/components/tooltip/LTooltip.vue'
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
   title: 'Components/Tooltip/Tooltip',
@@ -7,7 +8,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LTooltip },
+  components: { LTooltip, LButtonNew },
   template: `
     <l-tooltip
       v-bind="$props"
@@ -32,7 +33,7 @@ const Template = (args, { argTypes }) => ({
 
 const TemplateMultipleTooltips = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LTooltip },
+  components: { LTooltip, LButtonNew },
   template: `
     <div class="text-center d-flex align-center justify-space-around" style="height: 100%">
       <l-tooltip
