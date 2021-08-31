@@ -57,8 +57,8 @@ export default {
   padding: 4px 12px;
   ::v-deep {
     span {
-      font-size: 0.95rem;
-      line-height: 0.95rem;
+      font-size: 0.92rem;
+      line-height: 0.92rem;
     }
     .v-divider {
       border-color: white;
