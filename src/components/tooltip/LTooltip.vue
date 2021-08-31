@@ -44,7 +44,7 @@ export default {
         'LTooltip--pointer-bottom': bottom
       }
 
-      const formattedClassesNameToString = Object.keys(classes).filter(className => !isNil(componentClasses[className])).join(' ')
+      const formattedClassesNameToString = Object.keys(componentClasses).filter(className => !isNil(componentClasses[className])).join(' ')
 
       return formattedClassesNameToString
     }

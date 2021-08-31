@@ -3,7 +3,19 @@ import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
   title: 'Components/Tooltip/Tooltip',
-  component: LTooltip
+  component: LTooltip,
+  argTypes: {
+    value: {
+      control: 'boolean',
+      description: 'Boolean to programatically shows tooltip'
+    },
+    input: {
+      action: 'input',
+      description: 'Emitted when tooltip shows/hide'
+    },
+    activator: { description: 'Slot to use to toggle tooltip on hover, otherwise you need to toogle it programatically using v-model' },
+    default: { description: 'Default slot with content to shows on tooltip' }
+  }
 }
 
 const TemplateMultipleTooltips = (args, { argTypes }) => ({
