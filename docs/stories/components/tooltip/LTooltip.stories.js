@@ -7,7 +7,7 @@ export default {
   argTypes: {
     value: {
       control: 'boolean',
-      description: 'Boolean to programatically shows tooltip'
+      description: 'Toggles tooltip visibility'
     },
     input: {
       action: 'input',
