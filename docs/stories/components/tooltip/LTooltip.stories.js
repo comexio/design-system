@@ -26,6 +26,7 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
       <l-tooltip
         left
         v-bind="$props"
+        @input="input"
       >
         <template v-slot:activator="{ on, attrs }">
           <l-button-new
@@ -47,6 +48,7 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
       <l-tooltip
         top
         v-bind="$props"
+        @input="input"
       >
         <template v-slot:activator="{ on, attrs }">
           <l-button-new
@@ -68,6 +70,7 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
       <l-tooltip
         bottom
         v-bind="$props"
+        @input="input"
       >
         <template v-slot:activator="{ on, attrs }">
           <l-button-new
@@ -89,6 +92,7 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
       <l-tooltip
         right
         v-bind="$props"
+        @input="input"
       >
         <template v-slot:activator="{ on, attrs }">
           <l-button-new
