@@ -2,8 +2,6 @@ import { screen } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/tooltip/LTooltip.stories'
-
-
 const {
   Default,
   MultipleTooltips
