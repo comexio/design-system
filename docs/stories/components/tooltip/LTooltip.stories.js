@@ -41,8 +41,6 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
         </template>
         <div>
           <span>Tooltip content</span>
-          <v-divider />
-          <span>Tooltip more content</span>
         </div>
       </l-tooltip>
       <l-tooltip
@@ -64,7 +62,7 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
         <div>
           <span>Tooltip content</span>
           <v-divider />
-          <span>Tooltip more content</span>
+          <v-icon color="white">mdi-home</v-icon>
         </div>
       </l-tooltip>
       <l-tooltip
@@ -83,10 +81,10 @@ const TemplateMultipleTooltips = (args, { argTypes }) => ({
             Button - Tooltip on the bottom
           </l-button-new>
         </template>
-        <div>
+        <div class="text-center">
           <span>Tooltip content</span>
           <v-divider />
-          <span>Tooltip more content</span>
+          <v-icon color="white">mdi-home</v-icon>
         </div>
       </l-tooltip>
       <l-tooltip
