@@ -5,10 +5,9 @@
         v-for="item in items"
         :key="item.label"
       >
-        <v-tooltip
+        <l-tooltip
           bottom
           :disabled="!showTooltip"
-          content-class="customTooltip pa-0"
         >
           <template
             v-if="item.value > 0 || item.percentage !== ''"
@@ -49,13 +48,12 @@
           </template>
           <div
             v-if="item.tooltip"
-            class="font-md"
           >
-            <div class="customTooltip__info">
+            <span>
               {{ item.tooltip.label }}
-            </div>
+            </span>
           </div>
-        </v-tooltip>
+        </l-tooltip>
       </v-col>
     </v-row>
   </div>
