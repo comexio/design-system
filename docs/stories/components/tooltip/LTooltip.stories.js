@@ -14,7 +14,7 @@ export default {
       description: 'Emitted when tooltip hover is toggled'
     },
     activator: { description: 'Slot to toggle tooltip on hover, without it you need to toogle programatically using v-model' },
-    default: { description: 'Default slot with content to shows on tooltip' }
+    default: { description: 'Default slot with tooltip content' }
   }
 }
 
