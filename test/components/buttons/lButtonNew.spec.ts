@@ -4,17 +4,17 @@ import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/buttons/LButtonNew.stories'
 
 const { 
-    Primary, 
-    PrimaryCancel, 
+    PrimaryDefault, 
+    PrimaryGray, 
     PrimaryDisabled, 
-    Secondary, 
-    SecondaryCancel, 
+    SecondaryDefault, 
+    SecondaryGray, 
     SecondaryDisabled,
-    Tertiary, 
-    TertiaryCancel, 
+    TertiaryDefault, 
+    TertiaryGray, 
     TertiaryDisabled,
-    Purple,
-    PurpleDisabled,
+    PrimaryPurple,
+    PrimaryPurpleDisabled,
     OnlyIcon,
     OnlyIconDisabled,
     WithIcon,
@@ -26,13 +26,13 @@ const checkButtonClasses = (button: Element, classes: Array<String>) => {
 }
 
 describe('LButtonNew', () => {
-  it('renders primary button with sentenceCasedLabel', () => {
-    renderComponent(Primary())
+  it('renders primary button without uppercase', () => {
+    renderComponent(PrimaryDefault())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['primary'])
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toHaveTextContent('Button')
         expect(button).toBeEnabled()    
     })
@@ -41,14 +41,14 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders primary button with cancel style', () => {
-    renderComponent(PrimaryCancel())
+  it('renders primary button with gray style', () => {
+    renderComponent(PrimaryGray())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['primary', 'cancel'])
+        checkButtonClasses(button, ['primary', 'gray'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -63,7 +63,7 @@ describe('LButtonNew', () => {
     buttons.forEach(button => {
         checkButtonClasses(button, ['primary', 'disabled'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -71,14 +71,14 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders secondary button with sentenceCasedLabel', () => {
-    renderComponent(Secondary())
+  it('renders secondary button without uppercase', () => {
+    renderComponent(SecondaryDefault())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['secondary'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -86,14 +86,14 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders secondary button with cancel style', () => {
-    renderComponent(SecondaryCancel())
+  it('renders secondary button with gray style', () => {
+    renderComponent(SecondaryGray())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['secondary', 'cancel'])
+        checkButtonClasses(button, ['secondary', 'gray'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -108,7 +108,7 @@ describe('LButtonNew', () => {
     buttons.forEach(button => {
         checkButtonClasses(button, ['secondary', 'disabled'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -117,13 +117,13 @@ describe('LButtonNew', () => {
   })
 
   it('renders tertiary button', () => {
-    renderComponent(Tertiary())
+    renderComponent(TertiaryDefault())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['tertiary'])
         expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--sentenceCase')
+        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -131,14 +131,14 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders tertiary button with cancel style', () => {
-    renderComponent(TertiaryCancel())
+  it('renders tertiary button with gray style', () => {
+    renderComponent(TertiaryGray())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['tertiary', 'cancel'])
+        checkButtonClasses(button, ['tertiary', 'gray'])
         expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--sentenceCase')
+        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -153,7 +153,7 @@ describe('LButtonNew', () => {
     buttons.forEach(button => {
         checkButtonClasses(button, ['tertiary', 'disabled'])
         expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--sentenceCase')
+        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -162,13 +162,13 @@ describe('LButtonNew', () => {
   })
 
   it('renders purple button', () => {
-    renderComponent(Purple())
+    renderComponent(PrimaryPurple())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['purple'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -177,13 +177,13 @@ describe('LButtonNew', () => {
   })
 
   it('renders purple button disabled', () => {
-    renderComponent(PurpleDisabled())
+    renderComponent(PrimaryPurpleDisabled())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['purple', 'disabled'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--sentenceCase')
+        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -215,7 +215,7 @@ describe('LButtonNew', () => {
     const button = screen.getByRole('button')
 
     checkButtonClasses(button, ['purple'])
-    expect(button).toHaveClass('LButton__label--sentenceCase')
+    expect(button).toHaveClass('LButton__label--withoutUppercase')
     expect(button).toHaveTextContent('Button')
     expect(button).toBeEnabled()    
   })
@@ -226,7 +226,7 @@ describe('LButtonNew', () => {
     const button = screen.getByRole('button')
 
     checkButtonClasses(button, ['purple'])
-    expect(button).toHaveClass('LButton__label--sentenceCase')
+    expect(button).toHaveClass('LButton__label--withoutUppercase')
     expect(button).toHaveTextContent('Button')
     expect(button).toBeDisabled()    
   })

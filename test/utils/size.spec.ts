@@ -1,30 +1,41 @@
-import { getInputHeight } from '~/utils/size.util'
+import { getInputHeight, getButtonHeight } from '~/utils/size.util'
 
 describe('Size utils', () => {
   it('returns large size', () => {
     const large = true
-    const result = getInputHeight({ large })
 
-    expect(result).toBe('40')
+    const inputHeight = getInputHeight({ large })
+    const buttonHeight = getButtonHeight({ large })
+
+    expect(inputHeight).toBe('40')
+    expect(buttonHeight).toBe('45')
   })
 
   it('returns small size', () => {
     const small = true
-    const result = getInputHeight({ small })
 
-    expect(result).toBe('25')
+    const inputHeight = getInputHeight({ small })
+    const buttonHeight = getButtonHeight({ small })
+
+    expect(inputHeight).toBe('25')
+    expect(buttonHeight).toBe('35')
   })
 
   it('returns custom size', () => {
     const $attrs = { height: '37' }
-    const result = getInputHeight({ custom: $attrs.height })
+    
+    const inputHeight = getInputHeight({ custom: $attrs.height })
+    const buttonHeight = getButtonHeight({ custom: $attrs.height })
 
-    expect(result).toBe('37')
+    expect(inputHeight).toBe('37')
+    expect(buttonHeight).toBe('37')
   })
 
   it('returns default size', () => {
-    const result = getInputHeight({})
+    const inputHeight = getInputHeight({})
+    const buttonHeight = getButtonHeight({})
 
-    expect(result).toBe('35')
+    expect(inputHeight).toBe('35')
+    expect(buttonHeight).toBe('40')
   })
 })

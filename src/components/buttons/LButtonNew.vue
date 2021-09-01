@@ -3,6 +3,7 @@
     class="LButton"
     :class="buttonClass"
     v-bind="$attrs"
+    :height="buttonHeight"
     :disabled="disabled"
     :icon="icon"
     :outlined="secondary || $attrs.outlined"
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { getButtonHeight } from '~/utils/size.util'
+
 export default {
   name: 'LButton',
   props: {
@@ -22,11 +25,14 @@ export default {
     tertiary: Boolean,
     icon: Boolean,
     purple: Boolean,
-    cancel: Boolean,
+    gray: Boolean,
     disabled: Boolean,
     large: Boolean,
     small: Boolean,
-    sentenceCasedLabel: Boolean
+    uppercase: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     buttonClass () {
@@ -37,11 +43,16 @@ export default {
         'LButton--icon': this.icon,
         'LButton--purple': this.purple,
         'LButton--disabled': this.disabled,
-        'LButton--cancel': this.cancel,
+        'LButton--gray': this.gray,
         'LButton--large': this.large,
         'LButton--small': this.small,
-        'LButton__label--sentenceCase': this.sentenceCasedLabel
+        'LButton__label--withoutUppercase': !this.uppercase
       }
+    },
+    buttonHeight () {
+      const { large, small, $attrs } = this
+
+      return getButtonHeight({large, small, custom: $attrs.height})
     }
   }
 }
@@ -57,22 +68,27 @@ export default {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  height: 40px !important;
-  font-size: 14px !important;
+  font-size: 1.077rem;
 }
 
 .LButton--large {
-  height: 45px !important;
-  font-size: 16px !important;
+  font-size: 1.231rem;
 }
 
 .LButton--small {
-  height: 35px !important;
-  font-size: 12px !important;
+  font-size: 0.923rem;
 }
 
-.LButton__label--sentenceCase {
+.LButton__label--withoutUppercase {
   text-transform: none;
+}
+
+.LButton--icon { 
+  border-radius: 50%;
+}
+
+.v-btn {
+  min-width: unset !important;
 }
 
 .LButton--primary {
@@ -85,12 +101,12 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--primary.LButton--cancel {
+.LButton--primary.LButton--gray {
   background-color: $silver !important;
   color: $white !important;
 }
 
-.LButton--primary.LButton--cancel:hover {
+.LButton--primary.LButton--gray:hover {
   background-color: $Alto !important;
 }
 
@@ -111,12 +127,12 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--secondary.LButton--cancel {
+.LButton--secondary.LButton--gray {
   border-color: $silver !important;
   color: $silver !important;
 }
 
-.LButton--secondary.LButton--cancel:hover {
+.LButton--secondary.LButton--gray:hover {
   border-color: $Alto !important;
   color: $Alto !important;
 }
@@ -137,11 +153,11 @@ export default {
   transition: 0.3s;
 }
 
-.LButton--tertiary.LButton--cancel {
+.LButton--tertiary.LButton--gray {
   color: $silver !important;
 }
 
-.LButton--tertiary.LButton--cancel:hover {
+.LButton--tertiary.LButton--gray:hover {
   color: $Alto !important;
 }
 
@@ -182,12 +198,6 @@ export default {
 
 .LButton--icon {
   background-color: unset !important;
-}
-
-::v-deep {
-  .v-btn__content {
-    padding: 13px 15px !important;
-  }
 }
 </style>
 

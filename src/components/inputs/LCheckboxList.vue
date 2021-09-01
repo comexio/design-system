@@ -93,6 +93,13 @@ export default {
     }
   },
   watch: {
+    selectedItems (newValue) {
+      if (!newValue) {
+        this.selectAll = false
+      }
+
+      this.selected = newValue
+    },
     selected (val, oldval) {
       this.checkAllItemsSelected()
       if (this.inputSearch) {
@@ -136,7 +143,10 @@ export default {
     },
     checkAllItemsSelected () {
       const { selected, items } = this
-      this.selectAll = selected.length !== items.length ? false : true
+
+      if (selected) {
+        this.selectAll = selected.length === items.length
+      }
     }
   }
 }

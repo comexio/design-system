@@ -1,8 +1,8 @@
 <template>
   <div class="LRouteChart__line">
-    <v-tooltip
+    <l-tooltip
       bottom
-      content-class="LRouteChart__line__tooltip customTooltip pa-0"
+      content-class="LRouteChart__line__tooltip"
     >
       <template v-slot:activator="{ on }">
         <div
@@ -14,11 +14,12 @@
       </template>
       <div
         v-if="data.quantity"
-        class="customTooltip__info"
       >
-        {{ data.quantity.name }} : {{ data.quantity.value }}
+        <span>
+          {{ data.quantity.name }} : {{ data.quantity.value }}
+        </span>
       </div>
-    </v-tooltip>
+    </l-tooltip>
     <div
       v-if="data.isLast"
     >
@@ -44,9 +45,13 @@
 </template>
 
 <script>
+import LTooltip from '~/src/components/tooltip/LTooltip'
 
 export default {
   name: 'LRouteChartLine',
+  components: {
+    LTooltip
+  },
   props: {
     data: {
       type: Object,

@@ -256,9 +256,6 @@ export default {
   .v-input__slot {
     min-height: 25px !important;
   }
-  .v-select__slot {
-    padding: 0 12px;
-  }
   .v-icon {
     height: 20px;
   }

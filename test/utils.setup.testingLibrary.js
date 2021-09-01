@@ -9,7 +9,7 @@ import messages from '~/src/locale';
 function renderComponentWithVuetify (component, options, callback) {
   const root = document.createElement('div')
   root.setAttribute('data-app', 'true')
-  
+
   return render(
     component,
     {
@@ -20,7 +20,7 @@ function renderComponentWithVuetify (component, options, callback) {
     callback
     )
   }
-  
+
 function translateComponent (vue, locale) {
   vue.use(Vuei18n)
 
@@ -29,7 +29,7 @@ function translateComponent (vue, locale) {
     fallbackLocale: locale || 'pt',
     messages
   })
-    
+
   return {
     i18n
   }
