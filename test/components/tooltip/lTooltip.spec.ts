@@ -4,9 +4,7 @@ import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/tooltip/LTooltip.stories'
 import LTooltip from '~/src/components/tooltip/LTooltip.vue'
 
-const {
-  Tooltips
-} = composeStories(stories)
+const { Tooltips } = composeStories(stories)
 
 
 describe('LTooltip', () => {
