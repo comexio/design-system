@@ -8,7 +8,7 @@ const { Tooltips } = composeStories(stories)
 
 
 describe('LTooltip', () => {
-  it('render multiple tooltips', () => {
+  it('renders multiple tooltips from story', () => {
     const { container } = renderComponent(Tooltips())
 
     const buttons = screen.getAllByRole('button')
