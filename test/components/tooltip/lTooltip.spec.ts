@@ -29,7 +29,7 @@ describe('LTooltip', () => {
     expect(buttons[3]).toHaveTextContent('Button - Tooltip on the right')
   })
 
-  it('render tooltip and check slot content', () => {
+  it('renders tooltip and its slot content', () => {
     const { container } = renderComponent(LTooltip, {
       propsData: {
         value: true,
