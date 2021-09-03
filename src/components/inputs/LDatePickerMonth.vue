@@ -2,6 +2,7 @@
   <div
     class="datepicker LDatePickerMonth"
     :class="datePickerClass"
+    :style="{ '--borderColor': borderColor }"
   >
     <v-menu
       offset-y
@@ -33,6 +34,7 @@
           </v-col>
           <v-spacer />
           <v-icon
+            v-if="dropdownIcon"
             :color="itemsColor"
             size="20px"
           >
@@ -54,6 +56,7 @@
         :event-color="itemsColor"
         width="200px"
         class="d-flex flex-row-reverse datepicker__calendar"
+        :style="{ '--itemsColor': itemsColor }"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
@@ -108,7 +111,15 @@ export default {
     },
     itemsColor: {
       type: String,
-      default: '#9f6cbb'
+      default: '#9F6CBB'
+    },
+    dropdownIcon: { 
+      type: Boolean,
+      default: true
+    },
+    borderColor: {
+      type: String,
+      default: '#5C068C'
     },
     bordered: Boolean
   },
@@ -178,7 +189,8 @@ export default {
     },
     datePickerClass () {
       return {
-        'LDatePickerMonth--bordered': this.bordered
+        'LDatePickerMonth--bordered': this.bordered,
+        'LDatePickerMonth--dropdownIcon': this.dropdownIcon
       }
     }
   },
@@ -252,10 +264,10 @@ export default {
   border-radius: 5px;
   transition: border-color ease .2s;
   &:hover {
-    border-color: $purpleHaze;
+    border-color: var(--borderColor);
   }
   &.focused {
-    border-color: $purpleHaze;
+    border-color: var(--borderColor);
   }
 }
 
@@ -264,7 +276,7 @@ export default {
     cursor: pointer;
   }
   ::v-deep .v-input__icon--prepend-inner .v-icon {
-    color: $wisteria;
+    color: var(--itemsColor);
   }
 }
 
@@ -272,7 +284,7 @@ export default {
   ::v-deep .v-date-picker-header {
     padding: 4px 8px;
     .v-btn {
-      color: $wisteria;
+      color: var(--itemsColor);
     }
   }
 
@@ -311,7 +323,7 @@ export default {
     }
 
     .datepicker__calendar__period__chip--active {
-      background: $wisteria;
+      background: var(--itemsColor);
       color: #fff;
     }
   }

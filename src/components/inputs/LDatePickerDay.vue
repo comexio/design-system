@@ -2,6 +2,7 @@
   <div
     class="datepicker LDatePickerDay"
     :class="datePickerClass"
+    :style="{ '--borderColor': borderColor }"
   >
     <v-menu
       v-model="menu"
@@ -35,6 +36,7 @@
           </v-col>
           <v-spacer />
           <v-icon
+            v-if="dropdownIcon"
             :color="itemsColor"
             size="20px"
           >
@@ -60,6 +62,7 @@
           :event-color="itemsColor"
           width="200px"
           class="d-flex flex-row-reverse datepicker__calendar"
+          :style="{ '--itemsColor': itemsColor }"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.FIRST)"
@@ -79,6 +82,7 @@
           :color="itemsColor"
           :event-color="itemsColor"
           width="200px"
+          :style="{ '--itemsColor': itemsColor }"
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
@@ -121,16 +125,24 @@ export default {
     },
     itemsColor: {
       type: String,
-      default: '#9f6cbb'
+      default: '#9F6CBB'
     },
     closeOnSelect: Boolean,
     datepickerStatus: {
       type: Boolean,
       default: null
     },
+    dropdownIcon: {
+      type: Boolean,
+      default: true
+    },
     locale: {
       type: String,
       default: 'pt'
+    },
+    borderColor: {
+      type: String,
+      default: '#5C068C'
     },
     bordered: Boolean
   },
@@ -226,7 +238,8 @@ export default {
     },
     datePickerClass () {
       return { 
-        'LDatePickerDay--bordered': this.bordered
+        'LDatePickerDay--bordered': this.bordered,
+        'LDatePickerDay--dropdownIcon': this.dropdownIcon
       }
     }
   },
@@ -472,7 +485,7 @@ export default {
     cursor: pointer;
   }
   ::v-deep .v-input__icon--prepend-inner .v-icon {
-    color: $wisteria;
+    color: var(--itemsColor);
   }
 }
 
@@ -483,10 +496,10 @@ export default {
   border-radius: 5px;
   transition: border-color ease .2s;
   &:hover {
-    border-color: $purpleHaze;
+    border-color: var(--borderColor);
   }
   &.focused {
-    border-color: $purpleHaze;
+    border-color: var(--borderColor);
   }
 }
 
@@ -500,7 +513,7 @@ export default {
   ::v-deep .v-date-picker-header {
     padding: 4px 8px;
     .v-btn {
-      color: $wisteria;
+      color: var(--itemsColor);
     }
   }
 
@@ -539,7 +552,7 @@ export default {
     }
 
     .datepicker__calendar__period__chip--active {
-      background: $wisteria;
+      background: var(--itemsColor);
       color: #fff;
     }
   }
