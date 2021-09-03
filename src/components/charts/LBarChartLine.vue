@@ -75,7 +75,7 @@
                   </template>
                   <div>
                     <span>
-                      {{ isLastItem ? $t('ayla.others') : data.description }}
+                      {{ description }}
                     </span>
                   </div>
                 </l-tooltip>
@@ -112,14 +112,14 @@
                     v-if="data.total"
                     class="LBarChart__valueTooltip__info"
                   >
-                    {{ translation.total || $t('ayla.total') }}: {{ data.total }} USD
+                    {{ tooltipInfoTotal }} USD
                   </span>
                   <v-divider />
                   <span
                     v-if="data.quantity"
                     class="LBarChart__valueTooltip__info"
                   >
-                    {{ translation.quantity || $t('ayla.quantity') }}: {{ data.quantity }}
+                    {{ tooltipInfoQuantity }}
                   </span>
                 </div>
               </l-tooltip>
@@ -204,6 +204,21 @@ export default {
         weight: 'weight'
       },
       hoverProgressBar: false
+    }
+  },
+  computed: {
+    description () {
+      return this.isLastItem ? this.$t('ayla.others') : this.data.description
+    },
+    tooltipInfoTotal () {
+      const translation = this.translation.total || this.$t('ayla.total')
+
+      return `${translation}: ${this.data.total}`
+    },
+    tooltipInfoQuantity () {
+      const translation = this.translation.quantity || this.$t('ayla.quantity')
+
+      return `${translation}: ${this.data.quantity}`
     }
   },
   methods: {
