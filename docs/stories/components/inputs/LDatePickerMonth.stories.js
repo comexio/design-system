@@ -28,7 +28,9 @@ export default {
       control: 'text',
       description: 'Locale of the datepicker'
     },
+    dropdownIcon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
     bordered: { control: 'boolean', description: 'Toggles datepicker border and adds LDatePickerMonth--bordered class' },
+    borderColor: { control: 'color', description: 'Color of the border' },
     input: {
       table: {
         disable: true
