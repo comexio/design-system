@@ -36,8 +36,8 @@ const Template = (args, { argTypes }) => ({
 export const Minimized = Template.bind({});
 Minimized.args = {
     data: [
-        { "label":"EXAMPLE","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
-        { "label":"EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+        { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE EXAMPLE ","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
+        { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
         { "label":"EXAMPLE","percentage":"16.14","total":"total%","quantity":0,"value":"value" },
         { "label":"EXAMPLE","percentage":"10.29","total":"total%","quantity":0,"value":"value" },
         { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }
@@ -56,7 +56,7 @@ export const NonClickableItems = Template.bind({});
 NonClickableItems.args = {
   data: [
     { "label":"NONCLICKABLE","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
-    { "label":"CLICKABLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+    { "label":"CLICKABLE CLICKABLE CLICKABLE CLICKABLE CLICKABLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
     { "label":"CLICKABLE","percentage":"16.14","total":"total%","quantity":0,"value":"value" },
     { "label":"NONCLICKABLE1","percentage":"10.29","total":"total%","quantity":0,"value":"value" },
     { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }

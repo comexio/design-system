@@ -1,59 +1,64 @@
 <template>
   <v-container class="LLinearChartLine pa-0">
     <div class="d-flex justify-space-between col-12 ma-0 pa-0">
-      <v-tooltip
-        :disabled="!isTruncated"
-        bottom
-        content-class="customTooltip pa-0"
+      <p
+        v-if="isTagChart"
+        class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
+        v-on="on"
       >
-        <template v-slot:activator="{ on }">
-          <p
-            v-if="isTagChart"
-            class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
-            v-on="on"
-          >
-            <l-tag
-              label
-              :text="data.label"
-            />
-          </p>
-          <p
-            v-else
-            class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
-            v-on="on"
-          >
-            <template v-if="applyCursorPointer && !lastItem">
-              <span
-                class="LLinearChartLine__cursor_pointer"
-                @click="eventClick(data.label)"
-              >
-                {{ dataLabel }}
-              </span>
-            </template>
-            <template v-else>
-              <span class="LLinearChartLine__label">
-                {{ dataLabel }}
-              </span>
-            </template>
-            <slot
-              v-if="!itemsWithoutDetails.includes(data.label)"
-              name="sectionAfterValue"
-              :value="data.label"
-            />
-            {{ showQuantity }}
+        <l-tag
+          label
+          :text="data.label"
+        />
+      </p>
+      <p
+        v-else
+        class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
+        v-on="on"
+      >
+        <l-tooltip
+          :disabled="!isTruncated"
+          bottom
+          nudge-right="100"
+          style="maxWidth: 100px"
+        >
+          <template v-slot:activator="{ on }">
             <span
-              v-if="lastItem && !isExpanded && isExpandable"
-              class="LLinearChartLine__expand ml-1"
-              @click="expand"
+              v-if="applyCursorPointer && !lastItem"
+              class="LLinearChartLine__cursor_pointer"
+              @click="eventClick(data.label)"
+              v-on="on"
             >
-              {{ translationLine.seeMore || $t('ayla.records') }}
+              {{ dataLabel }}
             </span>
-          </p>
-        </template>
-        <div class="customTooltip__info">
-          {{ data.label }} {{ showQuantity }}
-        </div>
-      </v-tooltip>
+            <span
+              v-else
+              class="LLinearChartLine__label"
+              v-on="on"
+            >
+              {{ dataLabel }}
+            </span>
+          </template>
+          <div>
+            <span>
+              {{ data.label }} {{ showQuantity }}
+            </span>
+          </div>
+        </l-tooltip>
+        <slot
+          v-if="!itemsWithoutDetails.includes(data.label)"
+          name="sectionAfterValue"
+          :value="data.label"
+        />
+        {{ showQuantity }}
+        <span
+          v-if="lastItem && !isExpanded && isExpandable"
+          class="LLinearChartLine__expand ml-1"
+          @click="expand"
+        >
+          {{ translationLine.seeMore || $t('ayla.records') }}
+        </span>
+      </p>
       <div class="LLinearChartLine__result pb-0">
         <v-row
           v-if="isTagChart"
@@ -77,7 +82,6 @@
           >
             <v-tooltip
               bottom
-              content-class="customTooltip pa-0"
             >
               <template v-slot:activator="{ on }">
                 <span v-on="on">
@@ -86,7 +90,6 @@
               </template>
               <span
                 v-if="showToolTip"
-                class="customTooltip__info"
               >
                 {{ data.toolTipContent }}
               </span>
@@ -123,11 +126,13 @@
 
 <script>
 import LTag from '~/src/components/tags/LTag'
+import LTooltip from '~/src/components/tooltip/LTooltip'
 
 export default {
   name: 'LLinearChartLine',
   components: {
-    LTag
+    LTag,
+    LTooltip
   },
   props: {
     data: {

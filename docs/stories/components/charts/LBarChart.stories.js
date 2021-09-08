@@ -24,7 +24,7 @@ const Template = (args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: { LBarChart },
-  template: '<l-bar-chart @click="click" @line-click="line-click" v-bind="$props"> </l-bar-chart>'
+  template: '<l-bar-chart @click="click" @line-click="line-click" v-bind="$props"/>'
 });
 
 export const Default = Template.bind({});

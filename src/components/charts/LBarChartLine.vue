@@ -38,58 +38,55 @@
               cols="4"
               class="py-0 d-flex"
             >
-              <v-tooltip
-                bottom
-                max-width="300px"
-                content-class="customTooltip pa-0"
+              <div
+                class="d-flex justify-end flex"
+                style="width: 100%"
               >
-                <template v-slot:activator="{ on }">
-                  <v-hover>
-                    <span
-                      v-if="isLastItem"
-                      class="LBarChart__description"
-                      v-on="on"
-                    >
-                      {{ !toggleLast ? othersLabel : '' }}
+                <l-tooltip
+                  bottom
+                  nudge-right="10"
+                  max-width="300px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-hover>
                       <span
-                        v-if="toggleLast"
-                        class="LBarChart__description__toggle"
-                        @click="toggleLastItem"
+                        v-if="isLastItem"
+                        class="LBarChart__description"
+                        v-on="on"
                       >
-                        {{ $t('ayla.seeMore') }}
+                        {{ !toggleLast ? othersLabel : '' }}
+                        <span
+                          v-if="toggleLast"
+                          class="LBarChart__description__toggle"
+                          @click="toggleLastItem"
+                        >
+                          {{ $t('ayla.seeMore') }}
+                        </span>
                       </span>
+                      <span
+                        v-else
+                        class="LBarChart__description"
+                        :class="descriptionClass"
+                        v-on="on"
+                      >
+                        {{ data.description }}
+                      </span>
+                    </v-hover>
+                  </template>
+                  <div>
+                    <span>
+                      {{ description }}
                     </span>
-                    <span
-                      v-else
-                      class="LBarChart__description"
-                      :class="descriptionClass"
-                      v-on="on"
-                    >
-                      {{ data.description }}
-                    </span>
-                  </v-hover>
-                </template>
-                <div
-                  v-if="isLastItem"
-                  class="customTooltip__info customTooltipChartNcm__info"
-                >
-                  {{ $t('ayla.others') }}
-                </div>
-                <div
-                  v-else
-                  class="customTooltip__info customTooltipChartNcm__info"
-                >
-                  {{ data.description }}
-                </div>
-              </v-tooltip>
+                  </div>
+                </l-tooltip>
+              </div>
             </v-col>
             <v-col
               cols="8"
               class="py-0 pl-0"
             >
-              <v-tooltip
+              <l-tooltip
                 right
-                content-class="customTooltip customTooltip--progress pa-0"
               >
                 <template v-slot:activator="{ on }">
                   <v-hover
@@ -108,37 +105,24 @@
                         {{ data.total }} USD
                       </div>
                     </l-progress-bar>
-
-                    <!-- <v-progress-linear
-                      :background-color=" hover ? hoverBarColor() : ''"
-                      :color="color"
-                      height="15px"
-                      class="LBarChart__progress"
-                      :style="percentageBarFill(data, index, color)"
-                      v-on="on"
-                    >
-                      <div class="LBarChart__value px-1">
-                        {{ data.total }} USD
-                      </div>
-                    </v-progress-linear> -->
                   </v-hover>
                 </template>
-                <div class="font-md">
-                  <div
+                <div>
+                  <span
                     v-if="data.total"
-                    class="customTooltip__info"
+                    class="LBarChart__valueTooltip__info"
                   >
-                    {{ translation.total || $t('ayla.total') }}: {{ data.total }} USD
-                  </div>
+                    {{ tooltipInfoTotal }} USD
+                  </span>
                   <v-divider />
-                  <div
+                  <span
                     v-if="data.quantity"
-                    class="customTooltip__info"
+                    class="LBarChart__valueTooltip__info"
                   >
-                    {{ translation.quantity || $t('ayla.quantity') }}: {{ data.quantity }}
-                  </div>
+                    {{ tooltipInfoQuantity }}
+                  </span>
                 </div>
-              </v-tooltip>
+              </l-tooltip>
             </v-col>
           </v-row>
         </div>
@@ -149,11 +133,13 @@
 
 <script>
 import LProgressBar from '~/src/components/bars/LProgressBar'
+import LTooltip from '~/src/components/tooltip/LTooltip'
 
 export default {
   name: 'LBarChartLine',
   components: {
-    LProgressBar
+    LProgressBar,
+    LTooltip
   },
   props: {
     data: {
@@ -220,6 +206,21 @@ export default {
       hoverProgressBar: false
     }
   },
+  computed: {
+    description () {
+      return this.isLastItem ? this.$t('ayla.others') : this.data.description
+    },
+    tooltipInfoTotal () {
+      const translation = this.translation.total || this.$t('ayla.total')
+
+      return `${translation}: ${this.data.total}`
+    },
+    tooltipInfoQuantity () {
+      const translation = this.translation.quantity || this.$t('ayla.quantity')
+
+      return `${translation}: ${this.data.quantity}`
+    }
+  },
   methods: {
     percentageBarFill (item, index, color) {
       const styleFill = {
@@ -276,12 +277,10 @@ export default {
 .LBarChart__description {
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 100%;
   white-space: nowrap;
   display: inline-block;
   cursor: pointer;
   max-width: 250px;
-  text-align: right;
 }
 .LBarChart__description__toggle {
   @extend .globalLink;
@@ -296,9 +295,7 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.LBarChart__tooltip__info {
-  font-size: 0.37rem;
-}
+
 ::v-deep .v-progress-linear__content {
   z-index: unset;
 }
