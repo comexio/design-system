@@ -134,6 +134,7 @@
 <script>
 import LProgressBar from '~/src/components/bars/LProgressBar'
 import LTooltip from '~/src/components/tooltip/LTooltip'
+import isNil from 'ramda/src/isNil'
 
 export default {
   name: 'LBarChartLine',
@@ -227,7 +228,7 @@ export default {
         width: '100%',
         background: 'linear-gradient(to right, ' + color + ', ' + (100 - (index * 10)) + '%, #fff 0%) !important'
       }
-      if (item.percentage && item.percentage >= 0) {
+      if (!isNil(item.percentage) && item.percentage >= 0) {
         styleFill.background = 'linear-gradient(to right, ' + color + ', ' + item.percentage + '%, #fff 0%) !important'
       }
       return styleFill
