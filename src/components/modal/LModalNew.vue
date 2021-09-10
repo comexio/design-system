@@ -5,6 +5,12 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
+    <template v-slot:activator="scope">
+      <slot
+        name="activator"
+        v-bind="scope"
+      />
+    </template>
     <template
       v-for="(index, name) in $scopedSlots"
       v-slot:[name]="data"
@@ -16,9 +22,12 @@
     </template>
     <template
       v-for="(index, name) in $slots"
-      v-slot:[name]
+      v-slot:[name]="data"
     >
-      <slot :name="name" />
+      <slot
+        :name="name"
+        v-bind="data"
+      />
     </template>
   </v-dialog>    
 </template>
@@ -41,6 +50,9 @@ export default {
         this.$emit('input', value)
       }
     }
+  },
+  mounted () {
+    console.log(this.$slots)
   }    
 }
 </script>
