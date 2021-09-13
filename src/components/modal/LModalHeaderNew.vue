@@ -5,6 +5,7 @@
         Titulo modal
       </span>
       <l-button-new
+        v-if="closeButton"
         color="#B8B8B8"
         height="20"
         width="20"
@@ -27,9 +28,13 @@ import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 export default {
   components: {
     LButtonNew
+  },
+  props: {
+    closeButton: {
+      type: Boolean,
+      default: true
+    }
   }
-
-  
 }
 </script>
 
