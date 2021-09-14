@@ -28,7 +28,11 @@ const Template = (args, { argTypes }) => ({
   components: {
     LModalHeaderNew
   },
-  template: `<l-modal-header-new v-bind="$props" @close="close" />`
+  template: `
+    <l-modal-header-new
+      v-bind="$props"
+      @close="close"
+    />`
 })
 
 export const Default = Template.bind({})

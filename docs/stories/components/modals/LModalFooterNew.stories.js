@@ -32,7 +32,12 @@ const Template = (args, { argTypes }) => ({
   components: {
     LModalFooterNew
   },
-  template: `<l-modal-footer-new v-bind="$props" @cancel="cancel" @confirm="confirm" />`
+  template: `
+    <l-modal-footer-new
+      v-bind="$props"
+      @cancel="cancel"
+      @confirm="confirm"
+    />`
 })
 
 export const Default = Template.bind({})

@@ -58,7 +58,7 @@ const Template = (args, { argTypes }) => ({
         :confirmButtonProps="{tertiary: true, placeholder: 'Confirmar', height: '18px'}"
       /> 
     </l-modal-new>
-  `,
+  `
 })
 
 const TemplateWithoutHeader = (args, { argTypes }) => ({
