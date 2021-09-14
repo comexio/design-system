@@ -56,20 +56,21 @@
               />
             </td>
             <td class="LLinearChartExpand__table__line__value">
-              <v-tooltip
+              <l-tooltip
                 bottom
-                content-class="customTooltip pa-0"
+                nudge-right="25"
               >
                 <template v-slot:activator="{ on }">
                   <span v-on="on">{{ item.value }}</span>
                 </template>
-                <span
-                  v-if="showToolTip"
-                  class="customTooltip__info"
-                >
-                  {{ item.toolTipContent }}
-                </span>
-              </v-tooltip>
+                <div>
+                  <span
+                    v-if="showToolTip"
+                  >
+                    {{ item.toolTipContent }}
+                  </span>
+                </div>
+              </l-tooltip>
             </td>
             <td>{{ item.total }}</td>
           </tr>
@@ -89,10 +90,12 @@
 
 <script>
 import LLoading from '~/src/components/loadings/LLoading'
+import LTooltip from '~/src/components/tooltip/LTooltip'
 
 export default {
   components: {
-    LLoading
+    LLoading,
+    LTooltip
   },
   props: {
     data: {

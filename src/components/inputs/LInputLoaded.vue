@@ -29,7 +29,7 @@
       <template #append>
         <v-icon
           v-if="icon"
-          color="#9F6CBB"
+          :color="iconColor"
         >
           {{ searchOnInput ? '' : 'mdi-chevron-down' }}
         </v-icon>
@@ -99,6 +99,10 @@ export default {
     value: {
       type: [String, Array, Object],
       default: ''
+    },
+    iconColor: {
+      type: String,
+      default: '#9F6CBB'
     },
     disabled: Boolean,
     loading: Boolean,

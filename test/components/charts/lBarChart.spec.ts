@@ -160,8 +160,8 @@ describe('barChart component', () => {
     tooltipProgressBar().setData({ isActive: true })
 
     await barChart.vm.$nextTick()
-    const value = () => tooltipProgressBar().findAll('.customTooltip__info').at(0)
-    const boardings = () => tooltipProgressBar().findAll('.customTooltip__info').at(1)
+    const value = () => tooltipProgressBar().findAll('.LBarChart__valueTooltip__info').at(0)
+    const boardings = () => tooltipProgressBar().findAll('.LBarChart__valueTooltip__info').at(1)
     expect(value().text()).toBe('__translation__: 32.873.626,5510 USD')
     expect(boardings().text()).toBe('__translation__: 4.593')
 
