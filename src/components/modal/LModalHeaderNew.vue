@@ -2,7 +2,7 @@
   <div class="LModalHeader">
     <div class="d-flex justify-space-between py-4 px-5">
       <span class="LModalHeader__title font-md">
-        Titulo modal
+        {{ title }}
       </span>
       <l-button-new
         v-if="closeButton"
@@ -10,6 +10,7 @@
         height="20"
         width="20"
         class="LModalHeader__close pa-0"
+        @click="close"
       >
         <v-icon
           size="20" 
@@ -30,9 +31,18 @@ export default {
     LButtonNew
   },
   props: {
+    title: {
+      type: String,
+      default: null
+    },
     closeButton: {
       type: Boolean,
       default: true
+    }
+  },
+  methods: {
+    close () {
+      this.$emit('close')
     }
   }
 }

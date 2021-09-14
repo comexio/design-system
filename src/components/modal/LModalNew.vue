@@ -50,10 +50,7 @@ export default {
         this.$emit('input', value)
       }
     }
-  },
-  mounted () {
-    console.log(this.$slots)
-  }    
+  }  
 }
 </script>
 

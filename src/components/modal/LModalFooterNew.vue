@@ -11,6 +11,7 @@
       </l-button-new>
       <l-button-new
         v-if="confirmButtonProps"
+        class="ml-3"
         v-bind="confirmButtonProps"
         @click="confirm"
       >
@@ -30,11 +31,11 @@ export default {
   props: {
     cancelButtonProps: {
       type: Object,
-      default: () => ({})
+      default: null
     },
     confirmButtonProps: {
       type: Object,
-      default: () => ({})
+      default: null
     }
   },
   methods: {
