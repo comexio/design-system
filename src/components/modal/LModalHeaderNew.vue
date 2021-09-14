@@ -25,8 +25,10 @@
 </template>
 
 <script>
-import LButtonNew from '~/src/components/buttons/LButtonNew.vue' 
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
+
 export default {
+  name: 'LModalHeaderNew',
   components: {
     LButtonNew
   },

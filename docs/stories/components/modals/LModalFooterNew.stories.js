@@ -15,11 +15,11 @@ export default {
     },
     cancel: {
       action: 'cancel',
-      description: 'Emitted on click cancel button'
+      description: 'Emits on click cancel button'
     },
     confirm: {
       action: 'confirm',
-      description: 'Emitted on click confirm button'
+      description: 'Emits on click confirm button'
     }
   }
 }
