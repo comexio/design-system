@@ -44,7 +44,7 @@ const Template = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <l-modal-header-new
@@ -84,7 +84,7 @@ const TemplateWithoutHeader = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <div class="pa-10">
@@ -121,7 +121,7 @@ const TemplateWithoutFooter = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <l-modal-header-new
@@ -157,7 +157,7 @@ const TemplateWithoutCloseButton = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <l-modal-header-new
@@ -194,7 +194,7 @@ const TemplateWithoutFooterButtons = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <div class="pa-10">
@@ -227,7 +227,7 @@ const TemplateCustomContent = (args, { argTypes }) => ({
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog1
+          Open Modal
         </v-btn>
       </template>
       <div class="pa-10">
