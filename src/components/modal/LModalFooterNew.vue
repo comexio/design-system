@@ -25,7 +25,7 @@
 import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
-  name: 'LModalHeaderNew',
+  name: 'LModalFooterNew',
   components: {
     LButtonNew
   },
