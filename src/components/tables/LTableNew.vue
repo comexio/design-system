@@ -3,7 +3,7 @@
     v-model="inputValue"
     class="elevation-1 LTableNew"
     v-bind="$attrs"
-    :style="{ '--iconColorActive': iconColors.active, '--iconColorInactive': iconColors.inactive }"
+    :style="tableStyle"
     v-on="$listeners"
     @click:row="handleRowClick"
   >
@@ -47,6 +47,14 @@ export default {
       },
       set (value) {
         this.$emit('input', value)
+      }
+    },
+    tableStyle () {
+      const { iconColors } = this
+      
+      return { 
+        '--iconColorActive': iconColors.active, 
+        '--iconColorInactive': iconColors.inactive 
       }
     }
   },
