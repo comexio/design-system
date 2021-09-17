@@ -3,6 +3,7 @@
     v-model="inputValue"
     class="elevation-1 LTableNew"
     v-bind="$attrs"
+    :style="{ '--iconColorActive': iconColors.active, '--iconColorInactive': iconColors.inactive }"
     v-on="$listeners"
     @click:row="handleRowClick"
   >
@@ -29,6 +30,13 @@ export default {
     value: {
       type: Array,
       default: () => ([])
+    },
+    iconColors: {
+      type: Object,
+      default: () => ({
+        active: '#9F6CBB',
+        inactive: '#E2DAF8'
+      })
     },
     toggleCheckboxOnRowClick: Boolean
   },
@@ -77,7 +85,7 @@ export default {
 
     .sortable:not(.active) {
       .v-data-table-header__icon {
-        color: $moonRaker;
+        color: var(--iconColorInactive);
         &::before {
           content: "\F04E2";
         }
@@ -86,7 +94,7 @@ export default {
 
     .sortable.active {
       .v-data-table-header__icon {
-        color: $wisteria !important;
+        color: var(--iconColorActive) !important;
         font-size: 14px !important;
         &::before {
           content: "\F0737";
@@ -150,10 +158,10 @@ export default {
       color: $silver;
       font-size: 20px;
       &.mdi-checkbox-marked {
-        color: $wisteria;
+        color: var(--iconColorActive);
       }
       &:hover {
-        color: $wisteria;
+        color: var(--iconColorActive);
       }
     }
   }
