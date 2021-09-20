@@ -3,7 +3,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LModalContent from '~/src/components/modal/LModalContent.vue';
 
 export default {
-  title: 'Components/Modals/Modal Content',
+  title: 'Deprecated/Modals/Modal Content',
   component: LModalContent,
   argTypes: {
     img: { control: 'text', description: 'Image path' },
