@@ -7,6 +7,7 @@ export default {
   argTypes: {
     headers: { control: 'object', description: 'Table headers object' },
     items: { control: 'object', description: 'Table items object' },
+    iconColors: { control: 'object', description: 'Sets active/inactive color of icons' },
     toggleCheckboxOnRowClick: { control: 'boolean', description: 'Toggles checkbox on row click (showSelect must be true)' },
     input: { action: 'input', description: 'Emmited when select columns' }
   },
