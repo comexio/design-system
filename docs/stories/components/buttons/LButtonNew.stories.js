@@ -30,7 +30,7 @@ export default {
     disabled: { control: 'boolean', description: 'Sets LButton--disabled class and disables button' },
     uppercase: { 
       control: 'boolean', 
-      description: 'Toggles uppercase on text and sets LButton__label--withoutUppercase class when false' 
+      description: 'Toggles uppercase on text and sets LButton--uppercase class when true and LButton__label--withoutUppercase class when false' 
     },
     large: { control: 'boolean', description: 'Sets the button to large size: 45px (40px default size)' },
     small: { control: 'boolean', description: 'Sets the button to small size: 35px (40px default size)' },

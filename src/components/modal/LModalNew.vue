@@ -60,6 +60,8 @@ export default {
 ::v-deep {
   .LModalNew {
     background: $white;
+    box-shadow: none;
+    border-radius: 10px;
   }
 }
 </style>

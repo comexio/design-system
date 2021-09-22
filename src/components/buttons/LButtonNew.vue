@@ -46,6 +46,7 @@ export default {
         'LButton--gray': this.gray,
         'LButton--large': this.large,
         'LButton--small': this.small,
+        'LButton--uppercase': this.uppercase,
         'LButton__label--withoutUppercase': !this.uppercase
       }
     },
@@ -77,6 +78,10 @@ export default {
 
 .LButton--small {
   font-size: 0.923rem;
+}
+
+.LButton--uppercase {
+  text-transform: uppercase;
 }
 
 .LButton__label--withoutUppercase {
