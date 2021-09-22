@@ -11,7 +11,8 @@ module.exports = {
       'dayjs',
       'moment',
       'ramda',
-      'sortablejs'
+      'sortablejs',
+      'string-to-hex-code-color',
     ],
   },
   css: {
