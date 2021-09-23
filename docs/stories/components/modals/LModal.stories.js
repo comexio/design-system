@@ -2,7 +2,7 @@ import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LModal from '~/src/components/modal/LModal.vue';
 
 export default {
-  title: 'Components/Modals/Modal',
+  title: 'Deprecated/Modals/Modal',
   component: LModal,
   argTypes: {
       modalType: {control: 'object', description: 'Indicates the modalType: confirmational (with action buttons) / informational (with closable button)'},

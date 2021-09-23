@@ -4,7 +4,8 @@ module.exports = {
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/src/',
       '^vue$': 'vue/dist/vue.common.js',
-      '^~/(.*)$': '<rootDir>/$1'
+      '^~/(.*)$': '<rootDir>/$1',
+      "^.+\\.(scss|css)$": "<rootDir>/test/__mocks__/styleMock.js"
     },
     moduleFileExtensions: ['js', 'vue', 'ts'],
     transform: {
