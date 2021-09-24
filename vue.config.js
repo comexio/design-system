@@ -8,7 +8,11 @@ module.exports = {
       }
     },
     externals: [
-      // 'moment',
+      'dayjs',
+      'moment',
+      'ramda',
+      'sortablejs',
+      'string-to-hex-code-color',
     ],
   },
   css: {
