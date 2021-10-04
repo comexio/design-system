@@ -22,6 +22,7 @@ import * as alerts from './components/alerts'
 import * as tables from './components/tables'
 import * as loadings from './components/loadings'
 import * as bars from './components/bars'
+import * as timeline from './components/timeline'
 import * as tooltip from './components/tooltip'
 
 
@@ -37,6 +38,7 @@ const components = {
     ...tables,
     ...loadings,
     ...bars,
+    timeline,
     ...tooltip
 }
 
