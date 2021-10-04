@@ -19,7 +19,7 @@ const Template = (args, { argTypes }) => ({
       <l-timeline-item v-bind="$props">
         <template #top-content>
           <v-chip small outlined >
-            Armador
+            Foo
           </v-chip>
           <span class="mt-4">23/06/2021 15:34</span>
         </template>
@@ -29,9 +29,9 @@ const Template = (args, { argTypes }) => ({
         </template>
 
         <template #bottom-content>
-          <span>Registro DI</span>
+          <span>Bar</span>
           <div class="mt-2" style="max-width:140px">
-            <span>Full import container out gated - PECEM, CE, BR - CAIU6439862</span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
           </div>
         </template>
       </l-timeline-item>
@@ -45,15 +45,15 @@ const TemplateFinal = (args, { argTypes }) => ({
       <l-timeline-item v-bind="$props">
         <template #top-content>
           <v-chip small outlined >
-            Armador
+            Foo
           </v-chip>
           <span class="mt-4">23/06/2021 15:34</span>
         </template>
 
         <template #bottom-content>
-          <span>Registro DI</span>
+          <span>Bar</span>
           <div class="mt-2" style="max-width:140px">
-            <span>Full import container out gated - PECEM, CE, BR - CAIU6439862</span>
+          <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
           </div>
         </template>
       </l-timeline-item>

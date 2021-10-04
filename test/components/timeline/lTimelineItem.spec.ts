@@ -9,26 +9,32 @@ describe('LTimelineItem', () => {
   it('renders timelineItem default', () => {
     const { container } = renderComponent(Default())
 
-    expect(screen.getByText('Armador')).toBeInTheDocument()
-    expect(screen.getByText('Registro DI')).toBeInTheDocument()
-    expect(screen.getByText('Full import container out gated - PECEM, CE, BR - CAIU6439862')).toBeInTheDocument()
+    expect(screen.getByText('Foo')).toBeInTheDocument()
+    expect(screen.getByText('Bar')).toBeInTheDocument()
+    expect(screen.getByText('23/06/2021 15:34')).toBeInTheDocument()
+
+    expect(screen.getByText('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')).toBeInTheDocument()
     expect(container.getElementsByClassName('mdi-check-bold').length).toBe(1)
   })
 
   it('renders timelineItem initial', () => {
     const { container } = renderComponent(Initial())
 
-    expect(screen.getByText('Armador')).toBeInTheDocument()
-    expect(screen.getByText('Registro DI')).toBeInTheDocument()
-    expect(screen.getByText('Full import container out gated - PECEM, CE, BR - CAIU6439862')).toBeInTheDocument()
+    expect(screen.getByText('Foo')).toBeInTheDocument()
+    expect(screen.getByText('Bar')).toBeInTheDocument()
+    expect(screen.getByText('23/06/2021 15:34')).toBeInTheDocument()
+
+    expect(screen.getByText('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')).toBeInTheDocument()
     expect(container.getElementsByClassName('mdi-check-bold').length).toBe(1)
   })
 
   it('renders timelineItem final', () => {
     renderComponent(Final())
 
-    expect(screen.getByText('Armador')).toBeInTheDocument()
-    expect(screen.getByText('Registro DI')).toBeInTheDocument()
-    expect(screen.getByText('Full import container out gated - PECEM, CE, BR - CAIU6439862')).toBeInTheDocument()
+    expect(screen.getByText('Foo')).toBeInTheDocument()
+    expect(screen.getByText('Bar')).toBeInTheDocument()
+    expect(screen.getByText('23/06/2021 15:34')).toBeInTheDocument()
+
+    expect(screen.getByText('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')).toBeInTheDocument()
   })
 })
