@@ -30,14 +30,8 @@ export default {
       type: String,
       required: true
     },
-    initial: {
-      type: Boolean,
-      default: false
-    },
-    final: {
-      type: Boolean,
-      default: false
-    },
+    initial: Boolean,
+    final: Boolean,
     circleSize: {
       type: Number,
       required: true
