@@ -38,7 +38,7 @@ const components = {
     ...tables,
     ...loadings,
     ...bars,
-    timeline,
+    ...timeline,
     ...tooltip
 }
 
