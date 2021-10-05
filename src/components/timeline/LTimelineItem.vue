@@ -26,16 +26,16 @@
 export default {
   name: 'LTimelineItem',
   props: {
+    circleSize: {
+      type: Number,
+      required: true
+    },
     colors: {
       type: String,
       required: true
     },
     initial: Boolean,
     final: Boolean,
-    circleSize: {
-      type: Number,
-      required: true
-    }
   },
   computed: {
     circleCentrilize () {
@@ -47,10 +47,8 @@ export default {
       }
     },
     colorsLine () {
-      return this.getLocalizeColors()
-    }
-  },
-  methods: {
+      return this.getLocalizeColors
+    },
     getLocalizeColors () {
       if (!this.initial && !this.final) {
         return { backgroundColor: this.colors }
@@ -59,7 +57,9 @@ export default {
       return this.initial
         ? this.getLocalizeCircleBackground('left')
         : this.getLocalizeCircleBackground('right')
-    },
+    }
+  },
+  methods: {
     getLocalizeCircleBackground (localize) {
       return `background: linear-gradient(to ${localize}, ${this.colors} 50%, rgba(0, 0, 0, 0) 50%)`
     }
