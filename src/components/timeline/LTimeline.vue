@@ -10,7 +10,6 @@
     >
       <div class="d-flex flex-column my-4 mx-2">
         <slot name="header-content" />
-
         <div
           class="d-flex justify-space-around align-center"
         >
@@ -25,14 +24,12 @@
               mdi-chevron-left
             </v-icon>
           </v-avatar>
-
           <div
             ref="LTimeline__cardContent"
             class="LTimeline__cardContent d-flex pb-4"
           >
             <slot />
           </div>
-
           <v-avatar
             v-if="timeLineScroll.final"
             size="20"
@@ -51,7 +48,7 @@
 </template>
 
 <script>
-import LCard from "~/src/components/cards/LCard.vue";
+import LCard from '~/src/components/cards/LCard.vue';
 
 export default {
   name: 'LTimeline',
@@ -100,21 +97,21 @@ export default {
       const timeLine = this.$refs.LTimeline__cardContent
 
       timeLine.addEventListener('scroll', () => {
-        this.handleShowBottonsByScroll(timeLine)
+        this.handleShowButtonsByScroll(timeLine)
       })
     },
-    handleShowBottonsByScroll (timeLine) {
-      this.handleShowBottonLeft(timeLine.scrollLeft)
-      this.handleShowBottonRight(timeLine.scrollLeft)
+    handleShowButtonsByScroll (timeLine) {
+      this.handleShowButtonLeft(timeLine.scrollLeft)
+      this.handleShowButtonRight(timeLine.scrollLeft)
     },
-    handleShowBottonLeft (scrollLeft) {
+    handleShowButtonLeft (scrollLeft) {
       if (scrollLeft === 0) {
         return this.$set(this.timeLineScroll, 'initial', false)
       }
 
       return this.$set(this.timeLineScroll, 'initial', true)
     },
-    handleShowBottonRight (scrollLeft) {
+    handleShowButtonRight (scrollLeft) {
       if (scrollLeft > this.getTimeLineItemSize()) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
