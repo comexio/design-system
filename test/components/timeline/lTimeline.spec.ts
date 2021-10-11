@@ -16,10 +16,10 @@ describe('LTimeline', () => {
     expect(container.getElementsByClassName('LTimeline__cardContent').length).toBe(1)
   })
 
-  it('renders slot header-content with default control scroll arrows', () => {
+  it('renders slot header-content without default control scroll arrows', () => {
     const { container } = renderComponent(Default())
 
-    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(1)
+    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(0)
     expect(screen.getByText('Header content')).toBeInTheDocument()
   })
 
