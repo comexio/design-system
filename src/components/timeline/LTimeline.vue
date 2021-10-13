@@ -69,7 +69,7 @@ export default {
     return {
       timeLineScroll: {
         initial: false,
-        final: true
+        final: false
       },
     }
   },
@@ -95,6 +95,10 @@ export default {
     },
     buildButtonsSrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
+
+      if (timeLine.scrollWidth > timeLine.clientWidth) {
+        this.timeLineScroll.final = true
+      }
 
       timeLine.addEventListener('scroll', () => {
         this.handleShowButtonsByScroll(timeLine)
