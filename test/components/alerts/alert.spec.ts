@@ -10,10 +10,12 @@ describe('Alert test render', () => {
   beforeEach(() => {
     jest.useFakeTimers()
   })
+
   afterEach(() => {
     jest.runOnlyPendingTimers()
     jest.useRealTimers()
   })
+
   it('alert has been rendered on click and removed after timeout', async () => {
     renderComponent(Action())
     
