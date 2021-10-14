@@ -1,30 +1,27 @@
-import Vuetify from 'vuetify'
-import { mount, createLocalVue, Wrapper } from '@vue/test-utils'
-import { initSetupComponent } from '~/test/utils.setup'
-import { LAlert } from '~/src/components/alerts'
+import { screen, waitForElementToBeRemoved } from '@testing-library/vue'
+import { composeStories } from '@storybook/testing-vue'
+import userEvent from '@testing-library/user-event'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+import * as stories from '~/docs/stories/components/alerts/LAlert.stories'
 
-const setupDefault = initSetupComponent()
-
-const defaultParams = {
-  ...setupDefault,
-  propsData: {
-    msg: 'Teste alert'
-  }
-}
+const { Action } = composeStories(stories)
 
 describe('Alert test render', () => {
-  let alert: Wrapper<LAlert>
-
-  beforeAll(() => {
-    alert = mount(LAlert, {
-      ...defaultParams
-    })
+  beforeEach(() => {
+    jest.useFakeTimers()
   })
+  afterEach(() => {
+    jest.runOnlyPendingTimers()
+    jest.useRealTimers()
+  })
+  it('alert has been rendered on click and removed after timeout', async () => {
+    renderComponent(Action())
+    
+    const button = screen.getByText('Open alert')
+    await userEvent.click(button)
 
-  it('alert has been rendered', () => {
-    const content = () => alert.find('.v-snack__content')
+    expect(screen.getByText('Im an action alert!')).toBeInTheDocument()
 
-    expect(alert).toBeDefined()
-    expect(content().text()).toBe('Teste alert')
+    await waitForElementToBeRemoved(() => screen.getByText('Im an action alert!'))
   })
 })
