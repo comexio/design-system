@@ -1,11 +1,9 @@
 <template>
   <v-snackbar
     v-model="snackbar"
-    :timeout="3000"
-    absolute
-    left
     :color="backgroundColor"
-    v-bind="$attrs"
+    v-bind="boundProps"
+    v-on="$listeners"
   >
     <span :style="getColorText"> {{ msg }}</span>
     <slot />
@@ -37,6 +35,14 @@ export default {
     getColorText () {
       return this.colorText ? `color: ${this.colorText}` : ''
     },
+    boundProps () {
+      return {
+        timeout: 10000,
+        absolute: true,
+        left: true,
+        ...this.$attrs
+      }
+    }
   },
   mounted () {
     this.$nextTick(() => {
