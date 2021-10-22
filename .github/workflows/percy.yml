@@ -28,7 +28,7 @@ jobs:
       - run: yarn
       - name: Install
         run: yarn
-      - name: Build and test
+      - name: Build and Test
         run: yarn snapshot
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
