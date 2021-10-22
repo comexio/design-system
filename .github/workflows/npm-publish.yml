@@ -44,9 +44,12 @@ jobs:
       run: yarn
     - name: Build
       run: yarn build
-
     - name: Publish
       uses: mikeal/merge-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: Update Percy baseline
+      run: yarn snapshot
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
