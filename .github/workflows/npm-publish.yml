@@ -44,7 +44,6 @@ jobs:
       run: yarn
     - name: Build
       run: yarn build
-
     - name: Publish
       uses: mikeal/merge-release@master
       env:
@@ -53,4 +52,4 @@ jobs:
     - name: Update Percy baseline
       run: yarn snapshot
       env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
