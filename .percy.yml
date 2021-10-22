@@ -1,11 +1,7 @@
 version: 2
 snapshot:
   widths:
-    - 360
-    - 768
     - 1280
-    - 1366
-    - 1920
   minHeight: 1024
   percyCSS: ""
 discovery:
