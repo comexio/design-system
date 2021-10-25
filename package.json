@@ -18,7 +18,6 @@
     "storybook": "start-storybook -p 6006 -c .storybook",
     "storybook-docs": "start-storybook -p 6006 -c .storybook --docs --no-manager-cache",
     "build-storybook": "build-storybook -c .storybook",
-    "chromatic": "npx chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "snapshot": "percy storybook:start -c .percy.yml -e Deprecated",
     "release-beta": "release-it prerelease --ci"
   },
