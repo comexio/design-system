@@ -34,11 +34,6 @@
     <img alt="Ayla-Banner" title="Ayla - LogComex Design System" src=".github/assets/ayla-logo.png"/>
 </h1>
 
-<!--Info session-->
-<h4 align="center"> 
-	🇺🇸 Readme soon avaliable in English 🇺🇸
-</h4>
-
 <!-- Index session-->
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
@@ -132,103 +127,10 @@ $ yarn unlink
 <!--Docs session-->
 ## :open_file_folder: Docs
 <p align="center">
-
-## LRouteChart
-
-```
-  <l-route-chart
-    title="Informações de Origem e Destino"
-    description="Rotas mais utilizadas para exportação no período pesquisado"
-    :header=""
-  />
-```
-
-### Parâmetros
-
-**header**: Array com os titulos da listagem
-```
-['Porto de Origem', 'Porto de Descarga', 'Porto de Destino']
-```
-
-**lines**: Array de objetos com as linhas da listagem
-```
-[
-  {
-    number: '60%',
-    quantity: {
-      name: 'TEUS',
-      value: 22
-    },
-    values: ['Santos', 'Norfolk', 'Port Everglades']
-  },
-  {
-    number: '20%',
-    values: ['Umuarama', 'Bosque Uirapuru', 'Porto do mané']
-  },
-  {
-    number: '20%',
-    isLast: true,
-    values: 'Outros'
-  }
-]
-```
-
-## LTable
-
-```
-  <l-table
-    :headers="[{ text: 'Dessert (100g serving)', value: 'name' }]
-    :items="[{
-      name: 'Frozen Yogurt',
-      calories: 159,
-      fat: 6.0,
-      carbs: 24,
-      protein: 4.0,
-      iron: '1%',
-    }]
-  />
-```
-
-### Parâmetros
-headers e items são iguais aos da tabela do [Vuetify](https://vuetifyjs.com/en/components/data-tables/#data-tables) e todos os atributos deles estão liberados para serem utilizados, nosso componente está fazendo um bind.
-
-### Eventos
-**@ordination** e **@updateScroll** estão disponiveis como nosso eventos personalizados
-
-## LBarChart
-
-```
-<l-bar-chart
-  :data="[{
-    title: "Titulo",
-    description: "Descrição",
-    quantity: "100",
-    total: "10.000",
-    percentage: 50
-  }]"
-  color="#D4C5EB"
-  description-class="text-right"
-  hover-color="#F1E8FF"
-  :translation="{"total":"Total","quantity":"Quantidade"}"
-  loading="false"
-  max-quantity="9"
-/>
-```
-
-## LButton
-
-```
-<l-button
-  icon-value="mdi-chevron-left"
-  label="Label"
-/>
-```
-### Parâmetros
-
-**icon-value**: String com o icone do MDI
-
-**label**: String com um texto para ser renderizado
-  
+  <img alt="Docs Overview" title="Ayla - Docs" src=".github/assets/docs-overview.png"/>
+  <div align="center">
+    Nosso Design System é uma documentação viva, e por isso, é atualizada constantemente. Acesse-a clicando <a href="https://ayla-design-system.netlify.app/?path=/story/getting-started-introduction--page" target="_blank">aqui</a>
+  </div>
 </p>
 
 ---
