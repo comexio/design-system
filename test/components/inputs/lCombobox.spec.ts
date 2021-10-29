@@ -96,4 +96,10 @@ describe('LCombobox', () => {
     expect(screen.getByText('Fourth item')).toBeInTheDocument()
     expect(screen.getByText('Fifth item')).toBeInTheDocument()
   })
+
+  it('finds only one combobox by id', () => {
+    const { container } = renderComponent(DefaultLoading())
+
+    expect(container.querySelectorAll('#defaultLoading').length).toBe(1)
+  })
 })

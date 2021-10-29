@@ -68,4 +68,10 @@ describe('LSelect', () => {
     expect(icon).toBeInTheDocument()
     expect(icon).toBeVisible()
   })
+
+  it('finds only one select by id', () => {
+    const { container } = renderComponent(DefaultLarge())
+
+    expect(container.querySelectorAll('#defaultLarge').length).toBe(1)
+  })
 })
