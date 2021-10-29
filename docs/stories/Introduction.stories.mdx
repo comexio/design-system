@@ -1,42 +1,87 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import Banner from './assets/banner.svg';
+import Logcomex from './assets/logcomex.png';
 
 <Meta title="Getting Started/Introduction" />
 
 <style>{`
-  .containt-logo {
+  .sbdocs-wrapper {
+    background-color: #5C068C;
+    margin: 0 -20px;
+  }
+  .sbdocs {
+    color: #FFF !important;
+  }
+  .sbdocs-a {
+    color: #FFBF7D !important;
+    text-decoration: underline;
+  }
+  .sbdocs-content {
+    max-width: none;
+    margin-top: -70px;
+  }
+  .logcomex-wrapper {
     display: flex;
     justify-content: center;
   }
-  .logo-logcomex {
-    width: 50vw;
+  .logcomex {
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    margin-top: 10px;
   }
-  .containt-topics {
-    display: flex;
-    justify-content: center;
+  .ayla-banner {
+    width: 100%;
+    height: auto;
   }
-  .title-about{
+  .title {
     text-align: center;
+  }
+  .subtitle {
+    font-style: italic;
+  }
+  .first-paragraph {
+    font-weight: bold;
+  }
+  .content {
+    margin: 15px 20px;    
+  }
+  @media screen and (min-width: 600px) {
+    .content {
+      margin: 15px 40px;    
+    }
+  }
+  @media screen and (min-width: 1366px) {
+    .content {
+      margin: 15px 60px;    
+    }
   }
 `}</style>
 
-<!--About session-->
-<div className="title-about">
-  <h1>About our design system</h1>
+<img className="ayla-banner" alt="ayla-banner" title="Ayla Banner" src={Banner} />
+
+<div className="title content">
+  <h1>About our Design System</h1>
+  <p className="subtitle content">"Ayla", of Turkish origin, means "moonlight"</p>
 </div>
 
-Ayla, [LogComex](https://www.logcomex.com/) Design System, was developed with the objective of facilitating the work of our dev team.
-Combining design and agility, you can create new LogComex products without wasting time and following the pattern of our other products!
+<div>
+  <p className="first-paragraph content">
+    Developed with the aim of facilitating the work of our development and design team, this Design System is a documentation aimed at integration, agility and standardization.
+  </p>
 
-The Design System - Ayla, from LogComex, can be understood as an extension of [Vuetify](https://vuetifyjs.com/) components adapted to the needs of our team,
-also containing rules of layout, colors and typography, we have all of our component standards here so that the team can enjoy them without the need to think about design rules and component functionalities.
+  <p className="second-paragraph content">
+    The Design System - Ayla, from <a href="https://www.logcomex.com/" target="_blank">LogComex</a>, can be understood as an extension of <a href="https://vuetifyjs.com/" target="_blank">Vuetify</a> components adapted to the needs of our team,
+    also containing rules of layout, colors and typography. We have all of our component standards here so that the team can enjoy them without the need to think about design rules and component functionalities.
+  </p>
 
-Did you like it? Click [here](https://www.npmjs.com/package/@logcomex/design) to access our NPM package, anyone can test it :)
 
----
+  <p className="third-paragraph content">
+    Our NPM package can be found <a href="https://www.npmjs.com/package/@logcomex/design" target="_blank">here</a>, and our github repo <a className="https://github.com/comexio/design-system" target="_blank">here</a>.
+  </p>
 
-<!--Bottom session-->
-<h4 className="containt-topics">
- 	<a target="_blank" rel="noopener noreferrer" href="https://www.logcomex.com/">
-    <img className="logo-logcomex" alt="LogComex" title="LogComex Logo" src="https://github.com/comexio/design-system/raw/master/.github/assets/logcomex-logo.png"/>
-  </a>
-</h4>
+</div>
+
+<div className="logcomex-wrapper">
+  <img className="logcomex" alt="logcomex" title="Logcomex" src={Logcomex} />
+</div>

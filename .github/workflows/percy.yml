@@ -1,0 +1,34 @@
+name: Percy validation
+on:
+  pull_request_review:
+    types: [submitted]
+jobs:
+  mergeability:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: rafaelbastiansch/mergeability-pr@1.0.2
+      with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  percytest:
+    needs: [mergeability]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+      - run: yarn
+      - name: Install
+        run: yarn
+      - name: Build and Test
+        run: yarn snapshot
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
