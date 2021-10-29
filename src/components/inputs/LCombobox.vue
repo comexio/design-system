@@ -37,6 +37,7 @@ import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LCombobox',
+  inheritAttrs: false,
   props: {
     allowHeightGrow: Boolean,
     dropdownIcon: Boolean,
