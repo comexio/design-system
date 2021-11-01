@@ -5,6 +5,7 @@
       v-bind="$attrs"
       class="LTextField__input"
       :class="inputClass"
+      :aria-label="$attrs.label"
       v-on="$listeners"
     >
       <template
@@ -32,6 +33,7 @@ import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LTextField',
+  inheritAttrs: false,
   props: {
     large: Boolean,
     small: Boolean

@@ -51,7 +51,8 @@ Default.args = {
 export const DefaultLarge = Template.bind({});
 DefaultLarge.args = {
   ...Default.args,
-  large: true
+  large: true,
+  id: 'defaultLarge'
 }
 
 export const DefaultSmall = Template.bind({});

@@ -39,4 +39,16 @@ describe('LTextField', () => {
     expect(icon).toBeInTheDocument()
     expect(icon).toBeVisible()
   })
+
+  it('finds textfield with id through its label', () => {
+    renderComponent(DefaultLarge())
+
+    expect(screen.getByLabelText('Label')).toBeInTheDocument()
+  })
+
+  it('finds only one textfield by id', () => {
+    const { container } = renderComponent(DefaultLarge())
+
+    expect(container.querySelectorAll('#defaultLarge').length).toBe(1)
+  })
 })
