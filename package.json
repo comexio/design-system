@@ -21,7 +21,7 @@
     "snapshot": "percy storybook:start -c .percy.yml -e Deprecated",
     "release-beta": "release-it prerelease --ci"
   },
-  "main": "./dist/design.common.js",
+  "main": "./dist/design.umd.min.js",
   "types": "./types",
   "husky": {
     "hooks": {
