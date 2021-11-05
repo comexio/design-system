@@ -58,10 +58,14 @@ export default {
 .LTooltip {
   background-color: $martinique;
   padding: 4px 12px;
+  &.menuable__content__active {
+    opacity: 1 !important;
+  }
   ::v-deep {
     span {
+      display: block;
       font-size: 0.92rem;
-      line-height: 0.92rem;
+      line-height: 14px;
     }
     .v-divider {
       border-color: $white;
