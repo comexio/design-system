@@ -43,12 +43,6 @@ export function decimalPointRestrict (value: any, decimalSpace: any): any {
 
     return value
   }
-
-  console.log('---------------------')
-  console.log('decimal:' + decimalSpace)
-  console.log('valor:' + value)
-  console.log('---------------------')
-
   const decimalSize = parseInt(decimalSpace)
 
   if (typeof value === 'string') {
