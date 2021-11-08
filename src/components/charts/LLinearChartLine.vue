@@ -41,7 +41,7 @@
           </template>
           <div>
             <span>
-              {{ data.label }} {{ showQuantity }}
+              {{ data.label | decimalPointRestrict(tooltipNumberFormat) }} {{ showQuantity }}
             </span>
           </div>
         </l-tooltip>
@@ -85,7 +85,7 @@
             >
               <template v-slot:activator="{ on }">
                 <span v-on="on">
-                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value | decimalPointRestrict(tooltipNumberFormat) }} {{ valueSymbol }}
                 </span>
               </template>
               <span
@@ -106,7 +106,7 @@
             class="py-0 LLinearChartLine__result__value--second"
           >
             <span>
-              {{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
+              {{ translationLine.records || $t('ayla.records') }}: {{ data.total | decimalPointRestrict(tooltipNumberFormat) }}
             </span>
           </v-col>
         </v-row>
@@ -127,12 +127,16 @@
 <script>
 import LTag from '~/src/components/tags/LTag'
 import LTooltip from '~/src/components/tooltip/LTooltip'
+import { decimalPointRestrict } from '~/utils/numbers.util'
 
 export default {
   name: 'LLinearChartLine',
   components: {
     LTag,
     LTooltip
+  },
+  filters: {
+    decimalPointRestrict
   },
   props: {
     data: {
@@ -190,6 +194,10 @@ export default {
     showToolTip: {
       type: Boolean,
       default: false
+    },
+    tooltipNumberFormat: {
+      type: String,
+      default: ''
     }
   },
   computed: {

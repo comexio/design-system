@@ -10,6 +10,7 @@
       :others-label="othersLabel"
       :min-line-height="minLineHeight"
       :is-clickable="isClickable"
+      :tooltip-number-format="tooltipNumberFormat"
       :line-link="lineLink"
       v-bind="$attrs"
       @toggleLast="toggleLast"
@@ -55,6 +56,10 @@ export default {
     lineLink: {
       type: Boolean,
       default: false
+    },
+    tooltipNumberFormat: {
+      type: String,
+      default: ''
     }
   },
   methods: {

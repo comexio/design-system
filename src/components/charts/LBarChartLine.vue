@@ -102,7 +102,7 @@
                       v-on="on"
                     >
                       <div class="LBarChart__value px-1">
-                        {{ data.total }} USD
+                        {{ data.total | decimalPointRestrict(tooltipNumberFormat) }} USD
                       </div>
                     </l-progress-bar>
                   </v-hover>
@@ -135,12 +135,16 @@
 import LProgressBar from '~/src/components/bars/LProgressBar'
 import LTooltip from '~/src/components/tooltip/LTooltip'
 import isNil from 'ramda/src/isNil'
+import { decimalPointRestrict } from '~/utils/numbers.util'
 
 export default {
   name: 'LBarChartLine',
   components: {
     LProgressBar,
     LTooltip
+  },
+  filters: {
+    decimalPointRestrict
   },
   props: {
     data: {
@@ -196,6 +200,10 @@ export default {
     lineLink: {
       type: Boolean,
       default: false
+    },
+    tooltipNumberFormat: {
+      type: String,
+      default: ''
     }
   },
   data () {

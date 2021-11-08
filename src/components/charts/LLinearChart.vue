@@ -20,6 +20,7 @@
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
             :label-max-length="labelMaxLength"
+            :tooltip-number-format="tooltipNumberFormat"
             @expand="expandList"
             @eventClick="eventClick"
           >
@@ -110,6 +111,10 @@ export default {
     nonClickableItems: {
       type: Array,
       default: () => []
+    },
+    tooltipNumberFormat: {
+      type: String,
+      default: ''
     }
   },
   methods: {
