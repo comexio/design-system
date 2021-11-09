@@ -1,40 +1,45 @@
-import LButtonNew from "~/src/components/buttons/LButtonNew.vue";
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue';
 
 export default {
-  title: "Components/Base/Button",
+  title: 'Components/Base/Button',
   component: LButtonNew,
   argTypes: {
     primary: { 
       control: 'boolean', 
-      description: 'Sets LButton--primary class, primary style (Filled/Orange) and custom hover/disabled style' 
+      description: 'Sets primary style (Filled/Orange) with custom hover/disabled colors' 
     },
     secondary: { 
       control: 'boolean', 
-      description: 'Sets LButton--secondary class, secondary style (Outlined/Orange) and custom hover/disabled style' 
+      description: 'Sets secondary style (Outlined/Orange) with custom hover/disabled colors' 
     },
     tertiary: { 
       control: 'boolean', 
-      description: 'Sets LButton--tertiary class, tertiary style (Text/Orange) and custom hover/disabled style' 
+      description: 'Sets tertiary style (Text/Orange) with custom hover/disabled colors' 
     },
-    purple: { 
-      control: 'boolean', 
-      description: `Sets LButton--purple class, purple color style (Filled/Purple) and custom hover/disabled style.
-        It should be used alone if true as it works as a primary with color variation`
-     },
-    gray: { 
-      control: 'boolean', 
-      description: `Sets LButton--gray class, gray color style depending on style variation 
-        (Primary/Secondary/Tertiary) and custom hover style.` 
+    buttonColors: {
+      control: 'object',
+      description: `Sets custom colors into the button. It will override Vuetify default 
+      color management, so if you want to use the default set the color prop`
     },
-    icon: { control: 'boolean', description: 'Sets LButton--icon class and vuetify icon prop' },
-    disabled: { control: 'boolean', description: 'Sets LButton--disabled class and disables button' },
     uppercase: { 
       control: 'boolean', 
-      description: 'Toggles uppercase on text and sets LButton--uppercase class when true and LButton__label--withoutUppercase class when false' 
+      description: 'Toggles uppercase on label text' 
     },
-    large: { control: 'boolean', description: 'Sets the button to large size: 45px (40px default size)' },
-    small: { control: 'boolean', description: 'Sets the button to small size: 35px (40px default size)' },
-    default: { description: 'Default slot' }
+    roundedIcon: { 
+      control: 'boolean', 
+      description: 'Toggles 50% border-radius. It should be used when the button is a circular icon' 
+    },
+    large: { 
+      control: 'boolean', 
+      description: 'Sets large size: 45px (40px default size)' 
+    },
+    small: { 
+      control: 'boolean', 
+      description: 'Sets small size: 35px (40px default size)' 
+    },
+    default: { 
+      description: 'Default slot' 
+    }
   }
 };
 
@@ -117,7 +122,13 @@ PrimaryDisabled.args = {
 
 export const PrimaryPurple = Template.bind({});
 PrimaryPurple.args = {
-  purple: true,
+  buttonColors: {
+    background: '#F1E8FF',
+    backgroundOnHover: '#DAD1E9',
+    backgroundDisabled: '#F1ECF8',
+    color: '#9F6CBB',
+    colorDisabled: '#DDC4EB'
+  },
   uppercase: false
 };
 
@@ -129,8 +140,12 @@ PrimaryPurpleDisabled.args = {
 
 export const PrimaryGray = Template.bind({});
 PrimaryGray.args = {
-  ...PrimaryDefault.args,
-  gray: true
+  buttonColors: {
+    background: '#B8B8B8',
+    backgroundOnHover: '#D4D4D4',
+    color: '#FFFFFF'
+  },
+  uppercase: false
 };
 
 export const SecondaryDefault = Template.bind({});
@@ -147,8 +162,14 @@ SecondaryDisabled.args = {
 
 export const SecondaryGray = Template.bind({});
 SecondaryGray.args = {
-  ...SecondaryDefault.args,
-  gray: true
+  buttonColors: {
+    border: '#B8B8B8',
+    borderOnHover: '#D4D4D4',
+    color: '#B8B8B8',
+    colorOnHover: '#D4D4D4'
+  },
+  outlined: true,
+  uppercase: false
 };
 
 export const TertiaryDefault = Template.bind({});
@@ -164,13 +185,23 @@ TertiaryDisabled.args = {
 
 export const TertiaryGray = Template.bind({});
 TertiaryGray.args = {
-  ...TertiaryDefault.args,
-  gray: true
+  buttonColors: {
+    color: '#B8B8B8',
+    colorOnHover: '#D4D4D4'
+  },
+  text: true
 };
 
 export const OnlyIcon = TemplateOnlyIcon.bind({});
 OnlyIcon.args = {
-  ...PrimaryPurple.args
+  buttonColors: {
+    backgroundOnHover: '#DAD1E9',
+    color: '#9F6CBB',
+    colorOnHover: '#5C068C',
+    colorDisabled: '#DDC4EB'
+  },
+  roundedIcon: true,
+  icon: true
 };
 
 export const OnlyIconDisabled = TemplateOnlyIcon.bind({});

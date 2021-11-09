@@ -21,8 +21,6 @@ export default {
     primary: Boolean,
     secondary: Boolean,
     tertiary: Boolean,
-    purple: Boolean,
-    gray: Boolean,
     large: Boolean,
     small: Boolean,
     roundedIcon: Boolean,

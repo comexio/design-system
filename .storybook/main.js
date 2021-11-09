@@ -23,9 +23,7 @@ module.exports = {
           loader: 'sass-loader',
           options: {
             additionalData: `
-            @import '_variables';
-            @import '_globals';
-            @import '_main';
+              @import '_main';
             `,
             sassOptions: {
               includePaths: ['src/assets/scss'],
