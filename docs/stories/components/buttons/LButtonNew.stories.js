@@ -108,20 +108,20 @@ const TemplateWithIcon = (args, { argTypes }) => ({
   `
 });
 
-export const PrimaryDefault = Template.bind({});
-PrimaryDefault.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   primary: true,
   uppercase: false
 };
 
 export const PrimaryDisabled = Template.bind({});
 PrimaryDisabled.args = {
-  ...PrimaryDefault.args,
+  ...Primary.args,
   disabled: true
 };
 
-export const PrimaryPurple = Template.bind({});
-PrimaryPurple.args = {
+export const Purple = Template.bind({});
+Purple.args = {
   buttonColors: {
     background: '#F1E8FF',
     backgroundOnHover: '#DAD1E9',
@@ -132,14 +132,14 @@ PrimaryPurple.args = {
   uppercase: false
 };
 
-export const PrimaryPurpleDisabled = Template.bind({});
-PrimaryPurpleDisabled.args = {
-  ...PrimaryPurple.args,
+export const PurpleDisabled = Template.bind({});
+PurpleDisabled.args = {
+  ...Purple.args,
   disabled: true
 };
 
-export const PrimaryGray = Template.bind({});
-PrimaryGray.args = {
+export const Gray = Template.bind({});
+Gray.args = {
   buttonColors: {
     background: '#B8B8B8',
     backgroundOnHover: '#D4D4D4',
@@ -148,20 +148,20 @@ PrimaryGray.args = {
   uppercase: false
 };
 
-export const SecondaryDefault = Template.bind({});
-SecondaryDefault.args = {
+export const Secondary = Template.bind({});
+Secondary.args = {
   secondary: true,
   uppercase: false
 };
 
 export const SecondaryDisabled = Template.bind({});
 SecondaryDisabled.args = {
-  ...SecondaryDefault.args,
+  ...Secondary.args,
   disabled: true
 };
 
-export const SecondaryGray = Template.bind({});
-SecondaryGray.args = {
+export const OutlinedGray = Template.bind({});
+OutlinedGray.args = {
   buttonColors: {
     border: '#B8B8B8',
     borderOnHover: '#D4D4D4',
@@ -172,19 +172,19 @@ SecondaryGray.args = {
   uppercase: false
 };
 
-export const TertiaryDefault = Template.bind({});
-TertiaryDefault.args = {
+export const Tertiary = Template.bind({});
+Tertiary.args = {
   tertiary: true
 };
 
 export const TertiaryDisabled = Template.bind({});
 TertiaryDisabled.args = {
-  ...TertiaryDefault.args,
+  ...Tertiary.args,
   disabled: true
 };
 
-export const TertiaryGray = Template.bind({});
-TertiaryGray.args = {
+export const TextGray = Template.bind({});
+TextGray.args = {
   buttonColors: {
     color: '#B8B8B8',
     colorOnHover: '#D4D4D4'
@@ -212,7 +212,7 @@ OnlyIconDisabled.args = {
 
 export const WithIcon = TemplateWithIcon.bind({});
 WithIcon.args = {
-  ...PrimaryPurple.args
+  ...Purple.args
 };
 
 export const WithIconDisabled = TemplateWithIcon.bind({});

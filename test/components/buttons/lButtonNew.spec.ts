@@ -4,17 +4,14 @@ import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/buttons/LButtonNew.stories'
 
 const { 
-    PrimaryDefault, 
-    PrimaryGray, 
+    Primary, 
     PrimaryDisabled, 
-    SecondaryDefault, 
-    SecondaryGray, 
+    Secondary, 
     SecondaryDisabled,
-    TertiaryDefault, 
-    TertiaryGray, 
+    Tertiary, 
     TertiaryDisabled,
-    PrimaryPurple,
-    PrimaryPurpleDisabled,
+    Purple,
+    PurpleDisabled,
     OnlyIcon,
     OnlyIconDisabled,
     WithIcon,
@@ -26,30 +23,14 @@ const checkButtonClasses = (button: Element, classes: Array<String>) => {
 }
 
 describe('LButtonNew', () => {
-  it('renders primary button without uppercase', () => {
-    renderComponent(PrimaryDefault())
+  it('renders primary button', () => {
+    renderComponent(Primary())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['primary'])
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
+        checkButtonClasses(button, ['primary', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toBeEnabled()    
-    })
-
-    expect(buttons[0]).toHaveClass('LButton--large')
-    expect(buttons[2]).toHaveClass('LButton--small')
-  })
-
-  it('renders primary button with gray style', () => {
-    renderComponent(PrimaryGray())
-
-    const buttons = screen.getAllByRole('button')
-    buttons.forEach(button => {
-        checkButtonClasses(button, ['primary', 'gray'])
-        expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
-        expect(button).toBeEnabled()    
+        expect(button).toBeEnabled() 
     })
 
     expect(buttons[0]).toHaveClass('LButton--large')
@@ -61,9 +42,8 @@ describe('LButtonNew', () => {
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['primary', 'disabled'])
+        checkButtonClasses(button, ['primary', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -71,29 +51,13 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders secondary button without uppercase', () => {
-    renderComponent(SecondaryDefault())
+  it('renders secondary button', () => {
+    renderComponent(Secondary())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['secondary'])
+        checkButtonClasses(button, ['secondary', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
-        expect(button).toBeEnabled()    
-    })
-
-    expect(buttons[0]).toHaveClass('LButton--large')
-    expect(buttons[2]).toHaveClass('LButton--small')
-  })
-
-  it('renders secondary button with gray style', () => {
-    renderComponent(SecondaryGray())
-
-    const buttons = screen.getAllByRole('button')
-    buttons.forEach(button => {
-        checkButtonClasses(button, ['secondary', 'gray'])
-        expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -106,9 +70,8 @@ describe('LButtonNew', () => {
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['secondary', 'disabled'])
+        checkButtonClasses(button, ['secondary', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -117,28 +80,12 @@ describe('LButtonNew', () => {
   })
 
   it('renders tertiary button', () => {
-    renderComponent(TertiaryDefault())
+    renderComponent(Tertiary())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
         checkButtonClasses(button, ['tertiary'])
         expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
-        expect(button).toBeEnabled()    
-    })
-
-    expect(buttons[0]).toHaveClass('LButton--large')
-    expect(buttons[2]).toHaveClass('LButton--small')
-  })
-
-  it('renders tertiary button with gray style', () => {
-    renderComponent(TertiaryGray())
-
-    const buttons = screen.getAllByRole('button')
-    buttons.forEach(button => {
-        checkButtonClasses(button, ['tertiary', 'gray'])
-        expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -151,9 +98,8 @@ describe('LButtonNew', () => {
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['tertiary', 'disabled'])
+        checkButtonClasses(button, ['tertiary'])
         expect(button).toHaveTextContent('Button')
-        expect(button).not.toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -161,14 +107,13 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders purple button', () => {
-    renderComponent(PrimaryPurple())
+  it('renders button with custom colors (purple)', () => {
+    renderComponent(Purple())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['purple'])
+        checkButtonClasses(button, ['customColors', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeEnabled()    
     })
 
@@ -176,14 +121,13 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders purple button disabled', () => {
-    renderComponent(PrimaryPurpleDisabled())
+  it('renders button with custom colors disabled (purple)', () => {
+    renderComponent(PurpleDisabled())
 
     const buttons = screen.getAllByRole('button')
     buttons.forEach(button => {
-        checkButtonClasses(button, ['purple', 'disabled'])
+        checkButtonClasses(button, ['customColors', 'withoutUppercase'])
         expect(button).toHaveTextContent('Button')
-        expect(button).toHaveClass('LButton__label--withoutUppercase')
         expect(button).toBeDisabled()    
     })
 
@@ -191,43 +135,43 @@ describe('LButtonNew', () => {
     expect(buttons[2]).toHaveClass('LButton--small')
   })
 
-  it('renders only icon button', () => {
+  it('renders rounded icon button with custom colors (purple)', () => {
     renderComponent(OnlyIcon())
 
     const button = screen.getByRole('button')
 
-    checkButtonClasses(button, ['icon', 'purple'])
+    checkButtonClasses(button, ['customColors', 'roundedIcon'])
     expect(button).toBeEnabled()    
   })
 
-  it('renders only icon button disabled', () => {
+  it('renders rounded icon button with custom colors disabled (purple)', () => {
     renderComponent(OnlyIconDisabled())
 
     const button = screen.getByRole('button')
 
-    checkButtonClasses(button, ['icon', 'purple', 'disabled'])
+    checkButtonClasses(button, ['customColors', 'roundedIcon'])
     expect(button).toBeDisabled()    
   })
 
-  it('renders with icon button', () => {
-    renderComponent(WithIcon())
+  it('renders button with icon in slot and custom colors (purple)', () => {
+    const { container } = renderComponent(WithIcon())
 
     const button = screen.getByRole('button')
 
-    checkButtonClasses(button, ['purple'])
-    expect(button).toHaveClass('LButton__label--withoutUppercase')
+    checkButtonClasses(button, ['customColors', 'withoutUppercase'])
     expect(button).toHaveTextContent('Button')
     expect(button).toBeEnabled()    
+    expect(container.querySelector('.v-icon--left')).toBeInTheDocument()
   })
 
-  it('renders with icon button disabled', () => {
-    renderComponent(WithIconDisabled())
+  it('renders button with icon in slot, custom colors and disabled (purple)', () => {
+    const { container } = renderComponent(WithIconDisabled())
 
     const button = screen.getByRole('button')
 
-    checkButtonClasses(button, ['purple'])
-    expect(button).toHaveClass('LButton__label--withoutUppercase')
+    checkButtonClasses(button, ['customColors', 'withoutUppercase'])
     expect(button).toHaveTextContent('Button')
     expect(button).toBeDisabled()    
+    expect(container.querySelector('.v-icon--left')).toBeInTheDocument()
   })
 })
