@@ -64,19 +64,16 @@ export default {
       }
     },
     buttonStyle () {
-      if (this.primary) { 
-        return PRIMARY
+      const colorPresets = {
+        primary: { isActive: this.primary, colors: PRIMARY }, 
+        secondary: { isActive: this.secondary, colors: SECONDARY }, 
+        tertiary: { isActive: this.tertiary, colors: TERTIARY }
       }
 
-      if (this.secondary) { 
-        return SECONDARY
-      }
+      const selectedPreset = Object.keys(colorPresets).find(preset => colorPresets[preset].isActive)
+      const selectedPresetColors = selectedPreset ? colorPresets[selectedPreset].colors : selectedPreset
 
-      if (this.tertiary) { 
-        return TERTIARY
-      }
-
-      return {
+      return selectedPresetColors || {
         '--backgroundColor': this.buttonColors.background,
         '--backgroundColorOnHover': this.buttonColors.backgroundOnHover,
         '--backgroundColorDisabled': this.buttonColors.backgroundDisabled,
