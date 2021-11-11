@@ -4,10 +4,10 @@ $smallLabelTop: 6px !default;
 $largeActiveLabelTop: 10.5px !default;
 $smallActiveLabelTop: 9.5px !default;
 
-$defaultIconHeight: 19px !default;
+$defaultIconSize: 18px !default;
 
-$largeIconHeight: 24px !default;
-$smallIconHeight: 10px !default;
+$largeIconSize: 20px !default;
+$smallIconSize: 16px !default;
 
 $defaultFontSize: 0.923rem;
 $largeFontSize: 1.077rem;
@@ -57,8 +57,16 @@ $largeFontSize: 1.077rem;
   .v-input:not(.v-input--is-focused) .v-label--active {
     color: $doveGray;
   }
+  .v-input .v-input__control .v-input__slot {
+    .v-input__append-inner {
+      margin: auto;
+    }
+  }
   .v-icon, .v-input__icon--append {
-    height: $defaultIconHeight;
+    height: $defaultIconSize;
+    min-width: $defaultIconSize;
+    width: $defaultIconSize;
+    font-size: $defaultIconSize;
   }
   .v-chip__close {
     font-size: 16px !important;
@@ -75,7 +83,10 @@ $largeFontSize: 1.077rem;
       top: $largeActiveLabelTop;
     }
     .v-icon, .v-input__icon--append {
-      height: $largeIconHeight;
+      height: $largeIconSize;
+      min-width: $largeIconSize;
+      width: $largeIconSize;
+      font-size: $largeIconSize;
     }
     .v-chip__content {
       font-size: $largeFontSize;
@@ -89,7 +100,10 @@ $largeFontSize: 1.077rem;
       top: $smallActiveLabelTop;
     }
     .v-icon, .v-input__icon--append {
-      height: $smallIconHeight;
+      height: $smallIconSize;
+      min-width: $smallIconSize;
+      width: $smallIconSize;
+      font-size: $smallIconSize;
     }
   }
   [class*="__input"][class*="--disabled"] {
