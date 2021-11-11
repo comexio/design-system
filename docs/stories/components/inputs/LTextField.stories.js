@@ -5,7 +5,10 @@ export default {
   component: LTextField,
   argTypes: {
     large: { control: 'boolean', description: 'Sets the input to its large size: 40px (Default 35px)' },
-    small: { control: 'boolean', description: 'Sets the input to its small size: 25px (Default 35px)' }
+    small: { control: 'boolean', description: 'Sets the input to its small size: 25px (Default 35px)' },
+    appendIcon: {
+      disable: true
+    }
   },
 };
 
