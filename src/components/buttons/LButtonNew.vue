@@ -1,13 +1,10 @@
 <template>
   <v-btn
-    class="LButton"
+    v-bind="buttonProps"
     :class="buttonClass"
-    v-bind="$attrs"
+    :style="buttonStyle"
     :height="buttonHeight"
-    :disabled="disabled"
-    :icon="icon"
-    :outlined="secondary || $attrs.outlined"
-    :text="tertiary || $attrs.text"
+    class="LButton"
     v-on="$listeners"
   >
     <slot />
@@ -16,6 +13,7 @@
 
 <script>
 import { getButtonHeight } from '~/utils/size.util'
+import { PRIMARY, SECONDARY, TERTIARY } from '~/enum/buttonColors.enum'
 
 export default {
   name: 'LButton',
@@ -23,37 +21,77 @@ export default {
     primary: Boolean,
     secondary: Boolean,
     tertiary: Boolean,
-    icon: Boolean,
-    purple: Boolean,
-    gray: Boolean,
-    disabled: Boolean,
     large: Boolean,
     small: Boolean,
+    roundedIcon: Boolean,
     uppercase: {
       type: Boolean,
       default: true
+    },
+    buttonColors: {
+      type: Object,
+      default: () => ({
+        background: null,
+        backgroundOnHover: null,
+        backgroundDisabled: null,
+        color: null,
+        colorOnHover: null,
+        colorDisabled: null,
+        border: null,
+        borderOnHover: null,
+        borderDisabled: null
+      })
     }
   },
   computed: {
+    buttonProps () {
+      return {
+        outlined: this.secondary,
+        text: this.tertiary,
+        ...this.$attrs
+      }
+    },
     buttonClass () {
       return {
         'LButton--primary': this.primary,
         'LButton--secondary': this.secondary,
         'LButton--tertiary': this.tertiary,
-        'LButton--icon': this.icon,
-        'LButton--purple': this.purple,
-        'LButton--disabled': this.disabled,
-        'LButton--gray': this.gray,
+        'LButton--customColors': this.hasCustomColors,
         'LButton--large': this.large,
         'LButton--small': this.small,
-        'LButton--uppercase': this.uppercase,
-        'LButton__label--withoutUppercase': !this.uppercase
+        'LButton--roundedIcon': this.roundedIcon,
+        'LButton--withoutUppercase': !this.uppercase
+      }
+    },
+    buttonStyle () {
+      const colorPresets = {
+        primary: { isActive: this.primary, colors: PRIMARY }, 
+        secondary: { isActive: this.secondary, colors: SECONDARY }, 
+        tertiary: { isActive: this.tertiary, colors: TERTIARY }
+      }
+
+      const selectedPreset = Object.keys(colorPresets).find(preset => colorPresets[preset].isActive)
+      const selectedPresetColors = selectedPreset ? colorPresets[selectedPreset].colors : selectedPreset
+
+      return selectedPresetColors || {
+        '--backgroundColor': this.buttonColors.background,
+        '--backgroundColorOnHover': this.buttonColors.backgroundOnHover,
+        '--backgroundColorDisabled': this.buttonColors.backgroundDisabled,
+        '--color': this.buttonColors.color,
+        '--colorOnHover': this.buttonColors.colorOnHover,
+        '--colorDisabled': this.buttonColors.colorDisabled,
+        '--borderColor': this.buttonColors.border,
+        '--borderColorOnHover': this.buttonColors.borderOnHover,
+        '--borderColorDisabled': this.buttonColors.borderDisabled
       }
     },
     buttonHeight () {
       const { large, small, $attrs } = this
 
       return getButtonHeight({large, small, custom: $attrs.height})
+    },
+    hasCustomColors () {
+      return !!Object.values(this.buttonColors).filter(value => value !== null).length
     }
   }
 }
@@ -80,144 +118,61 @@ export default {
   font-size: 0.923rem;
 }
 
-.LButton--uppercase {
-  text-transform: uppercase;
+.LButton--roundedIcon {
+  border-radius: 50%;
 }
 
-.LButton__label--withoutUppercase {
+.LButton--withoutUppercase {
   text-transform: none;
 }
 
-.LButton--icon { 
-  border-radius: 50%;
+.LButton--primary,
+.LButton--secondary,
+.LButton--tertiary,
+.LButton--customColors {
+  background-color: var(--backgroundColor) !important;
+  border-color: var(--borderColor) !important;
+  color: var(--color) !important;
+
+  &:hover {
+    background-color: var(--backgroundColorOnHover, var(--backgroundColor)) !important;
+    border-color: var(--borderColorOnHover, var(--borderColor)) !important;
+    color: var(--colorOnHover, var(--color)) !important;
+    transition: 0.3s;
+  }
+}
+
+:is(.LButton--secondary, .LButton--tertiary, .LButton--customColors).v-btn:before {
+  background-color: unset !important;
+}
+
+.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):is(.LButton--primary, .LButton--customColors), 
+.v-btn.v-btn--disabled:is(.LButton--secondary, .LButton--tertiary, .LButton--customColors) {
+  background-color: var(--backgroundColorDisabled, var(--backgroundColor)) !important;
+  border-color: var(--borderColorDisabled, var(--borderColor)) !important;
+  color: var(--colorDisabled, var(--color)) !important;
 }
 
 .v-btn {
   min-width: unset !important;
 }
-
-.LButton--primary {
-  background-color: $westSide !important;
-  color: $white !important;
-}
-
-.LButton--primary:hover {
-  background-color: $christine !important;
-  transition: 0.3s;
-}
-
-.LButton--primary.LButton--gray {
-  background-color: $silver !important;
-  color: $white !important;
-}
-
-.LButton--primary.LButton--gray:hover {
-  background-color: $Alto !important;
-}
-
-.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--primary {
-  color: $white !important;
-  background-color: $macaroni !important;
-}
-
-.LButton--secondary {
-  border-color: $westSide !important;
-  color: $westSide !important;
-}
-
-.LButton--secondary:hover {
-  border-color: $christine !important;
-  background-color: unset !important;
-  color: $christine !important;
-  transition: 0.3s;
-}
-
-.LButton--secondary.LButton--gray {
-  border-color: $silver !important;
-  color: $silver !important;
-}
-
-.LButton--secondary.LButton--gray:hover {
-  border-color: $Alto !important;
-  color: $Alto !important;
-}
-
-.v-btn.v-btn--disabled.LButton--secondary, 
-.v-btn.v-btn--disabled .v-btn__loading.LButton--secondary, 
-.v-btn.v-btn--disabled .v-icon.LButton--secondary {
-  color: $macaroni !important;
-  border-color: $macaroni !important;
-}
-
-.LButton--tertiary {
-  color: $westSide !important;
-}
-
-.LButton--tertiary:hover {
-  color: $christine !important;
-  transition: 0.3s;
-}
-
-.LButton--tertiary.LButton--gray {
-  color: $silver !important;
-}
-
-.LButton--tertiary.LButton--gray:hover {
-  color: $Alto !important;
-}
-
-.v-btn.v-btn--disabled.LButton--tertiary, 
-.v-btn.v-btn--disabled .v-btn__loading.LButton--tertiary, 
-.v-btn.v-btn--disabled .v-icon.LButton--tertiary {
-  color: $macaroni !important;
-}
-
-.LButton--secondary.v-btn:before,
-.LButton--tertiary.v-btn:before {
-  background-color: unset !important;
-}
-
-.LButton--purple {
-  background-color: $blueChalk !important;
-  color: $wisteria !important;
-}
-
-.LButton--purple:hover {
-  background-color: $snuff !important;
-  transition: 0.3s;
-}
-
-.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn-outlined).LButton--purple {
-  color: $frenchLilac !important;
-  background-color: $whiteLilac !important;
-}
-
-.LButton--icon.LButton--purple.LButton--disabled {
-  color: $frenchLilac !important;
-}
-
-.LButton--icon.LButton--purple:hover {
-  color: $purpleHaze !important;
-  background-color: $magnolia !important;
-}
-
-.LButton--icon {
-  background-color: unset !important;
-}
 </style>
 
 <style lang="scss">
-.LButton .v-btn__content .v-icon--left {
-  margin-left: unset !important;
-  margin-right: 5px !important;
+.LButton .v-btn__content {
+  & .v-icon--left {
+    margin-left: unset !important;
+    margin-right: 5px !important;
+  }
+
+  & .v-icon--right {
+    margin-left: 5px !important;
+    margin-right: unset !important;
+
+  }
 }
 
-.LButton .v-btn__content .v-icon--right {
-  margin-left: 5px !important;
-  margin-right: unset !important;
-}
-
-.LButton--disabled.v-btn--disabled .v-btn__content .v-icon {
+.LButton.v-btn--disabled .v-btn__content .v-icon {
   color: unset !important;
 }
 </style>
