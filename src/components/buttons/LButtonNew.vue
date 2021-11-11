@@ -60,6 +60,7 @@ export default {
         'LButton--large': this.large,
         'LButton--small': this.small,
         'LButton--roundedIcon': this.roundedIcon,
+        'LButton--uppercase': this.uppercase,
         'LButton--withoutUppercase': !this.uppercase
       }
     },
@@ -120,6 +121,10 @@ export default {
 
 .LButton--roundedIcon {
   border-radius: 50%;
+}
+
+.LButton--uppercase {
+  text-transform: uppercase;
 }
 
 .LButton--withoutUppercase {
