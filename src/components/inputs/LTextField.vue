@@ -3,6 +3,7 @@
     <v-text-field
       :height="inputHeight"
       v-bind="$attrs"
+      :append-icon="appendIcon"
       class="LTextField__input"
       :class="inputClass"
       :aria-label="$attrs.label"
@@ -37,17 +38,21 @@ export default {
   inheritAttrs: false,
   props: {
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    appendIcon: {
+      type: String,
+      default: null
+    }
   },
   computed: {
     inputClass () {
-      const { large, small, $attrs } = this
+      const { large, small, appendIcon, $attrs } = this
 
       return {
         'LTextField--disabled': $attrs.disabled,
         'LTextField--large': large,
         'LTextField--small': small,
-        'LTextField--appendColor': $attrs.color && $attrs.appendIcon
+        'LTextField--appendColor': $attrs.color && appendIcon
       }
     },
     inputHeight () {
