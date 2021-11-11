@@ -6,6 +6,7 @@
       class="LTextField__input"
       :class="inputClass"
       :aria-label="$attrs.label"
+      :style="inputStyle"
       v-on="$listeners"
     >
       <template
@@ -45,13 +46,21 @@ export default {
       return {
         'LTextField--disabled': $attrs.disabled,
         'LTextField--large': large,
-        'LTextField--small': small
+        'LTextField--small': small,
+        'LTextField--appendColor': $attrs.color && $attrs.appendIcon
       }
     },
     inputHeight () {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    inputStyle () {
+      const { color } = this.$attrs
+
+      return {
+        '--color': color
+      }
     }
   }
 }

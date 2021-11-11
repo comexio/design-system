@@ -14,7 +14,8 @@ const Template = (args, { argTypes }) => ({
   components: { LTextField },
   template: `
     <l-text-field
-      v-bind="$props" 
+      v-bind="$props"
+      @click:append="() => ({})"
       style="width: 200px"
     />
   ` 
@@ -71,6 +72,16 @@ export const DefaultWithError = Template.bind({});
 DefaultWithError.args = {
   ...Default.args,
   error: true
+}
+
+export const DefaultPassword = Template.bind({});
+DefaultPassword.args = {
+  outlined: true,
+  dense: true,
+  label: 'Password',
+  type: 'password',
+  appendIcon: 'mdi-eye',
+  color: '#FF8F1C'
 }
 
 export const DefaultWithSlot = TemplateWithSlot.bind({});
