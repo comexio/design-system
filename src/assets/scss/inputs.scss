@@ -118,4 +118,11 @@ $largeFontSize: 1.077rem;
       font-size: 18px;
     }
   }
+  [class*="--appendColor"] {
+    .v-input__icon--append {
+      button.v-icon:focus {
+        color: var(--color) !important;
+      }
+    }
+  }
 }

@@ -68,12 +68,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/inputs';
-
-.LTextField--appendColor {
-  ::v-deep .v-input__icon--append {
-    button.v-icon:focus {
-      color: var(--color) !important;
-    }
-  }
-}
 </style>
