@@ -8,8 +8,11 @@ describe('renders modal footer', () => {
     const { emitted } = renderComponent(LModalFooterNew, {
       props: {
         cancelButtonProps: {
-          tertiary: true,
-          gray: true,
+          text: true,
+          buttonColors: {
+            color: '#B8B8B8',
+            colorOnHover: '#D4D4D4'
+          },
           placeholder: 'Cancelar'
         },
         confirmButtonProps: {

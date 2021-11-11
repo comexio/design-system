@@ -43,8 +43,11 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({})
 Default.args = {
   cancelButtonProps: {
-    tertiary: true,
-    gray: true,
+    text: true,
+    buttonColors: {
+      color: '#B8B8B8',
+      colorOnHover: '#D4D4D4'
+    },
     placeholder: 'Cancelar'
   },
   confirmButtonProps: {
