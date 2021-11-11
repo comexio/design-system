@@ -57,7 +57,7 @@ $largeFontSize: 1.077rem;
   .v-input:not(.v-input--is-focused) .v-label--active {
     color: $doveGray;
   }
-  .v-input .v-input__control .v-input__slot {
+  .v-input:not(.v-select) .v-input__control .v-input__slot {
     .v-input__append-inner {
       margin: auto;
     }
