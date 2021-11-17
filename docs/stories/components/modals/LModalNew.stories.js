@@ -54,7 +54,7 @@ const Template = (args, { argTypes }) => ({
         custom content
       </div>
       <l-modal-footer-new
-        :cancelButtonProps="{tertiary: true, gray: true, placeholder: 'Cancelar', height: '18px'}"
+        :cancelButtonProps="{text: true, buttonColors: {color: '#B8B8B8', colorOnHover: '#D4D4D4'}, placeholder: 'Cancelar', height: '18px'}"
         :confirmButtonProps="{tertiary: true, placeholder: 'Confirmar', height: '18px'}"
       /> 
     </l-modal-new>

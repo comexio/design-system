@@ -54,7 +54,8 @@ export const DefaultLoading = Template.bind({});
 DefaultLoading.args = {
   ...Default.args,
   loading: true,
-  disabled: true
+  disabled: true,
+  id: 'defaultLoading'
 }
 
 export const DefaultLoaded = Template.bind({});

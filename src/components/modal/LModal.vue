@@ -55,8 +55,7 @@
           <v-spacer />
           <l-button-new
             v-if="cancelButton"
-            tertiary
-            gray
+            :button-colors="{ color: '#B8B8B8', colorOnHover: '#D4D4D4' }"
             class="modal__button modal__button--cancel font-md"
             @click="closeModal"
           >

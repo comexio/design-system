@@ -1,6 +1,6 @@
 {
   "name": "@logcomex/design",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "license": "MIT",
   "author": {
     "name": "Rafael Bastiansch",
@@ -21,7 +21,7 @@
     "snapshot": "percy storybook:start -c .percy.yml -e Deprecated",
     "release-beta": "release-it prerelease --ci"
   },
-  "main": "./dist/design.common.js",
+  "main": "./dist/design.umd.min.js",
   "types": "./types",
   "husky": {
     "hooks": {
@@ -40,13 +40,13 @@
     "@mdi/font": "^5.8.55",
     "@percy/cli": "^1.0.0-beta.70",
     "@percy/storybook": "^4.1.0",
-    "@storybook/addon-actions": "^6.3.4",
-    "@storybook/addon-essentials": "^6.3.4",
-    "@storybook/addon-links": "^6.3.4",
-    "@storybook/addons": "^6.3.4",
-    "@storybook/testing-vue": "^0.0.1",
-    "@storybook/theming": "^6.3.4",
-    "@storybook/vue": "^6.3.4",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/addons": "^6.3.12",
+    "@storybook/testing-vue": "^0.0.2",
+    "@storybook/theming": "^6.3.12",
+    "@storybook/vue": "^6.3.12",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.1.9",
     "@testing-library/vue": "^5.8.1",

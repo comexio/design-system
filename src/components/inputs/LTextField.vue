@@ -3,8 +3,11 @@
     <v-text-field
       :height="inputHeight"
       v-bind="$attrs"
+      :append-icon="appendIcon"
       class="LTextField__input"
       :class="inputClass"
+      :aria-label="$attrs.label"
+      :style="inputStyle"
       v-on="$listeners"
     >
       <template
@@ -32,24 +35,37 @@ import { getInputHeight } from '~/utils/size.util'
 
 export default {
   name: 'LTextField',
+  inheritAttrs: false,
   props: {
     large: Boolean,
-    small: Boolean
+    small: Boolean,
+    appendIcon: {
+      type: String,
+      default: null
+    }
   },
   computed: {
     inputClass () {
-      const { large, small, $attrs } = this
+      const { large, small, appendIcon, $attrs } = this
 
       return {
         'LTextField--disabled': $attrs.disabled,
         'LTextField--large': large,
-        'LTextField--small': small
+        'LTextField--small': small,
+        'LTextField--appendColor': $attrs.color && appendIcon
       }
     },
     inputHeight () {
       const { large, small, $attrs } = this
 
       return getInputHeight({large, small, custom: $attrs.height})
+    },
+    inputStyle () {
+      const { color } = this.$attrs
+
+      return {
+        '--color': color
+      }
     }
   }
 }
