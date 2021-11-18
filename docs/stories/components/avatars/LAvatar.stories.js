@@ -6,15 +6,15 @@ export default {
   argTypes: {
     small: {
       control: 'boolean',
-      description: 'Defines size small to avatar'
+      description: 'Defines size small to avatar: 40px'
     },
     medium: {
       control: 'boolean',
-      description: 'Defines size medium to avatar'
+      description: 'Defines size medium to avatar: 70px'
     },
     large: {
       control: 'boolean',
-      description: 'Defines size large to avatar'
+      description: 'Defines size large to avatar: 100px'
     },
     default: {
       description: 'Default slot'
