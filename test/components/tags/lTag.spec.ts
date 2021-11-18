@@ -34,4 +34,15 @@ describe('Tag component', () => {
     expect(tagLink().exists()).toBeTruthy()
     expect(chip().props().color).toBeTruthy()
   })
+
+  it('Test rendering with link and close icons', async () => {
+    tag.setProps({ text: 'texto', link: true, close: true })
+    await tag.vm.$nextTick()
+
+    const icons = tag.findAll('.v-icon')
+
+    expect(icons.length).toBe(2)
+    expect(icons.at(0).contains('.tag__link')).toBe(true)
+    expect(icons.at(1).contains('.v-chip__close')).toBe(true)
+  })
 })
