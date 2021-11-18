@@ -10,6 +10,7 @@ export * from './components/tables'
 export * from './components/loadings'
 export * from './components/bars'
 export * from './components/tooltip'
+export * from './components/avatars'
 
 import * as inputs from './components/inputs'
 import * as filters from './components/filters'
@@ -24,6 +25,7 @@ import * as loadings from './components/loadings'
 import * as bars from './components/bars'
 import * as timeline from './components/timeline'
 import * as tooltip from './components/tooltip'
+import * as avatars from './components/avatars'
 
 
 const components = {
@@ -39,7 +41,8 @@ const components = {
     ...loadings,
     ...bars,
     ...timeline,
-    ...tooltip
+    ...tooltip,
+    ...avatars
 }
 
 export function install (Vue) {
