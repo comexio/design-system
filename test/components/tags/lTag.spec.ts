@@ -43,6 +43,8 @@ describe('Tag component', () => {
 
     expect(icons.length).toBe(2)
     expect(icons.at(0).contains('.tag__link')).toBe(true)
+    expect(icons.at(0).contains('.v-icon--left')).toBe(true)
     expect(icons.at(1).contains('.v-chip__close')).toBe(true)
+    expect(icons.at(1).contains('.v-icon--right')).toBe(true)
   })
 })
