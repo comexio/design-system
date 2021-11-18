@@ -12,6 +12,13 @@
       @click:close="closeTag(text)"
       v-on="$listeners"
     >
+      <v-icon
+        v-if="link && close"
+        left
+        class="tag__link"
+      >
+        {{ customIcon || 'mdi-open-in-new' }}
+      </v-icon>
       {{ text }}
       <span
         v-if="number !== null && number !== undefined"
@@ -20,7 +27,7 @@
         {{ number }}
       </span>
       <v-icon
-        v-if="link"
+        v-if="link && !close"
         right
         class="tag__link"
       >
