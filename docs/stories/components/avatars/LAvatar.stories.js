@@ -1,4 +1,5 @@
 import LAvatar from '~/src/components/avatars/LAvatar.vue'
+import imageSample from '~/docs/stories/assets/person-sample.jpeg'
 
 export default {
   title: 'Components/Avatars/Avatar',
@@ -6,15 +7,15 @@ export default {
   argTypes: {
     small: {
       control: 'boolean',
-      description: 'Defines size small to avatar: 40px'
+      description: 'Sets small size to avatar: 40px'
     },
     medium: {
       control: 'boolean',
-      description: 'Defines size medium to avatar: 70px'
+      description: 'Sets medium size to avatar: 70px'
     },
     large: {
       control: 'boolean',
-      description: 'Defines size large to avatar: 100px'
+      description: 'Sets large size to avatar: 100px'
     },
     default: {
       description: 'Default slot'
@@ -42,7 +43,7 @@ const TemplateWithImage = (args, { argTypes }) => ({
       v-bind="$props"
       data-testid="v-avatar"
     >
-      <v-img src="static/media/docs/stories/assets/person-sample.jpeg" />
+      <v-img src="${imageSample}" />
     </l-avatar>
   `
 })
