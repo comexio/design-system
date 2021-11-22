@@ -62,11 +62,4 @@ describe('LCardHeader component rendering items when generateId props is true', 
 
     expect(expansionHeadersWithId().length).toBe(1)
   })
-
-  it('should return slugged id with prefix when using idToSlug method for image component', async () => {
-    const imageInHeaderWithId = () => cardHeader.findAll('#cardHeader-image-titulo-cabecalho-card')
-    await cardHeader.vm.$nextTick()
-
-    expect(imageInHeaderWithId().length).toBe(1)
-  })
 })

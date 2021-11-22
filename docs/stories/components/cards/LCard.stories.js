@@ -16,9 +16,7 @@ export default {
     close: { table: { disable: true } },
     error: { table: { disable: true } },
     generateId: { control: 'boolean', description: 'Controls if component will generate id selector for HTML elements' },
-    hasShadow: { control: 'boolean', description: 'Controls if component has shadow' },
-    image : { control: 'string', description: 'path of an image' },
-    imageAlt : { control: 'string', description: 'alt message for an imagem' }
+    hasShadow: { control: 'boolean', description: 'Controls if component has shadow' }
   }
 };
 

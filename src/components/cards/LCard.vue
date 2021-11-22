@@ -18,11 +18,10 @@
         :title="title"
         :description="description"
         :generate-id="generateId"
-        :image="image"
-        :image-tooltip="imageTooltip"
         @togglecard="$emit('close')"
-        @toggleImage="toggleImage()"
-      />
+      >
+        <slot name="LCardHeaderSlot" />
+      </l-card-header>
       <div
         class="LCard__content"
         :class="contentClasses"
@@ -81,14 +80,6 @@ export default {
     },
     forceShowSlot : {
       type: Boolean
-    },
-    image : {
-      type: String,
-      default: null
-    },
-    imageAlt : {
-      type: String,
-      default: null
     }
   },
   computed: {
@@ -103,11 +94,6 @@ export default {
     },
     hasTitleOrDescription () {
       return this.title || this.description ? true : false
-    }
-  },
-  methods: {
-    toggleImage () {
-      return this.$emit('toggleImage')
     }
   }
 }
