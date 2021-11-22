@@ -155,7 +155,7 @@ export default {
     }
 
     &::-webkit-scrollbar-thumb {
-      -webkit-box-shadow: inset 0 0 0 4px $Alto;
+      -webkit-box-shadow: inset 0 0 0 4px $alto;
       background-color: transparent;
       border-radius: 5px;
     }
