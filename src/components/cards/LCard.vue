@@ -18,7 +18,10 @@
         :title="title"
         :description="description"
         :generate-id="generateId"
+        :image="image"
+        :image-tooltip="imageTooltip"
         @togglecard="$emit('close')"
+        @toggleImage="toggleImage()"
       />
       <div
         class="LCard__content"
@@ -78,6 +81,14 @@ export default {
     },
     forceShowSlot : {
       type: Boolean
+    },
+    image : {
+      type: String,
+      default: null
+    },
+    imageAlt : {
+      type: String,
+      default: null
     }
   },
   computed: {
@@ -87,11 +98,16 @@ export default {
     vCardClasses () {
       return {
         'LCard--withoutShadow' : !this.hasShadow,
-        'LCard--grid': this.hasTitleOrDescription      
+        'LCard--grid': this.hasTitleOrDescription
       }
     },
     hasTitleOrDescription () {
       return this.title || this.description ? true : false
+    }
+  },
+  methods: {
+    toggleImage () {
+      return this.$emit('toggleImage')
     }
   }
 }
@@ -101,7 +117,7 @@ export default {
   position: relative;
   display: grid;
   border-radius: 5px!important;
-  
+
 }
 .LCard--grid {
   grid-template-rows: 45px 1fr;
