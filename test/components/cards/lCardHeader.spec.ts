@@ -50,8 +50,7 @@ describe('LCardHeader component rendering items when generateId props is true', 
       ...defaultParams,
       propsData: {
         title: 'Titulo Cabeçalho Card',
-        generateId: true,
-        image: 'imgpath'
+        generateId: true
       }
     })
   })
