@@ -2,9 +2,9 @@ import { screen } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import userEvent from '@testing-library/user-event'
+import { waitFor } from '@testing-library/dom'
 import * as stories from '~/docs/stories/components/tooltip/LTooltip.stories'
 import LTooltip from '~/src/components/tooltip/LTooltip.vue'
-import { waitFor } from '@testing-library/dom'
 
 const { Tooltips } = composeStories(stories)
 
