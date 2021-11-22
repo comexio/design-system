@@ -1,8 +1,9 @@
 <template>
   <v-tooltip
+    ref="vtooltip"
     v-model="inputValue"
     :content-class="tooltipClass"
-    v-bind="$attrs"
+    v-bind="boundProps"
     v-on="$listeners"
   >
     <template
@@ -23,7 +24,14 @@ import isNil from 'ramda/src/isNil'
 export default {
   name: 'LTooltip',
   props: {
-    value: Boolean
+    value: Boolean,
+    top: Boolean,
+    bottom: Boolean
+  },
+  data () {
+    return {
+      customNudgeRight: null
+    }
   },
   computed: {
     inputValue: {
@@ -31,11 +39,16 @@ export default {
         return this.value
       },
       set (value) {
+        if (value) {
+          this.forceCentralizeHorizontally()
+        }
+
         this.$emit('input', value)
       }
     },
     tooltipClass () {
-      const { left, right, top, bottom } = this.$attrs
+      const { top, bottom } = this
+      const { left, right } = this.$attrs
 
       const availableClasses = {
         'LTooltip LTooltip--pointer': true,
@@ -49,6 +62,46 @@ export default {
         .filter(className => !isNil(availableClasses[className])).join(' ')
 
       return formattedClasses
+    },
+    boundProps () {
+      const { top, bottom, customNudgeRight } = this
+
+      return {
+        top,
+        bottom,
+        nudgeRight: customNudgeRight,
+        ...this.$attrs
+      }
+    }
+  },
+  methods: {
+    forceCentralizeHorizontally () {
+      if (!this.top && !this.bottom) {
+        return
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          const normalizePadding = 12
+
+          const { offsetWidth } = mutation.target
+          this.nudgeRight = (offsetWidth / 2) - normalizePadding
+        })
+      })
+
+      this.$nextTick(() => {
+        const vTooltip = this.$refs.vtooltip
+        if (!vTooltip) {
+          return
+        }
+
+        const { content } = vTooltip.$refs
+        if (!content) {
+          return
+        }
+
+        observer.observe(content, { attributes: true })
+      })
     }
   }
 }
