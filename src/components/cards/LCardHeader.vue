@@ -34,14 +34,6 @@ export default {
     generateId: {
       type: Boolean,
       default: false
-    },
-    image : {
-      type: String,
-      default: null
-    },
-    imageAlt : {
-      type: String,
-      default: null
     }
   },
   methods: {
