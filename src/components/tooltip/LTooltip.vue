@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import isNil from 'ramda/src/isNil'
+import { formatObjectClassToString } from '~/utils/string.util'
 
 export default {
   name: 'LTooltip',
@@ -58,10 +58,7 @@ export default {
         'LTooltip--pointer-bottom': bottom
       }
 
-      const formattedClasses = Object.keys(availableClasses)
-        .filter(className => !isNil(availableClasses[className])).join(' ')
-
-      return formattedClasses
+      return formatObjectClassToString(availableClasses)
     },
     boundProps () {
       const { top, bottom, customNudgeRight } = this
@@ -85,7 +82,7 @@ export default {
           const normalizePadding = 12
 
           const { offsetWidth } = mutation.target
-          this.nudgeRight = (offsetWidth / 2) - normalizePadding
+          this.customNudgeRight = (offsetWidth / 2) - normalizePadding
         })
       })
 

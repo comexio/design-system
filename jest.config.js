@@ -15,7 +15,9 @@ module.exports = {
       ".+\\.(png|jpg|jpeg)$": "jest-transform-stub"
     },
     collectCoverageFrom: [
-      '<rootDir>/src/components/**/*.vue'
+      '<rootDir>/src/components/**/*.vue',
+      '<rootDir>/utils/*.ts'
+
     ],
     testMatch: [
       "<rootDir>/test/**/**/*.spec.[jt]s?(x)"
