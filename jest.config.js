@@ -17,7 +17,6 @@ module.exports = {
     collectCoverageFrom: [
       '<rootDir>/src/components/**/*.vue',
       '<rootDir>/utils/*.ts'
-
     ],
     testMatch: [
       "<rootDir>/test/**/**/*.spec.[jt]s?(x)"

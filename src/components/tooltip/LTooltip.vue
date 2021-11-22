@@ -87,12 +87,8 @@ export default {
       })
 
       this.$nextTick(() => {
-        const vTooltip = this.$refs.vtooltip
-        if (!vTooltip) {
-          return
-        }
 
-        const { content } = vTooltip.$refs
+        const { content } = this.$refs.vtooltip?.$refs
         if (!content) {
           return
         }
