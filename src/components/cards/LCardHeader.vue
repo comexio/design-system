@@ -14,6 +14,17 @@
         {{ description }}
       </v-list-item-subtitle>
     </v-list-item-content>
+    <div
+      v-if="image"
+      :id="generateCardId(title, 'cardHeader-image-')"
+    >
+      <img
+        :src="image"
+        :alt="imageAlt"
+        class="LCardHeader__image"
+        @click="toggleImage()"
+      >
+    </div>
   </div>
 </template>
 
@@ -33,6 +44,14 @@ export default {
     generateId: {
       type: Boolean,
       default: false
+    },
+    image : {
+      type: String,
+      default: null
+    },
+    imageAlt : {
+      type: String,
+      default: null
     }
   },
   methods: {
@@ -42,6 +61,13 @@ export default {
       }
 
       return prefix + slugify(title)
+    },
+    toggleImage () {
+      return this.$emit('toggleImage')
+    },
+    getImageAsText() {
+      console.log(this.imageTooltip)
+      return this.imageTooltip
     }
   }
 }
@@ -71,6 +97,9 @@ export default {
     overflow: hidden;
     max-width: 100%;
     margin-top: 3px;
+  }
+  &__image {
+    cursor: pointer;
   }
 }
 </style>
