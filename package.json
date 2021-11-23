@@ -1,6 +1,6 @@
 {
   "name": "@logcomex/design",
-  "version": "1.10.1-0",
+  "version": "1.10.1-2",
   "license": "MIT",
   "author": {
     "name": "Rafael Bastiansch",
@@ -51,6 +51,7 @@
     "@testing-library/user-event": "^13.1.9",
     "@testing-library/vue": "^5.8.1",
     "@types/jest": "^24.0.19",
+    "@types/ramda": "types/npm-ramda#dist",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "^4.5.0",
