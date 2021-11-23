@@ -20,7 +20,7 @@
         :generate-id="generateId"
         @togglecard="$emit('close')"
       >
-        <slot name="LCardHeaderSlot" />
+        <slot name="header" />
       </l-card-header>
       <div
         class="LCard__content"
