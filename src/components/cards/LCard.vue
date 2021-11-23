@@ -19,7 +19,9 @@
         :description="description"
         :generate-id="generateId"
         @togglecard="$emit('close')"
-      />
+      >
+        <slot name="header" />
+      </l-card-header>
       <div
         class="LCard__content"
         :class="contentClasses"
@@ -87,7 +89,7 @@ export default {
     vCardClasses () {
       return {
         'LCard--withoutShadow' : !this.hasShadow,
-        'LCard--grid': this.hasTitleOrDescription      
+        'LCard--grid': this.hasTitleOrDescription
       }
     },
     hasTitleOrDescription () {
@@ -101,7 +103,7 @@ export default {
   position: relative;
   display: grid;
   border-radius: 5px!important;
-  
+
 }
 .LCard--grid {
   grid-template-rows: 45px 1fr;

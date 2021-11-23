@@ -14,6 +14,7 @@
         {{ description }}
       </v-list-item-subtitle>
     </v-list-item-content>
+    <slot />
   </div>
 </template>
 
