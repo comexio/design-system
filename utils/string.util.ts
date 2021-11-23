@@ -1,3 +1,6 @@
+import isNil from 'ramda/src/isNil'
+import equals from 'ramda/src/equals'
+
 export function slugify (string: string) {
   string = string.replace(/^\s+|\s+$/g, '')
   string = string.toLowerCase()
@@ -14,4 +17,10 @@ export function slugify (string: string) {
     .replace(/-+/g, '-')
 
   return string
+}
+
+export function formatObjectClassToString (classes: Record<string, unknown>): string {
+  return Object.keys(classes)
+    .filter(className => !isNil(classes[className]) && !equals(classes[className], false) && !equals(classes[className], ''))
+    .join(' ')
 }
