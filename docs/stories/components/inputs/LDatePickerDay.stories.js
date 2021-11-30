@@ -53,6 +53,7 @@ export default {
     dropdownIcon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
     bordered: { control: 'boolean', description: 'Toggles datepicker border and adds LDatePickerDay--bordered class' },
     borderColor: { control: 'color', description: 'Color of the border' },
+    allowTypingDate: { control: 'boolean', description: 'Allow typing date manually on datepicker' },
     input: {
       table: {
         disable: true
@@ -96,6 +97,23 @@ Filled.args = {
 export const FilledEnglish = Template.bind({});
 FilledEnglish.args = {
   ...Filled.args,
+  locale: 'en'
+}
+
+export const AllowedTyping = Template.bind({});
+AllowedTyping.args = {
+  date: ["2020-12-08","2020-12-18"],
+  value: ["2020-12-08","2020-12-18"],
+  limit: { min: '2020-10-01', max: '2021-01-25' },
+  rangeDays: 100,
+  itemsColor: '#9f6cbb',
+  closeOnSelect: true,
+  allowTypingDate: true
+}
+
+export const AllowedTypingEnglish = Template.bind({});
+AllowedTypingEnglish.args = {
+  ...AllowedTyping.args,
   locale: 'en'
 }
 

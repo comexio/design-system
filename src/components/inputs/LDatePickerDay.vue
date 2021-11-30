@@ -383,10 +383,10 @@ export default {
     openMenu () {
       setTimeout(() => {
         this.$watch(
-          () => this.$refs.firstDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.FIRST, value) }
+          () => this.$refs.firstDatepicker?.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.FIRST, value) }
         )
         this.$watch(
-          () => this.$refs.secondDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
+          () => this.$refs.secondDatepicker?.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
         )
       }, 0)
       this.$emit('opened')
