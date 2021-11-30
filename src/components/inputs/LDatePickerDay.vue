@@ -33,7 +33,7 @@
             <l-text-field
               v-if="allowTypingDate"
               v-model="typedDate"
-              v-mask="`${dateFormat.mask} - ${dateFormat.mask}`"
+              v-mask="`${dateFormatDictionary.mask} - ${dateFormatDictionary.mask}`"
               hide-details
               height="25px"
               class="LDatePickerDay__textField"
@@ -114,7 +114,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
 import equals from 'ramda/src/equals'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES } from '~/enum/datepicker.enum'
+import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES, DATEPICKER_DAY_MASK, DATEPICKER_DAY_FORMAT } from '~/enum/datepicker.enum'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO, getDateBasedOnLimit } from '~/utils/date.util.ts'
 import LTextField from '~/src/components/inputs/LTextField.vue'
 import VueMask from 'v-mask'
@@ -180,20 +180,10 @@ export default {
     }
   },
   computed: {
-    dateFormat () {
-      const maskFormat = {
-        'pt': '##/##/####',
-        'en': '####-##-##'
-      }
-
-      const dateFormat = {
-        'pt': 'DD/MM/YYYY',
-        'en': 'YYYY-MM-DD'
-      }
-
+    dateFormatDictionary () {
       return  {
-        mask: maskFormat[this.locale] || maskFormat.pt,
-        format: dateFormat[this.locale] || dateFormat.pt,
+        mask: DATEPICKER_DAY_MASK[this.locale] || DATEPICKER_DAY_MASK.pt,
+        format: DATEPICKER_DAY_FORMAT[this.locale] || DATEPICKER_DAY_FORMAT.pt,
       }
     },
     formattedMonths () {
@@ -201,8 +191,7 @@ export default {
         return
       }
 
-      const { format } = this.dateFormat
-
+      const { format } = this.dateFormatDictionary
       const { temporaryDate } = this
       if (temporaryDate && isEmpty(this.monthsPeriod)) {
         return formatYearMonthDay([temporaryDate])
@@ -366,7 +355,7 @@ export default {
       }
 
       dayjs.extend(customParseFormat)
-      const formattedDate = val.split(' - ').map(date => dayjs(date, this.dateFormat.format).format('YYYY-MM-DD'))
+      const formattedDate = val.split(' - ').map(date => dayjs(date, this.dateFormatDictionary.format).format('YYYY-MM-DD'))
       this.monthsPeriod = formattedDate
 
       const dateBasedOnLimit = this.setAndReturnDateBasedOnLimit(formattedDate)
@@ -376,7 +365,7 @@ export default {
     setAndReturnDateBasedOnLimit (formattedDate) {
       const dateBasedOnLimit = getDateBasedOnLimit(this.dateLimit.min, this.dateLimit.max, formattedDate)
       this.monthsPeriod = dateBasedOnLimit
-      this.typedDate = dateBasedOnLimit.map(date => dayjs(date).format(this.dateFormat.format)).join(' - ')
+      this.typedDate = dateBasedOnLimit.map(date => dayjs(date).format(this.dateFormatDictionary.format)).join(' - ')
 
       return dateBasedOnLimit
     },
