@@ -33,7 +33,7 @@
             <l-text-field
               v-if="allowTypingDate"
               v-model="typedDate"
-              v-mask="`${dateFormatDictionary.mask} - ${dateFormatDictionary.mask}`"
+              v-mask="currentMask"
               hide-details
               height="25px"
               class="LDatePickerDay__textField"
@@ -121,6 +121,8 @@ import VueMask from 'v-mask'
 Vue.use(VueMask)
 dayjs.extend(customParseFormat)
 
+const defaultDateSeparator = ' - '
+
 export default {
   name: 'LDatePickerDay',
   components: {
@@ -199,21 +201,21 @@ export default {
 
       if (temporaryDate && this.monthsPeriod.length === 1 ) {
         const orderedDates = sortDateISO([temporaryDate, ...this.monthsPeriod])
-        return formatYearMonthDay(orderedDates.join(' - '), format)
+        return formatYearMonthDay(orderedDates.join(defaultDateSeparator), format)
       }
 
       if (temporaryDate && this.monthsPeriod.length === 2 ) {
-        const dates = formatYearMonthDay(this.monthsPeriod.join(' - '), format).split(' - ')
+        const dates = formatYearMonthDay(this.monthsPeriod.join(defaultDateSeparator), format).split(defaultDateSeparator)
         const datesArray = dates.map(date => dayjs(date.replace(' ', ''), format).format('YYYY-MM-DD'))
         const orderedDates = sortDateISO(datesArray)
         const formatToScreen = dayjs(temporaryDate).valueOf() < dayjs(orderedDates[0]).valueOf()
           ? [temporaryDate, orderedDates[1]]
           : [orderedDates[0], temporaryDate]
 
-        return formatYearMonthDay(formatToScreen.join(' - '), format)
+        return formatYearMonthDay(formatToScreen.join(defaultDateSeparator), format)
       }
 
-      return formatYearMonthDay(this.monthsPeriod.join(' - '), format)
+      return formatYearMonthDay(this.monthsPeriod.join(defaultDateSeparator), format)
     },
     periodChip: {
       get () {
@@ -268,13 +270,19 @@ export default {
         'LDatePickerDay--bordered': this.bordered,
         'LDatePickerDay--dropdownIcon': this.dropdownIcon
       }
+    },
+    currentMask () {
+      const { mask } = this.dateFormatDictionary
+
+      return `${mask} - ${mask}`
     }
   },
   watch: {
     monthsPeriod (monthsPeriod, old) {
-      if (monthsPeriod && !equals(monthsPeriod, old) && monthsPeriod.length === 2) {
-        const limitDays = this.rangeDays && dayjs(monthsPeriod[1]).diff(monthsPeriod[0], 'day') > this.rangeDays
-        const limitYears = this.rangeYears && dayjs(monthsPeriod[1]).diff(monthsPeriod[0], 'year', true) > this.rangeYears
+      const isMonthsPeriodTwoDates = monthsPeriod && monthsPeriod.length === 2
+      if (isMonthsPeriodTwoDates && !equals(monthsPeriod, old)) {
+        const limitDays = this.isDayLimitValid(monthsPeriod)
+        const limitYears = this.isYearLimitValid(monthsPeriod)
 
         if (limitDays || limitYears) {
           monthsPeriod = old
@@ -350,12 +358,12 @@ export default {
       }, 1)
     },
     changedInputValue (val) {
-      if (val.split(' - ')[1]?.length !== 10 || val.split(' - ')[0]?.length !== 10) {
+      if (val.split(defaultDateSeparator)[1]?.length !== 10 || val.split(defaultDateSeparator)[0]?.length !== 10) {
         return
       }
 
       dayjs.extend(customParseFormat)
-      const formattedDate = val.split(' - ').map(date => dayjs(date, this.dateFormatDictionary.format).format('YYYY-MM-DD'))
+      const formattedDate = val.split(defaultDateSeparator).map(date => dayjs(date, this.dateFormatDictionary.format).format('YYYY-MM-DD'))
       this.monthsPeriod = formattedDate
 
       const dateBasedOnLimit = this.setAndReturnDateBasedOnLimit(formattedDate)
@@ -365,7 +373,7 @@ export default {
     setAndReturnDateBasedOnLimit (formattedDate) {
       const dateBasedOnLimit = getDateBasedOnLimit(this.dateLimit.min, this.dateLimit.max, formattedDate)
       this.monthsPeriod = dateBasedOnLimit
-      this.typedDate = dateBasedOnLimit.map(date => dayjs(date).format(this.dateFormatDictionary.format)).join(' - ')
+      this.typedDate = dateBasedOnLimit.map(date => dayjs(date).format(this.dateFormatDictionary.format)).join(defaultDateSeparator)
 
       return dateBasedOnLimit
     },
@@ -535,6 +543,12 @@ export default {
         const { firstDatepicker } = this.$refs
         disableHeaderButton(firstDatepicker)
       }
+    },
+    isDayLimitValid (dateArray) {
+      return this.rangeDays && dayjs(dateArray[1]).diff(dateArray[0], 'day') > this.rangeDays
+    },
+    isYearLimitValid (dateArray) {
+      return this.rangeYears && dayjs(dateArray[1]).diff(dateArray[0], 'year', true) > this.rangeYears
     }
   }
 }
