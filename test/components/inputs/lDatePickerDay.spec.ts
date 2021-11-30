@@ -204,14 +204,25 @@ describe('datePicker component', () => {
     expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([["2020-04-10", "2020-04-16"]])
   })
 
-  it('check if shows ordered date when is inputed in correct order', async () => {
+  it('check if shows ordered date when is inputed in correct order but out of range limit', async () => {
+    const oldValue = datePicker.vm.monthsPeriod
     datePicker.setData({ monthsPeriod: ["2020-04-01", "2020-04-15"] })
 
     await datePicker.vm.$nextTick()
 
-    expect(datePicker.vm.monthsPeriod).toEqual(["2020-04-01", "2020-04-15"])
+    expect(datePicker.vm.monthsPeriod).toEqual(oldValue)
     const emittedInputsLength = datePicker.emitted('input').length
-    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([["2020-04-01", "2020-04-15"]])
+    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([oldValue])
+  })
+
+  it('check if shows ordered date when is inputed in correct order', async () => {
+    datePicker.setData({ monthsPeriod: ["2020-04-05", "2020-04-15"] })
+
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.vm.monthsPeriod).toEqual(["2020-04-05", "2020-04-15"])
+    const emittedInputsLength = datePicker.emitted('input').length
+    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([["2020-04-05", "2020-04-15"]])
   })
 
   it('check datepicker is closed after select two dates', async () => {
