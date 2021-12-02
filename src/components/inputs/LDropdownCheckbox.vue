@@ -115,4 +115,13 @@ export default {
     opacity: 0;
   }
 }
+::v-deep {
+  .LButton {
+    border-radius: 0px !important;
+  }
+
+  .v-btn {
+    border-radius: 0px !important;
+  }
+}
 </style>
