@@ -279,7 +279,8 @@ export default {
   },
   watch: {
     monthsPeriod (monthsPeriod, old) {
-      const isMonthsPeriodTwoDates = monthsPeriod && monthsPeriod.length === 2
+      const monthsPeriodLength = monthsPeriod?.filter(date => date).length
+      const isMonthsPeriodTwoDates = monthsPeriod && monthsPeriodLength === 2
       if (isMonthsPeriodTwoDates && !equals(monthsPeriod, old)) {
         const limitDays = this.isDayLimitValid(monthsPeriod)
         const limitYears = this.isYearLimitValid(monthsPeriod)
@@ -294,7 +295,7 @@ export default {
 
       if (Array.isArray(monthsPeriod)) {
         const startDate = monthsPeriod[0]
-        if (monthsPeriod.length === 2) {
+        if (monthsPeriodLength === 2) {
           if (monthsPeriod[0] === monthsPeriod[1]) {
             monthsPeriod.pop()
 
