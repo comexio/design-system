@@ -21,7 +21,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+        key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
     - name: Install
       if: steps.cache-modules.outputs.cache-hit != 'true'
       run: yarn
@@ -42,7 +42,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+        key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
     - name: Install
       run: yarn
     - name: Build
