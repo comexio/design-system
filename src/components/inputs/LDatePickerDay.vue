@@ -30,7 +30,19 @@
             cols="8"
             class="datepicker__input text-center"
           >
-            <small class="pl-1 formatted-months">
+            <l-text-field
+              v-if="allowTypingDate"
+              v-model="typedDate"
+              v-mask="currentMask"
+              hide-details
+              height="25px"
+              class="LDatePickerDay__textField"
+              @keydown="triggerInput"
+            />
+            <small
+              v-else
+              class="pl-1 formatted-months"
+            >
               {{ formattedMonths }}
             </small>
           </v-col>
@@ -96,16 +108,26 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isEmpty from 'ramda/src/isEmpty'
 import equals from 'ramda/src/equals'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
-import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES } from '~/enum/datepicker.enum'
-import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO } from '~/utils/date.util.ts'
+import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES, DATEPICKER_DAY_MASK, DATEPICKER_DAY_FORMAT } from '~/enum/datepicker.enum'
+import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO, getDateBasedOnLimit } from '~/utils/date.util.ts'
+import LTextField from '~/src/components/inputs/LTextField.vue'
+import VueMask from 'v-mask'
+Vue.use(VueMask)
+dayjs.extend(customParseFormat)
+
+const defaultDateSeparator = ' - '
 
 export default {
   name: 'LDatePickerDay',
+  components: {
+    LTextField
+  },
   props: {
     value: {
       type: [String, Array],
@@ -144,7 +166,8 @@ export default {
       type: String,
       default: '#5C068C'
     },
-    bordered: Boolean
+    bordered: Boolean,
+    allowTypingDate: Boolean
   },
   data () {
     return {
@@ -154,15 +177,23 @@ export default {
       secondBlocked: false,
       rangeLimit: { min: null, max: null },
       temporaryDate: null,
-      datepickerRefsEnum: DATEPICKER_REFS
+      datepickerRefsEnum: DATEPICKER_REFS,
+      typedDate: null
     }
   },
   computed: {
+    dateFormatDictionary () {
+      return  {
+        mask: DATEPICKER_DAY_MASK[this.locale] || DATEPICKER_DAY_MASK.pt,
+        format: DATEPICKER_DAY_FORMAT[this.locale] || DATEPICKER_DAY_FORMAT.pt,
+      }
+    },
     formattedMonths () {
       if (!this.monthsPeriod) {
         return
       }
 
+      const { format } = this.dateFormatDictionary
       const { temporaryDate } = this
       if (temporaryDate && isEmpty(this.monthsPeriod)) {
         return formatYearMonthDay([temporaryDate])
@@ -170,23 +201,21 @@ export default {
 
       if (temporaryDate && this.monthsPeriod.length === 1 ) {
         const orderedDates = sortDateISO([temporaryDate, ...this.monthsPeriod])
-        return formatYearMonthDay(orderedDates.join(' - '))
+        return formatYearMonthDay(orderedDates.join(defaultDateSeparator), format)
       }
 
       if (temporaryDate && this.monthsPeriod.length === 2 ) {
-        const value = formatYearMonthDay(this.monthsPeriod.join(' - ')).split('-')
-        dayjs.extend(customParseFormat)
-        const arrayFinal = value.map(date => dayjs(date.replace(' ', ''), 'DD/MM/YYYY').format('YYYY-MM-DD'))
-        const orderedDates = sortDateISO(arrayFinal)
-
+        const dates = formatYearMonthDay(this.monthsPeriod.join(defaultDateSeparator), format).split(defaultDateSeparator)
+        const datesArray = dates.map(date => dayjs(date.replace(' ', ''), format).format('YYYY-MM-DD'))
+        const orderedDates = sortDateISO(datesArray)
         const formatToScreen = dayjs(temporaryDate).valueOf() < dayjs(orderedDates[0]).valueOf()
           ? [temporaryDate, orderedDates[1]]
           : [orderedDates[0], temporaryDate]
 
-        return formatYearMonthDay(formatToScreen.join(' - '))
+        return formatYearMonthDay(formatToScreen.join(defaultDateSeparator), format)
       }
 
-      return formatYearMonthDay(this.monthsPeriod.join(' - '))
+      return formatYearMonthDay(this.monthsPeriod.join(defaultDateSeparator), format)
     },
     periodChip: {
       get () {
@@ -241,15 +270,32 @@ export default {
         'LDatePickerDay--bordered': this.bordered,
         'LDatePickerDay--dropdownIcon': this.dropdownIcon
       }
+    },
+    currentMask () {
+      const { mask } = this.dateFormatDictionary
+
+      return `${mask} - ${mask}`
     }
   },
   watch: {
-    monthsPeriod (monthsPeriod) {
+    monthsPeriod (monthsPeriod, old) {
+      const monthsPeriodLength = monthsPeriod?.filter(date => date).length
+      const isMonthsPeriodTwoDates = monthsPeriod && monthsPeriodLength === 2
+      if (isMonthsPeriodTwoDates && !equals(monthsPeriod, old)) {
+        const limitDays = this.isDayLimitValid(monthsPeriod)
+        const limitYears = this.isYearLimitValid(monthsPeriod)
+
+        if (limitDays || limitYears) {
+          monthsPeriod = old
+          this.setAndReturnDateBasedOnLimit(old)
+        }
+      }
+
       this.validateRange(monthsPeriod)
 
       if (Array.isArray(monthsPeriod)) {
         const startDate = monthsPeriod[0]
-        if (monthsPeriod.length === 2) {
+        if (monthsPeriodLength === 2) {
           if (monthsPeriod[0] === monthsPeriod[1]) {
             monthsPeriod.pop()
 
@@ -294,16 +340,51 @@ export default {
 
         this.monthsPeriod = value
       }
+    },
+    formattedMonths: {
+      immediate: true,
+      handler (val) {
+        if (equals(val, this.typedDate)) {
+          return
+        }
+
+        this.typedDate = val
+      }
     }
   },
   methods: {
+    triggerInput (e) {
+      setTimeout(() => {
+        this.changedInputValue(e.target.value)
+      }, 1)
+    },
+    changedInputValue (val) {
+      if (val.split(defaultDateSeparator)[1]?.length !== 10 || val.split(defaultDateSeparator)[0]?.length !== 10) {
+        return
+      }
+
+      dayjs.extend(customParseFormat)
+      const formattedDate = val.split(defaultDateSeparator).map(date => dayjs(date, this.dateFormatDictionary.format).format('YYYY-MM-DD'))
+      this.monthsPeriod = formattedDate
+
+      const dateBasedOnLimit = this.setAndReturnDateBasedOnLimit(formattedDate)
+
+      this.setTableDate(dateBasedOnLimit[1], 'secondDatepicker')
+    },
+    setAndReturnDateBasedOnLimit (formattedDate) {
+      const dateBasedOnLimit = getDateBasedOnLimit(this.dateLimit.min, this.dateLimit.max, formattedDate)
+      this.monthsPeriod = dateBasedOnLimit
+      this.typedDate = dateBasedOnLimit.map(date => dayjs(date).format(this.dateFormatDictionary.format)).join(defaultDateSeparator)
+
+      return dateBasedOnLimit
+    },
     openMenu () {
       setTimeout(() => {
         this.$watch(
-          () => this.$refs.firstDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.FIRST, value) }
+          () => this.$refs.firstDatepicker?.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.FIRST, value) }
         )
         this.$watch(
-          () => this.$refs.secondDatepicker.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
+          () => this.$refs.secondDatepicker?.activePicker, (value) => { this.blockDatepickerSiblingHeader(DATEPICKER_REFS.SECOND, value) }
         )
       }, 0)
       this.$emit('opened')
@@ -347,6 +428,15 @@ export default {
       }
 
       return null
+    },
+    setTableDate (val, ref) {
+      const dateFormatted = dayjs(val).format('YYYY-MM')
+      const table = this.$refs[ref]
+      if (!table) {
+        return
+      }
+
+      table.tableDate = dateFormatted
     },
     changeTableDatepicker (val, ref) {
       const date = dayjs(val)
@@ -454,6 +544,12 @@ export default {
         const { firstDatepicker } = this.$refs
         disableHeaderButton(firstDatepicker)
       }
+    },
+    isDayLimitValid (dateArray) {
+      return this.rangeDays && dayjs(dateArray[1]).diff(dateArray[0], 'day') > this.rangeDays
+    },
+    isYearLimitValid (dateArray) {
+      return this.rangeYears && dayjs(dateArray[1]).diff(dateArray[0], 'year', true) > this.rangeYears
     }
   }
 }
@@ -486,6 +582,28 @@ export default {
   }
   ::v-deep .v-input__icon--prepend-inner .v-icon {
     color: var(--itemsColor);
+  }
+}
+
+.LDatePickerDay__textField {
+  ::v-deep {
+    .LTextField__input {
+      padding-top: 0px;
+      margin-top: 0px;
+    }
+
+    .v-input__slot::before {
+      border: none;
+    }
+
+    .v-input__slot::after {
+      border: none;
+    }
+
+    input {
+      font-size: 0.8rem;
+      text-align: center;
+    }
   }
 }
 

@@ -32,7 +32,7 @@ const Template = (args, { argTypes }) => ({
   },
   template:
     `<div>
-      <l-button @click="showAlert = !showAlert">Open alert</l-button>
+      <l-button primary @click="showAlert = !showAlert">Open alert</l-button>
       <l-alert v-if="showAlert" @input="closeAlert" v-bind="$props" style="align: center; margin-left: 40%; margin-top: -20%"> </l-alert>
     </div>`
 });

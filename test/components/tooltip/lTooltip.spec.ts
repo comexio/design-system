@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
+import userEvent from '@testing-library/user-event'
+import { waitFor } from '@testing-library/dom'
 import * as stories from '~/docs/stories/components/tooltip/LTooltip.stories'
 import LTooltip from '~/src/components/tooltip/LTooltip.vue'
 
@@ -40,5 +42,16 @@ describe('LTooltip', () => {
 
     expect(container.querySelector('.LTooltip--pointer-left')).toBeInTheDocument()
     expect(screen.getByText('text passed to tooltip slot')).toBeInTheDocument()
+  })
+
+  it('opens tooltip on hover', async () => {
+    renderComponent(Tooltips())
+
+    const buttons = screen.getAllByRole('button')
+    await userEvent.hover(buttons[1])
+
+    await waitFor(() => screen.getByTestId('tooltip-content'))
+
+    expect(screen.getByTestId('tooltip-content')).toBeInTheDocument()
   })
 })

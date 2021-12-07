@@ -1,22 +1,23 @@
-// TODO: Ajustar mecanismo de usar variáveis sass no script e substituir as strings de hexa pelas variáveis
+import colors from '~/src/assets/scss/_export.module.scss'
+
 export const PRIMARY = {
-  '--backgroundColor': '#FF8F1C',
-  '--backgroundColorOnHover': '#DB660A',
-  '--backgroundColorDisabled': '#FFBF7D',
-  '--color': '#FFFFFF'
+  '--backgroundColor': colors.westSide,
+  '--backgroundColorOnHover': colors.christine,
+  '--backgroundColorDisabled': colors.macaroni,
+  '--color': colors.white
 }
 
 export const SECONDARY = {
-  '--borderColor': '#FF8F1C',
-  '--borderColorOnHover': '#DB660A',
-  '--borderColorDisabled': '#FFBF7D',
-  '--color': '#FF8F1C',
-  '--colorOnHover': '#DB660A',
-  '--colorDisabled': '#FFBF7D'
+  '--borderColor': colors.westSide,
+  '--borderColorOnHover': colors.christine,
+  '--borderColorDisabled': colors.macaroni,
+  '--color': colors.westSide,
+  '--colorOnHover': colors.christine,
+  '--colorDisabled': colors.macaroni
 }
 
 export const TERTIARY = {
-  '--color': '#FF8F1C',
-  '--colorOnHover': '#DB660A',
-  '--colorDisabled': '#FFBF7D'
+  '--color': colors.westSide,
+  '--colorOnHover': colors.christine,
+  '--colorDisabled': colors.macaroni
 }

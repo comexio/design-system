@@ -1,8 +1,9 @@
 <template>
   <v-tooltip
+    ref="vtooltip"
     v-model="inputValue"
     :content-class="tooltipClass"
-    v-bind="$attrs"
+    v-bind="boundProps"
     v-on="$listeners"
   >
     <template
@@ -18,12 +19,19 @@
 </template>
 
 <script>
-import isNil from 'ramda/src/isNil'
+import { formatObjectClassToString } from '~/utils/string.util'
 
 export default {
   name: 'LTooltip',
   props: {
-    value: Boolean
+    value: Boolean,
+    top: Boolean,
+    bottom: Boolean
+  },
+  data () {
+    return {
+      customNudgeRight: null
+    }
   },
   computed: {
     inputValue: {
@@ -31,11 +39,16 @@ export default {
         return this.value
       },
       set (value) {
+        if (value) {
+          this.forceCentralizeHorizontally()
+        }
+
         this.$emit('input', value)
       }
     },
     tooltipClass () {
-      const { left, right, top, bottom } = this.$attrs
+      const { top, bottom } = this
+      const { left, right } = this.$attrs
 
       const availableClasses = {
         'LTooltip LTooltip--pointer': true,
@@ -45,10 +58,43 @@ export default {
         'LTooltip--pointer-bottom': bottom
       }
 
-      const formattedClasses = Object.keys(availableClasses)
-        .filter(className => !isNil(availableClasses[className])).join(' ')
+      return formatObjectClassToString(availableClasses)
+    },
+    boundProps () {
+      const { top, bottom, customNudgeRight } = this
 
-      return formattedClasses
+      return {
+        top,
+        bottom,
+        nudgeRight: customNudgeRight,
+        ...this.$attrs
+      }
+    }
+  },
+  methods: {
+    forceCentralizeHorizontally () {
+      if (!this.top && !this.bottom) {
+        return
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          const normalizePadding = 12
+
+          const { offsetWidth } = mutation.target
+          this.customNudgeRight = (offsetWidth / 2) - normalizePadding
+        })
+      })
+
+      this.$nextTick(() => {
+
+        const { content } = this.$refs.vtooltip?.$refs
+        if (!content) {
+          return
+        }
+
+        observer.observe(content, { attributes: true })
+      })
     }
   }
 }

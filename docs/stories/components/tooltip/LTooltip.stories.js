@@ -32,7 +32,7 @@ const Template = (args, { argTypes }) => ({
           <l-button-new
             primary
             small
-            style="width: 200px; margin: auto"
+            style="margin: auto"
             v-bind="attrs"
             v-on="on"
           >
@@ -52,14 +52,16 @@ const Template = (args, { argTypes }) => ({
           <l-button-new
             primary
             small
-            style="width: 200px; margin: auto"
+            style="margin: auto"
             v-bind="attrs"
             v-on="on"
           >
             Button - Tooltip on the top
           </l-button-new>
         </template>
-        <div>
+        <div
+          data-testid="tooltip-content"
+        >
           <span>Tooltip content</span>
           <v-divider />
           <v-icon color="white">mdi-home</v-icon>
@@ -74,7 +76,7 @@ const Template = (args, { argTypes }) => ({
           <l-button-new
             primary
             small
-            style="width: 200px; margin: auto"
+            style="margin: auto"
             v-bind="attrs"
             v-on="on"
           >
@@ -96,7 +98,7 @@ const Template = (args, { argTypes }) => ({
           <l-button-new
             primary
             small
-            style="width: 200px; margin: auto"
+            style="margin: auto"
             v-bind="attrs"
             v-on="on"
           >

@@ -85,27 +85,7 @@ export function formatYearMonth (yearMonth: string, monthsList: Array<string>, s
   return formattedDates.trim()
 }
 
-export function formatYearMonthDay (date: string) {
-  if (!date) {
-    return
-  }
-
-  const dates = date.toString().split(' - ')
-  let formattedDate = ''
-  dates.forEach((period) => {
-    const periodParsed = period.split('-').join('/')
-    const date = new Date(periodParsed + ' 12:00')
-    const day = date.getDate().toString().padStart(2, '0')
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const year = date.getFullYear()
-    const separator = formattedDate === '' ? '' : ' - '
-    formattedDate += `${separator}${day}/${month}/${year}`
-  })
-
-  return formattedDate
-}
-
-export function sortDateISO (dates: ['string']) {
+export function sortDateISO (dates: Array<string>) {
   return [...dates].sort((date1, date2) => {
     const date1Timestamp = dayjs(date1).valueOf()
     const date2Timestamp = dayjs(date2).valueOf()
@@ -119,4 +99,27 @@ export function sortDateISO (dates: ['string']) {
 
     return 0
   })
+}
+
+export function formatYearMonthDay (dateString: string, format: string = 'DD/MM/YYYY'): string {
+  if (!dateString) {
+    return ''
+  }
+
+  const datesArray = dateString.toString().split(' - ')
+
+  return datesArray.map(date => dayjs(date).format(format)).join(' - ')
+}
+
+export function getDateBasedOnLimit (min: string, max: string, dateArray: Array<string>): Array<string> {
+  const sortedDate = sortDateISO(dateArray)
+  if (dayjs(sortedDate[1]).isAfter(max)) {
+    sortedDate[1] = max
+  }
+
+  if (dayjs(sortedDate[0]).isBefore(min)) {
+    sortedDate[0] = min
+  }
+
+  return sortedDate
 }

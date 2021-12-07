@@ -13,6 +13,7 @@ export default {
     },
     height: { control: "text", description: "Card height" },
     default: { description: "Card content slot" },
+    header: { description: "LCardHeader content slot" },
     close: { table: { disable: true } },
     error: { table: { disable: true } },
     generateId: { control: 'boolean', description: 'Controls if component will generate id selector for HTML elements' },
@@ -57,3 +58,25 @@ WithoutTitleAndWithShadow.args = {
   height: "150px",
   hasShadow: true
 };
+
+const TemplateWithSlotHeader = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LCard },
+  template:`
+    <l-card v-bind="$props" style="width: 200px">
+      <template v-slot:header>
+        <v-icon
+          size="16px"
+          color="#9F6CBB"
+        >
+          mdi-information
+        </v-icon>
+      </template>
+    </l-card>
+  `
+});
+
+export const DefaultWithSlotHeader = TemplateWithSlotHeader.bind({});
+DefaultWithSlotHeader.args = {
+  ...Default.args
+}
