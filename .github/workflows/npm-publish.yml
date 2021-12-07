@@ -37,12 +37,12 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Cache node_modules
-      id: cache-modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
+    # - name: Cache node_modules
+    #   id: cache-modules
+    #   uses: actions/cache@v1
+    #   with:
+    #     path: node_modules
+    #     key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
     - name: Install
       run: yarn
     - name: Build
