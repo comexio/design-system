@@ -1,261 +1,110 @@
-import { mount, Wrapper } from '@vue/test-utils'
-import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
-import LDatePickerDay from '~/src/components/inputs/LDatePickerDay.vue'
+import { screen, waitFor } from '@testing-library/vue'
+import { composeStories } from '@storybook/testing-vue'
+import userEvent from '@testing-library/user-event'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+import * as stories from '~/docs/stories/components/inputs/LDatePickerDay.stories'
 
-const initialDateLimit = {
-  min: '2020-03-01',
-  max: '2020-05-31'
+const {
+  Default,
+  Filled,
+  FilledOverRange,
+  FilledEnglish,
+  AllowedTyping,
+  AllowedTypingEnglish,
+  Bordered
+} = composeStories(stories)
+
+const checkDefaultDatepickerOpened = async () => {
+  const activator = screen.getByTestId('activator')
+  await userEvent.click(activator)
+  expect(screen.getByTestId('firstDatepicker')).toBeInTheDocument()
+  expect(screen.getByTestId('secondDatepicker')).toBeInTheDocument()
 }
 
-const updatedDateLimit = {
-  min: '2019-03-01',
-  max: '2020-05-31'
-}
+describe('LDatePickerDay', () => {
+  it('renders Default datepicker', async () => {
+    renderComponent(Default())
 
-const setupDefault = initSetupComponent()
-const mountWithoutLimit = () => {
-  return mount(LDatePickerDay, {
-    ...setupDefault,
-    propsData: {
-      value: ['2020-03-01', '2020-05-31']
-    },
-    data() {
-      return {
-        monthsPeriod: ['2020-03-01', '2020-05-31']
-      }
-    },
-    computed: {
-      i18nLocale() {
-        return 'pt'
-      }
-    }
-  })
-}
-const defaultParams = {
-  ...setupDefault,
-  propsData: {
-    limit: {
-      ...initialDateLimit
-    },
-    value: ['2020-03-01', '2020-05-31']
-  },
-  data () {
-    return {
-      monthsPeriod: ['2020-03-01', '2020-05-31']
-    }
-  },
-  computed: {
-    i18nLocale () {
-      return 'pt'
-    }
-  }
-}
+    const date = new Date()
+    const toLocaleOptions: Record<string, string> = { month: 'long', year: 'numeric' }
+    const currentMonthLocale = date.toLocaleDateString('pt-BR', { ...toLocaleOptions })
+    date.setMonth(date.getMonth() - 1)
+    const pastMonthLocale = date.toLocaleDateString('pt-BR', { ...toLocaleOptions })
 
-describe('datePicker component', () => {
-  addElemWithDataAppToBody()
-  let datePicker: Wrapper<LDatePickerDay>
-
-  beforeAll(() => {
-    datePicker = mount(LDatePickerDay, {
-      ...defaultParams,
-    })
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText(currentMonthLocale)).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText(pastMonthLocale)).toBeInTheDocument())
   })
 
-  it('check datepicker limit', async () => {
-    expect(datePicker.exists()).toBeTruthy()
-    const activator = () => datePicker.find('.activator')
+  it('renders Filled datepicker', async () => {
+    renderComponent(Filled())
 
-    activator().trigger('click')
-    await datePicker.vm.$nextTick()
-
-    const calendar = () => datePicker.find('.v-date-picker-table')
-    expect(calendar().exists()).toBeTruthy()
-
-    const datePickerVuetify = () => datePicker.findComponent({ name: 'v-date-picker' })
-    expect(datePickerVuetify().exists()).toBeTruthy()
-    expect(datePickerVuetify().vm.$props.min).toBe(initialDateLimit.min)
-    expect(datePickerVuetify().vm.$props.max).toBe(initialDateLimit.max)
-
-    datePicker.setProps({ limit: updatedDateLimit })
-    await datePicker.vm.$nextTick()
-
-    expect(datePickerVuetify().vm.$props.min).toBe(updatedDateLimit.min)
-    expect(datePickerVuetify().vm.$props.max).toBe(updatedDateLimit.max)
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('08/12/2020 - 18/12/2020')).toBeInTheDocument())
   })
 
-  it('check limit of dates', () => {
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    expect(datepickers().length).toBe(2)
-    const firstDatepicker = () => datepickers().at(0)
-    const secondDatepicker = () => datepickers().at(1)
-    expect(secondDatepicker().vm.tableDate).toBe('2020-05')
+  it('renders FilledOverRange datepicker', async () => {
+    renderComponent(FilledOverRange())
 
-    const prevButton = () => firstDatepicker().findAll('.v-date-picker-header .v-btn').at(0)
-    expect(prevButton().props().disabled).toBe(false)
-
-    const nextButton = () => secondDatepicker().findAll('.v-date-picker-header .v-btn').at(1)
-    expect(nextButton().props().disabled).toBe(true)
+    await checkDefaultDatepickerOpened()
+    expect(screen.queryByText('01/03/2020 - 31/05/2020')).toBeNull()
   })
 
-  it('Check date limit by days range', async () => {
-    datePicker.setProps({ rangeDays: 30 })
+  it('renders Filled datepicker', async () => {
+    renderComponent(FilledEnglish())
 
-    await datePicker.vm.$nextTick()
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('2020-12-08 - 2020-12-18')).toBeInTheDocument())
+  })
+  
+  it('renders AllowedTyping datepicker', async () => {
+    renderComponent(AllowedTyping())
 
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(0)
-    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
-    expect(dayPicker().text()).toBe('1')
-    dayPicker().trigger('click')
+    await checkDefaultDatepickerOpened()
 
-    await datePicker.vm.$nextTick()
+    const dateValid = '01/11/2020 - 22/12/2020'
+    const dateOutOfLimit = '10/01/2021 - 26/01/2021'
 
-    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-05-01", "min": "2020-03-02"})
+    const input = screen.getByRole('textbox')
+
+    userEvent.clear(input)
+    userEvent.type(input, dateValid)
+
+    expect(input.value).toBe(dateValid)
+
+    userEvent.clear(input)
+    userEvent.type(input, dateOutOfLimit)
+    await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
+
+    expect(input.value).toEqual('10/01/2021 - 25/01/2021')
   })
 
-  it('Check date limit by years range', async () => {
-    datePicker = mountWithoutLimit()
-    datePicker.setProps({ rangeYears: 1 })
-    const activator = () => datePicker.find('.activator')
-    activator().trigger('click')
+  it('renders AllowedTypingEnglish datepicker', async () => {
+    renderComponent(AllowedTypingEnglish())
 
-    await datePicker.vm.$nextTick()
+    await checkDefaultDatepickerOpened()
 
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(0)
-    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
-    expect(dayPicker().text()).toBe('1')
-    dayPicker().trigger('click')
+    const dateValid = '2020-11-01 - 2020-11-30'
+    const dateOutOfLimit = '2021-01-03 - 2021-01-26'
 
-    await datePicker.vm.$nextTick()
+    const input = screen.getByRole('textbox')
 
-    expect(datePicker.vm.rangeLimit).toEqual({"max": "2021-04-01", "min": "2019-04-01"})
+    userEvent.clear(input)
+    userEvent.type(input, dateValid)
+
+    expect(input.value).toBe(dateValid)
+
+    userEvent.clear(input)
+    userEvent.type(input, dateOutOfLimit)
+    await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
+
+    expect(input.value).toBe('2021-01-03 - 2021-01-25')
   })
 
-  it('should return limit by days when has days and years range', async () => {
-    datePicker.setProps({ rangeYears: 1 , rangeDays: 10})
+  it('renders Bordered datepicker', async () => {
+    renderComponent(Bordered())
 
-    await datePicker.vm.$nextTick()
-
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(0)
-    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
-    expect(dayPicker().text()).toBe('1')
-    dayPicker().trigger('click')
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-04-11", "min": "2020-03-22"})
-  })
-
-  it('should limit select range with limit prop over rangeDays and rangeYears props', async () => {
-    datePicker.setProps({
-      limit: {
-        min: '2020-03-30',
-        max: '2020-04-30'
-      }
-    })
-
-    await datePicker.vm.$nextTick()
-
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(0)
-    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
-    expect(dayPicker().text()).toBe('1')
-    dayPicker().trigger('click')
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.rangeLimit).toEqual({"max": "2020-04-11", "min": "2020-03-30"})
-  })
-
-  it('check multiple click in same date', async () => {
-    datePicker.setProps({ value: ['2020-05-01', '2020-05-01'] })
-
-    await datePicker.vm.$nextTick()
-
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstDatepicker = () => datepickers().at(0)
-    const dayPicker = () => firstDatepicker().find('tbody tr td .v-btn')
-    dayPicker().trigger('click')
-
-    await datePicker.vm.$nextTick()
-    expect(datePicker.vm.value).toStrictEqual(['2020-05-01'])
-  })
-
-  it('check if gets closed by external call', async () => {
-    datePicker.setProps({ datepickerStatus: true })
-    await datePicker.vm.$nextTick()
-    expect(datePicker.vm.menu).toBe(true)
-
-    datePicker.setProps({ datepickerStatus: false })
-    await datePicker.vm.$nextTick()
-    expect(datePicker.vm.menu).toBe(false)
-    expect(datePicker.emitted().closed).toBeTruthy()
-  })
-
-  it('check if shows ordered date when is inputed high date on first place', async () => {
-    datePicker.setData({ monthsPeriod: ["2020-04-16", "2020-04-10"] })
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.monthsPeriod).toEqual(["2020-04-10", "2020-04-16"])
-    const emittedInputsLength = datePicker.emitted('input').length
-    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([["2020-04-10", "2020-04-16"]])
-  })
-
-  it('check if shows ordered date when is inputed in correct order but out of range limit', async () => {
-    const oldValue = datePicker.vm.monthsPeriod
-    datePicker.setData({ monthsPeriod: ["2020-04-01", "2020-04-15"] })
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.monthsPeriod).toEqual(oldValue)
-    const emittedInputsLength = datePicker.emitted('input').length
-    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([oldValue])
-  })
-
-  it('check if shows ordered date when is inputed in correct order', async () => {
-    datePicker.setData({ monthsPeriod: ["2020-04-05", "2020-04-15"] })
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.monthsPeriod).toEqual(["2020-04-05", "2020-04-15"])
-    const emittedInputsLength = datePicker.emitted('input').length
-    expect(datePicker.emitted('input')[emittedInputsLength - 1]).toEqual([["2020-04-05", "2020-04-15"]])
-  })
-
-  it('check datepicker is closed after select two dates', async () => {
-    datePicker.setProps({ closeOnSelect: true })
-    datePicker.setData({ monthsPeriod: ['2020-05-01', '2020-05-02'] })
-
-    await datePicker.vm.$nextTick()
-
-    expect(datePicker.vm.menu).toBe(false)
-  })
-
-  it('check if header is disabled when first calendar is active', async () => {
-    await new Promise(resolve => setTimeout(() => { resolve(1) }, 100))
-
-    const datepickers = () => datePicker.findAllComponents({ name: 'v-date-picker' })
-    const firstHeaderButton = () => datepickers().at(0).find('.v-date-picker-header__value button')
-    const secondHeaderButton = () => datepickers().at(1).find('.v-date-picker-header__value button')
-
-    firstHeaderButton().trigger('click')
-
-    await datePicker.vm.$nextTick()
-    await new Promise(resolve => setTimeout(() => { resolve(1) }, 100))
-
-    expect(datepickers().at(0).vm.activePicker).toBe('MONTH')
-    expect(secondHeaderButton().attributes('disabled')).toBeDefined()
-  })
-
-  it('renders bordered datepicker', async () => {
-    expect(datePicker.find('.LDatePickerDay--bordered').exists()).toBe(false)
-
-    datePicker.setProps({ bordered: true })
-    await datePicker.vm.$nextTick()
-
-    expect( datePicker.find('.LDatePickerDay--bordered').exists()).toBe(true)
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('08/12/2020 - 18/12/2020')).toBeInTheDocument())
   })
 })
