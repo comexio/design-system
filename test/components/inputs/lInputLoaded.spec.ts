@@ -257,3 +257,24 @@ describe('InputLoaded component (allowHeightGrow)', () => {
   })
 })
 
+describe('InputLoaded component (append custom icon)', () => {
+  addElemWithDataAppToBody()
+  let inputLoaded: Wrapper<LInputLoaded>
+
+  beforeAll(() => {
+    inputLoaded = mount(LInputLoaded, {
+      ...defaultParams,
+      propsData: {
+        appendCustomIcon: 'mdi-magnify'
+      }
+    })
+  })
+
+  it('render component without data', () => {
+    expect(inputLoaded.exists()).toBe(true)
+  })
+
+  it('render component with correct append custom icon', () => {
+    expect(inputLoaded.findComponent({ name: 'v-icon' }).classes()).toContain('mdi-magnify')
+  })
+})
