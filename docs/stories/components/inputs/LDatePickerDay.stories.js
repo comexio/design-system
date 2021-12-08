@@ -116,8 +116,7 @@ FilledEnglish.args = {
 
 export const AllowedTyping = Template.bind({});
 AllowedTyping.args = {
-  // date: ["2020-12-08","2020-12-18"],
-  // value: ["2020-12-08","2020-12-18"],
+  date: ["2020-12-08","2020-12-18"],
   limit: { min: '2020-10-01', max: '2021-01-25' },
   rangeDays: 100,
   itemsColor: '#9f6cbb',
