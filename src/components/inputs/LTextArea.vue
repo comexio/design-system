@@ -7,7 +7,7 @@
     >
       <template
         v-for="(index, name) in $scopedSlots"
-        v-slot:[name]="scope"
+        #[name]="scope"
       >
         <slot
           :name="name"
@@ -17,7 +17,7 @@
 
       <template
         v-for="(index, name) in $slots"
-        v-slot:[name]
+        #[name]
       >
         <slot :name="name" />
       </template>
