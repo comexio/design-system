@@ -32,7 +32,7 @@ jobs:
         key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
     - name: Installing dependencies
       run: yarn install
-    - name: Buildings
+    - name: Building
       run: yarn build
     - name: Publishing library
       run: npm run release-beta
