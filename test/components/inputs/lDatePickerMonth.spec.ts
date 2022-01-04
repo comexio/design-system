@@ -74,4 +74,11 @@ describe('datePicker component', () => {
 
     expect( datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(true)
   })
+
+  it('toggles enabledPeriods disabled', async () => {
+    datePicker.setProps({ enabledPeriods: ['last_6_months', 'last_9_months', 'last_12_months'] })
+    await datePicker.vm.$nextTick()
+
+    expect(datePicker.findAll('.v-chip--disabled').length).toBe(1)
+  })
 })
