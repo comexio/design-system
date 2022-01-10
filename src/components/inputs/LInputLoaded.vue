@@ -31,7 +31,7 @@
           v-if="icon"
           :color="iconColor"
         >
-          {{ searchOnInput ? '' : 'mdi-chevron-down' }}
+          {{ appendIcon }}
         </v-icon>
         <v-icon v-else />
       </template>
@@ -110,7 +110,11 @@ export default {
     outlined: Boolean,
     large: Boolean,
     small: Boolean,
-    allowHeightGrow: Boolean
+    allowHeightGrow: Boolean,
+    appendCustomIcon: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {
@@ -120,6 +124,13 @@ export default {
     }
   },
   computed: {
+    appendIcon () {
+      if (this.appendCustomIcon) {
+        return this.appendCustomIcon
+      }
+
+      return this.searchOnInput ? "" : "mdi-chevron-down"
+    },
     isDisabled () {
       return (this.loading && !this.searchOnInput) || this.disabled
     },

@@ -17,8 +17,9 @@ const defaultParams = {
   ...setupDefault,
   propsData: {
     limit: {
-      ...initialDateLimit
+      ...initialDateLimit,
     },
+    enabledPeriods: ['last_6_months', 'last_9_months', 'last_12_months'],
     value: ['2020-03', '2020-05'],
     monthsList: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
   },
@@ -73,5 +74,9 @@ describe('datePicker component', () => {
     await datePicker.vm.$nextTick()
 
     expect( datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(true)
+  })
+
+  it('renders right amount of disabled periods', async () => {
+    expect(datePicker.findAll('.v-chip--disabled').length).toBe(1)
   })
 })

@@ -12,6 +12,7 @@
       <template #activator="{ on }">
         <v-row
           class="pointer mx-0 activator"
+          data-testid="activator"
           v-on="on"
           @click="openMenu"
         >
@@ -63,6 +64,7 @@
         <v-date-picker
           ref="firstDatepicker"
           v-model="monthsPeriod"
+          data-testid="firstDatepicker"
           landscape
           no-title
           multiple
@@ -84,6 +86,7 @@
         <v-date-picker
           ref="secondDatepicker"
           v-model="monthsPeriod"
+          data-testid="secondDatepicker"
           landscape
           no-title
           multiple
@@ -279,7 +282,7 @@ export default {
   },
   watch: {
     monthsPeriod (monthsPeriod, old) {
-      const monthsPeriodLength = monthsPeriod?.filter(date => date).length
+      let monthsPeriodLength = monthsPeriod?.filter(date => date).length
       const isMonthsPeriodTwoDates = monthsPeriod && monthsPeriodLength === 2
       if (isMonthsPeriodTwoDates && !equals(monthsPeriod, old)) {
         const limitDays = this.isDayLimitValid(monthsPeriod)
@@ -287,6 +290,7 @@ export default {
 
         if (limitDays || limitYears) {
           monthsPeriod = old
+          monthsPeriodLength = monthsPeriod.length
           this.setAndReturnDateBasedOnLimit(old)
         }
       }

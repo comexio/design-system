@@ -71,6 +71,7 @@
             label
             class="justify-center"
             :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
+            :disabled="!enabledPeriods.includes(index)"
             @click="periodChip = index"
           >
             <span
@@ -120,6 +121,15 @@ export default {
     borderColor: {
       type: String,
       default: '#5C068C'
+    },
+    enabledPeriods: {
+      type: Array,
+      default: () => [
+        'last_3_months',
+        'last_6_months', 
+        'last_9_months', 
+        'last_12_months'
+      ]
     },
     bordered: Boolean
   },

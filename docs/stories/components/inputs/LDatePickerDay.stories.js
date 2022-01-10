@@ -82,16 +82,30 @@ const Template = (args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({});
-Default.args = {}
+Default.args = {
+  opened: () => ({}),
+  closed: () => ({})
+}
 
 export const Filled = Template.bind({});
 Filled.args = {
   date: ["2020-12-08","2020-12-18"],
-  value: ["2020-12-08","2020-12-18"],
   limit: { min: '2020-10-01', max: '2021-01-25' },
   rangeDays: 15,
   itemsColor: '#9f6cbb',
-  closeOnSelect: true
+  closeOnSelect: true,
+  opened: () => ({}),
+  closed: () => ({})
+}
+
+export const FilledOverRange = Template.bind({});
+FilledOverRange.args = {
+  date: ['2020-03-01', '2020-05-31'],
+  itemsColor: '#9f6cbb',
+  rangeDays: 10,
+  closeOnSelect: true,
+  opened: () => ({}),
+  closed: () => ({})
 }
 
 export const FilledEnglish = Template.bind({});
@@ -103,12 +117,13 @@ FilledEnglish.args = {
 export const AllowedTyping = Template.bind({});
 AllowedTyping.args = {
   date: ["2020-12-08","2020-12-18"],
-  value: ["2020-12-08","2020-12-18"],
   limit: { min: '2020-10-01', max: '2021-01-25' },
   rangeDays: 100,
   itemsColor: '#9f6cbb',
   closeOnSelect: true,
-  allowTypingDate: true
+  allowTypingDate: true,
+  opened: () => ({}),
+  closed: () => ({})
 }
 
 export const AllowedTypingEnglish = Template.bind({});

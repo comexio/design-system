@@ -25,6 +25,7 @@ export default {
     getItems: { action: 'getItems', description: `Emitted when the component is loading and ready to receive items from an external request.
     It returns an object with the field if searchOnInput is false, or the field with the input value if searchOnInput is true` },
     allowHeightGrow: { control: 'boolean', description: 'Allow if input can grows height' },
+    appendCustomIcon: { control: 'text', description: 'Append custom icon for input' }
   },
 };
 
@@ -136,4 +137,9 @@ export const DropdownWithoutBorder = Template.bind({});
 DropdownWithoutBorder.args = {
   ...DefaultDropdown.args,
   outlined: false
+};
+
+export const DefaultAppendCustomIcon = Template.bind({});
+DefaultAppendCustomIcon.args = {
+  appendCustomIcon: 'mdi-magnify',
 };

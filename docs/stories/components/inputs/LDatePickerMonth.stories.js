@@ -28,6 +28,10 @@ export default {
       control: 'text',
       description: 'Locale of the datepicker'
     },
+    enabledPeriods: {
+      control: 'array',
+      description: 'Enabled periods chips on datepicker'
+    },
     dropdownIcon: { control: 'boolean', description: 'Toggles dropdown icon visibility' },
     bordered: { control: 'boolean', description: 'Toggles datepicker border and adds LDatePickerMonth--bordered class' },
     borderColor: { control: 'color', description: 'Color of the border' },
@@ -95,4 +99,10 @@ export const Bordered = Template.bind({});
 Bordered.args = {
   ...Filled.args,
   bordered: true
+}
+
+export const DisabledPeriods = Template.bind({})
+DisabledPeriods.args = {
+  ...Filled.args,
+  enabledPeriods: []
 }
