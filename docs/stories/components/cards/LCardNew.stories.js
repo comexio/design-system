@@ -65,6 +65,7 @@ const TemplateCustomContentOnHeader = (args, { argTypes }) => ({
     >
       <l-card-header-new 
         title="Card Title" 
+        subtitle="Card subtitle here" 
       >
         <v-icon size="16">mdi-star-outline</v-icon>
       </l-card-header-new>

@@ -40,7 +40,7 @@ const TemplateDefaultSlot = (args, { argTypes }) => ({
       v-bind="$props" 
       style="maxWidth: 500px;"
     >
-      <v-icon size="16">mdi-star-outline</v-icon>
+      <v-icon size="16" data-testid="customContent">mdi-star-outline</v-icon>
     </l-card-header-new>
   `
 });
@@ -54,7 +54,7 @@ const TemplatePrependSlot = (args, { argTypes }) => ({
       style="maxWidth: 500px;"
     >
       <template #prepend>
-        <v-icon size="16">mdi-star-outline</v-icon>
+        <v-icon size="16" data-testid="customContentPrepend">mdi-star-outline</v-icon>
       </template>
     </l-card-header-new>
   `
@@ -62,13 +62,13 @@ const TemplatePrependSlot = (args, { argTypes }) => ({
 
 export const Default = TemplateDefault.bind({});
 Default.args = {
-  title: 'Card title',
+  title: 'Card Title',
   subtitle: 'Card subtitle here'
 };
 
 export const OnlyTitle = TemplateDefault.bind({});
 OnlyTitle.args = {
-  title: 'Card title'
+  title: 'Card Title'
 };
 
 export const WithCustomContentOnDefaultSlot = TemplateDefaultSlot.bind({});
