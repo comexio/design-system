@@ -1,0 +1,64 @@
+<template>
+  <div class="LCardHeader">
+    <div class="LCardHeader__content d-flex justify-space-between">
+      <div class="d-flex">
+        <div class="pl-5 pt-2">
+          <slot name="prepend" />
+        </div>
+        <div class="d-flex flex-column align-start">
+          <v-card-title
+            class="LCardHeader__content__title pb-0 pa-5 pt-2"
+            :class="{ 'pb-2': !subtitle }"
+          >
+            {{ title }}
+          </v-card-title>
+          <v-card-subtitle
+            v-if="subtitle"
+            class="LCardHeader__content__subtitle mt-1 pb-2 pa-5 pt-0"
+          >
+            {{ subtitle }}
+          </v-card-subtitle>
+        </div>
+      </div>
+      <div class="pb-0 pa-5 pt-2">
+        <slot />
+      </div>
+    </div>
+    <v-divider class="LCardHeader__divider" />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'LCardHeaderNew',
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    subtitle: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.LCardHeader {
+  &__content__title {
+    color: $martinique;
+    font-size: 1.077rem;
+    font-weight: bold;
+    line-height: 17px;
+  }
+  &__content__subtitle {
+    color: $doveGray !important;
+    font-size: 0.923rem;
+    line-height: 14px;
+  }
+  &__divider {
+    border-color: $gallery;
+  }
+}
+</style>
