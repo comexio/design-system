@@ -1,8 +1,8 @@
 <template>
   <div class="LCardHeader">
-    <div class="LCardHeader__content d-flex justify-space-between">
-      <div class="d-flex">
-        <div class="pl-5 pt-2">
+    <div class="LCardHeader__content d-flex justify-space-between align-center">
+      <div class="d-flex align-center">
+        <div class="pl-5">
           <slot name="prepend" />
         </div>
         <div class="d-flex flex-column align-start">
@@ -20,7 +20,7 @@
           </v-card-subtitle>
         </div>
       </div>
-      <div class="pb-0 pa-5 pt-2">
+      <div class="pb-0 pt-0 pa-5">
         <slot />
       </div>
     </div>
