@@ -1,8 +1,9 @@
 <template>
   <v-checkbox
     v-model="inputValue"
-    class="LCheckbox"
     v-bind="$attrs"
+    :value="itemValue"
+    class="LCheckbox"
     v-on="$listeners"
   />
 </template>
@@ -15,6 +16,10 @@ export default {
       type: Boolean,
       default: null
     },
+    itemValue: {
+      type: null,
+      default: null
+    }
   },
   computed: {
     inputValue: {

@@ -4,7 +4,7 @@ import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/inputs/LCheckboxNew.stories'
 
-const { Default, WithColor } = composeStories(stories)
+const { Default, WithColor, MultipleCheckboxes } = composeStories(stories)
 
 describe('LCheckboxNew', () => {
   it('renders component unchecked', () => {
@@ -30,5 +30,19 @@ describe('LCheckboxNew', () => {
 
     expect(lCheckboxNew).toHaveStyle({ color: 'rgb(255, 34, 255);' })
     expect(lCheckboxNew).toBeChecked()
+  })
+
+  it('renders and toggles multiple checkboxes', async () => {
+    renderComponent(MultipleCheckboxes())
+
+    let checkboxes = screen.getAllByRole('checkbox')
+    checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked())
+
+    await userEvent.click(checkboxes[0])
+
+    expect(checkboxes[0]).toBeChecked()
+
+    checkboxes = checkboxes.slice(1)
+    checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked())
   })
 })
