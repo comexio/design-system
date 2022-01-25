@@ -9,8 +9,9 @@
       <template v-slot:activator="{ on }">
         <l-button-new
           :ripple="false"
+          :height="32"
+          :uppercase="false"
           text
-          large
           class="LButtonSelect pb-2"
           v-on="on"
         >
@@ -95,9 +96,9 @@ export default {
 .LButtonSelect {
   color: $martinique;
   cursor: pointer;
-  padding: 0px;
-  font-size: 1rem;
-  text-transform: uppercase;
+  padding: 0px !important;
+  font-size: 1rem !important;
+  font-weight: normal !important;
   border-bottom: 1px solid $wisteria;
 
   ::v-deep {
