@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import colors from '~/src/assets/scss/_export.module.scss'
+
 export default {
   name: 'LProgressBar',
   props: {
@@ -21,7 +23,7 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: '#F1EFEF'
+      default: colors.gallery
     },
     showPointer: {
       type: Boolean,
