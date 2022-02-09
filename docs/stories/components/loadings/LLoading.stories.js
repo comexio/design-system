@@ -1,20 +1,38 @@
-import LLoading from "~/src/components/loadings/LLoading.vue";
+import LLoading from '~/src/components/loadings/LLoading.vue';
 
 export default {
-  title: "Components/Base/Loading",
+  title: 'Components/Base/Loading',
   component: LLoading,
   argTypes: {
-    size: { control: "text", description: "Loading icon size" }
+    color: { 
+      control: 'color',
+      description: 'Icon color'
+    },
+    size: { 
+      control: 'text',
+      description: 'Icon size'
+    }
   }
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLoading },
-  template: '<l-loading v-bind="$props"> </l-loading>'
+  template: `
+    <div>
+      <l-loading v-bind="$props" />
+    </div>
+  `
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  size: "40px"
+
+export const CustomColor = Template.bind({});
+CustomColor.args = {
+  color: '#FF8F1C'
+};
+
+export const CustomSize = Template.bind({});
+CustomSize.args = {
+  size: '42px'
 };

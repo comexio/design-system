@@ -3,6 +3,7 @@
     v-bind="$attrs"
     :height="height"
     :background-color="backgroundColor"
+    :class="{ 'LProgressBar--withoutPointer': !showPointer }"
     class="LProgressBar"
     v-on="$listeners"
   >
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import colors from '~/src/assets/scss/_export.module.scss'
+
 export default {
   name: 'LProgressBar',
   props: {
@@ -20,7 +23,11 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: '#F1EFEF'
+      default: colors.gallery
+    },
+    showPointer: {
+      type: Boolean,
+      default: true
     }
   }
 }
@@ -29,5 +36,9 @@ export default {
 <style lang="scss" scoped>
 .LProgressBar {
   cursor: pointer;
+
+  &--withoutPointer {
+    cursor: default;
+  }
 }
 </style>
