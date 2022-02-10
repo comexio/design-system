@@ -18,6 +18,7 @@ import LInputBorder from './LInputBorder'
 import LInputTag from './LInputTag'
 import LCheckbox from './LCheckbox'
 import LCheckboxNew from './LCheckboxNew'
+import LTextArea from './LTextArea'
 
 export {
     LTextField,
@@ -39,5 +40,6 @@ export {
     LInputBorder,
     LInputTag,
     LCheckbox,
-    LCheckboxNew
+    LCheckboxNew,
+    LTextArea
 }

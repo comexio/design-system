@@ -4,6 +4,7 @@
       v-bind="$attrs"
       class="LTextArea__input"
       :class="inputClass"
+      v-on="$listeners"
     >
       <template
         v-for="(index, name) in $scopedSlots"
