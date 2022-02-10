@@ -2,8 +2,8 @@
   <div class="LTextArea">
     <v-textarea
       v-bind="$attrs"
-      class="LTextArea__input"
       :class="inputClass"
+      class="LTextArea__input"
       v-on="$listeners"
     >
       <template
