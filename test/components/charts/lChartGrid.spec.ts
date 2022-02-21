@@ -30,8 +30,15 @@ describe('LResumeChart', () => {
   })
 
   // TODO: Falta finalizar o teste do conteúdo interno do chart
-  // it('should contain the data chart', () => {
-  //   const { container } = renderComponent(Default())
-  //   screen.debug()
-  // })
+   it('values returned in the chart', () => {
+    renderComponent(Default())
+
+    screen.getByText('0.2074')
+    screen.getByText('7.0558')
+    screen.getByText('12.978')
+    screen.getByText('223.9474')
+    screen.getByText('274.59')
+    screen.getByText('157.4134')
+    screen.getByText('13179.4241')
+   })
 })
