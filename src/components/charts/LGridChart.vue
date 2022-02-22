@@ -4,7 +4,7 @@
       <div
         v-for="(header, key) in headers"
         :key="key"
-        class="LGridChart__line__item justify-center d-flex align-center"
+        class="LGridChart__line__item LGridChart__line__item--header justify-center d-flex align-center"
       >
         <v-icon class="LGridChart__line__icon">
           {{ header.icon }} mr-2
@@ -54,7 +54,6 @@ export default {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 700;
   line-height: 13px;
   letter-spacing: 0em;
   border-bottom: 1px solid $frenchLilac;
@@ -69,8 +68,14 @@ export default {
     height: 27px;
   }
 
+  &__item--header{
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
   &__item--name {
     height: 57px;
+    font-weight: 700;
   }
 
   &__item--value {
