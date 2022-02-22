@@ -9,22 +9,22 @@ describe('LGridChart', () => {
   it('should render the side titles', () => {
     renderComponent(Default())
 
-    expect(screen.getByText('Mínimo')).toBeInTheDocument()
-    expect(screen.getByText('Médio')).toBeInTheDocument()
-    expect(screen.getByText('Máximo')).toBeInTheDocument()
+    expect(screen.getByText('Label 1')).toBeInTheDocument()
+    expect(screen.getByText('Label 2')).toBeInTheDocument()
+    expect(screen.getByText('Label 3')).toBeInTheDocument()
   })
 
   it('should render the top titles', () => {
     const { container } = renderComponent(Default())
 
     expect(container.querySelector('.mdi-safe-square-outline')).toBeInTheDocument()
-    expect(screen.getByText('header 1')).toBeInTheDocument()
+    expect(screen.getByText('Header 1')).toBeInTheDocument()
 
     expect(container.querySelector('.mdi-ferry')).toBeInTheDocument()
-    expect(screen.getByText('header 2')).toBeInTheDocument()
+    expect(screen.getByText('Header 2')).toBeInTheDocument()
 
     expect(container.querySelector('.mdi-truck-cargo-container')).toBeInTheDocument()
-    expect(screen.getByText('header 3')).toBeInTheDocument()
+    expect(screen.getByText('Header 3')).toBeInTheDocument()
   })
 
    it('renders chart rows', () => {
