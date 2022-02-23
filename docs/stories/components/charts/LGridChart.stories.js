@@ -20,9 +20,9 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   rows: [
-    { label: 'Label 1', values: [0, 0.2074, 0] },
-    { label: 'Label 2', values: [7.0558, 12.978, 223.9474] },
-    { label: 'Label 3', values: [274.59, 157.4134, 13179.4241] }
+    { label: 'Label 1', items: [0, 0.2074, 0] },
+    { label: 'Label 2', items: [7.0558, 12.978, 223.9474] },
+    { label: 'Label 3', items: [274.59, 157.4134, 13179.4241] }
   ],
   headers: [
     { label: '', icon: '' },
