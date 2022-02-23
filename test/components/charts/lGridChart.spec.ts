@@ -6,7 +6,7 @@ import * as stories from '~/docs/stories/components/charts/LGridChart.stories'
 const { Default } = composeStories(stories)
 
 describe('LGridChart', () => {
-  it('should render the side titles', () => {
+  it('should render the side rows', () => {
     renderComponent(Default())
 
     expect(screen.getByText('Label 1')).toBeInTheDocument()

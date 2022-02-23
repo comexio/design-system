@@ -6,8 +6,8 @@
         :key="key"
         class="LGridChart__line__item LGridChart__line__item--header justify-center d-flex align-center"
       >
-        <v-icon class="LGridChart__line__icon">
-          {{ header.icon }} mr-2
+        <v-icon class="LGridChart__line__icon mr-2">
+          {{ header.icon }} 
         </v-icon>
         {{ header.label }}
       </div>
@@ -21,7 +21,7 @@
         {{ row.label }}
       </div>
       <div
-        v-for="(item, itemKey) in row.values"
+        v-for="(item, itemKey) in row.items"
         :key="itemKey"
         class="LGridChart__line__item LGridChart__line__item--value d-flex align-center justify-center"
       >
@@ -53,12 +53,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   font-size: 1rem;
-  font-style: normal;
   line-height: 13px;
   letter-spacing: 0em;
   border-bottom: 1px solid $frenchLilac;
 
-  &__icon{
+  &__icon {
     color:$martinique; 
   }
 
@@ -68,7 +67,7 @@ export default {
     height: 27px;
   }
 
-  &__item--header{
+  &__item--header {
     text-transform: uppercase;
     font-weight: 700;
   }
