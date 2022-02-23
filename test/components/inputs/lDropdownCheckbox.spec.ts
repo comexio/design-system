@@ -21,7 +21,7 @@ const itemsFake = [{
   label: 'Estado do Exportador'
 }]
 
-describe('selectNamed component', () => {
+describe('lDropdownCheckbox component', () => {
   addElemWithDataAppToBody()
   let dropdownCheckbox: Wrapper<LDropdownCheckbox>
 
@@ -56,5 +56,32 @@ describe('selectNamed component', () => {
     await dropdownCheckbox.vm.$nextTick()
 
     expect(dropdownCheckbox.emitted().updatedItems).toBeTruthy()
+  })
+})
+
+
+describe('lDropdownCheckbox component with slot', () => {
+  addElemWithDataAppToBody()
+  let dropdownCheckbox: Wrapper<LDropdownCheckbox>
+
+  beforeAll(() => {
+    dropdownCheckbox = mount(LDropdownCheckbox, {
+      ...defaultParams,
+      scopedSlots: {
+        actions: '<p>Foo Actions</p>'
+      }
+    })
+  })
+
+  it('renders component with slot', async () => {
+    const button = () => dropdownCheckbox.find('.LButtonSelect')
+    const menu = () => dropdownCheckbox.findComponent({ name: 'v-menu' })
+    const actions = dropdownCheckbox.find('.LDropdownCheckbox__menu__actions')
+
+    button().trigger('click')
+    await dropdownCheckbox.vm.$nextTick()
+
+    expect(menu().vm.isActive).toBe(true)
+    expect(actions.text()).toBe('Foo Actions')
   })
 })
