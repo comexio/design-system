@@ -28,6 +28,12 @@
         :translation="{ input: checkboxListPlaceholder, select: checkboxListSelectAllText }"
         @updatedItems="updatedItems"
       />
+      <div v-if="$scopedSlots.actions">
+        <v-divider />
+        <div class="LDropdownCheckbox__menu__actions">
+          <slot name="actions" />
+        </div>
+      </div>
     </v-menu>
   </div>
 </template>
@@ -91,6 +97,10 @@ export default {
 
 .LDropdownCheckbox__menu {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.28);
+
+  &__actions {
+    background: white;
+  }
 }
 
 .LButtonSelect {

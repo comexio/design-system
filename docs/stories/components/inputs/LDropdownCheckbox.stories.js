@@ -11,6 +11,7 @@ export default {
     placeholder: {control: 'text', description: 'placeholder text'},
     selectedItems: {control: 'array', description: 'Optional array containing values of preselected items'},
     updatedItems: {action: 'updatedItems', description: 'Update selected items'},
+    actions: { description: 'Actions slot' },
   },
 };
 
@@ -21,6 +22,21 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LDropdownCheckbox },
   template: `<l-dropdown-checkbox v-bind="$props"  @updatedItems="updatedItems"></l-dropdown-checkbox>`,
+});
+
+const TemplateWithSlot = (args, { argTypes }) => ({
+  ...initObjects,
+  props: Object.keys(argTypes),
+  components: { LDropdownCheckbox },
+  template: `
+    <l-dropdown-checkbox
+      v-bind="$props"
+      @updatedItems="updatedItems"
+    >
+      <template v-slot:actions>
+        <p>Foo Actions</p>
+      </template>
+    </l-dropdown-checkbox>`,
 });
 
 export const Default = Template.bind({});
@@ -35,4 +51,9 @@ Default.args = {
       ],
     placeholder: 'Im a placeholder',
     selectedItems: [1, 3],
+};
+
+export const WithSlot = TemplateWithSlot.bind({});
+WithSlot.args = {
+  ...Default.args
 };
