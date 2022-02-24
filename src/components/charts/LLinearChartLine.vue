@@ -45,19 +45,6 @@
             </span>
           </div>
         </l-tooltip>
-        <slot
-          v-if="!itemsWithoutDetails.includes(data.label)"
-          name="sectionAfterValue"
-          :value="data.label"
-        />
-        {{ showQuantity }}
-        <span
-          v-if="lastItem && !isExpanded && isExpandable"
-          class="LLinearChartLine__expand ml-1"
-          @click="expand"
-        >
-          {{ translationLine.seeMore || $t('ayla.records') }}
-        </span>
         <span
           v-if="!lastItem && index < magnifyItensQuantity"
         >
@@ -76,6 +63,19 @@
               mdi-magnify
             </v-icon>
           </v-btn>
+        </span>
+        <slot
+          v-if="!itemsWithoutDetails.includes(data.label)"
+          name="sectionAfterValue"
+          :value="data.label"
+        />
+        {{ showQuantity }}
+        <span
+          v-if="lastItem && !isExpanded && isExpandable"
+          class="LLinearChartLine__expand ml-1"
+          @click="expand"
+        >
+          {{ translationLine.seeMore || $t('ayla.records') }}
         </span>
       </p>
       <div class="LLinearChartLine__result pb-0">

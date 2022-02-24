@@ -22,7 +22,10 @@ describe('linearChartLine component', () => {
     llinearChartLine = shallowMount(LLinearChartLine, {
       ...defaultParams,
       propsData: {
-        data: fakeData
+        data: fakeData,
+        magnifyItensQuantity: 1,
+        lastItem: false,
+        index: 0
       }
     })
   })
@@ -43,6 +46,12 @@ describe('linearChartLine component', () => {
     await llinearChartLine.vm.$nextTick()
 
     expect(cursor().exists()).toBeFalsy()
+  })
+
+  it('check if magnify is showed', async () => {
+    const magnifyIcon = () => llinearChartLine.findAll('.mx-2')
+    await llinearChartLine.vm.$nextTick()
+    expect(magnifyIcon.length).toEqual(0)
   })
 })
 
