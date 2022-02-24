@@ -1,6 +1,7 @@
 <template>
   <div class="LDropdownCheckbox">
     <v-menu
+      v-model="enableMenu"
       offset-y
       right
       :close-on-content-click="false"
@@ -71,6 +72,11 @@ export default {
       type: [String, Object, Number, Array, Boolean],
       default: null
     },
+  },
+  data () {
+    return {
+      enableMenu: false
+    }
   },
   computed: {
     inputValue: {
