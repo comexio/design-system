@@ -20,8 +20,10 @@
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
             :label-max-length="labelMaxLength"
+            :magnify-itens-quantity="magnifyItensQuantity"
             @expand="expandList"
             @eventClick="eventClick"
+            @linearChartItemDetail="linearChartItemDetail"
           >
             <slot
               name="sectionAfterValue"
@@ -110,6 +112,10 @@ export default {
     nonClickableItems: {
       type: Array,
       default: () => []
+    },
+    magnifyItensQuantity: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -136,6 +142,9 @@ export default {
       }
 
       this.$emit('eventClick', value)
+    },
+    linearChartItemDetail (item) {
+      this.$emit('linearChartItemDetail', item)
     }
   }
 }

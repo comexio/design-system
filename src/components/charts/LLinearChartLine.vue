@@ -58,6 +58,25 @@
         >
           {{ translationLine.seeMore || $t('ayla.records') }}
         </span>
+        <span
+          v-if="!lastItem && index < magnifyItensQuantity"
+        >
+          <v-btn
+            class="mx-2"
+            text
+            icon
+            color="wisteria"
+            height="14px"
+            min-width="20px"
+            @click="linearChartItemDetail"
+          >
+            <v-icon
+              size="14px"
+            >
+              mdi-magnify
+            </v-icon>
+          </v-btn>
+        </span>
       </p>
       <div class="LLinearChartLine__result pb-0">
         <v-row
@@ -190,6 +209,10 @@ export default {
     showToolTip: {
       type: Boolean,
       default: false
+    },
+    magnifyItensQuantity: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
@@ -212,6 +235,9 @@ export default {
     },
     eventClick (value) {
       return this.$emit('eventClick', value)
+    },
+    linearChartItemDetail (item) {
+      return this.$emit('linearChartItemDetail', item)
     }
   }
 }
