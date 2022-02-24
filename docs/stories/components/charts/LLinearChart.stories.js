@@ -22,7 +22,8 @@ export default {
     loadingExpand: { table: {disable: true} },
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
-    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' }
+    sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
+    magnifyItensQuantity: { control: 'boolean', description: 'Add a magnify in elements list (using index to compare if magnify number is lower than), and if clicked active emit linearChartItemDetail. Default is 0 ' }
   },
 };
 
