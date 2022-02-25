@@ -23,7 +23,7 @@ describe('linearChartLine component', () => {
       ...defaultParams,
       propsData: {
         data: fakeData,
-        magnifyItensQuantity: 1,
+        magnifyItemsQuantity: 1,
         lastItem: false,
         index: 0
       }

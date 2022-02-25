@@ -20,7 +20,7 @@
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
             :label-max-length="labelMaxLength"
-            :magnify-itens-quantity="magnifyItensQuantity"
+            :magnify-items-quantity="magnifyItemsQuantity"
             @expand="expandList"
             @eventClick="eventClick"
             @linearChartItemDetail="linearChartItemDetail"
@@ -113,7 +113,7 @@ export default {
       type: Array,
       default: () => []
     },
-    magnifyItensQuantity: {
+    magnifyItemsQuantity: {
       type: Number,
       default: 0
     }

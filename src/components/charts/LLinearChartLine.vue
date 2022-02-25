@@ -46,7 +46,7 @@
           </div>
         </l-tooltip>
         <span
-          v-if="!lastItem && index < magnifyItensQuantity"
+          v-if="!lastItem && index < magnifyItemsQuantity"
         >
           <v-btn
             class="mx-2"
@@ -210,7 +210,7 @@ export default {
       type: Boolean,
       default: false
     },
-    magnifyItensQuantity: {
+    magnifyItemsQuantity: {
       type: Number,
       default: 0
     }
