@@ -31,7 +31,16 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart },
   template:
-    '<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props"> </l-linear-chart>'
+    '<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props"></l-linear-chart>'
+});
+
+const TemplateWithSectionAfterValue = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LLinearChart },
+  template:
+    `<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props">
+    <span slot="sectionAfterValue">test</span>
+    </l-linear-chart>`
 });
 
 export const Minimized = Template.bind({});
@@ -77,6 +86,25 @@ NonClickableItems.args = {
 export const MinimizedWithMagnify = Template.bind({});
 MinimizedWithMagnify.args = {
   magnifyItemsQuantity: 2,
+  data: [
+    { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE EXAMPLE ","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE","percentage":"16.14","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE","percentage":"10.29","total":"total%","quantity":0,"value":"value" },
+    { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }
+  ],
+  colors: [
+    "#51a59a",
+    "#e291da",
+    "#7dbaff",
+    "#ffb57d",
+    "#ae77d8"
+  ],
+  translationLine: { "value":"Value","records":"Percentage","seeMore":"See more" },
+};
+
+export const sectionAfterValue = TemplateWithSectionAfterValue.bind({});
+sectionAfterValue.args = {
   data: [
     { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE EXAMPLE ","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
     { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },

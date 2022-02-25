@@ -29,6 +29,31 @@
               name="sectionAfterValue"
               :value="slotProps.value"
             />
+            <template
+              v-if="!isLastItem(index) && index < magnifyItemsQuantity"
+            >
+              <slot
+                name="magnifyItemDetail"
+              >
+                <span>
+                  <l-button
+                    class="mx-2"
+                    text
+                    icon
+                    color="#9F6CBB"
+                    height="9px"
+                    min-width="20px"
+                    @click="linearChartItemDetail"
+                  >
+                    <v-icon
+                      size="14px"
+                    >
+                      mdi-magnify
+                    </v-icon>
+                  </l-button>
+                </span>
+              </slot>
+            </template>
           </l-linear-chart-line>
         </v-list-item>
       </v-list>
@@ -38,11 +63,13 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
+import LButton from "~/src/components/buttons/LButtonNew.vue"
 
 export default {
   name: 'LLinearChart',
   components: {
-    LLinearChartLine
+    LLinearChartLine,
+    LButton
   },
   props: {
     data: {

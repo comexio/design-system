@@ -45,25 +45,7 @@
             </span>
           </div>
         </l-tooltip>
-        <span
-          v-if="!lastItem && index < magnifyItemsQuantity"
-        >
-          <l-button
-            class="mx-2"
-            text
-            icon
-            color="#9F6CBB"
-            height="10px"
-            min-width="20px"
-            @click="linearChartItemDetail"
-          >
-            <v-icon
-              size="14px"
-            >
-              mdi-magnify
-            </v-icon>
-          </l-button>
-        </span>
+        <slot name="magnifyItemDetail" />
         <slot
           v-if="!itemsWithoutDetails.includes(data.label)"
           name="sectionAfterValue"
@@ -146,14 +128,12 @@
 <script>
 import LTag from '~/src/components/tags/LTag'
 import LTooltip from '~/src/components/tooltip/LTooltip'
-import LButton from "~/src/components/buttons/LButtonNew.vue"
 
 export default {
   name: 'LLinearChartLine',
   components: {
     LTag,
-    LTooltip,
-    LButton
+    LTooltip
   },
   props: {
     data: {
@@ -211,10 +191,6 @@ export default {
     showToolTip: {
       type: Boolean,
       default: false
-    },
-    magnifyItemsQuantity: {
-      type: Number,
-      default: 0
     }
   },
   computed: {
@@ -237,9 +213,6 @@ export default {
     },
     eventClick (value) {
       return this.$emit('eventClick', value)
-    },
-    linearChartItemDetail (item) {
-      return this.$emit('linear-chart-item-detail', item)
     }
   }
 }
