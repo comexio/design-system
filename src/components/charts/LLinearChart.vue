@@ -23,7 +23,6 @@
             :magnify-items-quantity="magnifyItemsQuantity"
             @expand="expandList"
             @eventClick="eventClick"
-            @linear-chart-item-detail="linearChartItemDetail"
           >
             <slot
               name="sectionAfterValue"
@@ -36,21 +35,21 @@
                 name="magnifyItemDetail"
               >
                 <span>
-                  <l-button
+                  <l-button-new
                     class="mx-2"
                     text
                     icon
                     color="#9F6CBB"
                     height="9px"
                     min-width="20px"
-                    @click="linearChartItemDetail"
+                    @click="linearChartItemDetail(item)"
                   >
                     <v-icon
                       size="14px"
                     >
                       mdi-magnify
                     </v-icon>
-                  </l-button>
+                  </l-button-new>
                 </span>
               </slot>
             </template>
@@ -63,13 +62,13 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
-import LButton from "~/src/components/buttons/LButtonNew.vue"
+import LButtonNew from "~/src/components/buttons/LButtonNew.vue"
 
 export default {
   name: 'LLinearChart',
   components: {
     LLinearChartLine,
-    LButton
+    LButtonNew
   },
   props: {
     data: {

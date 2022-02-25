@@ -23,23 +23,32 @@ export default {
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
-    magnifyItemsQuantity: { control: 'number', description: 'Add a a button how emit linear-chart-item-detail with the item data. The number say how many elements will have the button. set 0 to not show the button' }
+    magnifyItemsQuantity: { control: 'number', action: 'linearChartItemDetail', description: `Adds a button which emits the 'linear-chart-item-detail' event with the item data. The number sets how many elements will have the button. Set 0 to not show the button`}
   },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart },
-  template:
-    '<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props"></l-linear-chart>'
+  template: `
+    <l-linear-chart
+      @expandList="expandList"
+      @eventClick="eventClick"
+      v-bind="$props"
+    />`
 });
 
 const TemplateWithSectionAfterValue = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart },
   template:
-    `<l-linear-chart @expandList="expandList" @eventClick="eventClick" v-bind="$props">
-    <span slot="sectionAfterValue">test</span>
+    `
+    <l-linear-chart
+      @expandList="expandList"
+      @eventClick="eventClick"
+      v-bind="$props"
+    >
+      <span slot="sectionAfterValue">test</span>
     </l-linear-chart>`
 });
 
