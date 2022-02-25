@@ -53,7 +53,7 @@
             text
             icon
             color="#9F6CBB"
-            height="14px"
+            height="10px"
             min-width="20px"
             @click="linearChartItemDetail"
           >

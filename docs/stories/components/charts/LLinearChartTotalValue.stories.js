@@ -33,3 +33,17 @@ Default.args = {
     title: 'An awesome title',
     totalValue: '6.000'
 };
+
+export const DefaultWithMagnify = Template.bind({});
+DefaultWithMagnify.args = {
+  magnifyItemsQuantity: 1,
+  data: [{
+    label: 'An amazing label here',
+    percentage: 95,
+    quantity: null,
+    value: '4.530,33',
+    total: '4.535,00'
+  }],
+  title: 'An awesome title',
+  totalValue: '6.000'
+};

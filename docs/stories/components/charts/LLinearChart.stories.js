@@ -73,3 +73,23 @@ NonClickableItems.args = {
   applyCursorPointer: true,
   nonClickableItems: ['NONCLICKABLE', 'NONCLICKABLE1']
 };
+
+export const MinimizedWithMagnify = Template.bind({});
+MinimizedWithMagnify.args = {
+  magnifyItemsQuantity: 2,
+  data: [
+    { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE EXAMPLE ","percentage":"24.81","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE EXAMPLE EXAMPLE EXAMPLE","percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE","percentage":"16.14","total":"total%","quantity":0,"value":"value" },
+    { "label":"EXAMPLE","percentage":"10.29","total":"total%","quantity":0,"value":"value" },
+    { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }
+  ],
+  colors: [
+    "#51a59a",
+    "#e291da",
+    "#7dbaff",
+    "#ffb57d",
+    "#ae77d8"
+  ],
+  translationLine: { "value":"Value","records":"Percentage","seeMore":"See more" },
+};
