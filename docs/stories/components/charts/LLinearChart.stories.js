@@ -23,7 +23,7 @@ export default {
     generateColor: { table: {disable: true} },
     isTagChart:  {table: {disable: true} },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
-    magnifyItemsQuantity: { control: 'number', description: 'Add a magnify in elements list (using index to compare if magnify number is lower than), and if clicked active emit linearChartItemDetail. Default is 0 ' }
+    magnifyItemsQuantity: { control: 'number', description: 'Add a a button how emit linear-chart-item-detail with the item data. The number say how many elements will have the button. set 0 to not show the button' }
   },
 };
 

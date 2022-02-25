@@ -48,7 +48,7 @@ describe('linearChartLine component', () => {
     expect(cursor().exists()).toBeFalsy()
   })
 
-  it('check if magnify is showed', async () => {
+  it('check if magnify is not showed', async () => {
     const magnifyIcon = () => llinearChartLine.findAll('.mx-2')
     await llinearChartLine.vm.$nextTick()
     expect(magnifyIcon.length).toEqual(0)

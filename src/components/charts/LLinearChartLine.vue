@@ -48,11 +48,11 @@
         <span
           v-if="!lastItem && index < magnifyItemsQuantity"
         >
-          <v-btn
+          <l-button
             class="mx-2"
             text
             icon
-            color="wisteria"
+            color="#9F6CBB"
             height="14px"
             min-width="20px"
             @click="linearChartItemDetail"
@@ -62,7 +62,7 @@
             >
               mdi-magnify
             </v-icon>
-          </v-btn>
+          </l-button>
         </span>
         <slot
           v-if="!itemsWithoutDetails.includes(data.label)"
@@ -146,12 +146,14 @@
 <script>
 import LTag from '~/src/components/tags/LTag'
 import LTooltip from '~/src/components/tooltip/LTooltip'
+import LButton from "~/src/components/buttons/LButtonNew.vue"
 
 export default {
   name: 'LLinearChartLine',
   components: {
     LTag,
-    LTooltip
+    LTooltip,
+    LButton
   },
   props: {
     data: {
@@ -237,7 +239,7 @@ export default {
       return this.$emit('eventClick', value)
     },
     linearChartItemDetail (item) {
-      return this.$emit('linearChartItemDetail', item)
+      return this.$emit('linear-chart-item-detail', item)
     }
   }
 }

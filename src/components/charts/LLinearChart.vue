@@ -23,7 +23,7 @@
             :magnify-items-quantity="magnifyItemsQuantity"
             @expand="expandList"
             @eventClick="eventClick"
-            @linearChartItemDetail="linearChartItemDetail"
+            @linear-chart-item-detail="linearChartItemDetail"
           >
             <slot
               name="sectionAfterValue"
@@ -144,7 +144,7 @@ export default {
       this.$emit('eventClick', value)
     },
     linearChartItemDetail (item) {
-      this.$emit('linearChartItemDetail', item)
+      this.$emit('linear-chart-item-detail', item)
     }
   }
 }
