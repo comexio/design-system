@@ -22,7 +22,10 @@ describe('linearChartLine component', () => {
     llinearChartLine = shallowMount(LLinearChartLine, {
       ...defaultParams,
       propsData: {
-        data: fakeData
+        data: fakeData,
+        magnifyItemsQuantity: 1,
+        lastItem: false,
+        index: 0
       }
     })
   })

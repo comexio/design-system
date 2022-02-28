@@ -20,6 +20,7 @@
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
             :label-max-length="labelMaxLength"
+            :magnify-items-quantity="magnifyItemsQuantity"
             @expand="expandList"
             @eventClick="eventClick"
           >
@@ -27,6 +28,31 @@
               name="sectionAfterValue"
               :value="slotProps.value"
             />
+            <template
+              v-if="!isLastItem(index) && index < magnifyItemsQuantity"
+            >
+              <slot
+                name="magnifyItemDetail"
+              >
+                <span>
+                  <l-button-new
+                    class="mx-2"
+                    text
+                    icon
+                    color="#9F6CBB"
+                    height="9px"
+                    min-width="20px"
+                    @click="linearChartItemDetail(item)"
+                  >
+                    <v-icon
+                      size="14px"
+                    >
+                      mdi-magnify
+                    </v-icon>
+                  </l-button-new>
+                </span>
+              </slot>
+            </template>
           </l-linear-chart-line>
         </v-list-item>
       </v-list>
@@ -36,11 +62,13 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
   name: 'LLinearChart',
   components: {
-    LLinearChartLine
+    LLinearChartLine,
+    LButtonNew
   },
   props: {
     data: {
@@ -110,6 +138,10 @@ export default {
     nonClickableItems: {
       type: Array,
       default: () => []
+    },
+    magnifyItemsQuantity: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -136,6 +168,9 @@ export default {
       }
 
       this.$emit('eventClick', value)
+    },
+    linearChartItemDetail (item) {
+      this.$emit('linear-chart-item-detail', item)
     }
   }
 }
