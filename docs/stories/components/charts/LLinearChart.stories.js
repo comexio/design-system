@@ -25,7 +25,7 @@ export default {
     isTagChart:  {table: {disable: true} },
     sectionAfterValue: { description: 'Slot can show extra content and return info to parent components to show more details' },
     magnifyItemsQuantity: { control: 'number', description: `Adds a button which emits the 'linear-chart-item-detail' event with the item data. The number sets how many elements will have the button. Set 0 to not show the button`},
-    'linearChartItemDetail': { action: 'linearChartItemDetail', description: 'Triggers a click event in magnify button' }
+    linearChartItemDetail: { action: 'linear-chart-item-detail', description: 'Triggers a click event in magnify button' }
   },
 };
 
@@ -36,7 +36,7 @@ const Template = (args, { argTypes }) => ({
     <l-linear-chart
       @expandList="expandList"
       @eventClick="eventClick"
-      @linearChartItemDetail="linearChartItemDetail"
+      @linear-chart-item-detail="linearChartItemDetail"
       v-bind="$props"
     />`
 });
@@ -49,7 +49,6 @@ const TemplateWithSectionAfterValue = (args, { argTypes }) => ({
     <l-linear-chart
       @expandList="expandList"
       @eventClick="eventClick"
-      @linearChartItemDetail="linearChartItemDetail"
       v-bind="$props"
     >
       <span slot="sectionAfterValue">test</span>
