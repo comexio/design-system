@@ -62,7 +62,7 @@
 
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
-import LButtonNew from "~/src/components/buttons/LButtonNew.vue"
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
   name: 'LLinearChart',
