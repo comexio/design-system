@@ -38,7 +38,29 @@ const Template = (args, { argTypes }) => ({
       @eventClick="eventClick"
       @linear-chart-item-detail="linear-chart-item-detail"
       v-bind="$props"
-    />`
+    >
+    <slot
+      name="magnifyItemDetail"
+    >
+    <span>
+      <l-button-new
+        class="mx-2"
+        text
+        icon
+        color="#9F6CBB"
+        height="9px"
+        min-width="20px"
+        @click="linearChartItemDetail(item)"
+      >
+        <v-icon
+          size="14px"
+        >
+          mdi-magnify
+        </v-icon>
+      </l-button-new>
+      </span>
+    </slot>
+    </l-linear-chart>`
 });
 
 const TemplateWithSectionAfterValue = (args, { argTypes }) => ({
@@ -53,6 +75,27 @@ const TemplateWithSectionAfterValue = (args, { argTypes }) => ({
       v-bind="$props"
     >
       <span slot="sectionAfterValue">test</span>
+      <slot
+        name="magnifyItemDetail"
+      >
+                <span>
+                  <l-button-new
+                    class="mx-2"
+                    text
+                    icon
+                    color="#9F6CBB"
+                    height="9px"
+                    min-width="20px"
+                    @click="linearChartItemDetail(item)"
+                  >
+                    <v-icon
+                      size="14px"
+                    >
+                      mdi-magnify
+                    </v-icon>
+                  </l-button-new>
+                </span>
+      </slot>
     </l-linear-chart>`
 });
 
