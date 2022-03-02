@@ -32,7 +32,7 @@ export default {
     transform:rotate(0deg);
   }
   to {
-    transform:rotate(-1turn);
+    transform:rotate(1turn);
   }
 }
 </style>
