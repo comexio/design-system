@@ -36,7 +36,7 @@
               >
                 <span>
                   <l-button-new
-                    class="mx-2"
+                    class="LLinearChart__list__item__magnify"
                     text
                     icon
                     color="#9F6CBB"
@@ -181,6 +181,9 @@ export default {
 .LLinearChart__list__item{
   padding: 3px 10px;
   }
+.LLinearChart__list__item__magnify {
+  margin-left: 5px;
+}
 @media screen and (min-width: 1500px) {
   .LLinearChart__list__item {
     min-height: auto;
