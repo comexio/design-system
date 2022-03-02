@@ -4,7 +4,7 @@
     :color="color"
     class="LLoading"
   >
-    mdi-cached
+    mdi-rotate-right
   </v-icon>
 </template>
 
