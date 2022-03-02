@@ -133,12 +133,12 @@ describe('linearChart component', () => {
   })
 
   it('check if magnify is showed', async () => {
-    const items = () => linearChart.findAll('.magnify-button')
+    const items = () => linearChart.findAll('.magnify_button')
     expect(items().length).toBe(2)
   })
 
   it('check if magnify click emit function call', async () => {
-    const items = () => linearChart.findAll('.magnify-button')
+    const items = () => linearChart.findAll('.magnify_button')
     expect(items().length).toBe(2)
     expect(linearChart.emitted()['linear-chart-item-detail']).toBeFalsy()
     items().at(0).trigger('click')
@@ -149,7 +149,7 @@ describe('linearChart component', () => {
   it('check if magnify is not showed', async () => {
     linearChart.setProps({magnifyItemsQuantity: 0})
     await linearChart.vm.$nextTick()
-    const items = () => linearChart.findAll('.magnify-button')
+    const items = () => linearChart.findAll('.magnify_button')
     expect(items().length).toBe(0)
   })
 })
