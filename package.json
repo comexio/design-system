@@ -21,6 +21,9 @@
     "snapshot": "percy storybook:start -c .percy.yml -e Deprecated",
     "release-beta": "release-it prerelease --ci"
   },
+  "jest": {
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
   "main": "./dist/design.umd.min.js",
   "types": "./types",
   "husky": {

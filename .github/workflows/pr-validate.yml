@@ -46,7 +46,33 @@ jobs:
           path: node_modules
           key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
       - run: yarn
-      - run: yarn test
+      - run: yarn testcoverage
+      - name: Fix code coverage paths
+        working-directory: .
+        run: |
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' coverage/lcov.info
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' test-report.xml
+
+      - uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=Design-system
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.testExecutionReportPaths=test-report.xml
+            -Dsonar.sources=src,enum,utils
+            -Dsonar.tests=test
+            -Dsonar.coverage.exclusions=**/enum/**
+
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_DESIGN_SYSTEM }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      - uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_DESIGN_SYSTEM }}
   build:
     needs: [test]
     runs-on: ubuntu-latest
