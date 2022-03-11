@@ -47,6 +47,7 @@ jobs:
           key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
       - run: yarn
       - run: yarn testcoverage
+
       - name: Fix code coverage paths
         working-directory: .
         run: |
@@ -72,7 +73,7 @@ jobs:
       - uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_DESIGN_SYSTEM }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_DESIGN_SYSTEM }}
   build:
     needs: [test]
     runs-on: ubuntu-latest
