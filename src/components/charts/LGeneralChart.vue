@@ -1,26 +1,23 @@
 <template>
-  <div class="LGeneralChart py-4 px-5">
-    <v-row>
-      <v-col
-        cols="2"
-        class="d-flex mr-2"
+  <div class="LGeneralChart d-flex align-center flex-wrap py-3 px-5">
+    <div
+      class="py-3 pr-5 ml-4"
+    >
+      <img
+        v-if="image"
+        :src="image"
+        alt="container"
+        class="LGeneralChart__image"
       >
-        <img
-          v-if="image"
-          :src="image"
-          alt="container"
-          class="LGeneralChart__image"
-        >
-      </v-col>
-      <v-col>
-        <div class="LGeneralChart__value font-bd">
-          {{ data.total }} {{ typeValue }}
-        </div>
-        <div class="LGeneralChart__subtitle font-md">
-          {{ subtitle }}
-        </div>
-      </v-col>
-    </v-row>
+    </div>
+    <div>
+      <div class="LGeneralChart__value font-bd">
+        {{ data.total }} {{ typeValue }}
+      </div>
+      <div class="LGeneralChart__subtitle font-md">
+        {{ subtitle }}
+      </div>
+    </div>
   </div>
 </template>
 
