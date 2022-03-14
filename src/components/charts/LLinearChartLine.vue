@@ -45,6 +45,7 @@
             </span>
           </div>
         </l-tooltip>
+        <slot name="magnifyItemDetail" />
         <slot
           v-if="!itemsWithoutDetails.includes(data.label)"
           name="sectionAfterValue"

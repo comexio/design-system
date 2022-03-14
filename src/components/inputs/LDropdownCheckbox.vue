@@ -1,6 +1,7 @@
 <template>
   <div class="LDropdownCheckbox">
     <v-menu
+      v-model="enableMenu"
       offset-y
       right
       :close-on-content-click="false"
@@ -28,6 +29,12 @@
         :translation="{ input: checkboxListPlaceholder, select: checkboxListSelectAllText }"
         @updatedItems="updatedItems"
       />
+      <div v-if="$scopedSlots.actions">
+        <v-divider />
+        <div class="LDropdownCheckbox__menu__actions">
+          <slot name="actions" />
+        </div>
+      </div>
     </v-menu>
   </div>
 </template>
@@ -66,6 +73,11 @@ export default {
       default: null
     },
   },
+  data () {
+    return {
+      enableMenu: false
+    }
+  },
   computed: {
     inputValue: {
       get () {
@@ -91,6 +103,10 @@ export default {
 
 .LDropdownCheckbox__menu {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.28);
+
+  &__actions {
+    background: white;
+  }
 }
 
 .LButtonSelect {

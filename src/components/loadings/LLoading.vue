@@ -4,7 +4,7 @@
     :color="color"
     class="LLoading"
   >
-    mdi-cached
+    mdi-rotate-right
   </v-icon>
 </template>
 
@@ -32,7 +32,7 @@ export default {
     transform:rotate(0deg);
   }
   to {
-    transform:rotate(-1turn);
+    transform:rotate(1turn);
   }
 }
 </style>

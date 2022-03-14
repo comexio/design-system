@@ -115,3 +115,41 @@ describe('linearChart component', () => {
     expect(isClickableTrue).toBeTruthy()
   })
 })
+
+describe('linearChart component', () => {
+  let linearChart: Wrapper<LLinearChart>
+
+  beforeAll(() => {
+    linearChart = mount(LLinearChart, {
+      ...setupDefault,
+      propsData: {
+        data: dataFake,
+        magnifyItemsQuantity: 2,
+        labelMaxLength: 5,
+        isExpanded: false,
+        maxQuantity: 5
+      }
+    })
+  })
+
+  it('check if magnify is showed', async () => {
+    const items = () => linearChart.findAll('.LLinearChart__list__item__magnify')
+    expect(items().length).toBe(2)
+  })
+
+  it('check if magnify click emit function call', async () => {
+    const items = () => linearChart.findAll('.LLinearChart__list__item__magnify')
+    expect(items().length).toBe(2)
+    expect(linearChart.emitted()['linear-chart-item-detail']).toBeFalsy()
+    items().at(0).trigger('click')
+    await linearChart.vm.$nextTick()
+    expect(linearChart.emitted()['linear-chart-item-detail']).toBeTruthy()
+  })
+
+  it('check if magnify is not showed', async () => {
+    linearChart.setProps({magnifyItemsQuantity: 0})
+    await linearChart.vm.$nextTick()
+    const items = () => linearChart.findAll('.LLinearChart__list__item__magnify')
+    expect(items().length).toBe(0)
+  })
+})
