@@ -3,12 +3,12 @@
     <div
       class="py-3 pr-5 ml-4"
     >
-      <img
+      <v-img
         v-if="image"
         :src="image"
         alt="container"
         class="LGeneralChart__image"
-      >
+      />
     </div>
     <div>
       <div class="LGeneralChart__value font-bd">
