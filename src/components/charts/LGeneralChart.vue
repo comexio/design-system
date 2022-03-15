@@ -6,7 +6,7 @@
       <v-img
         v-if="image"
         :src="image"
-        alt="container"
+        :alt="imgAlt"
         class="LGeneralChart__image"
       />
     </div>
@@ -28,6 +28,10 @@ export default {
     data: {
       type: [Object, Array],
       default: null
+    },
+    imgAlt: {
+      type: String,
+      default: 'container'
     },
     subtitle: {
       type: String,
