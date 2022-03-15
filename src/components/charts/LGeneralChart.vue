@@ -1,8 +1,6 @@
 <template>
   <div class="LGeneralChart d-flex align-center flex-wrap py-3 px-5">
-    <div
-      class="py-3 pr-5 ml-4"
-    >
+    <div class="py-3 pr-5 ml-4">
       <v-img
         v-if="image"
         :src="image"
