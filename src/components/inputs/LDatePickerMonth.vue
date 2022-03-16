@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 
@@ -145,7 +145,7 @@ export default {
     periodChip: {
       get () {
         const [startYearMonthStr, endYearMonthStr] = this.monthsPeriod
-        const momentLimitMax = moment(this.dateLimit.max).format('YYYY-MM')
+        const momentLimitMax = dayjs(this.dateLimit.max).format('YYYY-MM')
 
         if (!endYearMonthStr || endYearMonthStr !== momentLimitMax) {
           return
@@ -232,7 +232,7 @@ export default {
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
       if (type === 'max') {
-        return moment(max, "YYYY-MM-DD").add(1, 'day').format('YYYY-MM-DD')
+        return dayjs(max, "YYYY-MM-DD").add(1, 'day').format('YYYY-MM-DD')
       }
 
       const date = new Date()
