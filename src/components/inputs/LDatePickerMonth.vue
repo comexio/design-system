@@ -114,7 +114,7 @@ export default {
       type: String,
       default: '#9F6CBB'
     },
-    dropdownIcon: { 
+    dropdownIcon: {
       type: Boolean,
       default: true
     },
@@ -126,8 +126,8 @@ export default {
       type: Array,
       default: () => [
         'last_3_months',
-        'last_6_months', 
-        'last_9_months', 
+        'last_6_months',
+        'last_9_months',
         'last_12_months'
       ]
     },
@@ -232,7 +232,7 @@ export default {
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
       if (type === 'max') {
-        return max
+        return moment(max, "YYYY-MM-DD").add(1, 'day').format('YYYY-MM-DD')
       }
 
       const date = new Date()
