@@ -232,7 +232,7 @@ export default {
     dateFilterLimits (type) {
       const { min, max } = this.dateLimit
       if (type === 'max') {
-        return dayjs(max, "YYYY-MM-DD").add(1, 'day').format('YYYY-MM-DD')
+        return dayjs(max, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD')
       }
 
       const date = new Date()
