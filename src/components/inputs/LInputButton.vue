@@ -51,6 +51,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_variables.scss';
+
 .l-input-button {
     width: 100%;
     display: flex;
@@ -66,8 +68,8 @@ export default {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     height: 56px;
-    background-color: #FF8F1C !important;
-    color: #ffffff;
+    background-color: $westSide !important;
+    color: $white;
     font-size: 1.230769231rem;
     text-transform: uppercase;
   }

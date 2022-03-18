@@ -29,7 +29,7 @@
       <template #append>
         <v-icon
           v-if="icon"
-          :color="iconColor"
+          :color="iconColor || globalColors.wisteria"
         >
           {{ appendIcon }}
         </v-icon>
@@ -64,9 +64,11 @@
 import is from 'ramda/src/is'
 import equals from 'ramda/src/equals'
 import { getInputHeight } from '~/utils/size.util'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LInputLoaded',
+  mixins: [colorsMixin],
   props: {
     field: {
       type: String,
@@ -102,7 +104,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: '#9F6CBB'
+      default: ''
     },
     disabled: Boolean,
     loading: Boolean,
@@ -151,7 +153,7 @@ export default {
     },
     inputBackgroundColor () {
       if (this.isDisabled) {
-        return '#F8F8F8'
+        return this.globalColors.alabaster
       }
 
       return ''

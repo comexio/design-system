@@ -17,9 +17,11 @@
 
 <script>
 import { getInputHeight } from '~/utils/size.util'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LLabeledInput',
+  mixins: [colorsMixin],
   inheritAttrs: false,
   props: {
     rules: {
@@ -44,7 +46,7 @@ export default {
     },
     inputBackgroundColor () {
       if (this.disabled) {
-        return '#F8F8F8'
+        return this.globalColors.alabaster
       }
 
       return ''
