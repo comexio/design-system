@@ -37,9 +37,9 @@
 <!-- Index session-->
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
- <a href="#-como-tudo-funciona">Funcionalidade</a> •
+ <a href="#%EF%B8%8F-como-tudo-funciona">Funcionalidade</a> •
  <a href="#-como-executar-o-projeto">Rodando localmente</a> • 
- <a href="#-docs">Documentação</a> • 
+ <a href="#open_file_folder-docs">Documentação</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-licença">Licença</a>
 </p>
