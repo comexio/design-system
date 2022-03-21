@@ -2,7 +2,7 @@
   <div
     class="datepicker LDatePickerDay"
     :class="datePickerClass"
-    :style="{ '--borderColor': borderColor }"
+    :style="{ '--borderColor': borderColor || globalColors.purpleHaze }"
   >
     <v-menu
       v-model="menu"
@@ -21,7 +21,7 @@
             class="mr-2"
           >
             <v-icon
-              :color="itemsColor"
+              :color="itemsColor || globalColors.wisteria"
               size="20px"
             >
               mdi-calendar-month
@@ -50,7 +50,7 @@
           <v-spacer />
           <v-icon
             v-if="dropdownIcon"
-            :color="itemsColor"
+            :color="itemsColor || globalColors.wisteria"
             size="20px"
           >
             mdi-chevron-down
@@ -72,11 +72,11 @@
           :show-current="false"
           :locale="locale"
           type="date"
-          :color="itemsColor"
-          :event-color="itemsColor"
+          :color="itemsColor || globalColors.wisteria"
+          :event-color="itemsColor || globalColors.wisteria"
           width="200px"
           class="d-flex flex-row-reverse datepicker__calendar"
-          :style="{ '--itemsColor': itemsColor }"
+          :style="{ '--itemsColor': itemsColor || globalColors.wisteria }"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
           @update:picker-date="(e) => changeTableDatepicker(e, datepickerRefsEnum.FIRST)"
@@ -94,10 +94,10 @@
           :show-current="false"
           :locale="locale"
           type="date"
-          :color="itemsColor"
-          :event-color="itemsColor"
+          :color="itemsColor || globalColors.wisteria"
+          :event-color="itemsColor || globalColors.wisteria"
           width="200px"
-          :style="{ '--itemsColor': itemsColor }"
+          :style="{ '--itemsColor': itemsColor || globalColors.wisteria}"
           class="d-flex flex-row-reverse datepicker__calendar"
           :max="dateFilterLimits('max')"
           :min="dateFilterLimits('min')"
@@ -120,6 +120,7 @@ import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/dat
 import { DATEPICKER_REFS, DATEPICKER_CALENDAR_TYPES, DATEPICKER_DAY_MASK, DATEPICKER_DAY_FORMAT } from '~/enum/datepicker.enum'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonthDay, sortDateISO, getDateBasedOnLimit } from '~/utils/date.util.ts'
 import LTextField from '~/src/components/inputs/LTextField.vue'
+import colorsMixin from '~/mixins/colors.mixin'
 import VueMask from 'v-mask'
 Vue.use(VueMask)
 dayjs.extend(customParseFormat)
@@ -131,6 +132,7 @@ export default {
   components: {
     LTextField
   },
+  mixins: [colorsMixin],
   props: {
     value: {
       type: [String, Array],
@@ -150,7 +152,7 @@ export default {
     },
     itemsColor: {
       type: String,
-      default: '#9F6CBB'
+      default: ''
     },
     closeOnSelect: Boolean,
     datepickerStatus: {
@@ -167,7 +169,7 @@ export default {
     },
     borderColor: {
       type: String,
-      default: '#5C068C'
+      default: ''
     },
     bordered: Boolean,
     allowTypingDate: Boolean

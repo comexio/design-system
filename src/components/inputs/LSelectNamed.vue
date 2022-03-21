@@ -15,8 +15,11 @@
 </template>
 
 <script>
-export default {
+import colorsMixin from '~/mixins/colors.mixin'
+
+export default {  
   name: 'LSelectNamed',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: [String, Number, Object],
@@ -39,7 +42,7 @@ export default {
     },
     inputBackgroundColor () {
       if (this.disabled) {
-        return '#F8F8F8'
+        return this.globalColors.alabaster
       }
 
       return ''

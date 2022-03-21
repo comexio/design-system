@@ -5,7 +5,7 @@
       :key="index"
       :data="item"
       :index="index"
-      :color="color"
+      :color="color || globalColors.prelude"
       :is-last-item="isLastItem(index)"
       :others-label="othersLabel"
       :min-line-height="minLineHeight"
@@ -21,12 +21,14 @@
 
 <script>
 import LBarChartLine from '~/src/components/charts/LBarChartLine'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LBarChart',
   components: {
     LBarChartLine
   },
+  mixins: [colorsMixin],
   props: {
     data: {
       type: Array,
@@ -38,7 +40,7 @@ export default {
     },
     color: {
       type: String,
-      default: () => '#D4C5EB'
+      default: ''
     },
     othersLabel: {
       type: String,

@@ -6,7 +6,7 @@
       v-bind="$attrs"
       :rules="validityRules"
       class="LLabeledTextarea__input"
-      :background-color="disabled ? '#f8f8f8': ''"
+      :background-color="disabled ? globalColors.alabaster : ''"
       :disabled="disabled"
       v-on="$listeners"
     />
@@ -14,8 +14,11 @@
 </template>
 
 <script>
+import colorsMixin from '~/mixins/colors.mixin'
+
 export default {
   name: 'LLabeledTextArea',
+  mixins: [colorsMixin],
   inheritAttrs: false,
   props: {
     validity: {

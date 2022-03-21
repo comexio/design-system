@@ -26,13 +26,13 @@
       v-slot:append-outer
     >
       <v-btn
+        :disabled="disabled"
+        :color="globalColors.purpleHaze"
+        :height="inputHeight"
         text
         tile
-        color="#5C068C"
-        class="ml-1"
-        :height="inputHeight"
         small
-        :disabled="disabled"
+        class="ml-1"
         @click="clickAppendOuter"
         v-on="$attrs.iconListeners"
       >
@@ -44,9 +44,11 @@
 
 <script>
 import { getInputHeight } from '~/utils/size.util'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LInputTag',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: [String, Number, Array],
@@ -81,7 +83,7 @@ export default {
     },
     inputBackgroundColor () {
       if (this.disabled) {
-        return '#F8F8F8'
+        return this.globalColors.alabaster
       }
 
       return ''
@@ -106,6 +108,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/_variables.scss';
+
 .LInputTag--hideDetails {
   ::v-deep {
     @extend .commonCombobox;
@@ -144,8 +148,8 @@ export default {
     margin: 0 !important;
   }
   .v-btn {
-    box-shadow: inset 0 0 0 1px #5c068c;
-    background-color: #faf6ff;
+    box-shadow: inset 0 0 0 1px $purpleHaze;
+    background-color: $magnolia;
     border-radius: 4px;
   }
 }
