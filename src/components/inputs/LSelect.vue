@@ -86,7 +86,7 @@ export default {
     transform: scaleX(0) !important;
   }
   .v-select .v-select__selection--comma {
-  color: $martinique !important;
+    color: $martinique !important;
   }
 }
 </style>
