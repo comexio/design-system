@@ -131,14 +131,33 @@ const TemplateWarning = (args, { argTypes }) => ({
   `
 });
 
+const TemplateCustom = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LToast, LToastContent },
+  ...defaultTemplateOptions,
+  template: `
+    <div>
+      <l-toast 
+        v-bind="$props"
+        @input="closeAlert" 
+      >
+        <span style="align-self: center;">Custom content</span>
+      </l-toast>
+    </div>
+  `
+});
+
+//TODO: Validar problema de alerta fora da Story quando value vem como true
+//TODO: Validar warns por conta das actions dos eventos "clickDismiss" e "clickAction" e invalid handlers
+
 export const Informational = TemplateInformational.bind({});
 Informational.args = {
   value: false,
   bookmarkColor: '#4B66C6'
 };
 
-export const ErrorFull = TemplateError.bind({});
-ErrorFull.args = {
+export const Error = TemplateError.bind({});
+Error.args = {
   value: false,
   bookmarkColor: '#CC2C28'
 };
@@ -153,4 +172,9 @@ export const Warning = TemplateWarning.bind({});
 Warning.args = {
   value: false,
   bookmarkColor: '#F6B334'
+};
+
+export const Custom = TemplateCustom.bind({});
+Custom.args = {
+  value: false,
 };
