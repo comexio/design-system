@@ -5,7 +5,7 @@
     v-on="$listeners"
   >
     <div 
-      :class="contentClass"
+      :class="wrapperClass"
       class="LToast__content d-flex" 
     >
       <div
@@ -24,7 +24,7 @@ export default {
   name: 'LToast',
   mixins: [colorsMixin],
   props: {
-    contentClass: {
+    wrapperClass: {
       type: [String, Array, Object],
       default: () => ({})
     },

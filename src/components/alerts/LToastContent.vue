@@ -45,16 +45,17 @@
 </template>
 
 <script>
-import { TOAST_TYPE } from '~/enum/toast.enum'
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LToastContent',
+  components: { LButtonNew },
   mixins: [colorsMixin],
   props: {
     type: {
       type: String,
-      default: TOAST_TYPE.INFORMATIONAL
+      default: ''
     },
     dismissible: Boolean,
     actionButton: Boolean,
@@ -69,10 +70,6 @@ export default {
     actionButtonText: {
       type: String,
       default: ''
-    }
-  },
-  data () {
-    return {
     }
   },
   computed: {
@@ -101,6 +98,7 @@ export default {
 
   &__title { 
     color: $martinique;
+    font-size: 1.4rem;
     font-weight: 400;
 
     &--bold { 
@@ -110,13 +108,12 @@ export default {
 
   &__description { 
     color: $doveGray;
+    font-size: 1.2rem;
     font-weight: 400;
   }
 
-  &__title, &__description { 
-    font-size: 1.6rem;
-
-    @media screen and (min-width: 600px) {
+  @media screen and (min-width: 600px) {
+    &__title, &__description { 
       font-size: 1.231rem;
     }
   }
