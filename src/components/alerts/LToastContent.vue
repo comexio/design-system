@@ -1,5 +1,5 @@
 <template>
-  <div class="LToastContent d-flex justify-space-between py-3 pr-1">
+  <div class="LToastContent d-flex justify-space-between pr-1">
     <div class="d-flex align-center pr-5">
       <v-icon :color="iconsColor">
         {{ iconName }}
@@ -13,7 +13,7 @@
         </div>
         <div 
           v-if="description" 
-          class="LToastContent__description mt-1"
+          class="LToastContent__description"
         >
           {{ description }}
         </div>
@@ -94,6 +94,7 @@ export default {
 @import '../../assets/scss/_variables.scss';
 
 .LToastContent {
+  padding: 14px 0;
   width: 100%;
 
   &__title { 
@@ -110,6 +111,7 @@ export default {
     color: $doveGray;
     font-size: 1.2rem;
     font-weight: 400;
+    margin-top: 6px;
   }
 
   @media screen and (min-width: 600px) {

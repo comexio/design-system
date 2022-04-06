@@ -41,6 +41,7 @@ export default {
         bottom: true,
         timeout: 10000,
         transition: 'slide-x-transition',
+        elevation: 0,
         ...this.$attrs
       }
     }
@@ -50,6 +51,10 @@ export default {
 
 <style lang="scss" scoped>
 .LToast {
+  padding: 32px;
+  padding-bottom: 32px !important;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.18)); //box-shadow 3
+
   &__content {
     color: $martinique;
     min-height: 59px;
@@ -66,10 +71,10 @@ export default {
   .v-snack__wrapper {
     border-radius: 9px 5px 5px 9px !important;
     min-height: 59px;
-    max-width: 360px;
+    width: 360px;
 
     @media screen and (min-width: 600px) {
-      min-width: 429px;
+      width: 436px;
       max-width: none;
     }
   }
