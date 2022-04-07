@@ -60,7 +60,8 @@ const Template = (args, { argTypes }) => ({
 export const InformationalTitleOnly = Template.bind({});
 InformationalTitleOnly.args = {
   title: 'Informational alert',
-  type: 'Informational'
+  type: 'Informational',
+  dismissible: false
 };
 
 export const InformationalTitleAndDescription = Template.bind({});
@@ -79,13 +80,14 @@ InformationalWithAction.args = {
 export const InformationalDismissible = Template.bind({});
 InformationalDismissible.args = {
   ...InformationalWithAction.args,
-  dismissible: true,
+  dismissible: true
 };
 
 export const ErrorTitleOnly = Template.bind({});
 ErrorTitleOnly.args = {
   type: 'Error',
-  title: 'Error alert'
+  title: 'Error alert',
+  dismissible: false
 };
 
 export const ErrorTitleAndDescription = Template.bind({});
@@ -104,13 +106,14 @@ ErrorWithAction.args = {
 export const ErrorDismissible = Template.bind({});
 ErrorDismissible.args = {
   ...ErrorWithAction.args,
-  dismissible: true,
+  dismissible: true
 };
 
 export const SuccessTitleOnly = Template.bind({});
 SuccessTitleOnly.args = {
   type: 'Success',
-  title: 'Success alert'
+  title: 'Success alert',
+  dismissible: false,
 };
 
 export const SuccessTitleAndDescription = Template.bind({});
@@ -129,19 +132,21 @@ SuccessWithAction.args = {
 export const SuccessDismissible = Template.bind({});
 SuccessDismissible.args = {
   ...SuccessWithAction.args,
-  dismissible: true,
+  dismissible: true
 };
 
 export const WarningTitleOnly = Template.bind({});
 WarningTitleOnly.args = {
   type: 'Warning',
-  title: 'Warning alert'
+  title: 'Warning alert',
+  dismissible: false
 };
 
 export const WarningTitleAndDescription = Template.bind({});
 WarningTitleAndDescription.args = {
   ...WarningTitleOnly.args,
-  description: 'Alert description here'
+  description: 'Alert description here',
+  dismissible: false
 };
 
 export const WarningWithAction = Template.bind({});
@@ -154,5 +159,5 @@ WarningWithAction.args = {
 export const WarningDismissible = Template.bind({});
 WarningDismissible.args = {
   ...WarningWithAction.args,
-  dismissible: true,
+  dismissible: true
 };

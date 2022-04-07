@@ -57,7 +57,10 @@ export default {
       type: String,
       default: ''
     },
-    dismissible: Boolean,
+    dismissible: {
+      type: Boolean,
+      default: true
+    },
     actionButton: Boolean,
     title: {
       type: String,
