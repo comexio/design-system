@@ -34,14 +34,19 @@ export default {
     }
   },
   computed: {
-    toastProps () {
+    defaultProps () {
       return {
         color: this.globalColors.white,
         left: true,
         bottom: true,
         timeout: 10000,
         transition: 'slide-x-transition',
-        elevation: 0,
+        elevation: 0
+      }
+    },
+    toastProps () {
+      return {
+        ...this.defaultProps,
         ...this.$attrs
       }
     }
