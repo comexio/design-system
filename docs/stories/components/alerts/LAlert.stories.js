@@ -2,7 +2,7 @@ import LAlert from "~/src/components/alerts/LAlert.vue";
 import LButton from "~/src/components/buttons/LButtonNew.vue"
 
 export default {
-  title: "Components/Base/Alert",
+  title: "Deprecated/Base/Alert",
   component: LAlert,
   argTypes: {
     msg: { control: "text", description: "Alert message" },
