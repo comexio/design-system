@@ -119,7 +119,7 @@ export default {
 
   @media screen and (min-width: 600px) {
     &__title, &__description { 
-      font-size: 1.231rem;
+      font-size: 1.077rem;
     }
   }
 }
