@@ -17,8 +17,8 @@
     <v-icon
       v-if="appendIcon"
       slot="append"
+      :color="globalColors.wisteria"
       size="10px"
-      color="#9F6CBB"
     >
       {{ appendIcon }}
     </v-icon>
@@ -27,8 +27,11 @@
 
 <script>
 import { getInputHeight } from '~/utils/size.util'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
+  name: 'LInputSolo',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: [String, Number],
@@ -54,7 +57,7 @@ export default {
     },
     inputBackgroundColor () {
       if (this.disabled) {
-        return '#F8F8F8'
+        return this.globalColors.alabaster
       }
 
       return ''

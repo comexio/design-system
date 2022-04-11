@@ -116,7 +116,7 @@
     <div class="pt-1">
       <v-progress-linear
         :value="data.percentage"
-        background-color="#F1EFEF"
+        :background-color="globalColors.gallery"
         :color="color"
         rounded
         height="7px"
@@ -128,6 +128,7 @@
 <script>
 import LTag from '~/src/components/tags/LTag'
 import LTooltip from '~/src/components/tooltip/LTooltip'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LLinearChartLine',
@@ -135,6 +136,7 @@ export default {
     LTag,
     LTooltip
   },
+  mixins: [colorsMixin],
   props: {
     data: {
       type: Object,

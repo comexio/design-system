@@ -15,8 +15,8 @@
         >
           <v-avatar
             v-if="timeLineScroll.initial"
+            :color="globalColors.magnoliaDark"
             size="20"
-            color="#F9EFFF"
             class="pointer mt-n11"
             @click="handleScrollLeft"
           >
@@ -32,8 +32,8 @@
           </div>
           <v-avatar
             v-if="timeLineScroll.final"
+            :color="globalColors.magnoliaDark"
             size="20"
-            color="#F9EFFF"
             class="pointer mt-n11"
             @click="handleScrollRight"
           >
@@ -49,12 +49,14 @@
 
 <script>
 import LCard from '~/src/components/cards/LCard.vue';
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LTimeline',
   components: {
     LCard
   },
+  mixins: [colorsMixin],
   props: {
     title: {
       type: String,

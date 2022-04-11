@@ -45,6 +45,8 @@ export default {
     }
   },
   mounted () {
+    console.warn('LAlert is deprecated and will be removed in the future')
+
     this.$nextTick(() => {
       this.snackbar = true
     })

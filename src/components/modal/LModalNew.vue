@@ -2,7 +2,7 @@
   <v-dialog
     v-model="inputValue"
     content-class="LModalNew"
-    overlay-color="#9F6CBB"
+    :overlay-color="globalColors.wisteria"
     overlay-opacity="0.60"
     v-bind="$attrs"
     v-on="$listeners"
@@ -35,8 +35,11 @@
 </template>
 
 <script>
+import colorsMixin from '~/mixins/colors.mixin'
+
 export default {
   name: 'LModalNew',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: Boolean,

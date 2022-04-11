@@ -6,7 +6,7 @@
       </span>
       <l-button-new
         v-if="closeButton"
-        color="#B8B8B8"
+        :color="globalColors.silver"
         height="20"
         width="20"
         class="LModalHeader__close pa-0"
@@ -26,12 +26,14 @@
 
 <script>
 import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LModalHeaderNew',
   components: {
     LButtonNew
   },
+  mixins: [colorsMixin],
   props: {
     title: {
       type: String,

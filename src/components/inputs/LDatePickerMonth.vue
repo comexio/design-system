@@ -2,7 +2,7 @@
   <div
     class="datepicker LDatePickerMonth"
     :class="datePickerClass"
-    :style="{ '--borderColor': borderColor }"
+    :style="{ '--borderColor': borderColor || globalColors.purpleHaze }"
   >
     <v-menu
       offset-y
@@ -18,7 +18,7 @@
             class="mr-2"
           >
             <v-icon
-              :color="itemsColor"
+              :color="itemsColor || globalColors.wisteria"
               size="20px"
             >
               mdi-calendar-month
@@ -35,7 +35,7 @@
           <v-spacer />
           <v-icon
             v-if="dropdownIcon"
-            :color="itemsColor"
+            :color="itemsColor || globalColors.wisteria"
             size="20px"
           >
             mdi-chevron-down
@@ -52,11 +52,11 @@
         :allowed-dates="isDateAllowed"
         :locale="locale"
         type="month"
-        :color="itemsColor"
-        :event-color="itemsColor"
+        :color="itemsColor || globalColors.wisteria"
+        :event-color="itemsColor || globalColors.wisteria"
         width="200px"
         class="d-flex flex-row-reverse datepicker__calendar"
-        :style="{ '--itemsColor': itemsColor }"
+        :style="{ '--itemsColor': itemsColor || globalColors.wisteria }"
         :max="dateFilterLimits('max')"
         :min="dateFilterLimits('min')"
       >
@@ -90,9 +90,11 @@
 import moment from 'moment'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LDatePickerMonth',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: [String, Array],
@@ -112,7 +114,7 @@ export default {
     },
     itemsColor: {
       type: String,
-      default: '#9F6CBB'
+      default: ''
     },
     dropdownIcon: { 
       type: Boolean,
@@ -120,7 +122,7 @@ export default {
     },
     borderColor: {
       type: String,
-      default: '#5C068C'
+      default: ''
     },
     enabledPeriods: {
       type: Array,

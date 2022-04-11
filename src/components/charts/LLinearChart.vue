@@ -36,10 +36,10 @@
               >
                 <span>
                   <l-button-new
+                    :color="globalColors.wisteria"
                     class="LLinearChart__list__item__magnify"
                     text
                     icon
-                    color="#9F6CBB"
                     height="9px"
                     min-width="20px"
                     @click="linearChartItemDetail(item)"
@@ -63,6 +63,7 @@
 <script>
 import LLinearChartLine from '~/src/components/charts/LLinearChartLine'
 import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LLinearChart',
@@ -70,6 +71,7 @@ export default {
     LLinearChartLine,
     LButtonNew
   },
+  mixins: [colorsMixin],
   props: {
     data: {
       type: Array,

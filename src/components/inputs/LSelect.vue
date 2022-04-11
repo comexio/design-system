@@ -85,5 +85,8 @@ export default {
   .v-input__slot::after {
     transform: scaleX(0) !important;
   }
+  .v-select .v-select__selection--comma {
+    color: $martinique !important;
+  }
 }
 </style>

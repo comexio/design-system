@@ -23,9 +23,11 @@
 </template>
 
 <script>
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LTableNew',
+  mixins: [colorsMixin],
   props: {
     value: {
       type: Array,
@@ -34,8 +36,8 @@ export default {
     iconColors: {
       type: Object,
       default: () => ({
-        active: '#9F6CBB',
-        inactive: '#E2DAF8'
+        active: '',
+        inactive: ''
       })
     },
     toggleCheckboxOnRowClick: Boolean
@@ -50,11 +52,11 @@ export default {
       }
     },
     tableStyle () {
-      const { iconColors } = this
+      const { iconColors, globalColors } = this
       
       return { 
-        '--iconColorActive': iconColors.active, 
-        '--iconColorInactive': iconColors.inactive 
+        '--iconColorActive': iconColors.active || globalColors.wisteria, 
+        '--iconColorInactive': iconColors.inactive || globalColors.moonRaker
       }
     }
   },
