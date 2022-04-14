@@ -9,7 +9,7 @@
       class="LToast__content d-flex" 
     >
       <div
-        :style="{ '--bookmarkColor': bookmarkColor || toastProps.color }"
+        :style="{ '--bookmarkColor': handledBookmarkColor }"
         class="LToast__bookmark mr-3"  
       />
       <slot />
@@ -19,14 +19,19 @@
 
 <script>
 import colorsMixin from '~/mixins/colors.mixin'
+import alertMixin from '~/mixins/alert.mixin'
 
 export default {
   name: 'LToast',
-  mixins: [colorsMixin],
+  mixins: [colorsMixin, alertMixin],
   props: {
     wrapperClass: {
       type: [String, Array, Object],
       default: () => ({})
+    },
+    type: {
+      type: String,
+      default: ''
     },
     bookmarkColor: {
       type: String,
@@ -49,6 +54,17 @@ export default {
         ...this.defaultProps,
         ...this.$attrs
       }
+    },
+    handledBookmarkColor () {
+      if (this.type) {
+        return this.getAlertFeedbackColor(this.type)
+      }
+
+      if (this.bookmarkColor) {
+        return this.bookmarkColor
+      }
+
+      return this.toastProps.color
     }
   }
 }

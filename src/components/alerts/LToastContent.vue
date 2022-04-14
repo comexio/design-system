@@ -46,12 +46,12 @@
 
 <script>
 import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
-import colorsMixin from '~/mixins/colors.mixin'
+import alertMixin from '~/mixins/alert.mixin'
 
 export default {
   name: 'LToastContent',
   components: { LButtonNew },
-  mixins: [colorsMixin],
+  mixins: [alertMixin],
   props: {
     type: {
       type: String,
@@ -77,17 +77,10 @@ export default {
   },
   computed: {
     iconName () {
-      const options = {
-        Error: 'mdi-alert-circle',
-        Informational: 'mdi-information',
-        Success: 'mdi-check-circle',
-        Warning: 'mdi-alert'
-      }
-      
-      return options[this.type]
+      return this.getAlertIcon(this.type)
     },
     iconsColor () {
-      return this.globalColors[`feedback${this.type}`]
+      return this.getAlertFeedbackColor(this.type)
     }
   }
 }
