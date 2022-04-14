@@ -1,15 +1,16 @@
+//  @ts-nocheck
 import colorsMixin from '~/mixins/colors.mixin'
 
 const alertMixin = {
   mixins: [colorsMixin],
   methods: {
-    getAlertFeedbackColor (type: string) {
+    getAlertFeedbackColor (type: string): string {
       return this.globalColors[`feedback${type}`]
     },
-    getAlertFeedbackLightColor (type: string) {
+    getAlertFeedbackLightColor (type: string): string {
       return this.globalColors[`feedback${type}Light`]
     },
-    getAlertIcon (type: string) {
+    getAlertIcon (type: string): string {
       const options = {
         Error: 'mdi-alert-octagon',
         Informational: 'mdi-information',

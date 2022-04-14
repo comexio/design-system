@@ -38,6 +38,7 @@ const Template = (args, { argTypes }) => ({
   `
 });
 
+//TODO: Validar warns por conta das actions dos eventos "clickDismiss" e "clickAction" e invalid handlers
 
 export const Informational = Template.bind({});
 Informational.args = {

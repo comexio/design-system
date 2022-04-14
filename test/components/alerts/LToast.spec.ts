@@ -5,7 +5,8 @@ import * as stories from '~/docs/stories/components/alerts/LToast.stories'
 
 const {
   Informational,
-  Custom
+  Custom,
+  CustomWithBookmarkColor
 } = composeStories(stories)
 
 describe('LToast', () => {
@@ -27,6 +28,14 @@ describe('LToast', () => {
 
   it('renders custom alert', () => {
     const { container } = renderComponent(Custom())
+
+    expect(screen.getByRole('status', { hidden: true })).toBeInTheDocument()
+    expect(container.querySelectorAll('.LToast__bookmark').length).toBe(1)
+    expect(screen.getByText('Custom content')).toBeInTheDocument()
+  })
+
+  it('renders custom alert with custom bookmark color', () => {
+    const { container } = renderComponent(CustomWithBookmarkColor())
 
     expect(screen.getByRole('status', { hidden: true })).toBeInTheDocument()
     expect(container.querySelectorAll('.LToast__bookmark').length).toBe(1)
