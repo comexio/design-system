@@ -30,9 +30,11 @@
 
 <script>
 import alertMixin from '~/mixins/alert.mixin'
+import LButtonNew from '~/src/components/buttons/LButtonNew.vue'
 
 export default {
   name: 'LHeaderAlertContent',
+  components: { LButtonNew },
   mixins: [alertMixin],
   props: {
     type: {
@@ -42,10 +44,6 @@ export default {
     dismissible: {
       type: Boolean,
       default: true
-    },
-    text: {
-      type: String,
-      default: ''
     }
   },
   computed: {
