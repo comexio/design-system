@@ -9,6 +9,10 @@ export default {
       control: 'text', 
       description: 'Adds additional classes into LToast wrapper div'
     },
+    type: { 
+      control: 'text',
+      description: 'Overrides the bookmarkColor according to the ALERT_TYPE feedbackColor. Must be one of the ALERT_TYPE enum'
+    },
     bookmarkColor: { 
       control: 'color', 
       description: 'Toast bookmark color'
@@ -153,25 +157,31 @@ const TemplateCustom = (args, { argTypes }) => ({
 export const Informational = TemplateInformational.bind({});
 Informational.args = {
   value: false,
-  bookmarkColor: '#4B66C6'
+  type: 'Informational'
 };
 
 export const Error = TemplateError.bind({});
 Error.args = {
   value: false,
-  bookmarkColor: '#CC2C28'
+  type: 'Error'
 };
 
 export const Success = TemplateSuccess.bind({});
 Success.args = {
   value: false,
-  bookmarkColor: '#31880C'
+  type: 'Success'
 };
 
 export const Warning = TemplateWarning.bind({});
 Warning.args = {
   value: false,
-  bookmarkColor: '#F6B334'
+  type: 'Warning'
+};
+
+export const CustomWithBookmarkColor = TemplateCustom.bind({});
+CustomWithBookmarkColor.args = {
+  value: false,
+  bookmarkColor: '#ABC'
 };
 
 export const Custom = TemplateCustom.bind({});
