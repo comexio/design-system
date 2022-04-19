@@ -17,6 +17,7 @@
     :class="classInputTag"
     :style="cssVars"
     v-on="$listeners"
+    @change="handleRuleOnlyNumbers"
   >
     <template #label>
       <slot name="label" />
@@ -63,7 +64,8 @@ export default {
     disabled: Boolean,
     large: Boolean,
     small: Boolean,
-    allowHeightGrow: Boolean
+    allowHeightGrow: Boolean,
+    onlyNumbers: Boolean
   },
   computed: {
     classInputTag () {
@@ -100,6 +102,11 @@ export default {
     }
   },
   methods: {
+    handleRuleOnlyNumbers (values) {
+      if (this.onlyNumbers) {
+        this.inputValue = values.filter(value => !isNaN(value))
+      }
+    },
     clickAppendOuter () {
       this.$emit('clickAppendOuter')
     }

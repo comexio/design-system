@@ -83,3 +83,28 @@ describe('InputLoaded component (allowHeightGrow)', () => {
     expect(combobox().classes('LInputTag--allowHeightGrow')).toBe(true)
   })
 })
+
+describe('InputLoaded component (onlyNumbers)', () => {
+  let inputTag: Wrapper<LInputTag>
+  const spyHandleRuleOnlyNumbers = jest.spyOn(LInputTag.methods, 'handleRuleOnlyNumbers')
+
+  beforeAll(() => {
+    inputTag = mount(LInputTag, {
+      ...defaultParams,
+      propsData: { onlyNumbers: true }
+    })
+  })
+
+  afterEach(() => { spyHandleRuleOnlyNumbers.mockClear() })
+
+  // TODO: Rever este teste futuramente
+  it('emits input on type value and keydown enter', async () => {
+    const inputElement = () => inputTag.find('input')
+
+    await inputElement().setValue('11111111')
+    await inputElement().trigger('keydown.enter')
+    await inputTag.vm.$nextTick()
+
+    expect(spyHandleRuleOnlyNumbers).toBeCalledWith(['11111111'])
+  })
+})
