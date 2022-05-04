@@ -1,4 +1,4 @@
-export const TOAST_TYPE = {
+export const ALERT_TYPE = {
   ERROR: 'Error',
   INFORMATIONAL: 'Informational',
   SUCCESS: 'Success',

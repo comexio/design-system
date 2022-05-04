@@ -6,7 +6,7 @@ export default {
   argTypes: {
     type: {
       control: 'text',
-      description: 'Content type that will set the icons style. Must be one of the TOAST_TYPE enum'
+      description: 'Content type that will set the icons style. Must be one of the ALERT_TYPE enum'
     },
     title: {
       control: 'text',

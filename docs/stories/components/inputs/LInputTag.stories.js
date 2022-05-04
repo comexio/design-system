@@ -16,6 +16,7 @@ export default {
     input: { action: 'input', description: 'Emitted when input is received'},
     clickAppendOuter: { action: 'clickAppendOuter', description: 'Emitted when expand button is clicked' },
     allowHeightGrow: { control: 'boolean', description: 'Allow if input can grows height' },
+    onlyNumbers: { control: 'boolean', description: 'Allow restricting input to numbers only' },
   },
 };
 
@@ -76,4 +77,11 @@ export const ShowDetails = Template.bind({});
 ShowDetails.args = {
   ...Default.args,
   hideDetails: false
+};
+
+
+export const OnlyNumbers = Template.bind({});
+OnlyNumbers.args = {
+  ...Default.args,
+  onlyNumbers: true
 };

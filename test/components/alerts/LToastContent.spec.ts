@@ -72,7 +72,7 @@ describe('LToastContent', () => {
   it('renders error icon', () => {
     const { container } = renderComponent(ErrorTitleOnly())
 
-    expect(container.querySelectorAll('.mdi-alert-circle').length).toBe(1)
+    expect(container.querySelectorAll('.mdi-alert-octagon').length).toBe(1)
   })
 
   it('renders success icon', () => {
