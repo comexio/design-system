@@ -40,9 +40,10 @@ const TemplateInformational = (args, { argTypes }) => ({
   components: { LToast, LToastContent },
   ...defaultTemplateOptions,
   template: `
-    <div>
+    <div class="LToastStorybook">
       <l-toast 
-        v-bind="$props" 
+        v-bind="$props"
+        class="LToastStorybook__toast"
         @input="closeAlert" 
       >
         <l-toast-content 
