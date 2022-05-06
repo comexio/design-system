@@ -66,9 +66,10 @@ const TemplateError = (args, { argTypes }) => ({
   components: { LToast, LToastContent },
   ...defaultTemplateOptions,
   template: `
-    <div>
+    <div class="LToastStorybook">
       <l-toast 
         v-bind="$props" 
+        class="LToastStorybook__toast"
         @input="closeAlert" 
       >
         <l-toast-content 
@@ -91,9 +92,10 @@ const TemplateSuccess = (args, { argTypes }) => ({
   components: { LToast, LToastContent },
   ...defaultTemplateOptions,
   template: `
-    <div>
+    <div class="LToastStorybook">
       <l-toast 
-        v-bind="$props" 
+        v-bind="$props"
+        class="LToastStorybook__toast"
         @input="closeAlert" 
       >
         <l-toast-content 
@@ -116,9 +118,10 @@ const TemplateWarning = (args, { argTypes }) => ({
   components: { LToast, LToastContent },
   ...defaultTemplateOptions,
   template: `
-    <div>
+    <div class="LToastStorybook">
       <l-toast 
-        v-bind="$props" 
+        v-bind="$props"
+        class="LToastStorybook__toast"
         @input="closeAlert" 
       >
         <l-toast-content 
@@ -141,9 +144,10 @@ const TemplateCustom = (args, { argTypes }) => ({
   components: { LToast, LToastContent },
   ...defaultTemplateOptions,
   template: `
-    <div>
+    <div class="LToastStorybook">
       <l-toast 
         v-bind="$props"
+        class="LToastStorybook__toast"
         @input="closeAlert" 
       >
         <span style="align-self: center;">Custom content</span>
@@ -152,40 +156,39 @@ const TemplateCustom = (args, { argTypes }) => ({
   `
 });
 
-//TODO: Validar problema de alerta fora da Story quando value vem como true
 //TODO: Validar warns por conta das actions dos eventos "clickDismiss" e "clickAction" e invalid handlers
 
 export const Informational = TemplateInformational.bind({});
 Informational.args = {
-  value: false,
+  value: true,
   type: 'Informational'
 };
 
 export const Error = TemplateError.bind({});
 Error.args = {
-  value: false,
+  value: true,
   type: 'Error'
 };
 
 export const Success = TemplateSuccess.bind({});
 Success.args = {
-  value: false,
+  value: true,
   type: 'Success'
 };
 
 export const Warning = TemplateWarning.bind({});
 Warning.args = {
-  value: false,
+  value: true,
   type: 'Warning'
 };
 
 export const CustomWithBookmarkColor = TemplateCustom.bind({});
 CustomWithBookmarkColor.args = {
-  value: false,
+  value: true,
   bookmarkColor: '#ABC'
 };
 
 export const Custom = TemplateCustom.bind({});
 Custom.args = {
-  value: false,
+  value: true,
 };
