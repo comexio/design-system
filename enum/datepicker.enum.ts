@@ -11,10 +11,10 @@ export const DATEPICKER_CALENDAR_TYPES = {
 
 export const DATEPICKER_DAY_MASK = {
   [LOCALES.PT]: '##/##/####',
-  [LOCALES.EN]: '####-##-##'
+  [LOCALES.EN]: '##/##/####'
 }
 
 export const DATEPICKER_DAY_FORMAT = {
   [LOCALES.PT]: 'DD/MM/YYYY',
-  [LOCALES.EN]: 'YYYY-MM-DD'
+  [LOCALES.EN]: 'MM/DD/YYYY'
 }
