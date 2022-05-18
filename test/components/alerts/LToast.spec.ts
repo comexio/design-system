@@ -10,26 +10,23 @@ const {
 } = composeStories(stories)
 
 describe('LToast', () => {
-  // Os elementos estão sendo capturados com a hidden: true por conta do value nas stories estar false.
-  // Esses elementos estariam teoricamente "invisíveis" para o usuário.
-  // TODO: Remover hidden: true quando value nas stories estiver vindo como true por padrão.
   it('renders alert', () => {
     const { container } = renderComponent(Informational())
 
-    expect(screen.getByRole('status', { hidden: true })).toBeInTheDocument()
+    expect(screen.getByRole('status')).toBeInTheDocument()
     expect(container.querySelectorAll('.mdi-information').length).toBe(1)
     expect(container.querySelectorAll('.LToast__bookmark').length).toBe(1)
     expect(screen.getByText('Informational alert')).toBeInTheDocument()
     expect(screen.getByText('Alert description here')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'action', hidden: true })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: '', hidden: true })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'action' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '' })).toBeInTheDocument()
     expect(container.querySelectorAll('.mdi-close').length).toBe(1)
   })
 
   it('renders custom alert', () => {
     const { container } = renderComponent(Custom())
 
-    expect(screen.getByRole('status', { hidden: true })).toBeInTheDocument()
+    expect(screen.getByRole('status')).toBeInTheDocument()
     expect(container.querySelectorAll('.LToast__bookmark').length).toBe(1)
     expect(screen.getByText('Custom content')).toBeInTheDocument()
   })
@@ -37,7 +34,7 @@ describe('LToast', () => {
   it('renders custom alert with custom bookmark color', () => {
     const { container } = renderComponent(CustomWithBookmarkColor())
 
-    expect(screen.getByRole('status', { hidden: true })).toBeInTheDocument()
+    expect(screen.getByRole('status')).toBeInTheDocument()
     expect(container.querySelectorAll('.LToast__bookmark').length).toBe(1)
     expect(screen.getByText('Custom content')).toBeInTheDocument()
   })
