@@ -7,6 +7,7 @@ const {
     DefaultLarge,
     DefaultSmall,
     DefaultDisabled,
+    DefaultPassword,
     DefaultWithSlot
 } = composeStories(stories)
 
@@ -38,6 +39,13 @@ describe('LTextField', () => {
     const icon = screen.getByTestId('LTextField__icon')
     expect(icon).toBeInTheDocument()
     expect(icon).toBeVisible()
+  })
+
+  it('sets appendColor class when color and appendIcon is received', () => {
+    const { container } = renderComponent(DefaultPassword())
+
+    const textField = container.getElementsByClassName('LTextField--appendColor')
+    expect(textField.length).toBe(1)
   })
 
   it('finds textfield with id through its label', () => {
