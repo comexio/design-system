@@ -50,6 +50,12 @@ Default.args = {
   placeholder: 'Placeholder'
 }
 
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  outlined: true,
+  label: 'Label'
+}
+
 export const DefaultLoading = Template.bind({});
 DefaultLoading.args = {
   ...Default.args,
@@ -106,8 +112,8 @@ WithoutBorderDisabled.args = {
   disabled: true
 }
 
-export const WithTags = Template.bind({});
-WithTags.args = {
+export const WithTagsAndPlaceholder = Template.bind({});
+WithTagsAndPlaceholder.args = {
   placeholder: 'Placeholder',
   allowHeightGrow: true,
   dense: true,
@@ -117,12 +123,24 @@ WithTags.args = {
   outlined: true,
   dense: true,
   smallChips: true,
-  hideDetails: true,
+  hideDetails: true
+}
+
+export const WithTagsAndLabel = Template.bind({});
+WithTagsAndLabel.args = {
+  ...WithTagsAndPlaceholder.args,
+  placeholder: '',
+  label: 'Label'
+}
+
+export const WithTagsFilled = Template.bind({});
+WithTagsFilled.args = {
+  ...WithTagsAndPlaceholder.args,
   value: ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item']
 }
 
 export const WithTagsDisabled = Template.bind({});
 WithTagsDisabled.args = {
-  ...WithTags.args,
+  ...WithTagsFilled.args,
   disabled: true
 }
