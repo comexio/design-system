@@ -77,19 +77,15 @@ $largeFontSize: 1.077rem;
       }
     }
   }
-
-  &[class$="--disabled"] {
-    // Vuetify override
-    ::v-deep {
-      .v-input__slot {
-        background-color: $gallery;
-      }
-    }
-  }
 }
 
 // Vuetify override
 ::v-deep {
+  [class*="__input"][class*="--disabled"] {
+    .v-input__slot {
+      background-color: $gallery;
+    }
+  }
   [class*="--allowHeightGrow"] {
     .v-input__control .v-input__slot {
       min-height: var(--minHeight) !important;
