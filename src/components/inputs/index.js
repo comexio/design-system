@@ -4,7 +4,6 @@ import LSelect from './LSelect'
 import LLabeledInput from './LLabeledInput'
 import LLabeledSelect from "./LLabeledSelect";
 import LLabeledTextarea from "./LLabeledTextarea";
-import LInputButton from './LInputButton'
 import LInputSolo from './LInputSolo'
 import LSelectSolo from './LSelectSolo'
 import LDatePickerMonth from './LDatePickerMonth'
@@ -27,7 +26,6 @@ export {
     LLabeledInput,
     LLabeledSelect,
     LLabeledTextarea,
-    LInputButton,
     LInputSolo,
     LSelectSolo,
     LDatePickerMonth,
