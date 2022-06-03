@@ -72,6 +72,9 @@ export default {
 
       return getInputHeight({large, small, custom: $attrs.height})
     }
+  },
+  mounted () {
+    console.warn('LInputSolo is deprecated and will be removed in the future')
   }
 }
 </script>

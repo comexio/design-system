@@ -46,6 +46,9 @@ export default {
 
       return this.rules
     }
+  },
+  mounted () {
+    console.warn('LLabeledSelect is deprecated and will be removed in the future')
   }
 }
 </script>

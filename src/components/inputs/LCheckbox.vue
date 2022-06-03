@@ -32,6 +32,9 @@ export default {
         this.$emit('input', value)
       }
     }
+  },
+  mounted () {
+    console.warn('LCheckbox is deprecated and will be removed in the future')
   }
 }
 </script>
