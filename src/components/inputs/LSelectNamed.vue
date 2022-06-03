@@ -47,6 +47,9 @@ export default {
 
       return ''
     },
+  },
+  mounted () {
+    console.warn('LSelectNamed is deprecated and will be removed in the future')
   }
 }
 </script>
