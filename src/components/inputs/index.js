@@ -5,7 +5,6 @@ import LLabeledInput from './LLabeledInput'
 import LLabeledSelect from "./LLabeledSelect";
 import LLabeledTextarea from "./LLabeledTextarea";
 import LInputSolo from './LInputSolo'
-import LSelectSolo from './LSelectSolo'
 import LDatePickerMonth from './LDatePickerMonth'
 import LDatePickerDay from './LDatePickerDay'
 import LDropdownCheck from './LDropdownCheck'
@@ -27,7 +26,6 @@ export {
     LLabeledSelect,
     LLabeledTextarea,
     LInputSolo,
-    LSelectSolo,
     LDatePickerMonth,
     LDatePickerDay,
     LDropdownCheck,
