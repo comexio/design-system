@@ -70,6 +70,14 @@ DefaultBordered.args = {
   outlined: true
 }
 
+export const DefaultBorderedWithLabel = Template.bind({});
+DefaultBorderedWithLabel.args = {
+  ...Default.args,
+  outlined: true,
+  placeholder: '',
+  label: 'Label'
+}
+
 export const DefaultBorderedDisabled = Template.bind({});
 DefaultBorderedDisabled.args = {
   ...Default.args,

@@ -11,7 +11,7 @@ const {
     DefaultDropdownLoaded,
     DefaultLoading,
     DefaultWithSlot,
-    WithTags
+    WithTagsFilled
 } = composeStories(stories)
 
 describe('LCombobox', () => {
@@ -80,7 +80,7 @@ describe('LCombobox', () => {
   })
 
   it('render combobox with tags', async () => {
-    const { container } = renderComponent(WithTags())
+    const { container } = renderComponent(WithTagsFilled())
 
     const comboboxWithClass = container.getElementsByClassName('LCombobox--allowHeightGrow')
     expect(comboboxWithClass.length).toBe(1)

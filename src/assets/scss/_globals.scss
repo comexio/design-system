@@ -116,4 +116,8 @@
   .v-chip__close::before {
     content: "\F0156" !important;
   }
+  // workaround issue 11553 Vuetify
+  .v-autocomplete:not(.v-input--is-focused).v-select--chips input {
+    max-height: inherit;
+  }
 }

@@ -1,6 +1,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style type="text/css">
+    .v-application {
+        font-family: Rubik !important;
+    }
     html {
         font-size: 10px !important;
         font-family: Rubik;
@@ -9,5 +12,17 @@
         html {
             font-size: 13px !important;
         }
+    }
+
+    /* CSS para o LToast na aba de docs */
+    .sbdocs .v-application .v-application--wrap {
+        min-height: auto ;
+    }
+    .sbdocs .LToastStorybook {
+        height: 100%;
+    }
+    .sbdocs .LToastStorybook__toast.v-snack:not(.v-snack--absolute) {
+        position: relative;
+        height: 100%;
     }
 </style>

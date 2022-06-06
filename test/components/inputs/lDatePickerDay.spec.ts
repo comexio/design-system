@@ -54,9 +54,9 @@ describe('LDatePickerDay', () => {
     renderComponent(FilledEnglish())
 
     await checkDefaultDatepickerOpened()
-    await waitFor(() => expect(screen.getByText('2020-12-08 - 2020-12-18')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText('12/08/2020 - 12/18/2020')).toBeInTheDocument())
   })
-  
+
   it('renders AllowedTyping datepicker', async () => {
     renderComponent(AllowedTyping())
 
@@ -84,8 +84,8 @@ describe('LDatePickerDay', () => {
 
     await checkDefaultDatepickerOpened()
 
-    const dateValid = '2020-11-01 - 2020-11-30'
-    const dateOutOfLimit = '2021-01-03 - 2021-01-26'
+    const dateValid = '11/01/2020 - 11/30/2020'
+    const dateOutOfLimit = '01/04/2021 - 01/26/2021'
 
     const input = screen.getByRole('textbox')
 
@@ -98,7 +98,7 @@ describe('LDatePickerDay', () => {
     userEvent.type(input, dateOutOfLimit)
     await new Promise(resolve => setTimeout(() => { resolve(1) }, 1))
 
-    expect(input.value).toBe('2021-01-03 - 2021-01-25')
+    expect(input.value).toBe('01/04/2021 - 01/25/2021')
   })
 
   it('renders Bordered datepicker', async () => {

@@ -54,6 +54,12 @@ Default.args = {
   label: 'Label'
 }
 
+export const NotDense = Template.bind({});
+NotDense.args = {
+  ...Default.args,
+  dense: false
+}
+
 export const DefaultLarge = Template.bind({});
 DefaultLarge.args = {
   ...Default.args,

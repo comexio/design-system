@@ -23,6 +23,9 @@ export default {
       isFocused: false
     }
   },
+  mounted () {
+    console.warn('LInputBorder is deprecated and will be removed in the future')
+  },
   methods: {
     focus () {
       this.isFocused = true

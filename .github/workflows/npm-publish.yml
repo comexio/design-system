@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     steps:
     - uses: actions/checkout@v2
@@ -17,13 +17,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    # TODO: Validar o porquê do cache ter sido removido
-    # - name: Cache node_modules
-    #   id: cache-modules
-    #   uses: actions/cache@v1
-    #   with:
-    #     path: node_modules
-    #     key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
+    - name: Caching node_modules
+      id: cache-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
     - name: Installing dependencies
       run: yarn install
     - name: Unit testing
