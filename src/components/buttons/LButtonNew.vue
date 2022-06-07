@@ -57,11 +57,11 @@ export default {
         'LButton--secondary': this.secondary,
         'LButton--tertiary': this.tertiary,
         'LButton--customColors': this.hasCustomColors,
-        'LButton--large': this.large,
-        'LButton--small': this.small,
         'LButton--roundedIcon': this.roundedIcon,
         'LButton--uppercase': this.uppercase,
-        'LButton--withoutUppercase': !this.uppercase
+        'LButton--withoutUppercase': !this.uppercase,
+        'LButton--large': this.large,
+        'LButton--small': this.small
       }
     },
     buttonStyle () {
