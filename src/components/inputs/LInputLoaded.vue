@@ -139,9 +139,9 @@ export default {
     classInputLoaded () {
       return {
         'LInputLoaded--withoutBorder': !this.outlined,
+        'LInputLoaded--allowHeightGrow': this.allowHeightGrow,
         'LInputLoaded--large': this.large,
-        'LInputLoaded--small': this.small,
-        'LInputLoaded--allowHeightGrow': this.allowHeightGrow
+        'LInputLoaded--small': this.small
       }
     },
     hasEnoughCharacteres () {
