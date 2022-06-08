@@ -36,6 +36,9 @@ export default {
       default: false
     }
   },
+  mounted () {
+    console.warn('LCardHeader is deprecated and will be removed in the future')
+  },
   methods: {
     generateCardId (title, prefix = '') {
       if (!this.generateId) {
