@@ -95,6 +95,9 @@ export default {
     hasTitleOrDescription () {
       return this.title || this.description ? true : false
     }
+  },
+  mounted () {
+    console.warn('LCard is deprecated and will be removed in the future')
   }
 }
 </script>
