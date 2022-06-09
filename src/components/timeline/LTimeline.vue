@@ -14,7 +14,7 @@
           class="d-flex justify-space-around align-center"
         >
           <v-avatar
-            v-if="timeLineScroll.initial"
+            v-if="timeLineScroll.initial || isExtraSmall"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -31,7 +31,7 @@
             <slot />
           </div>
           <v-avatar
-            v-if="timeLineScroll.final"
+            v-if="timeLineScroll.final || isExtraSmall"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -73,6 +73,11 @@ export default {
         initial: false,
         final: false
       },
+    }
+  },
+  computed: {
+    isExtraSmall () {
+      return this.$vuetify.breakpoint.xs
     }
   },
   mounted () {
@@ -152,9 +157,24 @@ export default {
   }
 }
 
-@media (min-width: 1400px) {
-  .LTimeline__cardContent {
-    width: 1150px;
+@media screen and (max-width: 1400px) {
+  ::v-deep .LTimeline__cardContent {
+    width: 868px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  ::v-deep .LTimeline__cardContent {
+    width: 768px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  ::v-deep .LTimeline__cardContent {
+    width: 230px;
+    margin: 0 6px;
   }
 }
 </style>
