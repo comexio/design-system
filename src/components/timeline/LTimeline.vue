@@ -158,21 +158,21 @@ export default {
 }
 
 @media screen and (max-width: 1400px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     width: 868px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width: 1280px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     width: 768px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     width: 230px;
     margin: 0 6px;
   }
