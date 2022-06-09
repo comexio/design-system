@@ -101,7 +101,10 @@ export default {
         innerModel (val) {
             this.$emit('input', val)
         }
-    }
+    },
+    mounted () {
+      console.warn('LDropdownCheck is deprecated and will be removed in the future')
+    },
 }
 </script>
 
