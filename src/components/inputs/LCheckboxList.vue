@@ -4,7 +4,7 @@
       <l-text-field 
         v-model="inputSearch"
         :placeholder="translation.input || $t('ayla.search')"
-        class="LCheckboxList__input"      
+        class="LCheckboxList__input" 
         height="26px"
         hide-details
         dense
