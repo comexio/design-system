@@ -37,6 +37,9 @@ export default {
 <style lang="scss" scoped>
 .LCheckbox {
   ::v-deep {
+    .v-label {
+      color: $martinique;
+    }
     .v-icon {
       color: $silver;
       font-size: 20px;
