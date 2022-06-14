@@ -1,13 +1,13 @@
 <template>
   <div class="LTimeline">
-    <l-card
+    <l-card-new
       class="LTimeline__card"
-      :data="{'key':0}"
-      :title="title"
-      :description="description"
-      force-show-slot
-      style="width: 100%"
+      width="100%"
     >
+      <l-card-header-new
+        :title="title"
+        :subtitle="description"
+      />
       <div class="d-flex flex-column my-4 mx-2">
         <slot name="header-content" />
         <div
@@ -43,18 +43,20 @@
           </v-avatar>
         </div>
       </div>
-    </l-card>
+    </l-card-new>
   </div>
 </template>
 
 <script>
-import LCard from '~/src/components/cards/LCard.vue';
+import LCardNew from '~/src/components/cards/LCardNew.vue'
+import LCardHeaderNew from '~/src/components/cards/LCardHeaderNew.vue'
 import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LTimeline',
   components: {
-    LCard
+    LCardNew,
+    LCardHeaderNew
   },
   mixins: [colorsMixin],
   props: {
