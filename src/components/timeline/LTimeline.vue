@@ -15,6 +15,7 @@
         >
           <v-avatar
             v-if="timeLineScroll.initial || isExtraSmall"
+            id="LTimeline__arrowLeft"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -32,6 +33,7 @@
           </div>
           <v-avatar
             v-if="timeLineScroll.final || isExtraSmall"
+            id="LTimeline__arrowRight"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -81,7 +83,7 @@ export default {
     }
   },
   mounted () {
-    this.buildButtonsSrollTimeLine()
+    this.buildButtonsScrollTimeLine()
   },
   methods: {
     handleScrollLeft () {
@@ -100,7 +102,7 @@ export default {
 
       timeLine.scrollLeft = timeLine.scrollLeft + quantity
     },
-    buildButtonsSrollTimeLine () {
+    buildButtonsScrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
 
       if (timeLine.scrollWidth > timeLine.clientWidth) {
@@ -157,23 +159,30 @@ export default {
   }
 }
 
-@media screen and (max-width: 1400px) {
-  .LTimeline__cardContent {
-    width: 868px;
+@media screen and (max-width: 2000px) {
+  ::v-deep .LTimeline__cardContent {
+    max-width: 1152px;
     margin: 0 8px;
   }
 }
 
-@media screen and (max-width: 1280px) {
-  .LTimeline__cardContent {
-    width: 768px;
+@media screen and (max-width: 1400px) {
+  ::v-deep .LTimeline__cardContent {
+    max-width: 868px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width-: 1280px) {
+  ::v-deep .LTimeline__cardContent {
+    max-width: 768px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .LTimeline__cardContent {
-    width: 230px;
+  ::v-deep .LTimeline__cardContent {
+    max-width: 200px;
     margin: 0 6px;
   }
 }
