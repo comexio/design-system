@@ -107,7 +107,7 @@ export default {
     buildButtonsScrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
 
-      if (timeLine.scrollWidth > timeLine.clientWidth) {
+      if (timeLine.scrollWidth >= timeLine.clientWidth) {
         this.timeLineScroll.final = true
       }
 
@@ -127,7 +127,7 @@ export default {
       return this.$set(this.timeLineScroll, 'initial', true)
     },
     handleShowButtonRight (scrollLeft) {
-      if (scrollLeft > this.getTimeLineItemSize()) {
+      if (scrollLeft >= this.getTimeLineItemSize()) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
@@ -162,28 +162,28 @@ export default {
 }
 
 @media screen and (max-width: 2000px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     max-width: 1152px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width: 1400px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     max-width: 868px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width-: 1280px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     max-width: 768px;
     margin: 0 8px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  ::v-deep .LTimeline__cardContent {
+  .LTimeline__cardContent {
     max-width: 200px;
     margin: 0 6px;
   }
