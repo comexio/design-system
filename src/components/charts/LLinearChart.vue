@@ -33,6 +33,7 @@
             >
               <slot
                 name="magnifyItemDetail"
+                :data="item"
               >
                 <span>
                   <l-button-new
