@@ -1,6 +1,6 @@
 {
   "name": "@logcomex/design",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "license": "MIT",
   "author": {
     "name": "Rafael Bastiansch",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "dayjs": "^1.9.7",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "ramda": "^0.27.1",
     "sortablejs": "^1.13.0",
     "string-to-hex-code-color": "^1.0.8"
@@ -72,7 +72,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "node-sass": "^4.12.0",
-    "prettier": "^1.19.1",
+    "prettier": "2.5.0",
     "release-it": "^14.10.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",

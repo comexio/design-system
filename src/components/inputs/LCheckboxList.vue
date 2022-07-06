@@ -1,14 +1,25 @@
 <template>
   <div class="LCheckboxList">
     <div class="LCheckboxList__header">
-      <l-input-solo
+      <l-text-field 
         v-model="inputSearch"
         :placeholder="translation.input || $t('ayla.search')"
-        append-icon="mdi-magnify"
+        class="LCheckboxList__input" 
         height="26px"
+        hide-details
+        dense
+        solo
         flat
-        class="LCheckboxList__input"
-      />
+      >
+        <template #append>
+          <v-icon
+            :color="globalColors.wisteria"
+            :size="10"
+          >
+            mdi-magnify
+          </v-icon>
+        </template>
+      </l-text-field>
     </div>
     <v-divider />
     <div class="LCheckboxList__group">
@@ -45,13 +56,15 @@
 <script>
 import uniq from 'ramda/src/uniq'
 import equals from 'ramda/src/equals'
-import LInputSolo from './LInputSolo'
+import LTextField from './LTextField'
+import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LCheckboxList',
   components: {
-    LInputSolo
+    LTextField
   },
+  mixins: [colorsMixin],
   props: {
     items: {
       type: Array,

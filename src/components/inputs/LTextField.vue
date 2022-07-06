@@ -50,9 +50,9 @@ export default {
 
       return {
         'LTextField--disabled': $attrs.disabled,
+        'LTextField--appendColor': $attrs.color && appendIcon,
         'LTextField--large': large,
-        'LTextField--small': small,
-        'LTextField--appendColor': $attrs.color && appendIcon
+        'LTextField--small': small
       }
     },
     inputHeight () {

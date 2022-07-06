@@ -1,20 +1,21 @@
 <template>
   <div class="LTimeline">
-    <l-card
+    <l-card-new
       class="LTimeline__card"
-      :data="{'key':0}"
-      :title="title"
-      :description="description"
-      force-show-slot
-      style="width: 100%"
+      width="100%"
     >
+      <l-card-header-new
+        :title="title"
+        :subtitle="description"
+      />
       <div class="d-flex flex-column my-4 mx-2">
         <slot name="header-content" />
         <div
           class="d-flex justify-space-around align-center"
         >
           <v-avatar
-            v-if="timeLineScroll.initial"
+            v-if="timeLineScroll.initial || isExtraSmall"
+            id="LTimeline__arrowLeft"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -31,7 +32,8 @@
             <slot />
           </div>
           <v-avatar
-            v-if="timeLineScroll.final"
+            v-if="timeLineScroll.final || isExtraSmall"
+            id="LTimeline__arrowRight"
             :color="globalColors.magnoliaDark"
             size="20"
             class="pointer mt-n11"
@@ -43,18 +45,20 @@
           </v-avatar>
         </div>
       </div>
-    </l-card>
+    </l-card-new>
   </div>
 </template>
 
 <script>
-import LCard from '~/src/components/cards/LCard.vue';
+import LCardNew from '~/src/components/cards/LCardNew.vue'
+import LCardHeaderNew from '~/src/components/cards/LCardHeaderNew.vue'
 import colorsMixin from '~/mixins/colors.mixin'
 
 export default {
   name: 'LTimeline',
   components: {
-    LCard
+    LCardNew,
+    LCardHeaderNew
   },
   mixins: [colorsMixin],
   props: {
@@ -75,8 +79,13 @@ export default {
       },
     }
   },
+  computed: {
+    isExtraSmall () {
+      return this.$vuetify.breakpoint.xs
+    }
+  },
   mounted () {
-    this.buildButtonsSrollTimeLine()
+    this.buildButtonsScrollTimeLine()
   },
   methods: {
     handleScrollLeft () {
@@ -95,10 +104,10 @@ export default {
 
       timeLine.scrollLeft = timeLine.scrollLeft + quantity
     },
-    buildButtonsSrollTimeLine () {
+    buildButtonsScrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
 
-      if (timeLine.scrollWidth > timeLine.clientWidth) {
+      if (timeLine.scrollWidth >= timeLine.clientWidth) {
         this.timeLineScroll.final = true
       }
 
@@ -118,7 +127,7 @@ export default {
       return this.$set(this.timeLineScroll, 'initial', true)
     },
     handleShowButtonRight (scrollLeft) {
-      if (scrollLeft > this.getTimeLineItemSize()) {
+      if (scrollLeft >= this.getTimeLineItemSize()) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
@@ -152,9 +161,31 @@ export default {
   }
 }
 
-@media (min-width: 1400px) {
+@media screen and (max-width: 2000px) {
   .LTimeline__cardContent {
-    width: 1150px;
+    max-width: 1152px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .LTimeline__cardContent {
+    max-width: 868px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width-: 1280px) {
+  .LTimeline__cardContent {
+    max-width: 768px;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .LTimeline__cardContent {
+    max-width: 200px;
+    margin: 0 6px;
   }
 }
 </style>

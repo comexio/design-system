@@ -25,6 +25,7 @@ $largeFontSize: 1.077rem;
 [class^="L"]>[class*="__input"] {
   @extend .defaultText;
   
+  // Both --large and --small must be the last class in order to apply the style
   &[class$="--large"] {
     font-size: $largeFontSize;
 
@@ -66,17 +67,6 @@ $largeFontSize: 1.077rem;
       }
     }
   }
-
-  &[class$="--appendColor"] {
-    // Vuetify override
-    ::v-deep {
-      .v-input__icon--append {
-        button.v-icon:focus {
-          color: var(--color) !important;
-        }
-      }
-    }
-  }
 }
 
 // Vuetify override
@@ -97,6 +87,13 @@ $largeFontSize: 1.077rem;
       content: "\F0140";
       color: $wisteria;
       font-size: 18px;
+    }
+  }
+  [class*="--appendColor"] {
+    .v-input__icon--append {
+      button.v-icon:focus {
+        color: var(--color) !important;
+      }
     }
   }
   .v-input input {
