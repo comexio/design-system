@@ -28,7 +28,6 @@
 - [ ] Documentação atualizada <!-- Necessário apenas se alterou API de algum componente ou se criou um componente novo --> 
 - [ ] Testes unitários atualizados <!-- Necessário apenas se alterou API de algum componente ou se criou um componente novo --> 
 - [ ] Levantamento de componentes atualizado <!-- Necessário apenas se criou um componente novo -->
-- [ ] Tenho pelo menos 1 approve de alguém experiente no projeto (ex. membro da equipe de Design System) <!-- Recomendado, mas não obrigatório -->
 
 
 <!-- Links: https://logcomex.atlassian.net/wiki/spaces/ARQ/pages/24444950/Design+System -->
