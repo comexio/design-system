@@ -133,6 +133,7 @@ export default {
       if ((timeline.scrollLeft + this.getTimeLineContentSize()) == timeline.scrollWidth) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
+
       return this.$set(this.timeLineScroll, 'final', true)
     }
   }
