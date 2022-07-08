@@ -126,6 +126,7 @@ export default {
       if (scrollLeft === 0) {
         return this.$set(this.timeLineScroll, 'initial', false)
       }
+
       return this.$set(this.timeLineScroll, 'initial', true)
     },
     handleShowButtonRight (timeline) {
