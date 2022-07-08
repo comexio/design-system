@@ -129,7 +129,9 @@ export default {
       return this.$set(this.timeLineScroll, 'initial', true)
     },
     handleShowButtonRight ({scrollLeft, scrollWidth}) {
-      if ((scrollLeft + this.getTimeLineContentSize()) == scrollWidth) {
+      const contentSizeWithScrollSize = scrollLeft + this.getTimeLineContentSize()
+      const reachedRightBorder = contentSizeWithScrollSize === scrollWidth
+      if (reachedRightBorder) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
