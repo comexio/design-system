@@ -49,10 +49,12 @@
     </l-card-new>
   </div>
 </template>
+
 <script>
 import LCardNew from '~/src/components/cards/LCardNew.vue'
 import LCardHeaderNew from '~/src/components/cards/LCardHeaderNew.vue'
 import colorsMixin from '~/mixins/colors.mixin'
+
 export default {
   name: 'LTimeline',
   components: {
@@ -135,32 +137,39 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .LTimeline {
   display: flex;
   font-family: Rubik, sans-serif;
   font-size: 0.923076923rem;
+
   &__card {
     padding-top: 15px;
   }
+
   &__cardContent {
     width: 85%;
     margin: 0 6px;
     overflow-x: scroll;
+
     &::-webkit-scrollbar {
      height: 6px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: rgba(black, 0.1);
       border-radius: 16px;
     }
   }
 }
+
 @media screen and (min-width: 600px) {
   .LTimeline__cardContent {
         margin: 0 8px;
   }
 }
+
 @media screen and (min-width: 1910px) {
   .LTimeline__cardContent {
       width: 90%;
