@@ -28,7 +28,6 @@
           <div
             ref="LTimeline__cardContent"
             class="LTimeline__cardContent d-flex pb-4"
-            @scroll="teste"
           >
             <slot />
           </div>
@@ -129,8 +128,8 @@ export default {
 
       return this.$set(this.timeLineScroll, 'initial', true)
     },
-    handleShowButtonRight (timeline) {
-      if ((timeline.scrollLeft + this.getTimeLineContentSize()) == timeline.scrollWidth) {
+    handleShowButtonRight ({scrollLeft, scrollWidth}) {
+      if ((scrollLeft + this.getTimeLineContentSize()) == scrollWidth) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
