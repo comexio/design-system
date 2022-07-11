@@ -1,3 +1,4 @@
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
 import LTimelineItem from "~/src/components/timeline/LTimelineItem.vue"
 import LTimeline from "~/src/components/timeline/LTimeline.vue"
 
@@ -34,8 +35,10 @@ const initialTimeline = `
     </template>
   </l-timeline-item>
 `
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LTimeline, LTimelineItem },
   template: `
@@ -115,7 +118,6 @@ const Template = (args, { argTypes }) => ({
     </l-timeline>
   `
 })
-
 
 export const Default = Template.bind({})
 Default.args = {

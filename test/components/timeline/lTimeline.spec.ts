@@ -19,7 +19,7 @@ describe('LTimeline', () => {
   it('renders slot header-content without default control scroll arrows', () => {
     const { container } = renderComponent(Default())
 
-    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(0)
+    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(1)
     expect(screen.getByText('Header content')).toBeInTheDocument()
   })
 
@@ -30,7 +30,7 @@ describe('LTimeline', () => {
     await fireEvent.scroll(cardContent, { target: { scrollLeft: 100 } });
 
     expect(container.getElementsByClassName('mdi-chevron-left').length).toBe(1)
-    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(0)
+    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(1)
 
   })
 })

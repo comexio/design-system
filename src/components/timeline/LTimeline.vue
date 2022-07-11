@@ -14,7 +14,7 @@
           class="d-flex justify-space-around align-center"
         >
           <v-avatar
-            v-if="timeLineScroll.initial || isExtraSmall"
+            v-show="timeLineScroll.initial || isExtraSmall"
             id="LTimeline__arrowLeft"
             :color="globalColors.magnoliaDark"
             size="20"
@@ -32,7 +32,7 @@
             <slot />
           </div>
           <v-avatar
-            v-if="timeLineScroll.final || isExtraSmall"
+            v-show="timeLineScroll.final || isExtraSmall"
             id="LTimeline__arrowRight"
             :color="globalColors.magnoliaDark"
             size="20"
@@ -99,15 +99,17 @@ export default {
     getTimeLineItemSize () {
       return this.$el.querySelector('.LTimelineItem').clientWidth
     },
+    getTimeLineContentSize () {
+      return this.$el.querySelector('.LTimeline__cardContent').clientWidth
+    },
     setTimeLineScroll (quantity) {
       const timeLine = this.$refs.LTimeline__cardContent
-
       timeLine.scrollLeft = timeLine.scrollLeft + quantity
     },
     buildButtonsScrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
 
-      if (timeLine.scrollWidth >= timeLine.clientWidth) {
+      if (timeLine.scrollWidth > timeLine.clientWidth) {
         this.timeLineScroll.final = true
       }
 
@@ -117,7 +119,7 @@ export default {
     },
     handleShowButtonsByScroll (timeLine) {
       this.handleShowButtonLeft(timeLine.scrollLeft)
-      this.handleShowButtonRight(timeLine.scrollLeft)
+      this.handleShowButtonRight(timeLine)
     },
     handleShowButtonLeft (scrollLeft) {
       if (scrollLeft === 0) {
@@ -126,8 +128,10 @@ export default {
 
       return this.$set(this.timeLineScroll, 'initial', true)
     },
-    handleShowButtonRight (scrollLeft) {
-      if (scrollLeft >= this.getTimeLineItemSize()) {
+    handleShowButtonRight ({scrollLeft, scrollWidth}) {
+      const contentSizeWithScrollSize = scrollLeft + this.getTimeLineContentSize()
+      const reachedRightBorder = contentSizeWithScrollSize === scrollWidth
+      if (reachedRightBorder) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
@@ -148,12 +152,14 @@ export default {
   }
 
   &__cardContent {
-    width: 960px;
+    width: 85%;
+    margin: 0 6px;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
      height: 6px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: rgba(black, 0.1);
       border-radius: 16px;
@@ -161,31 +167,15 @@ export default {
   }
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (min-width: 600px) {
   .LTimeline__cardContent {
-    max-width: 1152px;
-    margin: 0 8px;
+        margin: 0 8px;
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (min-width: 1910px) {
   .LTimeline__cardContent {
-    max-width: 868px;
-    margin: 0 8px;
-  }
-}
-
-@media screen and (max-width-: 1280px) {
-  .LTimeline__cardContent {
-    max-width: 768px;
-    margin: 0 8px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .LTimeline__cardContent {
-    max-width: 200px;
-    margin: 0 6px;
+      width: 90%;
   }
 }
 </style>
