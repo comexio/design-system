@@ -75,7 +75,7 @@ export default {
     return {
       timeLineScroll: {
         initial: false,
-        final: false
+        final: true
       },
     }
   },
@@ -128,14 +128,17 @@ export default {
 
       return this.$set(this.timeLineScroll, 'initial', true)
     },
-    handleShowButtonRight ({scrollLeft, scrollWidth}) {
-      const contentSizeWithScrollSize = scrollLeft + this.getTimeLineContentSize()
-      const reachedRightBorder = contentSizeWithScrollSize === scrollWidth
-      if (reachedRightBorder) {
+    handleShowButtonRight (timeLine) {
+      if (this.scrollReachedRightBorder(timeLine)) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
       return this.$set(this.timeLineScroll, 'final', true)
+    },
+    scrollReachedRightBorder ({scrollLeft, scrollWidth}) {
+      const contentSizeWithScrollSize = scrollLeft + this.getTimeLineContentSize()
+
+      return  contentSizeWithScrollSize === scrollWidth
     }
   }
 }
