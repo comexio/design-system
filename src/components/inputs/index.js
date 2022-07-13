@@ -1,20 +1,12 @@
 import LTextField from './LTextField'
 import LCombobox from './LCombobox'
 import LSelect from './LSelect'
-import LLabeledInput from './LLabeledInput'
-import LLabeledSelect from "./LLabeledSelect";
-import LLabeledTextarea from "./LLabeledTextarea";
-import LInputSolo from './LInputSolo'
 import LDatePickerMonth from './LDatePickerMonth'
 import LDatePickerDay from './LDatePickerDay'
-import LDropdownCheck from './LDropdownCheck'
-import LSelectNamed from './LSelectNamed'
 import LInputLoaded from './LInputLoaded'
 import LCheckboxList from './LCheckboxList'
 import LDropdownCheckbox from './LDropdownCheckbox'
-import LInputBorder from './LInputBorder'
 import LInputTag from './LInputTag'
-import LCheckbox from './LCheckbox'
 import LCheckboxNew from './LCheckboxNew'
 import LTextArea from './LTextArea'
 
@@ -22,20 +14,12 @@ export {
     LTextField,
     LCombobox,
     LSelect,
-    LLabeledInput,
-    LLabeledSelect,
-    LLabeledTextarea,
-    LInputSolo,
     LDatePickerMonth,
     LDatePickerDay,
-    LDropdownCheck,
-    LSelectNamed,
     LInputLoaded,
     LCheckboxList,
     LDropdownCheckbox,
-    LInputBorder,
     LInputTag,
-    LCheckbox,
     LCheckboxNew,
     LTextArea
 }
