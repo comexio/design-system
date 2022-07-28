@@ -110,8 +110,8 @@ export default {
       const timeLine = this.$refs.LTimeline__cardContent
       timeLine.scrollLeft = this.getTimeLineContentSize()
 
-      if (timeLine.scrollWidth > timeLine.clientWidth) {
-        this.timeLineScroll.final = true
+      if (timeLine.scrollWidth <= timeLine.clientWidth) {
+        this.timeLineScroll.final = false
       }
 
       timeLine.addEventListener('scroll', () => {
