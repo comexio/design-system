@@ -108,6 +108,7 @@ export default {
     },
     buildButtonsScrollTimeLine () {
       const timeLine = this.$refs.LTimeline__cardContent
+      timeLine.scrollLeft = this.getTimeLineContentSize()
 
       if (timeLine.scrollWidth > timeLine.clientWidth) {
         this.timeLineScroll.final = true
@@ -136,7 +137,7 @@ export default {
       return this.$set(this.timeLineScroll, 'final', true)
     },
     scrollReachedRightBorder ({scrollLeft, scrollWidth}) {
-      const contentSizeWithScrollSize = scrollLeft + this.getTimeLineContentSize()
+      const contentSizeWithScrollSize = Math.round(scrollLeft) + this.getTimeLineContentSize()
 
       return  contentSizeWithScrollSize === scrollWidth
     }
