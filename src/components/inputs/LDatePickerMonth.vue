@@ -142,7 +142,7 @@ export default {
   },
   computed: {
     formattedMonths () {
-      this.orderPeriod()
+      this.orderPeriodAsc()
       return formatYearMonth(this.monthsPeriod.join(' - '), this.monthsList, true)
     },
     periodChip: {
@@ -245,7 +245,7 @@ export default {
 
       return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
     },
-    orderPeriod () {
+    orderPeriodAsc () {
       this.monthsPeriod = this.monthsPeriod.sort()
     }
   }

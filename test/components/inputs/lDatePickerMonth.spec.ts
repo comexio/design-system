@@ -12,7 +12,7 @@ const updatedDateLimit = {
   max: '2020-05-31'
 }
 
-const orderedPeriodText = 'Mar/20 - Mai/20'
+const orderedPeriodAscTextMock = 'Mar/20 - Mai/20'
 
 const setupDefault = initSetupComponent()
 const defaultParams = {
@@ -84,6 +84,6 @@ describe('datePicker component', () => {
 
   it('renders period in asc order', async () => {
     const inputText = datePicker.find('.formatted-months').text()
-    expect(inputText).toEqual(orderedPeriodText)
+    expect(inputText).toEqual(orderedPeriodAscTextMock)
   })
 })
