@@ -116,7 +116,7 @@ export default {
       type: String,
       default: ''
     },
-    dropdownIcon: { 
+    dropdownIcon: {
       type: Boolean,
       default: true
     },
@@ -128,8 +128,8 @@ export default {
       type: Array,
       default: () => [
         'last_3_months',
-        'last_6_months', 
-        'last_9_months', 
+        'last_6_months',
+        'last_9_months',
         'last_12_months'
       ]
     },
@@ -142,6 +142,7 @@ export default {
   },
   computed: {
     formattedMonths () {
+      this.orderPeriod()
       return formatYearMonth(this.monthsPeriod.join(' - '), this.monthsList, true)
     },
     periodChip: {
@@ -243,6 +244,9 @@ export default {
       const lastDay = new Date(y, m, 0)
 
       return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
+    },
+    orderPeriod () {
+      this.monthsPeriod = this.monthsPeriod.sort()
     }
   }
 }

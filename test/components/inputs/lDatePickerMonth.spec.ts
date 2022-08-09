@@ -12,6 +12,8 @@ const updatedDateLimit = {
   max: '2020-05-31'
 }
 
+const orderedPeriodText = 'Mar/20 - Mai/20'
+
 const setupDefault = initSetupComponent()
 const defaultParams = {
   ...setupDefault,
@@ -20,7 +22,7 @@ const defaultParams = {
       ...initialDateLimit,
     },
     enabledPeriods: ['last_6_months', 'last_9_months', 'last_12_months'],
-    value: ['2020-03', '2020-05'],
+    value: ['2020-05', '2020-03'],
     monthsList: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
   },
   data () {
@@ -78,5 +80,10 @@ describe('datePicker component', () => {
 
   it('renders right amount of disabled periods', async () => {
     expect(datePicker.findAll('.v-chip--disabled').length).toBe(1)
+  })
+
+  it('renders period in asc order', async () => {
+    const inputText = datePicker.find('.formatted-months').text()
+    expect(inputText).toEqual(orderedPeriodText)
   })
 })
