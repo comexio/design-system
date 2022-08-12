@@ -24,16 +24,8 @@
         >
           <template v-slot:activator="{ on }">
             <span
-              v-if="applyCursorPointer && !lastItem"
-              class="LLinearChartLine__cursor_pointer"
-              @click="eventClick(data.label)"
-              v-on="on"
-            >
-              {{ dataLabel }}
-            </span>
-            <span
-              v-else
-              class="LLinearChartLine__label"
+              :class="{ 'LLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
+              @click="applyCursorPointer && !lastItem && eventClick(data.label)"
               v-on="on"
             >
               {{ dataLabel }}
@@ -61,56 +53,58 @@
         </span>
       </p>
       <div class="LLinearChartLine__result pb-0">
-        <v-row
-          v-if="isTagChart"
-        >
-          <v-col
-            cols="12"
-            class="pl-2 py-0 pr-0 text-right"
+        <slot name="lineResultContent">
+          <v-row
+            v-if="isTagChart"
           >
-            <span class="LLinearChartLine__title font-md">
-              {{ data.total }} {{ valueSymbol }}
-            </span>
-          </v-col>
-        </v-row>
-        <v-row
-          v-else
-          class="flex-nowrap justify-end"
-        >
-          <v-col
-            v-if="data.value !== null"
-            class="py-0 LLinearChartLine__result__value--first"
-          >
-            <v-tooltip
-              bottom
+            <v-col
+              cols="12"
+              class="pl-2 py-0 pr-0 text-right"
             >
-              <template v-slot:activator="{ on }">
-                <span v-on="on">
-                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
-                </span>
-              </template>
-              <span
-                v-if="showToolTip"
-              >
-                {{ data.toolTipContent }}
+              <span class="LLinearChartLine__title font-md">
+                {{ data.total }} {{ valueSymbol }}
               </span>
-            </v-tooltip>
-          </v-col>
-          <span
-            v-if="data.total !== null"
-            style="marginRight: -4%; marginLeft: -4%"
+            </v-col>
+          </v-row>
+          <v-row
+            v-else
+            class="flex-nowrap justify-end"
           >
-            {{ showPartition(data) }}
-          </span>
-          <v-col
-            v-if="data.total !== null"
-            class="py-0 LLinearChartLine__result__value--second"
-          >
-            <span>
-              {{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
+            <v-col
+              v-if="data.value !== null"
+              class="py-0 LLinearChartLine__result__value--first"
+            >
+              <v-tooltip
+                bottom
+              >
+                <template v-slot:activator="{ on }">
+                  <span v-on="on">
+                    {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                  </span>
+                </template>
+                <span
+                  v-if="showToolTip"
+                >
+                  {{ data.toolTipContent }}
+                </span>
+              </v-tooltip>
+            </v-col>
+            <span
+              v-if="data.total !== null"
+              style="marginRight: -4%; marginLeft: -4%"
+            >
+              {{ showPartition(data) }}
             </span>
-          </v-col>
-        </v-row>
+            <v-col
+              v-if="data.total !== null"
+              class="py-0 LLinearChartLine__result__value--second"
+            >
+              <span>
+                {{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
+              </span>
+            </v-col>
+          </v-row>
+        </slot>
       </div>
     </div>
     <div class="pt-1">
@@ -267,7 +261,7 @@ export default {
     color: $martinique;
     font-size: 0.9rem;
   }
-  .LLinearChartLine__cursor_pointer {
+  .LLinearChartLine__label--clickable {
     cursor: pointer;
   }
 }

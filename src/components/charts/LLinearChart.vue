@@ -9,7 +9,6 @@
           dense
         >
           <l-linear-chart-line
-            v-slot:sectionAfterValue="slotProps"
             :apply-cursor-pointer="isClickable(item)"
             :data="item"
             :index="index"
@@ -24,10 +23,15 @@
             @expand="expandList"
             @eventClick="eventClick"
           >
-            <slot
-              name="sectionAfterValue"
-              :value="slotProps.value"
-            />
+            <template #sectionAfterValue="slotProps">
+              <slot
+                name="sectionAfterValue"
+                :value="slotProps.value"
+              />
+            </template>
+            <template #lineResultContent>
+              <slot name="lineResultContent" />
+            </template>
             <template
               v-if="!isLastItem(index) && index < magnifyItemsQuantity"
             >
