@@ -32,6 +32,7 @@
             </template>
             <template
               v-if="!isLastItem(index) && index < magnifyItemsQuantity"
+              #magnifyItemDetail
             >
               <slot
                 name="magnifyItemDetail"

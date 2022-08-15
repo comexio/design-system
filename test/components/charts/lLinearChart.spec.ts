@@ -81,9 +81,9 @@ describe('linearChart component', () => {
 
     await linearChart.vm.$nextTick()
 
-    expect(linearChart.find('.LLinearChartLine__expand').text()).toBe('seeMoreTest')
-    expect(linearChart.find('.LLinearChartLine__result__value--first').text()).toBe('valueTest: 16.535.343,00')
-    expect(linearChart.find('.LLinearChartLine__result__value--second').text()).toBe('recordTest: 360')
+    expect(linearChart.find('.LLinearChartLine__expand').text()).toBe('__translation__')
+    expect(linearChart.find('.LLinearChartLine__result__value--first').text()).toBe('__translation__: 16.535.343,00')
+    expect(linearChart.find('.LLinearChartLine__result__value--second').text()).toBe('__translation__: 360')
   })
 
   it('emit expand list', async () => {
