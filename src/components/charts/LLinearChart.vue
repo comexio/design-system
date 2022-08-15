@@ -19,6 +19,7 @@
             :items-without-details="itemsWithoutDetails"
             :show-tool-tip="showToolTip"
             :label-max-length="labelMaxLength"
+            :description-max-length="descriptionMaxLength"
             :magnify-items-quantity="magnifyItemsQuantity"
             @expand="expandList"
             @eventClick="eventClick"
@@ -28,9 +29,6 @@
                 name="sectionAfterValue"
                 :value="slotProps.value"
               />
-            </template>
-            <template #lineResultContent>
-              <slot name="lineResultContent" />
             </template>
             <template
               v-if="!isLastItem(index) && index < magnifyItemsQuantity"
@@ -141,6 +139,10 @@ export default {
     labelMaxLength: {
       type: Number,
       default: 23
+    },
+    descriptionMaxLength: {
+      type: Number,
+      default: 39
     },
     nonClickableItems: {
       type: Array,
