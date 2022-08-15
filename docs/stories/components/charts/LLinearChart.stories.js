@@ -12,6 +12,7 @@ export default {
     isExpandable: { control: 'boolean', description: 'Chart expandable: true / Chart not expandable: false' },
     itemsWithoutDetails: { control: 'array', description: 'Receives info about when it should shows details icon' },
     labelMaxLength: {control: 'number', description: 'Max characters allowed to label'},
+    descriptionMaxLength: {control: 'number', description: 'Max characters allowed to description'},
     maxQuantity: { action: 'number', description: 'Max items allowed' },
     nonClickableItems: { control: 'array', description: 'List of Items that won\'t apply the cursor pointer even when the applyCursorPointer is true'},
     showToolTip: { control: 'boolean', description: 'Props to control the visibility of tooltip passed to child components' },
@@ -29,6 +30,7 @@ export default {
   },
 };
 
+// TODO: Resolver problema $te na instância
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart, LButtonNew },
@@ -72,6 +74,18 @@ Minimized.args = {
         "#ae77d8"
     ],
     translationLine: { "value":"Value","records":"Percentage","seeMore":"See more" },
+};
+
+export const MinimizedWithDescription = Template.bind({});
+MinimizedWithDescription.args = {
+  ...Minimized.args,
+    data: [
+        { "label":"EXAMPLE", "description":"DESCRIPTION CONTENT HERE", "percentage":"24.81","total":"total%","quantity":0,"value":"value" },
+        { "label":"EXAMPLE", "description":"DESCRIPTION CONTENT HERE", "percentage":"18.68","total":"total%","quantity":0,"value":"value" },
+        { "label":"EXAMPLE", "description":"DESCRIPTION CONTENT HERE", "percentage":"16.14","total":"total%","quantity":0,"value":"value" },
+        { "label":"EXAMPLE", "description":"DESCRIPTION CONTENT HERE", "percentage":"10.29","total":"total%","quantity":0,"value":"value" },
+        { "label":"OTHERS","percentage":"30.08","total":"total%","quantity":0,"value":"value"  }
+    ]
 };
 
 export const NonClickableItems = Template.bind({});
