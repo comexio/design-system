@@ -7,6 +7,8 @@ const defaultParams = {
   ...setupDefault
 }
 
+// TODO: Migrar o restante dos testes para a Testing Library (Já fazer os novos no lLinearChartLineNew.spec)
+
 const fakeData = {
     label: "DIAGEO BRASIL LTDA",
     percentage: 6,

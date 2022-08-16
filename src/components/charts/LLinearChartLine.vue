@@ -53,7 +53,7 @@
             </span>
           </template>
           <div>
-            <span>
+            <span data-testid="description-tooltip">
               {{ data.description }}
             </span>
           </div>
@@ -249,11 +249,6 @@ export default {
   methods: {
     getTruncatedText (text, maxLength) {
       return `${text.substring(0, maxLength)}...`
-    },
-    getTranslationOrValue (pathOrValue) {
-      return this.$te(pathOrValue) 
-      ? this.$t(pathOrValue) 
-      : pathOrValue
     },
     expand () {
       this.$emit('expand')
