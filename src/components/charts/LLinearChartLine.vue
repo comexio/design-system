@@ -13,7 +13,7 @@
       </p>
       <p
         v-else
-        class="pb-0 pl-0 pr-2"
+        class="LLinearChartLine__title pb-0 pl-0 pr-2"
         v-on="on"
       >
         <l-tooltip

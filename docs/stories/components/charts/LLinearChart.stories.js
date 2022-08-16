@@ -30,7 +30,7 @@ export default {
   },
 };
 
-// TODO: Resolver problema $te na instância
+// TODO: Resolver problemas em chamada da instância do Vuei1n8 ($te e $t quebrando story)
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LLinearChart, LButtonNew },
