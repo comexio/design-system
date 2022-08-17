@@ -7,6 +7,8 @@ const defaultParams = {
   ...setupDefault
 }
 
+// TODO: Migrar o restante dos testes para a Testing Library (Já fazer os novos no lLinearChartLineNew.spec)
+
 const fakeData = {
     label: "DIAGEO BRASIL LTDA",
     percentage: 6,
@@ -42,7 +44,7 @@ describe('linearChartLine component', () => {
   })
 
   it('render item without cursor', async () => {
-    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__cursor_pointer')
+    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__label--clickable')
     await llinearChartLine.vm.$nextTick()
 
     expect(cursor().exists()).toBeFalsy()
@@ -67,14 +69,14 @@ describe('linearChartLine component with cursor pointer', () => {
   })
 
   it('render item with cursor', async () => {
-    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__cursor_pointer')
+    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__label--clickable')
     await llinearChartLine.vm.$nextTick()
 
     expect(cursor().exists()).toBeTruthy()
   })
 
   it('emit expand eventClick', async () => {
-    const eventClick = () => llinearChartLine.find('.LLinearChartLine__cursor_pointer')
+    const eventClick = () => llinearChartLine.find('.LLinearChartLine__label--clickable')
     eventClick().trigger('click')
 
     await llinearChartLine.vm.$nextTick()
@@ -83,7 +85,7 @@ describe('linearChartLine component with cursor pointer', () => {
 
   it('render last item', async () => {
     llinearChartLine.setProps({ lastItem: true })
-    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__cursor_pointer')
+    const cursor = () => llinearChartLine.findAll('.LLinearChartLine__label--clickable')
     await llinearChartLine.vm.$nextTick()
 
     expect(cursor().exists()).toBeFalsy()

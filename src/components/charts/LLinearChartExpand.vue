@@ -41,7 +41,7 @@
             <td>
               <template v-if="isClickable(item)">
                 <span
-                  class="LLinearChartLine__cursor_pointer"
+                  class="LLinearChartLine__label--clickable"
                   @click="eventClick(item.label)"
                 >
                   {{ item.label }}
@@ -238,7 +238,7 @@ export default {
   .LLinearChartExpand__loading {
     height: 0px;
   }
-  .LLinearChartLine__cursor_pointer {
+  .LLinearChartLine__label--clickable {
     cursor: pointer;
   }
 }
