@@ -1,82 +1,116 @@
-import LCircularChart from "~/src/components/charts/LCircularChart.vue";
+import LCircularChart from '~/src/components/charts/LCircularChart.vue';
 
 export default {
-  title: "Components/Charts/Donut",
+  title: 'Components/Charts/Donut',
   component: LCircularChart,
   argTypes: {
     items: {
-      control: "object",
+      control: 'object',
       description:
-        "Chart items array of objects: label, value, percentage, options object (color, img, tooltip)"
+        'Chart items array of objects: label, value, percentage, options object (color, img, icon, tooltip)'
     },
     clickableItems: {
-      control: "array",
+      control: 'array',
       description:
-        "Receives an array with items that are used to control if click event should be emitted"
+        'Receives an array with items that are used to control if click event should be emitted. Must be used with useCursorPointer as true'
     },
     showTooltip: {
-      control: "boolean",
-      description: "Tooltip enabled: true / disabled: false",
-      default: true
+      control: 'boolean',
+      description: 'Toggles tooltip visibility',
     },
-    size: { control: "text", description: "Chart size" },
+    translateLabels: {
+      control: 'boolean',
+      description: 
+        'Toggles i18n translation of label. If true must receive translation path'
+    },
+    size: { 
+      control: 'text', 
+      description: 'Chart size' 
+    },
     useCursorPointer: {
-      control: "boolean",
-      description: "Boolean control to use css rule to apply cursor pointer"
+      control: 'boolean',
+      description: 
+        'Toggles clickable functionality, if true will apply pointer style and enable clicks from clickableItems'
     },
     eventClick: { action: 'eventClick', description: 'Trigger a click event' },
     default: { table: { disable: true } }
   }
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LCircularChart },
-  template: '<l-circular-chart v-bind="$props"> </l-circular-chart>'
+  template: `
+    <l-circular-chart
+      v-bind="$props"
+      @eventClick="eventClick"
+    />
+  `
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const DefaultWithTooltip = Template.bind({});
+DefaultWithTooltip.args = {
   items: [
     {
-      label: "Label",
-      value: "value",
-      percentage: "65",
+      label: 'Label',
+      value: 'value',
+      percentage: '65',
       options: {
-        color: "#6E84C2",
+        color: '#6E84C2',
         img:
-          "https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj"
+          'https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj'
       },
       tooltip: {
-        label: "Details"
+        label: 'Details'
       }
     },
     {
-      label: "Label",
-      value: "value",
-      percentage: "30",
+      label: 'Label',
+      value: 'value',
+      percentage: '30',
       options: {
-        color: "#F87045",
+        color: '#F87045',
         img:
-          "https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj"
+          'https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj'
       },
       tooltip: {
-        label: "Details"
+        label: 'Details'
       }
     },
     {
-      label: "Label",
-      value: "value",
-      percentage: "85",
+      label: 'Label',
+      value: 'value',
+      percentage: '85',
       options: {
-        color: "#E875A7",
+        color: '#E875A7',
         img:
-          "https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj"
+          'https://yt3.ggpht.com/ytc/AAUvwnhi47MYC54AxUhOCeijZ6BPB_tREGwfC8dbFzOZ=s900-c-k-c0x00ffffff-no-rj'
       },
       tooltip: {
-        label: "Details"
+        label: 'Details'
       }
     }
   ],
   showTooltip: true
-};
+}
+
+export const ClickableItems = Template.bind({});
+ClickableItems.args = {
+  ...DefaultWithTooltip.args,
+  clickableItems: ['Label'],
+  useCursorPointer: true
+}
+
+export const UsingIcons = Template.bind({});
+UsingIcons.args = {
+  items: [
+    {
+      label: 'Label with Icon',
+      percentage: '50',
+      options: {
+        color: '#6E84C2',
+        icon: 'mdi-information'
+      }
+    }
+  ]
+}
