@@ -33,6 +33,7 @@
                   v-if="item.options.icon"
                   :color="item.options.color"
                   class="LCircularChart__item__icon"
+                  data-testid="item-icon"
                 >
                   {{ item.options.icon }}
                 </v-icon>
@@ -78,7 +79,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => ([])
+      required: true
     },
     clickableItems: {
       type: Array,
