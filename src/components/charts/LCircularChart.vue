@@ -5,8 +5,8 @@
   >
     <v-row no-gutters>
       <v-col
-        v-for="item in items"
-        :key="item.label"
+        v-for="(item, index) in items"
+        :key="index"
       >
         <l-tooltip
           bottom
