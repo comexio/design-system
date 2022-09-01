@@ -11,6 +11,7 @@
       <div class="d-flex flex-column my-4 mx-2">
         <slot name="header-content" />
         <div
+          v-if="!noData"
           class="d-flex justify-space-around align-center"
         >
           <v-avatar
@@ -44,6 +45,10 @@
             </v-icon>
           </v-avatar>
         </div>
+        <slot
+          v-if="noData"
+          name="no-data"
+        />
       </div>
     </l-card-new>
   </div>
@@ -64,19 +69,20 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     description: {
       type: String,
-      required: true,
-    }
+      required: true
+    },
+    noData: Boolean
   },
   data () {
     return {
       timeLineScroll: {
         initial: false,
         final: true
-      },
+      }
     }
   },
   computed: {
@@ -107,6 +113,10 @@ export default {
       timeLine.scrollLeft = timeLine.scrollLeft + quantity
     },
     buildButtonsScrollTimeLine () {
+      if (this.noData) {
+        return
+      }
+
       const timeLine = this.$refs.LTimeline__cardContent
       timeLine.scrollLeft = this.getTimeLineContentSize()
 
@@ -136,10 +146,11 @@ export default {
 
       return this.$set(this.timeLineScroll, 'final', true)
     },
-    scrollReachedRightBorder ({scrollLeft, scrollWidth}) {
-      const contentSizeWithScrollSize = Math.round(scrollLeft) + this.getTimeLineContentSize()
+    scrollReachedRightBorder ({ scrollLeft, scrollWidth }) {
+      const contentSizeWithScrollSize =
+        Math.round(scrollLeft) + this.getTimeLineContentSize()
 
-      return  contentSizeWithScrollSize === scrollWidth
+      return contentSizeWithScrollSize === scrollWidth
     }
   }
 }
@@ -161,7 +172,7 @@ export default {
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
-     height: 6px;
+      height: 6px;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -173,13 +184,13 @@ export default {
 
 @media screen and (min-width: 600px) {
   .LTimeline__cardContent {
-        margin: 0 8px;
+    margin: 0 8px;
   }
 }
 
 @media screen and (min-width: 1910px) {
   .LTimeline__cardContent {
-      width: 90%;
+    width: 90%;
   }
 }
 </style>
