@@ -3,7 +3,7 @@ import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/timeline/LTimeline.stories'
 
-const { Default } = composeStories(stories)
+const { Default, NoData } = composeStories(stories)
 
 describe('LTimeline', () => {
   it('renders component LTimeline correctly', () => {
@@ -12,25 +12,51 @@ describe('LTimeline', () => {
     expect(screen.getByText('Foo Title')).toBeInTheDocument()
     expect(screen.getByText('Bar Description')).toBeInTheDocument()
 
-    expect(container.getElementsByClassName('v-divider').length).toBe(1)
-    expect(container.getElementsByClassName('LTimeline__cardContent').length).toBe(1)
+    expect(container.getElementsByClassName('v-divider').length).toBe(
+      1
+    )
+    expect(
+      container.getElementsByClassName('LTimeline__cardContent')
+        .length
+    ).toBe(1)
   })
 
   it('renders slot header-content without default control scroll arrows', () => {
     const { container } = renderComponent(Default())
 
-    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(1)
+    expect(
+      container.getElementsByClassName('mdi-chevron-right').length
+    ).toBe(1)
     expect(screen.getByText('Header content')).toBeInTheDocument()
   })
 
   it('renders slot header-content with default control scroll arrows', async () => {
     const { container } = renderComponent(Default())
 
-    const cardContent = container.getElementsByClassName('LTimeline__cardContent')[0]
-    await fireEvent.scroll(cardContent, { target: { scrollLeft: 100 } });
+    const cardContent = container.getElementsByClassName(
+      'LTimeline__cardContent'
+    )[0]
+    await fireEvent.scroll(cardContent, {
+      target: { scrollLeft: 100 }
+    })
 
-    expect(container.getElementsByClassName('mdi-chevron-left').length).toBe(1)
-    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(1)
+    expect(
+      container.getElementsByClassName('mdi-chevron-left').length
+    ).toBe(1)
+    expect(
+      container.getElementsByClassName('mdi-chevron-right').length
+    ).toBe(1)
+  })
 
+  it('renders slot no-data', async () => {
+    const { container } = renderComponent(NoData())
+
+    expect(screen.getByText('No data content'))
+    expect(
+      container.getElementsByClassName('LTimeline__cardContent')
+        .length
+    ).toBe(0)
+    expect(container.getElementsByClassName('mdi-chevron-left').length).toBe(0)
+    expect(container.getElementsByClassName('mdi-chevron-right').length).toBe(0)
   })
 })
