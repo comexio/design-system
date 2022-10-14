@@ -1,17 +1,11 @@
 name: Percy validation
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    branches:    
+      - master
 jobs:
-  mergeability:
-    if: github.event.review.state == 'approved'
-    runs-on: ubuntu-latest
-    steps:
-    - uses: rafaelbastiansch/mergeability-pr@1.0.2
-      with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
   percytest:
-    needs: [mergeability]
+    name: Percy Snapshot Test
     runs-on: ubuntu-latest
     strategy:
       matrix:

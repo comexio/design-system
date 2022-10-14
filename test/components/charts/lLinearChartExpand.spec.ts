@@ -83,7 +83,7 @@ describe('linearChartExpand component', () => {
   })
 
   it('render header items without cursor pointer', async () => {
-    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__label--clickable')
     linearChartExpand.setProps({ data: fakeData })
     await linearChartExpand.vm.$nextTick()
 
@@ -91,7 +91,7 @@ describe('linearChartExpand component', () => {
   })
 
   it('render header items with cursor pointer', async () => {
-    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__cursor_pointer')
+    const cursorItems = () => linearChartExpand.findAll('.LLinearChartLine__label--clickable')
     linearChartExpand.setProps({ applyCursorPointer: true })
     await linearChartExpand.vm.$nextTick()
 
@@ -131,7 +131,7 @@ describe('linearChartExpand component', () => {
   })
 
   it('emit eventClick', async () => {
-    const eventClick = () => linearChartExpand.find('.LLinearChartLine__cursor_pointer')
+    const eventClick = () => linearChartExpand.find('.LLinearChartLine__label--clickable')
 
     await linearChartExpand.vm.$nextTick()
     eventClick().trigger('click')

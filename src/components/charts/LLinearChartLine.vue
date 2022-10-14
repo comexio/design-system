@@ -13,35 +13,48 @@
       </p>
       <p
         v-else
-        class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
+        class="LLinearChartLine__title pb-0 pl-0 pr-2"
         v-on="on"
       >
         <l-tooltip
-          :disabled="!isTruncated"
+          :disabled="!isLabelTruncated"
           bottom
           nudge-right="100"
           style="maxWidth: 100px"
         >
           <template v-slot:activator="{ on }">
             <span
-              v-if="applyCursorPointer && !lastItem"
-              class="LLinearChartLine__cursor_pointer"
-              @click="eventClick(data.label)"
+              class="LLinearChartLine__label font-md"
+              :class="{ 'LLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
+              @click="applyCursorPointer && !lastItem && eventClick(data.label)"
               v-on="on"
             >
-              {{ dataLabel }}
+              {{ label }}
             </span>
+          </template>
+          <div class="font-md">
+            <span>
+              {{ data.label }} {{ showQuantity }}
+            </span>
+          </div>
+        </l-tooltip>
+        <l-tooltip
+          :disabled="!isDescriptionTruncated"
+          bottom
+          nudge-right="100"
+          style="maxWidth: 100px"
+        >
+          <template v-slot:activator="{ on }">
             <span
-              v-else
-              class="LLinearChartLine__label"
+              class="LLinearChartLine__description"
               v-on="on"
             >
-              {{ dataLabel }}
+              {{ description }}
             </span>
           </template>
           <div>
-            <span>
-              {{ data.label }} {{ showQuantity }}
+            <span data-testid="description-tooltip">
+              {{ data.description }}
             </span>
           </div>
         </l-tooltip>
@@ -51,18 +64,26 @@
           name="sectionAfterValue"
           :value="data.label"
         />
-        {{ showQuantity }}
+        <span class="LLinearChartLine__quantity font-md">
+          {{ showQuantity }}
+        </span>
         <span
           v-if="lastItem && !isExpanded && isExpandable"
           class="LLinearChartLine__expand ml-1"
           @click="expand"
         >
-          {{ translationLine.seeMore || $t('ayla.records') }}
+          {{ $t(translationLine.seeMore) || $t('ayla.records') }}
         </span>
       </p>
       <div class="LLinearChartLine__result pb-0">
+        <div
+          v-if="data.resultContent"
+          class="d-flex justify-end"
+        >
+          {{ data.resultContent }}
+        </div>
         <v-row
-          v-if="isTagChart"
+          v-else-if="isTagChart"
         >
           <v-col
             cols="12"
@@ -78,36 +99,35 @@
           class="flex-nowrap justify-end"
         >
           <v-col
-            v-if="data.value !== null"
+            v-if="data.value"
             class="py-0 LLinearChartLine__result__value--first"
           >
-            <v-tooltip
+            <l-tooltip
+              :disabled="!showToolTip"
               bottom
             >
               <template v-slot:activator="{ on }">
                 <span v-on="on">
-                  {{ translationLine.value || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                  {{ $t(translationLine.value) || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
                 </span>
               </template>
-              <span
-                v-if="showToolTip"
-              >
+              <span>
                 {{ data.toolTipContent }}
               </span>
-            </v-tooltip>
+            </l-tooltip>
           </v-col>
           <span
-            v-if="data.total !== null"
+            v-if="data.total"
             style="marginRight: -4%; marginLeft: -4%"
           >
             {{ showPartition(data) }}
           </span>
           <v-col
-            v-if="data.total !== null"
+            v-if="data.total"
             class="py-0 LLinearChartLine__result__value--second"
           >
             <span>
-              {{ translationLine.records || $t('ayla.records') }}: {{ data.total }}
+              {{ $t(translationLine.records) || $t('ayla.records') }}: {{ data.total }}
             </span>
           </v-col>
         </v-row>
@@ -186,6 +206,10 @@ export default {
       type: Number,
       default: 23
     },
+    descriptionMaxLength: {
+      type: Number,
+      default: 39
+    },
     applyCursorPointer: {
       type: Boolean,
       default: false
@@ -196,17 +220,36 @@ export default {
     }
   },
   computed: {
-    isTruncated () {
-      return this.data.label.length > this.labelMaxLength
+    isLabelTruncated () {
+      return this.data?.label?.length > this.labelMaxLength
     },
-    dataLabel () {
-       return this.isTruncated ? `${this.data.label.substring(0, this.labelMaxLength)}...` : this.data.label
+    isDescriptionTruncated () {
+      return this.data?.description?.length > this.descriptionMaxLength
+    },
+    label () {
+      const { label } = this.data
+
+      if (this.lastItem) {
+        return this.$t(label)
+      }
+
+      return this.isLabelTruncated 
+        ? this.getTruncatedText(label, this.labelMaxLength) 
+        : label
+    },
+    description () {
+      return this.isDescriptionTruncated 
+        ? this.getTruncatedText(this.data.description, this.descriptionMaxLength) 
+        : this.data.description
     },
     showQuantity () {
-      return this.lastItem ? `(${this.data.quantity})` : ''
+      return this.lastItem && this.data.quantity ? `(${this.data.quantity})` : ''
     }
   },
   methods: {
+    getTruncatedText (text, maxLength) {
+      return `${text.substring(0, maxLength)}...`
+    },
     expand () {
       this.$emit('expand')
     },
@@ -230,8 +273,8 @@ export default {
     flex-basis: 100%;
   }
 
-  &__title, &__percent, &__number {
-    font-size: 0.9rem;
+  &__title, &__percent, &__number, &__quantity {
+    font-size: 0.923rem;
     line-height: 0.9rem;
     margin-bottom: 0px;
   }
@@ -267,7 +310,7 @@ export default {
     color: $martinique;
     font-size: 0.9rem;
   }
-  .LLinearChartLine__cursor_pointer {
+  .LLinearChartLine__label--clickable {
     cursor: pointer;
   }
 }

@@ -11,10 +11,11 @@
       <div class="d-flex flex-column my-4 mx-2">
         <slot name="header-content" />
         <div
+          v-if="!noData"
           class="d-flex justify-space-around align-center"
         >
           <v-avatar
-            v-if="timeLineScroll.initial || isExtraSmall"
+            v-show="timeLineScroll.initial || isExtraSmall"
             id="LTimeline__arrowLeft"
             :color="globalColors.magnoliaDark"
             size="20"
@@ -32,7 +33,7 @@
             <slot />
           </div>
           <v-avatar
-            v-if="timeLineScroll.final || isExtraSmall"
+            v-show="timeLineScroll.final || isExtraSmall"
             id="LTimeline__arrowRight"
             :color="globalColors.magnoliaDark"
             size="20"
@@ -44,6 +45,10 @@
             </v-icon>
           </v-avatar>
         </div>
+        <slot
+          v-if="noData"
+          name="no-data"
+        />
       </div>
     </l-card-new>
   </div>
@@ -64,19 +69,20 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     description: {
       type: String,
-      required: true,
-    }
+      required: true
+    },
+    noData: Boolean
   },
   data () {
     return {
       timeLineScroll: {
         initial: false,
-        final: false
-      },
+        final: true
+      }
     }
   },
   computed: {
@@ -99,16 +105,23 @@ export default {
     getTimeLineItemSize () {
       return this.$el.querySelector('.LTimelineItem').clientWidth
     },
+    getTimeLineContentSize () {
+      return this.$el.querySelector('.LTimeline__cardContent').clientWidth
+    },
     setTimeLineScroll (quantity) {
       const timeLine = this.$refs.LTimeline__cardContent
-
       timeLine.scrollLeft = timeLine.scrollLeft + quantity
     },
     buildButtonsScrollTimeLine () {
-      const timeLine = this.$refs.LTimeline__cardContent
+      if (this.noData) {
+        return
+      }
 
-      if (timeLine.scrollWidth >= timeLine.clientWidth) {
-        this.timeLineScroll.final = true
+      const timeLine = this.$refs.LTimeline__cardContent
+      timeLine.scrollLeft = this.getTimeLineContentSize()
+
+      if (timeLine.scrollWidth <= timeLine.clientWidth) {
+        this.timeLineScroll.final = false
       }
 
       timeLine.addEventListener('scroll', () => {
@@ -117,7 +130,7 @@ export default {
     },
     handleShowButtonsByScroll (timeLine) {
       this.handleShowButtonLeft(timeLine.scrollLeft)
-      this.handleShowButtonRight(timeLine.scrollLeft)
+      this.handleShowButtonRight(timeLine)
     },
     handleShowButtonLeft (scrollLeft) {
       if (scrollLeft === 0) {
@@ -126,12 +139,18 @@ export default {
 
       return this.$set(this.timeLineScroll, 'initial', true)
     },
-    handleShowButtonRight (scrollLeft) {
-      if (scrollLeft >= this.getTimeLineItemSize()) {
+    handleShowButtonRight (timeLine) {
+      if (this.scrollReachedRightBorder(timeLine)) {
         return this.$set(this.timeLineScroll, 'final', false)
       }
 
       return this.$set(this.timeLineScroll, 'final', true)
+    },
+    scrollReachedRightBorder ({ scrollLeft, scrollWidth }) {
+      const contentSizeWithScrollSize =
+        Math.round(scrollLeft) + this.getTimeLineContentSize()
+
+      return contentSizeWithScrollSize === scrollWidth
     }
   }
 }
@@ -148,12 +167,14 @@ export default {
   }
 
   &__cardContent {
-    width: 960px;
+    width: 85%;
+    margin: 0 6px;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
-     height: 6px;
+      height: 6px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: rgba(black, 0.1);
       border-radius: 16px;
@@ -161,31 +182,15 @@ export default {
   }
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (min-width: 600px) {
   .LTimeline__cardContent {
-    max-width: 1152px;
     margin: 0 8px;
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (min-width: 1910px) {
   .LTimeline__cardContent {
-    max-width: 868px;
-    margin: 0 8px;
-  }
-}
-
-@media screen and (max-width-: 1280px) {
-  .LTimeline__cardContent {
-    max-width: 768px;
-    margin: 0 8px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .LTimeline__cardContent {
-    max-width: 200px;
-    margin: 0 6px;
+    width: 90%;
   }
 }
 </style>

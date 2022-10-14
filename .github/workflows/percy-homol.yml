@@ -1,0 +1,42 @@
+name: Percy validation
+on:
+  pull_request_review:
+    types: [submitted]
+    branches:    
+      - homol
+jobs:
+  mergeability:
+    name: Check mergeability
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: rafaelbastiansch/mergeability-pr@1.0.2
+      with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  percytest:
+    name: Percy Snapshot Test
+    needs: [mergeability]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json', 'yarn.lock') }}
+      - run: yarn
+      - name: Install
+        run: yarn
+      - name: Build and Test
+        run: yarn snapshot
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          PERCY_TARGET_BRANCH: homol

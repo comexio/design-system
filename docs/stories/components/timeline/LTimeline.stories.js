@@ -1,12 +1,20 @@
-import LTimelineItem from "~/src/components/timeline/LTimelineItem.vue"
-import LTimeline from "~/src/components/timeline/LTimeline.vue"
+import { initializeObjects } from '~/.storybook/helpers/initializeObjects'
+import LTimelineItem from '~/src/components/timeline/LTimelineItem.vue'
+import LTimeline from '~/src/components/timeline/LTimeline.vue'
 
 export default {
-  title: "Components/Timeline/LTimeline",
+  title: 'Components/Timeline/LTimeline',
   component: LTimelineItem,
   argTypes: {
-    title: { control: "text", description: "The block title" },
-    description: { control: "text", description: "The block description" },
+    title: { control: 'text', description: 'The block title' },
+    description: {
+      control: 'text',
+      description: 'The block description'
+    },
+    noData: {
+      control: 'boolean',
+      description: 'Define no data block'
+    }
   }
 }
 
@@ -34,8 +42,10 @@ const initialTimeline = `
     </template>
   </l-timeline-item>
 `
+const initObjects = initializeObjects()
 
 const Template = (args, { argTypes }) => ({
+  ...initObjects,
   props: Object.keys(argTypes),
   components: { LTimeline, LTimelineItem },
   template: `
@@ -112,13 +122,22 @@ const Template = (args, { argTypes }) => ({
           </div>
         </template>
       </l-timeline-item>
+      <template #no-data>
+        <p>No data content</p>
+      </template>
     </l-timeline>
   `
 })
-
 
 export const Default = Template.bind({})
 Default.args = {
   title: 'Foo Title',
   description: 'Bar Description'
+}
+
+export const NoData = Template.bind({})
+NoData.args = {
+  title: 'Foo Title',
+  description: 'Bar Description',
+  noData: true
 }

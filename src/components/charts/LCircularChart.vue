@@ -1,9 +1,12 @@
 <template>
-  <div class="LCircularChart d-flex align-center">
-    <v-row>
+  <v-container
+    class="LCircularChart pa-0"
+    fill-height
+  >
+    <v-row no-gutters>
       <v-col
-        v-for="item in items"
-        :key="item.label"
+        v-for="(item, index) in items"
+        :key="index"
       >
         <l-tooltip
           bottom
@@ -14,9 +17,8 @@
             v-slot:activator="{ on }"
           >
             <div
-              v-if="item.value"
               class="LCircularChart__item text-center"
-              :class="{ 'useCursorPointer': useCursorPointer && clickableItems.includes(item.label) }"
+              :class="{ 'LCircularChart__item--clickable': useCursorPointer && clickableItems.includes(item.label) }"
               v-on="on"
               @click="eventClick(item.label)"
             >
@@ -27,18 +29,25 @@
                 :width="6"
                 :color="item.options.color"
               >
-                <slot>
-                  <img
-                    :src="item.options.img"
-                    alt="container"
-                    class="LCircularChart__item__image"
-                  >
-                </slot>
+                <v-icon
+                  v-if="item.options.icon"
+                  :color="item.options.color"
+                  class="LCircularChart__item__icon"
+                  data-testid="item-icon"
+                >
+                  {{ item.options.icon }}
+                </v-icon>
+                <img
+                  v-else
+                  :src="item.options.img"
+                  alt="container"
+                  class="LCircularChart__item__image"
+                >
               </v-progress-circular>
-              <div class="LCircularChart__title font-md pt-5 pb-3">
-                {{ item.label }}
+              <div class="LCircularChart__title font-md my-5">
+                {{ translateLabels ? $t(item.label) : item.label }}
               </div>
-              <div class="LCircularChart__percentage">
+              <div class="LCircularChart__percentage font-md">
                 {{ item.percentage }}%
               </div>
               <div class="LCircularChart__quantity LCircularChart__quantity__truncated">
@@ -56,7 +65,7 @@
         </l-tooltip>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -70,21 +79,19 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => ([])
-    },
-    showTooltip: Boolean,
-    size: {
-      type: Number,
-      default: 60
+      required: true
     },
     clickableItems: {
       type: Array,
       default: () => ([])
     },
-    useCursorPointer: {
-      type: Boolean,
-      default: false
-    }
+    size: {
+      type: Number,
+      default: 60
+    },
+    showTooltip: Boolean,
+    translateLabels: Boolean,
+    useCursorPointer: Boolean
   },
   methods: {
     eventClick (label) {
@@ -98,20 +105,39 @@ export default {
 
 <style lang="scss" scoped>
 .LCircularChart {
-  height: 100%;
-  .LCircularChart__title, .LCircularChart__percentage, .LCircularChart__quantity {
+  &__title, &__percentage, &__quantity {
     color: $martinique;
   }
-  .LCircularChart__quantity__truncated {
+
+  &__title {
+    font-size: 1.077rem;
+    text-transform: uppercase;
+    line-height: 17px;
+  }
+
+  &__percentage {
+    font-size: .923rem;
+    line-height: 15px;
+  }
+
+  &__quantity__truncated {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .LCircularChart__item__image {
-    width: 40px;
+
+  &__item {
+    &--clickable {
+      cursor: pointer;
+    }
+
+    &__image, &__icon {
+      user-select: none;
+    }
+
+    &__image {
+      width: 40px;
+    }
   }
-}
-.useCursorPointer {
-  cursor: pointer;
 }
 </style>
