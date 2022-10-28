@@ -2,8 +2,8 @@
   <div class="LCardHeader">
     <div class="LCardHeader__content d-flex justify-space-between align-center">
       <div class="d-flex align-center">
-        <div 
-          class="pl-5" 
+        <div
+          class="pl-5"
           :class="{ 'pr-5': hasPrepend }"
         >
           <slot name="prepend" />
@@ -57,7 +57,7 @@ export default {
   &__content__title {
     color: $martinique;
     font-size: 1.077rem;
-    font-weight: bold;
+    font-weight: 500px;
     line-height: 17px;
   }
   &__content__subtitle {
