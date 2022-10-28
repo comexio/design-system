@@ -57,7 +57,7 @@ export default {
   &__content__title {
     color: $martinique;
     font-size: 1.077rem;
-    font-weight: 500px;
+    font-weight: 500;
     line-height: 17px;
   }
   &__content__subtitle {
