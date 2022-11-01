@@ -1,10 +1,7 @@
 <template>
   <v-dialog
     v-model="inputValue"
-    content-class="LModalNew"
-    :overlay-color="globalColors.wisteria"
-    overlay-opacity="0.60"
-    v-bind="$attrs"
+    v-bind="bindProps"
     v-on="$listeners"
   >
     <template v-slot:activator="scope">
@@ -44,6 +41,10 @@ export default {
     value: {
       type: Boolean,
       default: false
+    },
+    contentClass: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -53,6 +54,16 @@ export default {
       },
       set (value) {
         this.$emit('input', value)
+      }
+    },
+    bindProps () {
+      const { $attrs, globalColors, contentClass } = this
+
+      return {
+        'overlay-color': globalColors.wisteria,
+        'overlay-opacity': '0.60',
+        'content-class': `LModalNew ${contentClass}`,
+        ...$attrs
       }
     }
   }  
