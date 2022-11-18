@@ -67,7 +67,7 @@ const TemplateWithSlotHeader = (args, { argTypes }) => ({
       <template v-slot:header>
         <v-icon
           size="16px"
-          color="#9F6CBB"
+          color="#5B11BA"
         >
           mdi-information
         </v-icon>

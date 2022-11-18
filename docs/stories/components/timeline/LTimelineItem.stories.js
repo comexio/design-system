@@ -69,13 +69,13 @@ Initial.args = {
 
 export const Default = Template.bind({})
 Default.args = {
-  colors: '#FF8F1C',
+  colors: '#FE8F1C',
   circleSize: 30
 }
 
 export const Final = TemplateFinal.bind({})
 Final.args = {
-  colors: '#D4D4D4',
+  colors: '#E0E1EB',
   circleSize: 15,
   final: true
 }

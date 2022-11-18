@@ -91,6 +91,7 @@ import moment from 'moment'
 import { MONTH_PERIODS_VALUES_TO_KEYS, monthPeriodsByQuantity } from '~/enum/date.enum.ts'
 import { extractYearMonth, yearMonthDiff, monthDiff, formatYearMonth } from '~/utils/date.util.ts'
 import colorsMixin from '~/mixins/colors.mixin'
+import { clone } from 'ramda'
 
 export default {
   name: 'LDatePickerMonth',
@@ -142,8 +143,8 @@ export default {
   },
   computed: {
     formattedMonths () {
-      this.orderPeriodAsc()
-      return formatYearMonth(this.monthsPeriod.join(' - '), this.monthsList, true)
+      const months = clone(this.monthsPeriod)
+      return formatYearMonth(months.sort().join(' - '), this.monthsList, true)
     },
     periodChip: {
       get () {
@@ -244,9 +245,6 @@ export default {
       const lastDay = new Date(y, m, 0)
 
       return type === 'min' ? min : lastDay.getFullYear() + '-' + lastDay.getMonth() + '-' + lastDay.getDate()
-    },
-    orderPeriodAsc () {
-      this.monthsPeriod = this.monthsPeriod.sort()
     }
   }
 }

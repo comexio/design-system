@@ -1,17 +1,17 @@
 import { create } from '@storybook/theming/create'
 
 export default create({
-  appBg: '#FAF6FF',
+  appBg: '#F5F6FC',
   appBorderRadius: 10,
-  barBg: '#5C068C',
-  barSelectedColor: '#E2DAF8',
+  barBg: '#6613D0',
+  barSelectedColor: '#E2D0FA',
   base: 'light',
-  barTextColor: '#FAF6FF',
+  barTextColor: '#F5F6FC',
   brandImage: 'https://raw.githubusercontent.com/comexio/design-system/master/.github/assets/ayla-logo.png',
   brandTitle: 'Ayla',
   brandUrl: 'https://github.com/comexio/design-system',
-  colorPrimary: '#5C068C',
-  colorSecondary: '#8345A5',
+  colorPrimary: '#6613D0',
+  colorSecondary: '#8E44ED',
   inputTextColor: '#20083E',
   inputBorderRadius: 5,
   textColor: '#20083E',

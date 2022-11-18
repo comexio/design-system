@@ -38,7 +38,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
         <v-icon
           data-testid="LTextField__icon"
           size="16px"
-          color="#9F6CBB"
+          color="#5B11BA"
         >
           mdi-information
         </v-icon>
@@ -92,7 +92,7 @@ DefaultPassword.args = {
   label: 'Password',
   type: 'password',
   appendIcon: 'mdi-eye',
-  color: '#FF8F1C'
+  color: '#FE8F1C'
 }
 
 export const DefaultWithSlot = TemplateWithSlot.bind({});
