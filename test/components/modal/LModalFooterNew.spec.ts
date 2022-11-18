@@ -10,8 +10,8 @@ describe('renders modal footer', () => {
         cancelButtonProps: {
           text: true,
           buttonColors: {
-            color: '#B8B8B8',
-            colorOnHover: '#D4D4D4'
+            color: '#BFC0CC',
+            colorOnHover: '#E0E1EB'
           },
           placeholder: 'Cancelar'
         },

@@ -126,7 +126,7 @@ Purple.args = {
     background: '#F1E8FF',
     backgroundOnHover: '#DAD1E9',
     backgroundDisabled: '#F1ECF8',
-    color: '#9F6CBB',
+    color: '#5B11BA',
     colorDisabled: '#DDC4EB'
   },
   uppercase: false
@@ -141,8 +141,8 @@ PurpleDisabled.args = {
 export const Gray = Template.bind({});
 Gray.args = {
   buttonColors: {
-    background: '#B8B8B8',
-    backgroundOnHover: '#D4D4D4',
+    background: '#BFC0CC',
+    backgroundOnHover: '#E0E1EB',
     color: '#FFFFFF'
   },
   uppercase: false
@@ -163,10 +163,10 @@ SecondaryDisabled.args = {
 export const OutlinedGray = Template.bind({});
 OutlinedGray.args = {
   buttonColors: {
-    border: '#B8B8B8',
-    borderOnHover: '#D4D4D4',
-    color: '#B8B8B8',
-    colorOnHover: '#D4D4D4'
+    border: '#BFC0CC',
+    borderOnHover: '#E0E1EB',
+    color: '#BFC0CC',
+    colorOnHover: '#E0E1EB'
   },
   outlined: true,
   uppercase: false
@@ -186,8 +186,8 @@ TertiaryDisabled.args = {
 export const TextGray = Template.bind({});
 TextGray.args = {
   buttonColors: {
-    color: '#B8B8B8',
-    colorOnHover: '#D4D4D4'
+    color: '#BFC0CC',
+    colorOnHover: '#E0E1EB'
   },
   text: true
 };
@@ -196,8 +196,8 @@ export const OnlyIcon = TemplateOnlyIcon.bind({});
 OnlyIcon.args = {
   buttonColors: {
     backgroundOnHover: '#DAD1E9',
-    color: '#9F6CBB',
-    colorOnHover: '#5C068C',
+    color: '#5B11BA',
+    colorOnHover: '#6613D0',
     colorDisabled: '#DDC4EB'
   },
   roundedIcon: true,

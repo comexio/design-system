@@ -4,12 +4,12 @@
 	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
-	.st1{fill:#5C068C;}
+	.st1{fill:#6613D0;}
 	.st2{fill:none;stroke:#FFAB56;stroke-opacity:0.2;}
 	.st3{opacity:0.46;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);enable-background:new    ;}
 	
 		.st4{opacity:0.46;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_00000128448537952758298670000004172190694490930098_);enable-background:new    ;}
-	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FFBF7D;}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FEB366;}
 	
 		.st6{opacity:0.6;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_00000165211458839542435860000001643920607162348710_);enable-background:new    ;}
 	.st7{opacity:0.6;}
@@ -29,15 +29,15 @@
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="944.5901" y1="642.2745" x2="781.5801" y2="411.3056" gradientTransform="matrix(1 0 0 -1 287 848)">
 	<stop  offset="0" style="stop-color:#000000"/>
 	<stop  offset="0.5156" style="stop-color:#3F0D6F"/>
-	<stop  offset="0.691" style="stop-color:#5C068C"/>
-	<stop  offset="1" style="stop-color:#9F6CBB"/>
+	<stop  offset="0.691" style="stop-color:#6613D0"/>
+	<stop  offset="1" style="stop-color:#5B11BA"/>
 </linearGradient>
 <path class="st3" d="M1019.1,266.2c-33.9-99.2,2.5-203.6,83.3-266.3h264.1v422.8c-4.4,1.5-8.8,3-13.3,4.3
 	C1213.4,468.7,1063.8,396.7,1019.1,266.2z"/>
 <linearGradient id="SVGID_00000072253716583931474660000004011385514152633502_" gradientUnits="userSpaceOnUse" x1="1043.1597" y1="589.2266" x2="971.9796" y2="521.2516" gradientTransform="matrix(1 0 0 -1 287 848)">
 	<stop  offset="0" style="stop-color:#000000"/>
 	<stop  offset="0.53" style="stop-color:#482570"/>
-	<stop  offset="1" style="stop-color:#E2DAF8"/>
+	<stop  offset="1" style="stop-color:#E2D0FA"/>
 </linearGradient>
 <path style="opacity:0.46;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_00000072253716583931474660000004011385514152633502_);enable-background:new    ;" d="
 	M1328.7,188.4c13.8,0,26.7,3.8,37.7,10.5v124.8c-11,6.6-23.9,10.5-37.7,10.5c-40.3,0-73-32.6-73-72.9

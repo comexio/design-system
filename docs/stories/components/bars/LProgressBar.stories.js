@@ -45,7 +45,7 @@ Indeterminate.args = {
 export const CustomColors = Template.bind({});
 CustomColors.args = {
   value: 30,
-  color: '#8345A5',
+  color: '#8E44ED',
   backgroundColor: '#DAD1E9',
   showPointer: false
 };

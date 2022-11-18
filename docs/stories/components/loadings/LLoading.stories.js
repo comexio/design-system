@@ -29,7 +29,7 @@ export const Default = Template.bind({});
 
 export const CustomColor = Template.bind({});
 CustomColor.args = {
-  color: '#FF8F1C'
+  color: '#FE8F1C'
 };
 
 export const CustomSize = Template.bind({});

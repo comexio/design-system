@@ -81,7 +81,7 @@ const Template = (args, { argTypes }) => ({
       ${initialTimeline.repeat(4)}
 
       <l-timeline-item
-        colors="#FF8F1C"
+        colors="#FE8F1C"
         :circleSize="30"
       >
         <template #top-content>
@@ -104,7 +104,7 @@ const Template = (args, { argTypes }) => ({
       </l-timeline-item>
 
       <l-timeline-item
-        colors="#D4D4D4"
+        colors="#E0E1EB"
         :circleSize="16"
         final
       >

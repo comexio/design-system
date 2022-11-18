@@ -56,19 +56,19 @@ export const WithNumber = Template.bind({});
 WithNumber.args = {
   text: "With Number",
   number: 10,
-  color: "#E2DAF8"
+  color: "#E2D0FA"
 };
 export const Closable = Template.bind({});
 Closable.args = {
   text: "Closable Tag",
-  color: "#E2DAF8",
+  color: "#E2D0FA",
   close: true
 };
 
 export const WithCustomLink = Template.bind({});
 WithCustomLink.args = {
   text: "With Custom Link",
-  color: "#E2DAF8",
+  color: "#E2D0FA",
   customIcon: "mdi-check-bold",
   link: true
 };

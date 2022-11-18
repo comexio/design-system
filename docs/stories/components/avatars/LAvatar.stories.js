@@ -50,7 +50,7 @@ const TemplateWithImage = (args, { argTypes }) => ({
 
 export const Text = Template.bind({})
 Text.args = {
-  color: '#5C068C',
+  color: '#6613D0',
   size: 50
 }
 
