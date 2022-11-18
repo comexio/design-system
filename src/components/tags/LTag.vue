@@ -50,7 +50,7 @@ export default {
     label: Boolean,
     color: {
       type: String,
-      default: '#E2DAF8'
+      default: '#E2D0FA'
     },
     tagManager: Boolean,
     select: Boolean,

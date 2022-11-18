@@ -29,7 +29,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
           <v-icon
             data-testid="LTextArea__icon"
             size="16px"
-            color="#9F6CBB"
+            color="#5B11BA"
           >
             mdi-information
           </v-icon>
