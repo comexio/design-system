@@ -76,6 +76,30 @@
         </span>
       </p>
       <div class="LLinearChartLine__result pb-0">
+        <v-col
+          v-if="data.value"
+          class="py-0 LLinearChartLine__result__value--first d-flex justify-end"
+        >
+          <l-tooltip
+            :disabled="!showToolTip"
+            bottom
+          >
+            <template v-slot:activator="{ on }">
+              <span v-on="on">
+                {{ $t(translationLine.value) || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+              </span>
+            </template>
+            <span>
+              {{ data.toolTipContent }}
+            </span>
+          </l-tooltip>
+        </v-col>
+        <span
+          v-if="data.total"
+          style="marginRight: -4%; marginLeft: -4%"
+        >
+          {{ showPartition(data) }}
+        </span>
         <div
           v-if="data.resultContent"
           class="d-flex justify-end"
@@ -98,30 +122,6 @@
           v-else
           class="flex-nowrap justify-end"
         >
-          <v-col
-            v-if="data.value"
-            class="py-0 LLinearChartLine__result__value--first"
-          >
-            <l-tooltip
-              :disabled="!showToolTip"
-              bottom
-            >
-              <template v-slot:activator="{ on }">
-                <span v-on="on">
-                  {{ $t(translationLine.value) || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
-                </span>
-              </template>
-              <span>
-                {{ data.toolTipContent }}
-              </span>
-            </l-tooltip>
-          </v-col>
-          <span
-            v-if="data.total"
-            style="marginRight: -4%; marginLeft: -4%"
-          >
-            {{ showPartition(data) }}
-          </span>
           <v-col
             v-if="data.total"
             class="py-0 LLinearChartLine__result__value--second"
@@ -233,13 +233,13 @@ export default {
         return this.$t(label)
       }
 
-      return this.isLabelTruncated 
-        ? this.getTruncatedText(label, this.labelMaxLength) 
+      return this.isLabelTruncated
+        ? this.getTruncatedText(label, this.labelMaxLength)
         : label
     },
     description () {
-      return this.isDescriptionTruncated 
-        ? this.getTruncatedText(this.data.description, this.descriptionMaxLength) 
+      return this.isDescriptionTruncated
+        ? this.getTruncatedText(this.data.description, this.descriptionMaxLength)
         : this.data.description
     },
     showQuantity () {
@@ -296,6 +296,7 @@ export default {
     padding-left: 2%;
   }
   .LLinearChartLine__result__value--first{
+    width: 100%;
     flex-grow: 0;
   }
   .LLinearChartLine__result__value--second{
