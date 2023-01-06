@@ -1,15 +1,16 @@
-import { screen } from '@testing-library/vue'
+import { configure, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
 import { composeStories } from '@storybook/testing-vue'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
 import * as stories from '~/docs/stories/components/inputs/LCheckboxNew.stories'
 
-const { Default, WithColor, MultipleCheckboxes } = composeStories(stories)
+const { Default, WithColor, MultipleCheckboxes } =
+  composeStories(stories)
 
 describe('LCheckboxNew', () => {
   it('renders component unchecked', () => {
     renderComponent(Default())
-
+    screen.debug()
     const lCheckboxNew = screen.getByRole('checkbox')
     expect(lCheckboxNew).not.toBeChecked()
   })
@@ -21,6 +22,14 @@ describe('LCheckboxNew', () => {
     await userEvent.click(lCheckboxNew)
 
     expect(lCheckboxNew).toBeChecked()
+  })
+
+  it('renders one id when inheritAttrs false', () => {
+    configure({ testIdAttribute: 'id' })
+
+    const { getAllByTestId } = renderComponent(Default())
+
+    expect(getAllByTestId('checkbox').length).toBe(1)
   })
 
   it('renders component checked with color', async () => {
@@ -36,13 +45,17 @@ describe('LCheckboxNew', () => {
     renderComponent(MultipleCheckboxes())
 
     let checkboxes = screen.getAllByRole('checkbox')
-    checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked())
+    checkboxes.forEach((checkbox) =>
+      expect(checkbox).not.toBeChecked()
+    )
 
     await userEvent.click(checkboxes[0])
 
     expect(checkboxes[0]).toBeChecked()
 
     checkboxes = checkboxes.slice(1)
-    checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked())
+    checkboxes.forEach((checkbox) =>
+      expect(checkbox).not.toBeChecked()
+    )
   })
 })
