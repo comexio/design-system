@@ -4,21 +4,21 @@ export default {
   title: 'Components/Inputs/Checkbox',
   component: LCheckboxNew,
   argTypes: {
-    value: { 
-      control: 'boolean', 
+    value: {
+      control: 'boolean',
       description: `Toggles checkbox state. This prop is used to create an inner v-model so you can retrieve its value`
     },
-    itemValue: { 
-      description: `Toggles checkbox state. This prop value is propagated to the value prop from VCheckbox, 
+    itemValue: {
+      description: `Toggles checkbox state. This prop value is propagated to the value prop from VCheckbox,
       so instead of setting value="someValue" on your component, use item-value="someValue". It can receive any type`
     },
     label: {
       table: { disable: true }
     },
-    color: { 
+    color: {
       table: { disable: true }
      },
-    input: {  
+    input: {
       table: { disable: true }
     }
   },
@@ -28,7 +28,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LCheckboxNew },
-  template: `<l-checkbox-new v-bind="$props"></l-checkbox-new>`
+  template: `<l-checkbox-new id="checkbox" v-bind="$props"></l-checkbox-new>`
 });
 
 const TemplateMultipleCheckboxes = (args, { argTypes }) => ({
@@ -36,8 +36,8 @@ const TemplateMultipleCheckboxes = (args, { argTypes }) => ({
   components: { LCheckboxNew },
   template: `
     <div>
-      <l-checkbox-new 
-        v-bind="$props" 
+      <l-checkbox-new
+        v-bind="$props"
         v-for="checkbox in 3"
         :key="checkbox"
       >
