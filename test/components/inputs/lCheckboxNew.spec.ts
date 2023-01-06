@@ -10,7 +10,7 @@ const { Default, WithColor, MultipleCheckboxes } =
 describe('LCheckboxNew', () => {
   it('renders component unchecked', () => {
     renderComponent(Default())
-    screen.debug()
+
     const lCheckboxNew = screen.getByRole('checkbox')
     expect(lCheckboxNew).not.toBeChecked()
   })
@@ -45,17 +45,13 @@ describe('LCheckboxNew', () => {
     renderComponent(MultipleCheckboxes())
 
     let checkboxes = screen.getAllByRole('checkbox')
-    checkboxes.forEach((checkbox) =>
-      expect(checkbox).not.toBeChecked()
-    )
+    checkboxes.forEach((checkbox) => expect(checkbox).not.toBeChecked())
 
     await userEvent.click(checkboxes[0])
 
     expect(checkboxes[0]).toBeChecked()
 
     checkboxes = checkboxes.slice(1)
-    checkboxes.forEach((checkbox) =>
-      expect(checkbox).not.toBeChecked()
-    )
+    checkboxes.forEach((checkbox) => expect(checkbox).not.toBeChecked())
   })
 })
