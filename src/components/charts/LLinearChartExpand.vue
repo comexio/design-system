@@ -7,7 +7,7 @@
         class="LLinearChartExpand__header__action"
         @click="expandList"
       >
-        {{ $t('ayla.retract') }}
+        {{ retractText || $t('ayla.retract') }}
       </span>
     </div>
     <v-simple-table
@@ -122,6 +122,10 @@ export default {
     nonClickableItems: {
       type: Array,
       default: () => []
+    },
+    retractText: {
+      type: String,
+      default: null
     }
   },
   data () {

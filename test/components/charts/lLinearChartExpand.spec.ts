@@ -73,6 +73,23 @@ describe('linearChartExpand component', () => {
     expect(linearChartExpand.exists()).toBe(true)
   })
 
+  it('render with another text to hide action', async () => {
+    const text = 'To retract'
+    linearChartExpand.setProps({ retractText: text })
+    await linearChartExpand.vm.$nextTick()
+
+    const actionElement = linearChartExpand.find('.LLinearChartExpand__header__action')
+    expect(actionElement.text()).toEqual(text)
+  })
+
+  it('render with default text to hide action', async () => {
+    linearChartExpand.setProps({ retractText: null })
+    await linearChartExpand.vm.$nextTick()
+
+    const actionElement = linearChartExpand.find('.LLinearChartExpand__header__action')
+    expect(actionElement.text()).toEqual('__translation__')
+  })
+
   it('render header items', async () => {
     const headerItems = () => linearChartExpand.findAll('.LLinearChartExpand__table__title')
     expect(headerItems().length).toBe(0)
