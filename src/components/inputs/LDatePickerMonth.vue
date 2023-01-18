@@ -162,7 +162,7 @@ export default {
         return MONTH_PERIODS_VALUES_TO_KEYS[monthsDiff]
       },
       set (periodKey) {
-        const currentDate = new Date(this.dateFilterLimits('max'))
+        const currentDate = new Date(this.dateFilterLimits())
         const currentYear = currentDate.getFullYear()
         const monthsDiff = periodKey.split('_')
         const subtractedDate = new Date(currentYear, currentDate.getMonth() - (parseInt(monthsDiff[1]) - 1))
