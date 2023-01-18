@@ -240,7 +240,6 @@ export default {
       let { min, max } = this.dateLimit
       max = max.length <= 7 ? max + '-02': max
       min = min.length <= 7 ? min + '-02': min
-      console.log(max, min)
       if (type === 'max') {
         return max
       }
