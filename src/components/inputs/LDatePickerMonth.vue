@@ -71,7 +71,6 @@
             v-for="(period, index) of periodsEnum"
             :key="index"
             label
-            :data-testid="period"
             class="justify-center"
             :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
             :disabled="!enabledPeriods.includes(index)"

@@ -48,6 +48,25 @@ const defaultParams = {
     }
   }
 }
+
+describe('LDatePickerMonth', () => {
+  it('renders Filled datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
+
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('Jan/20 - Fev/21')).toBeInTheDocument())
+  })
+
+  it('renders last 9 months datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
+
+    await checkDefaultDatepickerOpened()
+    const last9month = screen.getByText('Últimos 9 meses')
+    await userEvent.click(last9month)
+    await waitFor(() => expect(screen.getByText('Abr/21 - Dez/21')).toBeInTheDocument())
+  })
+})
+
 describe('datePicker component', () => {
   addElemWithDataAppToBody()
   let datePicker: Wrapper<LDatePickerMonth>
@@ -96,23 +115,5 @@ describe('datePicker component', () => {
   it('renders period in asc order', async () => {
     const inputText = datePicker.find('.formatted-months').text()
     expect(inputText).toEqual(orderedPeriodAscTextMock)
-  })
-})
-
-describe('LDatePickerMonth', () => {
-  it('renders Filled datepicker', async () => {
-    renderComponent(DefaultFilledWithYearMonth())
-
-    await checkDefaultDatepickerOpened()
-    await waitFor(() => expect(screen.getByText('Jan/20 - Fev/21')).toBeInTheDocument())
-  })
-
-  it('renders last 9 months datepicker', async () => {
-    renderComponent(DefaultFilledWithYearMonth())
-
-    await checkDefaultDatepickerOpened()
-    const last9month = screen.getByTestId('datepickerPeriods.last_9_months')
-    await userEvent.click(last9month)
-    await waitFor(() => expect(screen.getByText('Abr/21 - Dez/21')).toBeInTheDocument())
   })
 })
