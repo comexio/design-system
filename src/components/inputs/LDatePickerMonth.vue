@@ -11,6 +11,7 @@
       <template #activator="{ on }">
         <v-row
           class="pointer mx-0 activator"
+          data-testid="activator"
           v-on="on"
         >
           <v-col
@@ -48,6 +49,7 @@
         no-title
         multiple
         range
+        data-testid="Datepicker"
         :show-current="false"
         :allowed-dates="isDateAllowed"
         :locale="locale"
@@ -69,6 +71,7 @@
             v-for="(period, index) of periodsEnum"
             :key="index"
             label
+            :data-testid="period"
             class="justify-center"
             :class="{ 'datepicker__calendar__period__chip--active' : periodChip === index }"
             :disabled="!enabledPeriods.includes(index)"
@@ -162,7 +165,7 @@ export default {
         return MONTH_PERIODS_VALUES_TO_KEYS[monthsDiff]
       },
       set (periodKey) {
-        const currentDate = new Date(this.dateFilterLimits())
+        const currentDate = new Date(this.dateFilterLimits('max'))
         const currentYear = currentDate.getFullYear()
         const monthsDiff = periodKey.split('_')
         const subtractedDate = new Date(currentYear, currentDate.getMonth() - (parseInt(monthsDiff[1]) - 1))
@@ -234,7 +237,10 @@ export default {
       return new Date().getTime() > new Date(year, month - 1).getTime()
     },
     dateFilterLimits (type) {
-      const { min, max } = this.dateLimit
+      let { min, max } = this.dateLimit
+      max = max.length <= 7 ? max + '-02': max
+      min = min.length <= 7 ? min + '-02': min
+      console.log(max, min)
       if (type === 'max') {
         return max
       }

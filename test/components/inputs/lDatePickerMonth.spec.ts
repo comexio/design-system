@@ -1,6 +1,19 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
 import LDatePickerMonth from '~/src/components/inputs/LDatePickerMonth.vue'
+import * as stories from '~/docs/stories/components/inputs/LDatePickerMonth.stories.js'
+import { screen, waitFor } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { composeStories } from '@storybook/testing-vue'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+
+const { DefaultFilledWithYearMonth } = composeStories(stories)
+
+const checkDefaultDatepickerOpened = async () => {
+  const activator = screen.getByTestId('activator')
+  await userEvent.click(activator)
+  expect(screen.getByTestId('Datepicker')).toBeInTheDocument()
+}
 
 const initialDateLimit = {
   min: '2020-03-01',
@@ -11,17 +24,6 @@ const updatedDateLimit = {
   min: '2019-03-01',
   max: '2020-05-31'
 }
-
-const initialDateLimitYearMonth = {
-  min: '2020-03',
-  max: '2020-05'
-}
-
-const updatedDateLimitYearMonth = {
-  min: '2019-03',
-  max: '2020-05'
-}
-
 const orderedPeriodAscTextMock = 'Mar/20 - Mai/20'
 
 const setupDefault = initSetupComponent()
@@ -46,29 +48,6 @@ const defaultParams = {
     }
   }
 }
-
-const yearAndMothParams = {
-  ...setupDefault,
-  propsData: {
-    limit: {
-      ...initialDateLimitYearMonth,
-    },
-    enabledPeriods: ['last_6_months', 'last_9_months', 'last_12_months'],
-    value: ['2020-05', '2020-03'],
-    monthsList: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
-  },
-  data () {
-    return {
-      monthsPeriod: ['2020-03', '2020-05']
-    }
-  },
-  computed: {
-    i18nLocale () {
-      return 'pt'
-    }
-  }
-}
-
 describe('datePicker component', () => {
   addElemWithDataAppToBody()
   let datePicker: Wrapper<LDatePickerMonth>
@@ -120,53 +99,20 @@ describe('datePicker component', () => {
   })
 })
 
-describe('datePicker component when have only year and month', () => {
-  addElemWithDataAppToBody()
-  let datePicker: Wrapper<LDatePickerMonth>
+describe('LDatePickerMonth', () => {
+  it('renders Filled datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
 
-  beforeAll(() => {
-    datePicker = mount(LDatePickerMonth, {
-      ...yearAndMothParams
-    })
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('Jan/20 - Fev/21')).toBeInTheDocument())
   })
 
-  it('check datepicker limit', async () => {
-    expect(datePicker.exists()).toBeTruthy()
-    const activator = () => datePicker.find('.activator')
+  it('renders last 9 months datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
 
-    activator().trigger('click')
-    await datePicker.vm.$nextTick()
-
-    const calendar = () => datePicker.find('.v-date-picker-table')
-    expect(calendar().exists()).toBeTruthy()
-
-    const datePickerVuetify = () => datePicker.findComponent({ name: 'v-date-picker' })
-    expect(datePickerVuetify().exists()).toBeTruthy()
-    expect(datePickerVuetify().vm.$props.min).toBe(initialDateLimitYearMonth.min)
-    expect(datePickerVuetify().vm.$props.max).toBe(initialDateLimitYearMonth.max)
-
-    datePicker.setProps({ limit: updatedDateLimitYearMonth })
-    await datePicker.vm.$nextTick()
-
-    expect(datePickerVuetify().vm.$props.min).toBe(updatedDateLimitYearMonth.min)
-    expect(datePickerVuetify().vm.$props.max).toBe(updatedDateLimitYearMonth.max)
-  })
-
-  it('renders bordered datepicker', async () => {
-    expect(datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(false)
-
-    datePicker.setProps({ bordered: true })
-    await datePicker.vm.$nextTick()
-
-    expect( datePicker.find('.LDatePickerMonth--bordered').exists()).toBe(true)
-  })
-
-  it('renders right amount of disabled periods', async () => {
-    expect(datePicker.findAll('.v-chip--disabled').length).toBe(1)
-  })
-
-  it('renders period in asc order', async () => {
-    const inputText = datePicker.find('.formatted-months').text()
-    expect(inputText).toEqual(orderedPeriodAscTextMock)
+    await checkDefaultDatepickerOpened()
+    const last9month = screen.getByTestId('datepickerPeriods.last_9_months')
+    await userEvent.click(last9month)
+    await waitFor(() => expect(screen.getByText('Abr/21 - Dez/21')).toBeInTheDocument())
   })
 })

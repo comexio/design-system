@@ -56,9 +56,9 @@ const Template = (args, { argTypes }) => ({
   components: { LDatePickerMonth },
   template: `
     <l-date-picker-month
-      v-model='date' 
-      v-bind='$props' 
-      style='max-width: 300px;' 
+      v-model='date'
+      v-bind='$props'
+      style='max-width: 300px;'
     />
   `
 })
@@ -80,6 +80,29 @@ Default.args = {
     'Novembro',
     'Dezembro'
   ]
+}
+
+export const DefaultFilledWithYearMonth = Template.bind({});
+DefaultFilledWithYearMonth.args = {
+  limit: { min: '2020-01', max: '2021-12' },
+  monthsList: [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ],
+  date: ['2020-01','2021-02'],
+  value: ['2020-01','2020-12'],
+  bordered: true,
+  locale: 'en'
 }
 
 export const Filled = Template.bind({});
