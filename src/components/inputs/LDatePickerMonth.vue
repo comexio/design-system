@@ -11,6 +11,7 @@
       <template #activator="{ on }">
         <v-row
           class="pointer mx-0 activator"
+          data-testid="activator"
           v-on="on"
         >
           <v-col
@@ -48,6 +49,7 @@
         no-title
         multiple
         range
+        data-testid="Datepicker"
         :show-current="false"
         :allowed-dates="isDateAllowed"
         :locale="locale"
@@ -234,7 +236,9 @@ export default {
       return new Date().getTime() > new Date(year, month - 1).getTime()
     },
     dateFilterLimits (type) {
-      const { min, max } = this.dateLimit
+      let { min, max } = this.dateLimit
+      max = max.length <= 7 ? max + '-02': max
+      min = min.length <= 7 ? min + '-02': min
       if (type === 'max') {
         return max
       }
