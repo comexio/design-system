@@ -19,8 +19,8 @@ const Template = (args, { argTypes }) => ({
       v-bind="$props" 
       style="width: 200px"
     />
-  ` 
-});
+  `
+})
 
 const TemplateWithSlot = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -40,10 +40,26 @@ const TemplateWithSlot = (args, { argTypes }) => ({
         </v-icon>
       </template>
     </l-select>
-  ` 
-});
+  `
+})
 
-export const Default = Template.bind({});
+const TemplateWithScopedSlot = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LSelect },
+  template: `
+    <l-select
+      v-bind="$props" 
+      style="width: 200px"
+    >
+      <template v-slot:selection="value">
+        <v-icon>mdi-check</v-icon>
+        {{ value.item }}
+      </template>
+    </l-select>
+  `
+})
+
+export const Default = Template.bind({})
 Default.args = {
   placeholder: 'Placeholder',
   dense: true,
@@ -51,26 +67,26 @@ Default.args = {
   items: ['First item', 'Second item', 'Third item']
 }
 
-export const DefaultLarge = Template.bind({});
+export const DefaultLarge = Template.bind({})
 DefaultLarge.args = {
   ...Default.args,
   large: true,
-  id: 'defaultLarge',
+  id: 'defaultLarge'
 }
 
-export const DefaultSmall = Template.bind({});
+export const DefaultSmall = Template.bind({})
 DefaultSmall.args = {
   ...Default.args,
   small: true
 }
 
-export const DefaultBordered = Template.bind({});
+export const DefaultBordered = Template.bind({})
 DefaultBordered.args = {
   ...Default.args,
   outlined: true
 }
 
-export const DefaultBorderedWithLabel = Template.bind({});
+export const DefaultBorderedWithLabel = Template.bind({})
 DefaultBorderedWithLabel.args = {
   ...Default.args,
   outlined: true,
@@ -78,28 +94,34 @@ DefaultBorderedWithLabel.args = {
   label: 'Label'
 }
 
-export const DefaultBorderedDisabled = Template.bind({});
+export const DefaultBorderedDisabled = Template.bind({})
 DefaultBorderedDisabled.args = {
   ...Default.args,
   outlined: true,
   disabled: true
 }
 
-export const DefaultSolo = Template.bind({});
+export const DefaultSolo = Template.bind({})
 DefaultSolo.args = {
   ...Default.args,
   solo: true
 }
 
-export const DefaultMultiple = Template.bind({});
+export const DefaultMultiple = Template.bind({})
 DefaultMultiple.args = {
   ...Default.args,
   multiple: true,
   allowHeightGrow: true
 }
 
-export const DefaultWithSlot = TemplateWithSlot.bind({});
+export const DefaultWithSlot = TemplateWithSlot.bind({})
 DefaultWithSlot.args = {
   ...DefaultBordered.args,
   dropdownIcon: false
+}
+
+export const DefaultWithScopedSlot = TemplateWithScopedSlot.bind({})
+DefaultWithScopedSlot.args = {
+  ...DefaultBordered.args,
+  items: ['First item', 'Second item', 'Third item']
 }
