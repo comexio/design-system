@@ -13,7 +13,7 @@
       </template>
       
       <template
-        v-for="(index, name) in $scopedSlots"
+        v-for="(_, name) in $scopedSlots"
         v-slot:[name]="scope"
       >
         <slot
@@ -22,12 +22,11 @@
         />
       </template>
 
-      <template
-        v-for="(index, name) in $slots"
-        v-slot:[name]
-      >
-        <slot :name="name" />
-      </template>
+      <slot
+        v-for="(_, name) in $slots"
+        :slot="name"
+        :name="name"
+      />
     </v-select>
   </div>
 </template>
