@@ -80,7 +80,7 @@ describe('LSelect', () => {
     expect(icon).toBeVisible()
   })
 
-  it('renders select with scoped slot', async () => {
+  it('renders icon passed with scoped slot on option click', async () => {
     const { container } = renderComponent(DefaultWithScopedSlot())
 
     await userEvent.click(screen.getByRole('textbox'))
