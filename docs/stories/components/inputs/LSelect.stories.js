@@ -46,11 +46,6 @@ const TemplateWithSlot = (args, { argTypes }) => ({
 const TemplateWithScopedSlot = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LSelect },
-  methods: {
-    aaa(value) {
-      console.log(value)
-    }
-  },
   template: `
     <l-select
       v-bind="$props" 
