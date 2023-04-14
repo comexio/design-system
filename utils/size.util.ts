@@ -17,20 +17,20 @@ const INPUT_HEIGHT = {
   default: '35'
 }
 
-function getElementHeight (elementHeight: Record<string, string>, heightOption: HeightOption): string {
-  for (const height of Object.keys(heightOption)) {
-    if (heightOption[height]) {
-      return heightOption.custom || elementHeight[height]
-    }
-  }
+// function getElementHeight (elementHeight: Record<string, string>, heightOption: HeightOption): string {
+//   for (const height of Object.keys(heightOption)) {
+//     if (heightOption[height]) {
+//       return heightOption.custom || elementHeight[height]
+//     }
+//   }
 
-  return elementHeight.default
-}
+//   return elementHeight.default
+// }
 
-export function getInputHeight (heightOption: HeightOption): string {
-  return getElementHeight(INPUT_HEIGHT, heightOption)
-}
+// export function getInputHeight (heightOption: HeightOption): string {
+//   return getElementHeight(INPUT_HEIGHT, heightOption)
+// }
 
-export function getButtonHeight (heightOption: HeightOption): string {
-  return getElementHeight(BUTTON_HEIGHT, heightOption)
-}
+// export function getButtonHeight (heightOption: HeightOption): string {
+//   return getElementHeight(BUTTON_HEIGHT, heightOption)
+// }

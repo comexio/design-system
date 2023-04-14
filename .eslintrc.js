@@ -1,8 +1,10 @@
 module.exports = {
     extends: [
         // add more generic rulesets here, such as:
-        'plugin:vue/recommended',
-        "@vue/typescript/recommended"
+        // 'plugin:vue/recommended',
+        // "@vue/typescript/recommended",
+        'plugin:vue/base',
+        'plugin:vuetify/base'
         // "@vue/prettier",
         // "@vue/prettier/@typescript-eslint"
     ],
