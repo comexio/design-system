@@ -7,6 +7,9 @@ import LLinearChartTotalValue from './LLinearChartTotalValue'
 import LLinearChartExpand from './LLinearChartExpand'
 import LCircularChart from './LCircularChart'
 import LGeneralChart from './LGeneralChart'
+import LToggleableLinearChart from "./LToggleableLinearChart"
+import LToggleableLinearChartExpand from "./LToggleableLinearChartExpand"
+import LToggleableLinearChartLine from "./LToggleableLinearChartLine"
 
 export {
     LResumeChart,
@@ -17,5 +20,8 @@ export {
     LLinearChartTotalValue,
     LLinearChartExpand,
     LCircularChart,
-    LGeneralChart
+    LGeneralChart,
+    LToggleableLinearChart,
+    LToggleableLinearChartLine,
+    LToggleableLinearChartExpand
 }
