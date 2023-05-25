@@ -219,10 +219,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//@import '~vuetify/src/styles/styles.sass';
-
-//$switch-track-height: 2px;
-
 .v-input--selection-controls {
   margin-top: 0 !important;
   padding-top: 0 !important;
