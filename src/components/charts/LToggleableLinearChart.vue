@@ -6,6 +6,7 @@
           v-for="(item, index) in data"
           :key="index"
           class="LLinearChart__list__item"
+          :class="isLastItem(item) || !shouldShowSwitch ? '' : 'LLinearChart__list__item_remove-padding'"
           dense
         >
           <l-toggleable-linear-chart-line
@@ -194,7 +195,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.LLinearChart__list__item_remove-padding {
+  padding-top: 0 !important;
+}
 .LLinearChart__list__item{
   padding: 3px 10px;
   }
