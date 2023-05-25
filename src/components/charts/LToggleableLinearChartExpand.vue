@@ -1,21 +1,21 @@
 <template>
   <div
-    class="LLinearChartExpand d-flex flex-column flex-grow-1 pa-4"
+    class="LToggleableLinearChartExpand d-flex flex-column flex-grow-1 pa-4"
   >
-    <div class="LLinearChartExpand__header d-flex justify-space-between pb-3">
+    <div class="LToggleableLinearChartExpand__header d-flex justify-space-between pb-3">
       <span
-        class="LLinearChartExpand__header__action"
+        class="LToggleableLinearChartExpand__header__action"
         @click="expandList"
       >
         {{ retractText || $t('ayla.retract') }}
       </span>
     </div>
     <v-simple-table
-      ref="LLinearChartExpand__table"
+      ref="LToggleableLinearChartExpand__table"
       fixed-header
       dense
       :height="tableHeight"
-      class="LLinearChartExpand__table"
+      class="LToggleableLinearChartExpand__table"
     >
       <template
         v-slot:default
@@ -25,7 +25,7 @@
             <th
               v-for="(item, index) in headers"
               :key="index"
-              class="LLinearChartExpand__table__title text-left"
+              class="LToggleableLinearChartExpand__table__title text-left"
             >
               {{ item }}:
             </th>
@@ -35,13 +35,15 @@
           <tr
             v-for="(item, index) in data"
             :key="index"
-            class="LLinearChartExpand__table__line"
+            class="LToggleableLinearChartExpand__table__line"
           >
             <td class="d-flex align-center">
-              <span class="mr-4">{{ index + 5 }} </span>
+              <div class="mr-4">
+                {{ index + 5 }}
+              </div>
               <v-switch
                 v-if="shouldShowSwitch && !isLastItem(index)"
-                class="LLinearChartExpand__switch"
+                class="LToggleableLinearChartExpand__switch"
                 :input-value="!!item.isFollowedByUser"
                 hide-details
                 inset
@@ -65,7 +67,7 @@
                 :value="item.label"
               />
             </td>
-            <td class="LLinearChartExpand__table__line__value">
+            <td class="LToggleableLinearChartExpand__table__line__value">
               <l-tooltip
                 bottom
                 nudge-right="25"
@@ -89,7 +91,7 @@
     </v-simple-table>
     <div
       v-if="loading"
-      class="d-flex justify-center LLinearChartExpand__loading pt-2"
+      class="d-flex justify-center LToggleableLinearChartExpand__loading pt-2"
     >
       <l-loading
         size="20px"
@@ -159,7 +161,7 @@ export default {
     }
   },
   mounted () {
-    const referenceTable = this.$refs.LLinearChartExpand__table
+    const referenceTable = this.$refs.LToggleableLinearChartExpand__table
     if (!referenceTable) {
       return
     }
@@ -225,11 +227,11 @@ export default {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
-.LLinearChartExpand {
+.LToggleableLinearChartExpand {
   background: $magnolia;
   flex-basis: 50%;
   flex-grow: 1;
-  .LLinearChartExpand__header {
+  .LToggleableLinearChartExpand__header {
     ::v-deep {
       .v-input {
         font-size: 0.8rem;
@@ -240,18 +242,18 @@ export default {
     }
   }
 
-  .LLinearChartExpand__header__action {
+  .LToggleableLinearChartExpand__header__action {
     @extend .globalLink;
   }
 
-  .LLinearChartExpand__table__title {
+  .LToggleableLinearChartExpand__table__title {
     z-index: 1;
     font-size: 0.8rem;
     font-weight: normal;
     border-bottom: none !important;
   }
 
-  .LLinearChartExpand__table__line {
+  .LToggleableLinearChartExpand__table__line {
     td {
       font-size: 0.8rem;
       color: $martinique;
@@ -262,7 +264,7 @@ export default {
     }
   }
 
-  .LLinearChartExpand__table__line--active {
+  .LToggleableLinearChartExpand__table__line--active {
     box-shadow: inset 3px 0px 0px $wisteria;
     td {
       color: $purpleHaze;
@@ -270,11 +272,11 @@ export default {
     }
   }
 
-  .LLinearChartExpand__table__line__value {
+  .LToggleableLinearChartExpand__table__line__value {
     white-space: nowrap;
   }
 
-  .LLinearChartExpand__loading {
+  .LToggleableLinearChartExpand__loading {
     height: 0px;
   }
   .LLinearChartLine__label--clickable {

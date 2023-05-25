@@ -1,12 +1,12 @@
 <template>
-  <div class="LLinearChart flex-grow-1">
+  <div class="LToggleableLinearChart flex-grow-1">
     <div class="">
       <v-list>
         <v-list-item
           v-for="(item, index) in data"
           :key="index"
-          class="LLinearChart__list__item"
-          :class="isLastItem(item) || !shouldShowSwitch ? '' : 'LLinearChart__list__item_remove-padding'"
+          class="LToggleableLinearChart__list__item"
+          :class="isLastItem(item) || !shouldShowSwitch ? '' : 'LToggleableLinearChart__list__item_remove-padding'"
           dense
         >
           <l-toggleable-linear-chart-line
@@ -44,7 +44,7 @@
                 <span>
                   <l-button-new
                     :color="globalColors.wisteria"
-                    class="LLinearChart__list__item__magnify"
+                    class="LToggleableLinearChart__list__item__magnify"
                     text
                     icon
                     height="9px"
@@ -195,17 +195,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LLinearChart__list__item_remove-padding {
+.LToggleableLinearChart__list__item_remove-padding {
   padding-top: 0 !important;
 }
-.LLinearChart__list__item{
+.LToggleableLinearChart__list__item{
   padding: 3px 10px;
   }
-.LLinearChart__list__item__magnify {
+.LToggleableLinearChart__list__item__magnify {
   margin-left: 5px;
 }
 @media screen and (min-width: 1500px) {
-  .LLinearChart__list__item {
+  .LToggleableLinearChart__list__item {
     min-height: auto;
     padding: 10px 20px;
   }

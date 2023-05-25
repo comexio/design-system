@@ -1,20 +1,20 @@
 <template>
-  <v-container class="LLinearChartLine pa-0">
-    <div class="LLinearChartLine__container">
+  <v-container class="LToggleableLinearChartLine pa-0">
+    <div class="LToggleableLinearChartLine__container">
       <v-switch
         v-if="shouldShowSwitch"
-        :class="lastItem ? 'LLinearChartLine__last-item' : ''"
+        :class="lastItem ? 'LToggleableLinearChartLine__last-item' : ''"
         :input-value="!!data.isFollowedByUser"
         hide-details
         inset
         small
         @change="value => emitSwitchEvent(value)"
       />
-      <div class="LLinearChartLine__graph-content">
+      <div class="LToggleableLinearChartLine__graph-content">
         <div class="d-flex justify-space-between col-12 ma-0 pa-0">
           <p
             v-if="isTagChart"
-            class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
+            class="LToggleableLinearChartLine__title font-md pb-0 pl-0 pr-2"
             v-on="on"
           >
             <l-tag
@@ -24,7 +24,7 @@
           </p>
           <p
             v-else
-            class="LLinearChartLine__title pb-0 pl-0 pr-2"
+            class="LToggleableLinearChartLine__title pb-0 pl-0 pr-2"
             v-on="on"
           >
             <l-tooltip
@@ -35,8 +35,8 @@
             >
               <template v-slot:activator="{ on }">
                 <span
-                  class="LLinearChartLine__label font-md"
-                  :class="{ 'LLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
+                  class="LToggleableLinearChartLine__label font-md"
+                  :class="{ 'LToggleableLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
                   @click="applyCursorPointer && !lastItem && eventClick(data.label)"
                   v-on="on"
                 >
@@ -57,7 +57,7 @@
             >
               <template v-slot:activator="{ on }">
                 <span
-                  class="LLinearChartLine__description"
+                  class="LToggleableLinearChartLine__description"
                   v-on="on"
                 >
                   {{ description }}
@@ -75,18 +75,18 @@
               name="sectionAfterValue"
               :value="data.label"
             />
-            <span class="LLinearChartLine__quantity font-md">
+            <span class="LToggleableLinearChartLine__quantity font-md">
               {{ showQuantity }}
             </span>
             <span
               v-if="lastItem && !isExpanded && isExpandable"
-              class="LLinearChartLine__expand ml-1"
+              class="LToggleableLinearChartLine__expand ml-1"
               @click="expand"
             >
               {{ $t(translationLine.seeMore) || $t('ayla.records') }}
             </span>
           </p>
-          <div class="LLinearChartLine__result pb-0">
+          <div class="LToggleableLinearChartLine__result pb-0">
             <div
               v-if="data.resultContent"
               class="d-flex justify-end"
@@ -100,7 +100,7 @@
                 cols="12"
                 class="pl-2 py-0 pr-0 text-right"
               >
-                <span class="LLinearChartLine__title font-md">
+                <span class="LToggleableLinearChartLine__title font-md">
                   {{ data.total }} {{ valueSymbol }}
                 </span>
               </v-col>
@@ -111,7 +111,7 @@
             >
               <v-col
                 v-if="data.value"
-                class="py-0 LLinearChartLine__result__value--first"
+                class="py-0 LToggleableLinearChartLine__result__value--first"
               >
                 <l-tooltip
                   :disabled="!showToolTip"
@@ -135,7 +135,7 @@
               </span>
               <v-col
                 v-if="data.total"
-                class="py-0 LLinearChartLine__result__value--second"
+                class="py-0 LToggleableLinearChartLine__result__value--second"
               >
                 <span>
                   {{ $t(translationLine.records) || $t('ayla.records') }}: {{ data.total }}
@@ -289,7 +289,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LLinearChartLine {
+.LToggleableLinearChartLine {
   &__graph-content {
     width: 100%;
   }
@@ -299,7 +299,7 @@ export default {
     gap: 0.5rem;
     align-items: self-end;
   }
-  .LLinearChartLine__title {
+  .LToggleableLinearChartLine__title {
     white-space: nowrap;
     overflow: hidden;
     max-width: 100%;
@@ -326,7 +326,7 @@ export default {
   &__number {
     color: $silver;
   }
-  & .LLinearChartLine__result {
+  & .LToggleableLinearChartLine__result {
     font-size: 0.9rem;
     line-height: 0.9rem;
     color: $doveGray;
@@ -334,14 +334,14 @@ export default {
     min-width: 250px;
     padding-left: 2%;
   }
-  .LLinearChartLine__result__value--first{
+  .LToggleableLinearChartLine__result__value--first{
     width: 100%;
     flex-grow: 0;
   }
-  .LLinearChartLine__result__value--second{
+  .LToggleableLinearChartLine__result__value--second{
     flex-grow: 0;
   }
-  .LLinearChartLine__expand {
+  .LToggleableLinearChartLine__expand {
     @extend .globalLink;
     font-size: 0.9rem;
     font-family: Rubik;
@@ -350,7 +350,7 @@ export default {
     color: $martinique;
     font-size: 0.9rem;
   }
-  .LLinearChartLine__label--clickable {
+  .LToggleableLinearChartLine__label--clickable {
     cursor: pointer;
   }
 }
