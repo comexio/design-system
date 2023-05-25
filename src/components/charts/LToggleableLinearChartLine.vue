@@ -3,153 +3,156 @@
     <div class="LLinearChartLine__container">
       <v-switch
         v-if="shouldShowSwitch"
-        v-model="state"
+        :class="lastItem ? 'LLinearChartLine__last-item' : ''"
+        :input-value="!!data.isFollowedByUser"
         hide-details
         inset
         small
-        @click="emitSwitchEvent(state)"
+        @change="value => emitSwitchEvent(value)"
       />
-      <div class="d-flex justify-space-between col-12 ma-0 pa-0">
-        <p
-          v-if="isTagChart"
-          class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
-          v-on="on"
-        >
-          <l-tag
-            label
-            :text="data.label"
-          />
-        </p>
-        <p
-          v-else
-          class="LLinearChartLine__title pb-0 pl-0 pr-2"
-          v-on="on"
-        >
-          <l-tooltip
-            :disabled="!isLabelTruncated"
-            bottom
-            nudge-right="100"
-            style="maxWidth: 100px"
+      <div class="LLinearChartLine__graph-content">
+        <div class="d-flex justify-space-between col-12 ma-0 pa-0">
+          <p
+            v-if="isTagChart"
+            class="LLinearChartLine__title font-md pb-0 pl-0 pr-2"
+            v-on="on"
           >
-            <template v-slot:activator="{ on }">
-              <span
-                class="LLinearChartLine__label font-md"
-                :class="{ 'LLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
-                @click="applyCursorPointer && !lastItem && eventClick(data.label)"
-                v-on="on"
-              >
-                {{ label }}
-              </span>
-            </template>
-            <div class="font-md">
-              <span>
-                {{ data.label }} {{ showQuantity }}
-              </span>
-            </div>
-          </l-tooltip>
-          <l-tooltip
-            :disabled="!isDescriptionTruncated"
-            bottom
-            nudge-right="100"
-            style="maxWidth: 100px"
-          >
-            <template v-slot:activator="{ on }">
-              <span
-                class="LLinearChartLine__description"
-                v-on="on"
-              >
-                {{ description }}
-              </span>
-            </template>
-            <div>
-              <span data-testid="description-tooltip">
-                {{ data.description }}
-              </span>
-            </div>
-          </l-tooltip>
-          <slot name="magnifyItemDetail" />
-          <slot
-            v-if="!itemsWithoutDetails.includes(data.label)"
-            name="sectionAfterValue"
-            :value="data.label"
-          />
-          <span class="LLinearChartLine__quantity font-md">
-            {{ showQuantity }}
-          </span>
-          <span
-            v-if="lastItem && !isExpanded && isExpandable"
-            class="LLinearChartLine__expand ml-1"
-            @click="expand"
-          >
-            {{ $t(translationLine.seeMore) || $t('ayla.records') }}
-          </span>
-        </p>
-        <div class="LLinearChartLine__result pb-0">
-          <div
-            v-if="data.resultContent"
-            class="d-flex justify-end"
-          >
-            {{ data.resultContent }}
-          </div>
-          <v-row
-            v-else-if="isTagChart"
-          >
-            <v-col
-              cols="12"
-              class="pl-2 py-0 pr-0 text-right"
-            >
-              <span class="LLinearChartLine__title font-md">
-                {{ data.total }} {{ valueSymbol }}
-              </span>
-            </v-col>
-          </v-row>
-          <v-row
+            <l-tag
+              label
+              :text="data.label"
+            />
+          </p>
+          <p
             v-else
-            class="flex-nowrap justify-end"
+            class="LLinearChartLine__title pb-0 pl-0 pr-2"
+            v-on="on"
           >
-            <v-col
-              v-if="data.value"
-              class="py-0 LLinearChartLine__result__value--first"
+            <l-tooltip
+              :disabled="!isLabelTruncated"
+              bottom
+              nudge-right="100"
+              style="maxWidth: 100px"
             >
-              <l-tooltip
-                :disabled="!showToolTip"
-                bottom
-              >
-                <template v-slot:activator="{ on }">
-                  <span v-on="on">
-                    {{ $t(translationLine.value) || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
-                  </span>
-                </template>
-                <span>
-                  {{ data.toolTipContent }}
+              <template v-slot:activator="{ on }">
+                <span
+                  class="LLinearChartLine__label font-md"
+                  :class="{ 'LLinearChartLine__label--clickable': applyCursorPointer && !lastItem }"
+                  @click="applyCursorPointer && !lastItem && eventClick(data.label)"
+                  v-on="on"
+                >
+                  {{ label }}
                 </span>
-              </l-tooltip>
-            </v-col>
-            <span
-              v-if="data.total"
-              style="marginRight: -4%; marginLeft: -4%"
+              </template>
+              <div class="font-md">
+                <span>
+                  {{ data.label }} {{ showQuantity }}
+                </span>
+              </div>
+            </l-tooltip>
+            <l-tooltip
+              :disabled="!isDescriptionTruncated"
+              bottom
+              nudge-right="100"
+              style="maxWidth: 100px"
             >
-              {{ showPartition(data) }}
+              <template v-slot:activator="{ on }">
+                <span
+                  class="LLinearChartLine__description"
+                  v-on="on"
+                >
+                  {{ description }}
+                </span>
+              </template>
+              <div>
+                <span data-testid="description-tooltip">
+                  {{ data.description }}
+                </span>
+              </div>
+            </l-tooltip>
+            <slot name="magnifyItemDetail" />
+            <slot
+              v-if="!itemsWithoutDetails.includes(data.label)"
+              name="sectionAfterValue"
+              :value="data.label"
+            />
+            <span class="LLinearChartLine__quantity font-md">
+              {{ showQuantity }}
             </span>
-            <v-col
-              v-if="data.total"
-              class="py-0 LLinearChartLine__result__value--second"
+            <span
+              v-if="lastItem && !isExpanded && isExpandable"
+              class="LLinearChartLine__expand ml-1"
+              @click="expand"
             >
-              <span>
-                {{ $t(translationLine.records) || $t('ayla.records') }}: {{ data.total }}
+              {{ $t(translationLine.seeMore) || $t('ayla.records') }}
+            </span>
+          </p>
+          <div class="LLinearChartLine__result pb-0">
+            <div
+              v-if="data.resultContent"
+              class="d-flex justify-end"
+            >
+              {{ data.resultContent }}
+            </div>
+            <v-row
+              v-else-if="isTagChart"
+            >
+              <v-col
+                cols="12"
+                class="pl-2 py-0 pr-0 text-right"
+              >
+                <span class="LLinearChartLine__title font-md">
+                  {{ data.total }} {{ valueSymbol }}
+                </span>
+              </v-col>
+            </v-row>
+            <v-row
+              v-else
+              class="flex-nowrap justify-end"
+            >
+              <v-col
+                v-if="data.value"
+                class="py-0 LLinearChartLine__result__value--first"
+              >
+                <l-tooltip
+                  :disabled="!showToolTip"
+                  bottom
+                >
+                  <template v-slot:activator="{ on }">
+                    <span v-on="on">
+                      {{ $t(translationLine.value) || $t('ayla.value') }}: {{ data.value }} {{ valueSymbol }}
+                    </span>
+                  </template>
+                  <span>
+                    {{ data.toolTipContent }}
+                  </span>
+                </l-tooltip>
+              </v-col>
+              <span
+                v-if="data.total"
+                style="marginRight: -4%; marginLeft: -4%"
+              >
+                {{ showPartition(data) }}
               </span>
-            </v-col>
-          </v-row>
+              <v-col
+                v-if="data.total"
+                class="py-0 LLinearChartLine__result__value--second"
+              >
+                <span>
+                  {{ $t(translationLine.records) || $t('ayla.records') }}: {{ data.total }}
+                </span>
+              </v-col>
+            </v-row>
+          </div>
         </div>
-      </div>
-      <div class="pt-1">
-        <v-progress-linear
-          :value="data.percentage"
-          :background-color="globalColors.gallery"
-          :color="color"
-          rounded
-          height="7px"
-        />
+        <div class="pt-1">
+          <v-progress-linear
+            :value="data.percentage"
+            :background-color="globalColors.gallery"
+            :color="color"
+            rounded
+            height="7px"
+          />
+        </div>
       </div>
     </div>
   </v-container>
@@ -234,11 +237,6 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-     state: false
-    }
-  },
   computed: {
     isLabelTruncated () {
       return this.data?.label?.length > this.labelMaxLength
@@ -270,7 +268,8 @@ export default {
     emitSwitchEvent(state) {
       this.$emit('lineToggled', {
         state,
-        label: this.data.label
+        label: this.data.label,
+        cnpj: this.data.importador_cnpj
       })
     },
     getTruncatedText (text, maxLength) {
@@ -291,10 +290,14 @@ export default {
 
 <style lang="scss" scoped>
 .LLinearChartLine {
+  &__graph-content {
+    width: 100%;
+  }
+
   &__container {
-    //display: flex;
-    gap: 1rem;
-    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    align-items: self-end;
   }
   .LLinearChartLine__title {
     white-space: nowrap;
@@ -302,6 +305,11 @@ export default {
     max-width: 100%;
     width: 0;
     flex-basis: 100%;
+  }
+
+  &__last-item {
+    visibility: hidden;
+    pointer-events: none;
   }
 
   &__title, &__percent, &__number, &__quantity {
