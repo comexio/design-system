@@ -47,7 +47,7 @@
                 :input-value="!!item.isFollowedByUser"
                 hide-details
                 inset
-                @change="value => emitSwitchEvent(value, item.label, item.importador_cnpj)"
+                @change="value => emitSwitchEvent(value, item)"
               />
             </td>
             <td>
@@ -176,11 +176,10 @@ export default {
     isLastItem(index) {
       return index === (this.data.length - 1)
     },
-    emitSwitchEvent(state, label, cnpj) {
+    emitSwitchEvent(state, item) {
       this.$emit('lineToggled', {
         state,
-        label,
-        cnpj,
+        data: item
       })
     },
     expandList () {

@@ -268,8 +268,7 @@ export default {
     emitSwitchEvent(state) {
       this.$emit('lineToggled', {
         state,
-        label: this.data.label,
-        cnpj: this.data.importador_cnpj
+        data: this.data
       })
     },
     getTruncatedText (text, maxLength) {
