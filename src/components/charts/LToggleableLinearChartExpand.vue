@@ -37,14 +37,15 @@
             :key="index"
             class="LLinearChartExpand__table__line"
           >
-            <td>
+            <td class="d-flex align-center">
               <span class="mr-4">{{ index + 5 }} </span>
               <v-switch
-                :value="false"
+                v-if="shouldShowSwitch && !isLastItem(index)"
+                class="LLinearChartExpand__switch"
+                :input-value="!!item.isFollowedByUser"
                 hide-details
                 inset
-                small
-                @change="value => emitSwitchEvent(value, item.label)"
+                @change="value => emitSwitchEvent(value, item.label, item.importador_cnpj)"
               />
             </td>
             <td>
@@ -137,7 +138,11 @@ export default {
     retractText: {
       type: String,
       default: null
-    }
+    },
+    shouldShowSwitch: {
+      type: Boolean,
+      default: false
+    },
   },
   data () {
     return {
@@ -166,10 +171,14 @@ export default {
     })
   },
   methods: {
-    emitSwitchEvent(state, label) {
+    isLastItem(index) {
+      return index === (this.data.length - 1)
+    },
+    emitSwitchEvent(state, label, cnpj) {
       this.$emit('lineToggled', {
         state,
-        label
+        label,
+        cnpj,
       })
     },
     expandList () {
@@ -208,6 +217,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//@import '~vuetify/src/styles/styles.sass';
+
+//$switch-track-height: 2px;
+
+.v-input--selection-controls {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 .LLinearChartExpand {
   background: $magnolia;
   flex-basis: 50%;
