@@ -9,6 +9,10 @@ export default {
       control: 'text',
       description: 'Renders string passed as title'
     },
+    subtitle: {
+      control: 'text',
+      description: 'Renders string passed as title'
+    },
     closeButton: {
       control: 'boolean',
       description: 'Controls renderization of close button'
@@ -37,5 +41,6 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  title: 'Titulo'
+  title: 'Titulo',
+  subtitle: 'Subtitulo'
 }

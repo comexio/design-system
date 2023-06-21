@@ -1,9 +1,14 @@
 <template>
   <div class="LModalHeader">
     <div class="d-flex justify-space-between py-4 px-5">
-      <span class="LModalHeader__title font-md">
-        {{ title }}
-      </span>
+      <div class="d-flex flex-column">
+        <span class="LModalHeader__title font-md">
+          {{ title }}
+        </span>
+        <span class="LModalHeader__subtitle">
+          {{ subtitle }}
+        </span>
+      </div>
       <l-button-new
         v-if="closeButton"
         :color="globalColors.silver"
@@ -39,6 +44,10 @@ export default {
       type: String,
       default: null
     },
+    subtitle: {
+      type: String,
+      default: null
+    },
     closeButton: {
       type: Boolean,
       default: true
@@ -53,16 +62,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LModalHeader__title {
-  color: $martinique;
-  font-size: 1.23rem;
-}
+.LModalHeader {
+  &__title {
+    color: $martinique;
+    font-size: 1.23rem;
+  }
 
-.LModalHeader__close {
-  background: $silver;
-}
+  &__subtitle {
+    font-size: 0.923rem;
+    color: $doveGray;
+  }
 
-.LModalHeader__divider {
-  border-color: $gallery;
+  &__close {
+    background: $silver;
+  }
+
+  &__divider {
+    border-color: $gallery;
+  }
 }
 </style>
