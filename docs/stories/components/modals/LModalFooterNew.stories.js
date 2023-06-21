@@ -26,7 +26,7 @@ export default {
 
 const initObjects = initializeObjects()
 
-const Template = (args, { argTypes }) => ({
+const Template = (_args, { argTypes }) => ({
   ...initObjects,
   props: Object.keys(argTypes),
   components: {
@@ -40,8 +40,76 @@ const Template = (args, { argTypes }) => ({
     />`
 })
 
+const TemplateWithSlot = (_args, { argTypes }) => ({
+  ...initObjects,
+  props: Object.keys(argTypes),
+  components: {
+    LModalFooterNew
+  },
+  template: `
+    <l-modal-footer-new
+      v-bind="$props"
+      @cancel="cancel"
+      @confirm="confirm"
+    >
+      <div> Slot content</div>
+    </l-modal-footer-new>`
+})
+
+const TemplateWithPreppedButtonsSlot = (_args, { argTypes }) => ({
+  ...initObjects,
+  props: Object.keys(argTypes),
+  components: {
+    LModalFooterNew
+  },
+  template: `
+    <l-modal-footer-new
+      v-bind="$props"
+      @cancel="cancel"
+      @confirm="confirm"
+    >
+      <template #prepped-buttons>
+        Foo prepped buttons slot
+      </template>
+    </l-modal-footer-new>
+    `
+})
+
 export const Default = Template.bind({})
 Default.args = {
+  cancelButtonProps: {
+    text: true,
+    buttonColors: {
+      color: '#BFC0CC',
+      colorOnHover: '#E0E1EB'
+    },
+    placeholder: 'Cancelar'
+  },
+  confirmButtonProps: {
+    primary: true,
+    placeholder: 'Confirmar'
+  }
+}
+
+export const FooterWithSlot = TemplateWithSlot.bind({})
+FooterWithSlot.args = {
+  cancelButtonProps: {
+    text: true,
+    buttonColors: {
+      color: '#BFC0CC',
+      colorOnHover: '#E0E1EB'
+    },
+    placeholder: 'Cancelar'
+  },
+  confirmButtonProps: {
+    primary: true,
+    placeholder: 'Confirmar'
+  }
+}
+
+
+export const FooterWithPreppedButtonsSlot = TemplateWithPreppedButtonsSlot.bind({})
+FooterWithPreppedButtonsSlot.args = {
   cancelButtonProps: {
     text: true,
     buttonColors: {
