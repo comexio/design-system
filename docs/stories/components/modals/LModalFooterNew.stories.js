@@ -24,6 +24,20 @@ export default {
   }
 }
 
+const defaultProps = {
+  cancelButtonProps: {
+    text: true,
+    buttonColors: {
+      color: '#BFC0CC',
+      colorOnHover: '#E0E1EB'
+    },
+    placeholder: 'Cancelar'
+  },
+  confirmButtonProps: {
+    primary: true,
+    placeholder: 'Confirmar'
+  }
+}
 const initObjects = initializeObjects()
 
 const Template = (_args, { argTypes }) => ({
@@ -76,49 +90,10 @@ const TemplateWithPreppedButtonsSlot = (_args, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
-Default.args = {
-  cancelButtonProps: {
-    text: true,
-    buttonColors: {
-      color: '#BFC0CC',
-      colorOnHover: '#E0E1EB'
-    },
-    placeholder: 'Cancelar'
-  },
-  confirmButtonProps: {
-    primary: true,
-    placeholder: 'Confirmar'
-  }
-}
+Default.args = defaultProps
 
 export const FooterWithSlot = TemplateWithSlot.bind({})
-FooterWithSlot.args = {
-  cancelButtonProps: {
-    text: true,
-    buttonColors: {
-      color: '#BFC0CC',
-      colorOnHover: '#E0E1EB'
-    },
-    placeholder: 'Cancelar'
-  },
-  confirmButtonProps: {
-    primary: true,
-    placeholder: 'Confirmar'
-  }
-}
+FooterWithSlot.args = defaultProps
 
 export const FooterWithPreppedButtonsSlot = TemplateWithPreppedButtonsSlot.bind({})
-FooterWithPreppedButtonsSlot.args = {
-  cancelButtonProps: {
-    text: true,
-    buttonColors: {
-      color: '#BFC0CC',
-      colorOnHover: '#E0E1EB'
-    },
-    placeholder: 'Cancelar'
-  },
-  confirmButtonProps: {
-    primary: true,
-    placeholder: 'Confirmar'
-  }
-}
+FooterWithPreppedButtonsSlot.args = defaultProps
