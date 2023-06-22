@@ -13,8 +13,8 @@ describe('renders modal header', () => {
   it('render title and subtitle correctly', () => {
     const { getByText } = renderComponent(Default())
     
-    expect(getByText('Titulo')).toBeInTheDocument()
-    expect(getByText('Subtitulo')).toBeInTheDocument()
+    expect(getByText('Title')).toBeInTheDocument()
+    expect(getByText('Subtitle')).toBeInTheDocument()
   })
 
   it('emits events on click buttons', async () => {

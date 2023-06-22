@@ -41,6 +41,6 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  title: 'Titulo',
-  subtitle: 'Subtitulo'
+  title: 'Title',
+  subtitle: 'Subtitle'
 }
