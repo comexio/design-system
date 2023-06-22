@@ -21,11 +21,11 @@ describe('renders modal footer', () => {
             color: '#BFC0CC',
             colorOnHover: '#E0E1EB'
           },
-          placeholder: 'Cancelar'
+          placeholder: 'Cancel'
         },
         confirmButtonProps: {
           primary: true,
-          placeholder: 'Confirmar'
+          placeholder: 'Confirm'
         }
       }
     })
@@ -45,8 +45,8 @@ describe('renders modal footer', () => {
   it('renders correctly component default', () => {
     const { getByRole } = renderComponent(Default())
 
-    const cancelButton = getByRole('button', { name: 'Cancelar' })
-    const confirmButton = getByRole('button', { name: 'Confirmar' })
+    const cancelButton = getByRole('button', { name: 'Cancel' })
+    const confirmButton = getByRole('button', { name: 'Confirm' })
 
     expect(cancelButton).toBeInTheDocument()
     expect(confirmButton).toBeInTheDocument()

@@ -31,11 +31,11 @@ const defaultProps = {
       color: '#BFC0CC',
       colorOnHover: '#E0E1EB'
     },
-    placeholder: 'Cancelar'
+    placeholder: 'Cancel'
   },
   confirmButtonProps: {
     primary: true,
-    placeholder: 'Confirmar'
+    placeholder: 'Confirm'
   }
 }
 const initObjects = initializeObjects()
