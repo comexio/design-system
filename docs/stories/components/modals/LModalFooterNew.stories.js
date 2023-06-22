@@ -107,7 +107,6 @@ FooterWithSlot.args = {
   }
 }
 
-
 export const FooterWithPreppedButtonsSlot = TemplateWithPreppedButtonsSlot.bind({})
 FooterWithPreppedButtonsSlot.args = {
   cancelButtonProps: {
