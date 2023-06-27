@@ -1,22 +1,27 @@
 <template>
-  <div class="LModalFooter d-flex flex-column justify-center align-end">
+  <div class="LModalFooter">
     <v-divider class="LModalFooter__divider" />
-    <div class="px-5 py-4">
-      <l-button-new
-        v-if="cancelButtonProps"
-        v-bind="cancelButtonProps"
-        @click="cancel"
-      >
-        {{ cancelButtonProps.placeholder }}
-      </l-button-new>
-      <l-button-new
-        v-if="confirmButtonProps"
-        class="ml-3"
-        v-bind="confirmButtonProps"
-        @click="confirm"
-      >
-        {{ confirmButtonProps.placeholder }}
-      </l-button-new>
+    <div class="d-flex justify-space-between px-5 py-4">
+      <slot />
+      <v-spacer />
+      <div class="d-flex justify-end">
+        <slot name="prepped-buttons" />
+        <l-button-new
+          v-if="cancelButtonProps"
+          v-bind="cancelButtonProps"
+          @click="cancel"
+        >
+          {{ cancelButtonProps.placeholder }}
+        </l-button-new>
+        <l-button-new
+          v-if="confirmButtonProps"
+          class="ml-3"
+          v-bind="confirmButtonProps"
+          @click="confirm"
+        >
+          {{ confirmButtonProps.placeholder }}
+        </l-button-new>
+      </div>
     </div>
   </div>
 </template>
