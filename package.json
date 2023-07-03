@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "dayjs": "^1.9.7",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "ramda": "^0.27.1",
     "sortablejs": "^1.13.0",
     "string-to-hex-code-color": "^1.0.8"
