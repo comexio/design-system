@@ -305,7 +305,6 @@ export default {
   .LLinearChartLine__expand {
     @extend .globalLink;
     font-size: 0.9rem;
-    font-family: Rubik;
   }
   .tagChartLinearChartLine {
     color: $martinique;

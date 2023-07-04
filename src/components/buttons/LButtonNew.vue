@@ -102,7 +102,6 @@ export default {
 .LButton {
   box-shadow: none;
   border-radius: 5px;
-  font-family: Rubik;
   font-style: normal;
   font-weight: 500;
   line-height: 19px;
