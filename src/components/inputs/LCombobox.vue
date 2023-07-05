@@ -75,7 +75,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/inputs';
 
-// TODO: Validar se no futuro isso vai continuar sendo utilizado, se será renomeado ou movido 
+// TODO: Validar se no futuro isso vai continuar sendo utilizado, se será renomeado ou movido
 .LCombobox ::v-deep { 
   @extend .commonCombobox
 }
