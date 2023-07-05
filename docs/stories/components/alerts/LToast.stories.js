@@ -5,23 +5,23 @@ export default {
   title: 'Components/Base/Alert/Toast',
   component: LToast,
   argTypes: {
-    wrapperClass: { 
-      control: 'text', 
+    wrapperClass: {
+      control: 'text',
       description: 'Adds additional classes into LToast wrapper div'
     },
-    type: { 
+    type: {
       control: 'text',
       description: 'Overrides the bookmarkColor according to the ALERT_TYPE feedbackColor. Must be one of the ALERT_TYPE enum'
     },
-    bookmarkColor: { 
-      control: 'color', 
+    bookmarkColor: {
+      control: 'color',
       description: 'Toast bookmark color'
     },
-    clickAction: { 
-      action: 'click:action', 
+    clickAction: {
+      action: 'click:action',
       table: { disable: true }
     },
-    default: { 
+    default: {
       description: 'Default VSnackBar slot'
     }
   }
@@ -41,12 +41,12 @@ const TemplateInformational = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <div class="LToastStorybook">
-      <l-toast 
+      <l-toast
         v-bind="$props"
         class="LToastStorybook__toast"
-        @input="closeAlert" 
+        @input="closeAlert"
       >
-        <l-toast-content 
+        <l-toast-content
           type="Informational"
           title="Informational alert"
           description="Alert description here"
@@ -67,12 +67,12 @@ const TemplateError = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <div class="LToastStorybook">
-      <l-toast 
-        v-bind="$props" 
+      <l-toast
+        v-bind="$props"
         class="LToastStorybook__toast"
-        @input="closeAlert" 
+        @input="closeAlert"
       >
-        <l-toast-content 
+        <l-toast-content
           type="Error"
           title="Error alert"
           description="Alert description here"
@@ -93,12 +93,12 @@ const TemplateSuccess = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <div class="LToastStorybook">
-      <l-toast 
+      <l-toast
         v-bind="$props"
         class="LToastStorybook__toast"
-        @input="closeAlert" 
+        @input="closeAlert"
       >
-        <l-toast-content 
+        <l-toast-content
           type="Success"
           title="Success alert"
           description="Alert description here"
@@ -119,12 +119,12 @@ const TemplateWarning = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <div class="LToastStorybook">
-      <l-toast 
+      <l-toast
         v-bind="$props"
         class="LToastStorybook__toast"
-        @input="closeAlert" 
+        @input="closeAlert"
       >
-        <l-toast-content 
+        <l-toast-content
           type="Warning"
           title="Warning alert"
           description="Alert description here"
@@ -145,10 +145,10 @@ const TemplateCustom = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <div class="LToastStorybook">
-      <l-toast 
+      <l-toast
         v-bind="$props"
         class="LToastStorybook__toast"
-        @input="closeAlert" 
+        @input="closeAlert"
       >
         <span style="align-self: center;">Custom content</span>
       </l-toast>
