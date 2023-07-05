@@ -51,7 +51,7 @@ describe('LHeaderAlertContent', () => {
   })
 
   it('emits click:dismiss event', async () => {
-    // Foi necessário renderizar sem usar a story pois os eventos estavam se perdendo
+    // Foi necessário renderizar sem usar a story pois os eventos estavam se perdendo 
     const { emitted } = renderComponent(LHeaderAlertContent)
 
     await userEvent.click(screen.getByRole('button', { name: ''}))
