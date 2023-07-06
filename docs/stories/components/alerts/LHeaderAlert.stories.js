@@ -46,8 +46,8 @@ const TemplateInformational = (args, { argTypes }) => ({
       v-if="showAlert"
       v-bind="$props" 
     >
-      <l-header-alert-content 
-        type="Informational" 
+      <l-header-alert-content
+        type="Informational"
         @click:dismiss="toggleAlert"
       >
         Alert content here
@@ -64,11 +64,11 @@ const TemplateError = (args, { argTypes }) => ({
   components: { LHeaderAlert, LHeaderAlertContent, LButtonNew },
   ...defaultTemplateOptions,
   template: `
-    <l-header-alert 
+    <l-header-alert
       v-if="showAlert"
-      v-bind="$props" 
+      v-bind="$props"
     >
-      <l-header-alert-content 
+      <l-header-alert-content
         type="Error"
         @click:dismiss="toggleAlert"
       >
@@ -86,11 +86,11 @@ const TemplateSuccess = (args, { argTypes }) => ({
   components: { LHeaderAlert, LHeaderAlertContent, LButtonNew },
   ...defaultTemplateOptions,
   template: `
-    <l-header-alert 
+    <l-header-alert
       v-if="showAlert"
-      v-bind="$props" 
+      v-bind="$props"
     >
-      <l-header-alert-content 
+      <l-header-alert-content
         type="Success"
         @click:dismiss="toggleAlert"
       >
@@ -109,10 +109,10 @@ const TemplateWarning = (args, { argTypes }) => ({
   ...defaultTemplateOptions,
   template: `
     <l-header-alert
-      v-if="showAlert" 
-      v-bind="$props" 
+      v-if="showAlert"
+      v-bind="$props"
     >
-      <l-header-alert-content 
+      <l-header-alert-content
         type="Warning"
         @click:dismiss="toggleAlert"
       >
@@ -129,7 +129,7 @@ const TemplateCustom = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LHeaderAlert },
   template: `
-    <l-header-alert 
+    <l-header-alert
       v-bind="$props"
     >
       <span style="align-self: center;">Custom content</span>
