@@ -30,7 +30,7 @@ export const monthPeriodsByQuantity = (param = 0) => {
 
 
 export const WEEK_PERIODS_TEXT = {
-  // TODO: aplicar tradução
+  // TODO: aplicar tradução 
   last_1_week: 'Última semana',
   last_2_week: 'Últimas 2 semanas',
   last_3_week: 'Últimas 3 semanas',
