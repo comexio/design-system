@@ -5,11 +5,11 @@ export default {
   title: 'Components/Cards/Body',
   component: LCardNew,
   argTypes: {
-    customShadow: { 
-      type: 'boolean', 
-      description: 'Applies lighter custom shadow to card. When false applies default shadow from Vuetify' 
+    customShadow: {
+      type: 'boolean',
+      description: 'Applies lighter custom shadow to card. When false applies default shadow from Vuetify'
     },
-    default: { 
+    default: {
       description: 'Default vue slot'
     },
   }
@@ -20,12 +20,12 @@ const TemplateDefault = (args, { argTypes }) => ({
   components: { LCardNew, LCardHeaderNew },
   template: `
     <l-card-new
-      v-bind="$props" 
+      v-bind="$props"
       height="300"
       width="500"
     >
-      <l-card-header-new 
-        title="Card Title" 
+      <l-card-header-new
+        title="Card Title"
         subtitle="Card subtitle here"
       />
       <div class="d-flex justify-center mt-2">
@@ -40,12 +40,12 @@ const TemplateOnlyTitle = (args, { argTypes }) => ({
   components: { LCardNew, LCardHeaderNew },
   template: `
     <l-card-new
-      v-bind="$props" 
+      v-bind="$props"
       height="300"
       width="500"
     >
-      <l-card-header-new 
-        title="Card Title" 
+      <l-card-header-new
+        title="Card Title"
       />
       <div class="d-flex justify-center mt-2">
         Card content
@@ -59,13 +59,13 @@ const TemplateCustomContentOnHeader = (args, { argTypes }) => ({
   components: { LCardNew, LCardHeaderNew },
   template: `
     <l-card-new
-      v-bind="$props" 
+      v-bind="$props"
       height="300"
       width="500"
     >
-      <l-card-header-new 
-        title="Card Title" 
-        subtitle="Card subtitle here" 
+      <l-card-header-new
+        title="Card Title"
+        subtitle="Card subtitle here"
       >
         <v-icon size="16">mdi-star-outline</v-icon>
       </l-card-header-new>
@@ -81,7 +81,7 @@ const TemplateWithoutHeader = (args, { argTypes }) => ({
   components: { LCardNew, LCardHeaderNew },
   template: `
     <l-card-new
-      v-bind="$props" 
+      v-bind="$props"
       height="300"
       width="500"
     >

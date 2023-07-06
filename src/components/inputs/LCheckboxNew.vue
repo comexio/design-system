@@ -11,6 +11,7 @@
 <script>
 export default {
   name: 'LCheckboxNew',
+  inheritAttrs: false,
   props: {
     value: {
       type: Boolean,

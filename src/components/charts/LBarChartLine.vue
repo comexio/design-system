@@ -286,7 +286,6 @@ export default {
 .LBarChart__description__toggle {
   @extend .globalLink;
   font-size: 0.9rem;
-  font-family: Rubik;
 }
 .LBarChart__value {
   text-align: right;

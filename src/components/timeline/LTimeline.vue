@@ -159,7 +159,6 @@ export default {
 <style lang="scss" scoped>
 .LTimeline {
   display: flex;
-  font-family: Rubik, sans-serif;
   font-size: 0.923076923rem;
 
   &__card {

@@ -233,13 +233,13 @@ export default {
         return this.$t(label)
       }
 
-      return this.isLabelTruncated 
-        ? this.getTruncatedText(label, this.labelMaxLength) 
+      return this.isLabelTruncated
+        ? this.getTruncatedText(label, this.labelMaxLength)
         : label
     },
     description () {
-      return this.isDescriptionTruncated 
-        ? this.getTruncatedText(this.data.description, this.descriptionMaxLength) 
+      return this.isDescriptionTruncated
+        ? this.getTruncatedText(this.data.description, this.descriptionMaxLength)
         : this.data.description
     },
     showQuantity () {
@@ -296,6 +296,7 @@ export default {
     padding-left: 2%;
   }
   .LLinearChartLine__result__value--first{
+    width: 100%;
     flex-grow: 0;
   }
   .LLinearChartLine__result__value--second{
@@ -304,7 +305,6 @@ export default {
   .LLinearChartLine__expand {
     @extend .globalLink;
     font-size: 0.9rem;
-    font-family: Rubik;
   }
   .tagChartLinearChartLine {
     color: $martinique;

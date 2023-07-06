@@ -1,6 +1,19 @@
 import { mount, Wrapper } from '@vue/test-utils'
 import { initSetupComponent, addElemWithDataAppToBody } from '~/test/utils.setup'
 import LDatePickerMonth from '~/src/components/inputs/LDatePickerMonth.vue'
+import * as stories from '~/docs/stories/components/inputs/LDatePickerMonth.stories.js'
+import { screen, waitFor } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { composeStories } from '@storybook/testing-vue'
+import { renderComponent } from '~/test/utils.setup.testingLibrary'
+
+const { DefaultFilledWithYearMonth } = composeStories(stories)
+
+const checkDefaultDatepickerOpened = async () => {
+  const activator = screen.getByTestId('activator')
+  await userEvent.click(activator)
+  expect(screen.getByTestId('Datepicker')).toBeInTheDocument()
+}
 
 const initialDateLimit = {
   min: '2020-03-01',
@@ -11,7 +24,6 @@ const updatedDateLimit = {
   min: '2019-03-01',
   max: '2020-05-31'
 }
-
 const orderedPeriodAscTextMock = 'Mar/20 - Mai/20'
 
 const setupDefault = initSetupComponent()
@@ -36,6 +48,24 @@ const defaultParams = {
     }
   }
 }
+
+describe('LDatePickerMonth', () => {
+  it('renders Filled datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
+
+    await checkDefaultDatepickerOpened()
+    await waitFor(() => expect(screen.getByText('Jan/20 - Fev/21')).toBeInTheDocument())
+  })
+
+  it('renders last 9 months datepicker', async () => {
+    renderComponent(DefaultFilledWithYearMonth())
+
+    await checkDefaultDatepickerOpened()
+    const last9month = screen.getByText('Últimos 9 meses')
+    await userEvent.click(last9month)
+    await waitFor(() => expect(screen.getByText('Abr/21 - Dez/21')).toBeInTheDocument())
+  })
+})
 
 describe('datePicker component', () => {
   addElemWithDataAppToBody()
