@@ -23,7 +23,7 @@ const Template = (args, { argTypes }) => ({
       @click:append="() => ({})"
       style="width: 200px"
     />
-  ` 
+  `
 });
 
 const TemplateWithSlot = (args, { argTypes }) => ({
@@ -31,7 +31,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
   components: { LTextField },
   template: `
     <l-text-field
-      v-bind="$props" 
+      v-bind="$props"
       style="width: 200px"
     >
       <template v-slot:append>
@@ -44,7 +44,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
         </v-icon>
       </template>
     </l-text-field>
-  ` 
+  `
 });
 
 export const Default = Template.bind({});
