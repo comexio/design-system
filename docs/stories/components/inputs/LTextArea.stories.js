@@ -14,7 +14,7 @@ const Template = (args, { argTypes }) => ({
         v-bind="$props"
       />
     </div>
-  ` 
+  `
 })
 
 const TemplateWithSlot = (args, { argTypes }) => ({
@@ -36,7 +36,7 @@ const TemplateWithSlot = (args, { argTypes }) => ({
         </template>
       </l-text-area>
     </div>
-  ` 
+  `
 });
 
 export const Default = Template.bind({});
