@@ -66,8 +66,8 @@ export default {
     },
     buttonStyle () {
       const colorPresets = {
-        primary: { isActive: this.primary, colors: PRIMARY }, 
-        secondary: { isActive: this.secondary, colors: SECONDARY }, 
+        primary: { isActive: this.primary, colors: PRIMARY },
+        secondary: { isActive: this.secondary, colors: SECONDARY },
         tertiary: { isActive: this.tertiary, colors: TERTIARY }
       }
 
@@ -134,27 +134,53 @@ export default {
 .LButton--secondary,
 .LButton--tertiary,
 .LButton--customColors {
-  background-color: var(--backgroundColor) !important;
-  border-color: var(--borderColor) !important;
-  color: var(--color) !important;
+  &.theme--light {
+    background-color: var(--backgroundColor) !important;
+    border-color: var(--borderColor) !important;
+    color: var(--color) !important;
 
-  &:hover {
-    background-color: var(--backgroundColorOnHover, var(--backgroundColor)) !important;
-    border-color: var(--borderColorOnHover, var(--borderColor)) !important;
-    color: var(--colorOnHover, var(--color)) !important;
-    transition: 0.3s;
+    &:hover {
+      background-color: var(--backgroundColorOnHover, var(--backgroundColor)) !important;
+      border-color: var(--borderColorOnHover, var(--borderColor)) !important;
+      color: var(--colorOnHover, var(--color)) !important;
+      transition: 0.3s !important;
+    }
+  }
+  &.theme--dark {
+    background-color: var(--backgroundColor);
+    border-color: var(--borderColor);
+    color: var(--color);
+
+    &:hover {
+      background-color: var(--backgroundColorOnHover, var(--backgroundColor));
+      border-color: var(--borderColorOnHover, var(--borderColor));
+      color: var(--colorOnHover, var(--color));
+      transition: 0.3s;
+    }
   }
 }
 
 :is(.LButton--secondary, .LButton--tertiary, .LButton--customColors).v-btn:before {
-  background-color: unset !important;
+  &.theme--light {
+    background-color: unset !important;
+  }
+  &.theme--dark {
+    background-color: unset;
+  }
 }
 
-.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):is(.LButton--primary, .LButton--customColors), 
+.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):is(.LButton--primary, .LButton--customColors),
 .v-btn.v-btn--disabled:is(.LButton--secondary, .LButton--tertiary, .LButton--customColors) {
-  background-color: var(--backgroundColorDisabled, var(--backgroundColor)) !important;
-  border-color: var(--borderColorDisabled, var(--borderColor)) !important;
-  color: var(--colorDisabled, var(--color)) !important;
+  &.theme--light {
+    background-color: var(--backgroundColorDisabled, var(--backgroundColor)) !important;
+    border-color: var(--borderColorDisabled, var(--borderColor)) !important;
+    color: var(--colorDisabled, var(--color)) !important;
+  }
+  &.theme--dark {
+    background-color: var(--backgroundColorDisabled, var(--backgroundColor));
+    border-color: var(--borderColorDisabled, var(--borderColor));
+    color: var(--colorDisabled, var(--color));
+  }
 }
 
 .v-btn {
