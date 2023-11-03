@@ -10,52 +10,58 @@
       :close-on-content-click="false"
     >
       <template #activator="{ on }">
-        <v-row
-          class="pointer mx-0 activator"
-          data-testid="activator"
-          v-on="on"
-          @click="openMenu"
+        <slot
+          name="activator"
+          :on="on"
+          :formatted-date="formattedMonths"
         >
-          <v-col
-            cols="1"
-            class="mr-2"
+          <v-row
+            class="pointer mx-0 activator"
+            data-testid="activator"
+            v-on="on"
+            @click="openMenu"
           >
+            <v-col
+              cols="1"
+              class="mr-2"
+            >
+              <v-icon
+                :color="itemsColor || globalColors.wisteria"
+                size="20px"
+              >
+                mdi-calendar-month
+              </v-icon>
+            </v-col>
+            <v-col
+              cols="8"
+              class="datepicker__input text-center"
+            >
+              <l-text-field
+                v-if="allowTypingDate"
+                v-model="typedDate"
+                v-mask="currentMask"
+                hide-details
+                height="25px"
+                class="LDatePickerDay__textField"
+                @keydown="triggerInput"
+              />
+              <small
+                v-else
+                class="pl-1 formatted-months"
+              >
+                {{ formattedMonths }}
+              </small>
+            </v-col>
+            <v-spacer />
             <v-icon
+              v-if="dropdownIcon"
               :color="itemsColor || globalColors.wisteria"
               size="20px"
             >
-              mdi-calendar-month
+              mdi-chevron-down
             </v-icon>
-          </v-col>
-          <v-col
-            cols="8"
-            class="datepicker__input text-center"
-          >
-            <l-text-field
-              v-if="allowTypingDate"
-              v-model="typedDate"
-              v-mask="currentMask"
-              hide-details
-              height="25px"
-              class="LDatePickerDay__textField"
-              @keydown="triggerInput"
-            />
-            <small
-              v-else
-              class="pl-1 formatted-months"
-            >
-              {{ formattedMonths }}
-            </small>
-          </v-col>
-          <v-spacer />
-          <v-icon
-            v-if="dropdownIcon"
-            :color="itemsColor || globalColors.wisteria"
-            size="20px"
-          >
-            mdi-chevron-down
-          </v-icon>
-        </v-row>
+          </v-row>
+        </slot>
       </template>
       <div
         ref="datepickersContainer"

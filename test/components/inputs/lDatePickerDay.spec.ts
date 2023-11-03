@@ -11,7 +11,8 @@ const {
   FilledEnglish,
   AllowedTyping,
   AllowedTypingEnglish,
-  Bordered
+  Bordered,
+  DefaultWithSlot
 } = composeStories(stories)
 
 const checkDefaultDatepickerOpened = async () => {
@@ -106,5 +107,11 @@ describe('LDatePickerDay', () => {
 
     await checkDefaultDatepickerOpened()
     await waitFor(() => expect(screen.getByText('08/12/2020 - 18/12/2020')).toBeInTheDocument())
+  })
+
+  it('renders default datepicker (with slot)', async () => {
+    renderComponent(DefaultWithSlot())
+
+    await checkDefaultDatepickerOpened()
   })
 })
