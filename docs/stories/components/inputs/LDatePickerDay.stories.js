@@ -81,6 +81,32 @@ const Template = (args, { argTypes }) => ({
   `
 })
 
+const TemplateWithSlot = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  data () {
+    return {
+      date: null
+    }
+  },
+  components: { LDatePickerDay },
+  template: `
+    <l-date-picker-day
+      v-model="date"
+      v-bind="$props"
+      style="max-width: 300px;"
+    >
+      <template #activator="{ on, formattedDate }">
+        <span 
+          v-on="on"
+          data-testid="activator"
+        >
+          Value: {{ formattedDate }}
+        </span>
+      </template>
+    </l-date-picker-day>
+  `
+})
+
 export const Default = Template.bind({});
 Default.args = {
   opened: () => ({}),
@@ -136,4 +162,10 @@ export const Bordered = Template.bind({});
 Bordered.args = {
   ...Filled.args,
   bordered: true
+}
+
+export const DefaultWithSlot = TemplateWithSlot.bind({});
+DefaultWithSlot.args = {
+  opened: () => ({}),
+  closed: () => ({})
 }

@@ -3,16 +3,6 @@ on:
   pull_request:
 
 jobs:
-  labeler:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: rafaelbastiansch/labeler@v0.0.4
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
   lint:
     runs-on: ubuntu-latest
     strategy:
