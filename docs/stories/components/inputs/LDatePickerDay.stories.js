@@ -103,6 +103,9 @@ const TemplateWithSlot = (args, { argTypes }) => ({
           Value: {{ formattedDate }}
         </span>
       </template>
+      <template #footer>
+        Footer content
+      </template>
     </l-date-picker-day>
   `
 })
