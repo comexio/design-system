@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/vue'
+import { getByText, screen, waitFor } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue'
 import userEvent from '@testing-library/user-event'
 import { renderComponent } from '~/test/utils.setup.testingLibrary'
@@ -113,5 +113,13 @@ describe('LDatePickerDay', () => {
     renderComponent(DefaultWithSlot())
 
     await checkDefaultDatepickerOpened()
+  })
+
+  it('renders default datepicker (with slot Footer)', async () => {
+    renderComponent(DefaultWithSlot())
+
+    await checkDefaultDatepickerOpened()
+    
+    expect(screen.getByText('Footer content')).toBeInTheDocument()
   })
 })

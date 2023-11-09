@@ -112,6 +112,7 @@
           @mouseleave:date="leaveHoverDate"
         />
       </div>
+      <slot name="footer" />
     </v-menu>
   </div>
 </template>
