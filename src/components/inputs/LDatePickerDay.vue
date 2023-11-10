@@ -112,7 +112,10 @@
           @mouseleave:date="leaveHoverDate"
         />
       </div>
-      <slot name="footer" />
+      <slot
+        name="footer"
+        :toggle-menu="toggleMenu"
+      />
     </v-menu>
   </div>
 </template>
@@ -366,6 +369,9 @@ export default {
     }
   },
   methods: {
+    toggleMenu() {
+      this.menu = !this.menu
+    },
     triggerInput (e) {
       setTimeout(() => {
         this.changedInputValue(e.target.value)
