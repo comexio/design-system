@@ -122,4 +122,15 @@ describe('LDatePickerDay', () => {
     
     expect(screen.getByText('Footer content')).toBeInTheDocument()
   })
+
+  it('renders default datepicker (with slot Footer)', async () => {
+    renderComponent(DefaultWithSlot())
+
+    await checkDefaultDatepickerOpened()
+    const footerItem = screen.getByText('Footer content')
+    
+    expect(footerItem).toBeInTheDocument()
+
+    await userEvent.click(footerItem)
+  })
 })

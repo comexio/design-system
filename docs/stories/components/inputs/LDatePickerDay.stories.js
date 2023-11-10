@@ -103,8 +103,8 @@ const TemplateWithSlot = (args, { argTypes }) => ({
           Value: {{ formattedDate }}
         </span>
       </template>
-      <template #footer>
-        Footer content
+      <template #footer="{ toggleMenu }">
+        <a @click="toggleMenu"> Footer content </a>
       </template>
     </l-date-picker-day>
   `
