@@ -370,7 +370,6 @@ export default {
   },
   methods: {
     toggleMenu() {
-      debugger
       this.menu = !this.menu
     },
     triggerInput (e) {
