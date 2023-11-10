@@ -2991,6 +2991,17 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@logcomex/design@3.7.1-4":
+  version "3.7.1-4"
+  resolved "https://registry.yarnpkg.com/@logcomex/design/-/design-3.7.1-4.tgz#001a205064ff31e7e83720fe7bd7575f770ae962"
+  integrity sha512-9eVTDiGxGxhHs/LYIKKvDK91g8kO6exkMSvPvly90mnewR0YhepmDWBh4DhmrF2YU576UAFMMi6ymjgVEMeE5A==
+  dependencies:
+    dayjs "^1.9.7"
+    moment "^2.29.2"
+    ramda "^0.27.1"
+    sortablejs "^1.13.0"
+    string-to-hex-code-color "^1.0.8"
+
 "@mdi/font@^5.8.55":
   version "5.8.55"
   resolved "https://registry.yarnpkg.com/@mdi/font/-/font-5.8.55.tgz#1464155bcbc8a6e4af6dffd611fe8e38e09af285"

@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "@logcomex/design": "3.7.1-4",
     "dayjs": "^1.9.7",
     "moment": "^2.29.2",
     "ramda": "^0.27.1",
