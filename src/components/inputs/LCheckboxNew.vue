@@ -14,7 +14,7 @@ export default {
   inheritAttrs: false,
   props: {
     value: {
-      type: Boolean,
+      type: null,
       default: null
     },
     itemValue: {
