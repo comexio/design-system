@@ -33,7 +33,10 @@ const TemplateWithSlot = (args, { argTypes }) => ({
       v-bind="$props"
       @updatedItems="updatedItems"
     >
-      <template v-slot:actions>
+      <template #button>
+        <button class="foo-button">Foo button</button>
+      </template>
+      <template #actions>
         <p>Foo Actions</p>
       </template>
     </l-dropdown-checkbox>`,
