@@ -73,6 +73,16 @@ describe('lDropdownCheckbox component with slot', () => {
     })
   })
 
+  it('renders component with button slot', async () => {
+    const dropdownCheckboxWithSlot = mount(LDropdownCheckbox, {
+      ...defaultParams,
+      scopedSlots: { button: '<button class="foo-button">Foo button</button>' }
+    })
+
+    const button = dropdownCheckboxWithSlot.find('.foo-button')
+    expect(button.text()).toBe('Foo button')
+  })
+
   it('renders component with slot', async () => {
     const button = () => dropdownCheckbox.find('.LButtonSelect')
     const menu = () => dropdownCheckbox.findComponent({ name: 'v-menu' })

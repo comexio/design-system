@@ -8,19 +8,24 @@
       content-class="LDropdownCheckbox__menu"
     >
       <template v-slot:activator="{ on }">
-        <l-button-new
-          :ripple="false"
-          :height="32"
-          :uppercase="false"
-          text
-          class="LButtonSelect pb-2"
-          v-on="on"
+        <slot
+          name="button"
+          :on="on"
         >
-          {{ placeholder || $t('ayla.selectColumns') }}
-          <v-icon>
-            mdi-chevron-down
-          </v-icon>
-        </l-button-new>
+          <l-button-new
+            :ripple="false"
+            :height="32"
+            :uppercase="false"
+            text
+            class="LButtonSelect pb-2"
+            v-on="on"
+          >
+            {{ placeholder || $t('ayla.selectColumns') }}
+            <v-icon>
+              mdi-chevron-down
+            </v-icon>
+          </l-button-new>
+        </slot>
       </template>
       <l-checkbox-list
         v-model="inputValue"
