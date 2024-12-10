@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     :style="{ '--backgroundColor': handledBackgroundColor, '--borderColor': handledBorderColor }"
     class="LHeaderAlert d-flex py-2 px-3"
   >
