@@ -1,0 +1,16 @@
+name: Trufflehog Scan
+
+on:
+  pull_request:
+
+jobs:
+  trufflehog-scan:
+    uses: comexio/trufflehog-workflow/.github/workflows/trufflehog-scan.yaml@v1
+    secrets:
+      SLACK_WEBHOOK_TRUFFLEHOG: ${{ secrets.SLACK_WEBHOOK_TRUFFLEHOG }}
+      TRUFFLEHOG_RESULTS_BUCKET: ${{ secrets.TRUFFLEHOG_RESULTS_BUCKET }}
+      LOKI_HTTP_ENDPOINT: ${{ secrets.LOKI_HTTP_ENDPOINT }}
+      SMTP_USERNAME_TRUFFLEHOG: ${{ secrets.SMTP_USERNAME_TRUFFLEHOG }}
+      SMTP_PASSWORD_TRUFFLEHOG: ${{ secrets.SMTP_PASSWORD_TRUFFLEHOG }}
+      SES_AWS_ACCESS_KEY_ID: ${{ secrets.SES_AWS_ACCESS_KEY_ID }}
+      SES_AWS_SECRET_ACCESS_KEY: ${{ secrets.SES_AWS_SECRET_ACCESS_KEY }}
