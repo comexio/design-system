@@ -21,6 +21,9 @@
     "snapshot": "percy storybook:start -c .percy.yml -e Deprecated",
     "release-beta": "release-it prerelease --ci"
   },
+  "jest": {
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
   "main": "./dist/design.umd.min.js",
   "types": "./types",
   "husky": {
@@ -70,6 +73,7 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.3.8",
+    "jest-sonar-reporter": "^2.0.0",
     "lint-staged": "^10.5.3",
     "node-sass": "^4.12.0",
     "prettier": "2.5.0",
