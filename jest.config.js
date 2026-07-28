@@ -29,5 +29,6 @@ module.exports = {
     },
     setupFiles: [
       '<rootDir>/test/vue.setup.js'
-    ]
+    ],
+    testResultsProcessor: 'jest-sonar-reporter'
 }
