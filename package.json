@@ -85,7 +85,7 @@
     "vue-loader": "^15.9.6",
     "vue-property-decorator": "^8.4.2",
     "vue-template-compiler": "2.6.11",
-    "vuetify": "^2.3.8"
+    "vuetify": "^2.6.10"
   },
   "files": [
     "dist",
