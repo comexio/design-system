@@ -4,3 +4,4 @@ coverage
 .idea
 .DS_Store
 storybook-static
+.github/workflow
